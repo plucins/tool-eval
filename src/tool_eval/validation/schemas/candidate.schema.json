@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/candidate.schema.json",
+  "title": "New-feature candidate",
+  "description": "A capability detected outside the frozen taxonomy during a run (requirements Sec 8). Presented at the single curation point; the operator may accept, reject, or defer it to the waiting room.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["candidate_id", "name", "group", "definition", "relevance_suggestion"],
+  "properties": {
+    "candidate_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "group": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "definition": { "type": "string", "minLength": 1 },
+    "relevance_suggestion": {
+      "type": "string",
+      "description": "Preliminary relevance note used only during curation (requirements Sec 8)."
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "excerpt"],
+        "properties": {
+          "source_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "excerpt": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "source_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
+    },
+    "detected_in_run": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" }
+  }
+}

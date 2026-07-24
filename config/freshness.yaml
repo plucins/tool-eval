@@ -1,0 +1,9 @@
+# Freshness thresholds (requirements Sec 19). No `revision` field: changing
+# these values does not invalidate existing profiles, only how they are
+# displayed/warned about.
+
+current_max_days: 30
+aging_max_days: 60
+# more than aging_max_days => stale
+
+date_spread_warning_days: 14

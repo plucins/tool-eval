@@ -1,0 +1,216 @@
+# Phase 3 Process: Requirements Elicitation
+# Partnership process - AI assists in drawing out stakeholder needs
+---
+references:
+  rules: ../rules/phase3-analysis.md
+
+definition:
+  id: "PROC-3.1"
+  name: "Requirements Elicitation"
+  description: |
+    Draw out stakeholder needs and translate them into requirements.
+    This is a partnership process where AI helps structure elicitation
+    while humans provide domain knowledge and stakeholder context.
+
+    Supports two modes:
+    - QUICK: Core requirements for simple features (~30 min)
+    - FULL: Comprehensive elicitation for complex systems (~3-4 hours)
+  version: "1.0.0"
+  phase: 3
+  information_composition:
+    formal: 40
+    tacit: 35
+    emergent: 25
+
+interfaces:
+  inputs:
+    - type: "scope_statement"
+      required: true
+      description: "Output from PROC-2.1"
+    - type: "stakeholder_map"
+      required: true
+      description: "Output from PROC-1.2"
+    - type: "problem_statement"
+      required: false
+      description: "Output from PROC-1.3 if available"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "raw_requirements"
+      description: "Elicited requirements in stakeholder language"
+    - type: "elicitation_gaps"
+      description: "Areas needing further exploration"
+    - type: "deferred_items"
+      description: "Requirements to address in later iterations"
+
+steps:
+  # Step 1: Identify elicitation sources (Partnership)
+  - id: "3.1.1"
+    name: "Identify Sources"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Confirm who/what to elicit from: stakeholders, documents, systems"
+    ai_role: "Propose source categories based on stakeholder map; identify gaps"
+    escalation_triggers:
+      - condition: "Key stakeholder unavailable for elicitation"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Critical stakeholder not available. Proceed with proxy or defer?"
+    completion_criteria: "Elicitation sources identified"
+    validation: "At least one primary source per key stakeholder group"
+
+  # Step 2: Conduct elicitation (Human-Led)
+  - id: "3.1.2"
+    name: "Conduct Elicitation"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Lead elicitation sessions; interpret stakeholder responses"
+    ai_role: "Suggest elicitation questions; record responses; identify follow-ups"
+    escalation_triggers:
+      - condition: "Stakeholder provides contradictory requirements"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Contradictory input detected. Clarify with stakeholder or note conflict?"
+      - condition: "Requirements scope expanding significantly"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Scope creep detected. Align with PROC-2.1 scope or revise scope?"
+    completion_criteria: "Requirements elicited from primary sources"
+    validation: "Each requirement has source attribution"
+
+  # Step 3: Capture tacit needs (Human-Led)
+  - id: "3.1.3"
+    name: "Surface Tacit Needs"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Interpret unstated needs; read between the lines"
+    ai_role: "Record and structure human interpretations; do not infer tacit needs"
+    escalation_triggers:
+      - condition: "Significant tacit needs suspected but not articulated"
+        action: DEFER
+        severity: LOW
+        target: "3.1.6"
+        context: "Tacit needs may exist - mark for validation with stakeholders"
+    completion_criteria: "Tacit needs surfaced where possible"
+    validation: "Tacit needs explicitly marked as interpretations"
+
+  # Step 4: Identify constraints and assumptions (Partnership)
+  - id: "3.1.4"
+    name: "Capture Constraints"
+    capability: Elicit
+    pattern: Partnership
+    human_role: "Identify technical, business, and regulatory constraints"
+    ai_role: "Prompt for constraint categories; check consistency with Phase 2"
+    escalation_triggers:
+      - condition: "New constraint conflicts with scope"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Constraint may invalidate scope assumptions. Revisit PROC-2.1?"
+    completion_criteria: "Constraints documented"
+    validation: "Constraints distinguished from preferences"
+
+  # Step 5: Prioritise requirements (Human-Led)
+  - id: "3.1.5"
+    name: "Initial Prioritisation"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Assign initial priority based on stakeholder value"
+    ai_role: "Record and structure priorities; do not suggest priority values"
+    escalation_triggers:
+      - condition: "All requirements marked high priority"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "If everything is high priority, nothing is. Can we differentiate?"
+    completion_criteria: "Initial priorities assigned"
+    validation: "Priority scale used consistently"
+
+  # Step 6: Record gaps and deferrals (AI-Led)
+  - id: "3.1.6"
+    name: "Record Gaps"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm gaps and items to defer"
+    ai_role: "Compile elicitation gaps; propose items for later iterations"
+    escalation_triggers:
+      - condition: "Critical gaps with no plan to address"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Important gaps remain unaddressed. Define follow-up actions?"
+    completion_criteria: "Gaps and deferrals documented"
+    validation: "Each gap has owner and follow-up action"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "3.1.2"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Core requirements; key stakeholders only"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 210
+      depth: "Comprehensive elicitation; all stakeholder groups"
+
+quality:
+  entry_criteria:
+    - "Scope statement available"
+    - "Stakeholder map available"
+    - "Access to stakeholders or their representatives"
+  exit_criteria:
+    - "Requirements elicited from key sources"
+    - "Initial priorities assigned"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 240
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Multiple stakeholder groups with different needs"
+    - "Complex domain with regulatory requirements"
+    - "Significant tacit knowledge suspected"
+    - "Human requests comprehensive elicitation"
+  upgrade_prompt: |
+    The requirements landscape seems complex. Would you like to switch
+    to FULL mode for comprehensive elicitation? This helps ensure we
+    capture needs from all stakeholder perspectives.
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["3.1.1 Identify Sources<br/>(Analyse, Partnership)"]
+      S2["3.1.2 Conduct Elicitation<br/>(Elicit, Human-Led)"]
+      S3["3.1.3 Surface Tacit Needs<br/>(Elicit, Human-Led)"]
+      S4["3.1.4 Capture Constraints<br/>(Elicit, Partnership)"]
+      S5["3.1.5 Initial Prioritisation<br/>(Analyse, Human-Led)"]
+      S6["3.1.6 Record Gaps<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Unavailable"| ESC1[Escalate: proxy?]
+    S2 -->|"Contradictory"| ESC2[Escalate: clarify]
+    S2 -->|"Scope creep"| ESC3[Escalate: align scope]
+    S3 -->|"Tacit unclear"| DEF[Defer to 3.1.6]
+    S4 -->|"Conflict"| ESC4[Escalate: revisit scope]
+    S5 -->|"All high"| ESC5[Escalate: differentiate]
+
+    S6 --> OUT[Raw Requirements + Gaps]
+  ```
+---

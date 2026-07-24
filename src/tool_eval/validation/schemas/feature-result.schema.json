@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/feature-result.schema.json",
+  "title": "Feature result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["feature_id", "status", "rationale", "search_trace"],
+  "properties": {
+    "feature_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "status": {
+      "type": "string",
+      "enum": ["has", "partial", "not_found", "uncertain"]
+    },
+    "rationale": { "type": "string" },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "excerpt"],
+        "properties": {
+          "source_id": { "type": "string" },
+          "excerpt": { "type": "string" }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "description", "source_id"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "plan_or_license",
+              "platform_or_ide",
+              "model",
+              "region",
+              "product_version",
+              "release_stage",
+              "integration_required",
+              "other"
+            ]
+          },
+          "description": { "type": "string" },
+          "source_id": { "type": "string" }
+        }
+      }
+    },
+    "search_trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol_complete", "queries", "source_classes_checked"],
+      "properties": {
+        "protocol_complete": { "type": "boolean" },
+        "queries": { "type": "array", "items": { "type": "string" } },
+        "source_classes_checked": { "type": "array", "items": { "type": "string" } },
+        "access_gaps": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "conflict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason", "conflicting_evidence"],
+      "properties": {
+        "reason": { "type": "string" },
+        "conflicting_evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["source_id", "excerpt"],
+            "properties": {
+              "source_id": { "type": "string" },
+              "excerpt": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "has" } } },
+      "then": { "required": ["evidence"], "properties": { "evidence": { "minItems": 1 } } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "partial" } } },
+      "then": { "required": ["evidence"], "properties": { "evidence": { "minItems": 1 } } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "not_found" } } },
+      "then": {
+        "properties": {
+          "search_trace": { "properties": { "protocol_complete": { "const": true } } }
+        }
+      }
+    }
+  ]
+}

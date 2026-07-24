@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/additional-fact.schema.json",
+  "title": "Additional fact",
+  "description": "A fact about the tool that matters for the profile but sits outside the comparable taxonomy (requirements Sec 12/14). Source-backed; the LLM may not add facts from memory.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fact_id", "topic", "description"],
+  "properties": {
+    "fact_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "topic": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "excerpt"],
+        "properties": {
+          "source_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "excerpt": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

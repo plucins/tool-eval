@@ -1,0 +1,228 @@
+# Phase 7 Process: Incident Response
+# Partnership process - AI supports diagnosis, humans make decisions
+---
+references:
+  rules: ../rules/phase7-deployment.md
+
+definition:
+  id: "PROC-7.3"
+  name: "Incident Response"
+  description: |
+    Respond to production incidents and restore service.
+    This is a Partnership process where AI supports rapid diagnosis
+    while humans make critical decisions under time pressure.
+
+    Supports two modes:
+    - QUICK: Standard incident response (~30 min target)
+    - FULL: Major incident with formal investigation (~2-4 hours)
+  version: "1.0.0"
+  phase: 7
+  information_composition:
+    formal: 55
+    tacit: 30
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "incident_alert"
+      required: true
+      description: "Alert or report triggering incident"
+    - type: "system_state"
+      required: true
+      description: "Current system status and metrics"
+    - type: "runbook_library"
+      required: false
+      description: "Available response procedures"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "incident_resolution"
+      description: "Actions taken and outcome"
+    - type: "root_cause_analysis"
+      description: "Investigation findings (FULL mode)"
+    - type: "prevention_recommendations"
+      description: "How to prevent recurrence"
+
+steps:
+  # Step 1: Assess impact (AI-Led)
+  - id: "7.3.1"
+    name: "Assess Impact"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Confirm impact assessment accuracy"
+    ai_role: "Gather metrics; assess scope; identify affected systems"
+    escalation_triggers:
+      - condition: "High-severity impact"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Major impact detected. Initiating major incident protocol?"
+      - condition: "Scope unclear"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Cannot determine full scope. Need additional investigation."
+    completion_criteria: "Impact assessed"
+    validation: "Severity and scope documented"
+
+  # Step 2: Diagnose cause (Partnership)
+  - id: "7.3.2"
+    name: "Diagnose Cause"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Apply experience to identify likely causes"
+    ai_role: "Correlate events; search logs; suggest potential causes"
+    escalation_triggers:
+      - condition: "Cause not identifiable"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Cannot identify root cause. Need specialist expertise."
+      - condition: "Multiple potential causes"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Several possible causes identified. Which to pursue first?"
+    completion_criteria: "Probable cause identified"
+    validation: "Working hypothesis documented"
+
+  # Step 3: Execute remediation (Partnership)
+  - id: "7.3.3"
+    name: "Execute Remediation"
+    capability: Transform
+    pattern: Partnership
+    human_role: "Approve and supervise remediation actions"
+    ai_role: "Suggest fixes; execute approved actions; monitor effects"
+    escalation_triggers:
+      - condition: "Remediation requires risky action"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Proposed fix could cause additional impact. Approve?"
+      - condition: "Remediation not working"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Initial fix ineffective. Try alternative or escalate?"
+    completion_criteria: "Remediation executed"
+    validation: "System stability improving"
+
+  # Step 4: Verify resolution (AI-Led)
+  - id: "7.3.4"
+    name: "Verify Resolution"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Confirm service restored"
+    ai_role: "Run health checks; verify metrics normalising; confirm alerts clearing"
+    escalation_triggers:
+      - condition: "Issue recurring"
+        action: RETURN
+        severity: HIGH
+        target: "7.3.2"
+        context: "Issue recurring. Need to re-diagnose."
+      - condition: "Partial resolution"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Service partially restored. Accept or continue fixing?"
+    completion_criteria: "Resolution verified"
+    validation: "Service fully restored"
+
+  # Step 5: Document incident (AI-Led)
+  - id: "7.3.5"
+    name: "Document Incident"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Review accuracy of incident record"
+    ai_role: "Create incident timeline; document actions; record lessons"
+    escalation_triggers:
+      - condition: "Documentation incomplete"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Some incident details unclear. Can you fill in gaps?"
+    completion_criteria: "Incident documented"
+    validation: "Incident record complete"
+
+  # Step 6: Plan prevention (Human-Led)
+  - id: "7.3.6"
+    name: "Plan Prevention"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Decide on preventive actions"
+    ai_role: "Suggest preventive measures; estimate effort; record decisions"
+    escalation_triggers:
+      - condition: "Prevention requires significant investment"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Effective prevention needs [investment]. Prioritise or accept risk?"
+    completion_criteria: "Prevention plan created"
+    validation: "Follow-up actions assigned"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "7.3.2"
+      max_iterations: 3
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Restore service; basic documentation"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 240
+      depth: "Full RCA; comprehensive prevention"
+
+quality:
+  entry_criteria:
+    - "Incident detected or reported"
+    - "System access available"
+  exit_criteria:
+    - "Service restored"
+    - "Incident documented"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 480
+    warning_threshold_percent: 50
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Major incident declared"
+    - "Customer-impacting outage"
+    - "Regulatory reporting required"
+    - "Human requests formal investigation"
+  upgrade_prompt: |
+    This incident has significant impact requiring formal investigation.
+    Would you like to switch to FULL mode for comprehensive
+    root cause analysis and prevention planning?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["7.3.1 Assess Impact<br/>(Analyse, AI-Led)"]
+      S2["7.3.2 Diagnose Cause<br/>(Analyse, Partnership)"]
+      S3["7.3.3 Execute Remediation<br/>(Transform, Partnership)"]
+      S4["7.3.4 Verify Resolution<br/>(Validate, AI-Led)"]
+      S5["7.3.5 Document Incident<br/>(Preserve, AI-Led)"]
+      S6["7.3.6 Plan Prevention<br/>(Decide, Human-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Major impact"| ESC1[Escalate: major incident]
+    S2 -->|"Cause unknown"| ESC2[Escalate: specialist]
+    S3 -->|"Risky fix"| ESC3[Escalate: approve]
+    S4 -->|"Recurring"| S2
+
+    S6 --> OUT[Incident Resolution + RCA + Prevention]
+  ```
+---

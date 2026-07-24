@@ -1,0 +1,121 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "autonomous_autopilot_execution",
+      "name": "Autonomous multi-step command execution (autopilot)",
+      "group": "terminal_execution",
+      "definition": "An opt-in mode where the terminal agent completes multi-step tasks and runs commands without requiring approval at each step.",
+      "relevance_suggestion": "Distinguishes fully autonomous agentic execution from approval-gated execution; may warrant a separate feature.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "--allow-all-tools \u2014 Full access to the available tools. --allow-all or --yolo \u2014 Equivalent to using all of the --allow-all-tools, --allow-all-paths, and --allow-all-urls options when starting the CLI."
+        }
+      ]
+    },
+    {
+      "candidate_id": "autonomous_terminal_command_execution",
+      "name": "Autonomous terminal command execution",
+      "group": "code_generation",
+      "definition": "The tool can propose and run terminal/shell commands as part of completing a coding task, iterating on build/test outputs.",
+      "relevance_suggestion": "Consider adding as a distinct capability separate from code editing, since it concerns command execution and self-healing rather than code authoring.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "In agent mode, Copilot determines which files to make changes to, offers code changes and terminal commands to complete the task, and iterates to remediate issues until the original task is complete."
+        }
+      ]
+    },
+    {
+      "candidate_id": "agent_orchestration_dashboard",
+      "name": "Agents panel / mission control orchestration UI",
+      "group": "agentic_autonomy",
+      "definition": "A github.com panel to delegate coding-agent tasks from any page, track progress, steer mid-run (pause, refine, restart), and kick off multiple tasks across one or many repos from a single place.",
+      "relevance_suggestion": "A control-plane/UI capability for monitoring and steering agents; complements but is not identical to the orchestration mechanism captured by multi_agent_orchestration.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The agents panel allows you to quickly delegate tasks to Copilot from any page on github.com with a simple prompt and track Copilot's progress without breaking your flow."
+        }
+      ]
+    },
+    {
+      "candidate_id": "coding_agent_mcp",
+      "name": "MCP for Copilot coding agent",
+      "group": "extensibility",
+      "definition": "Ability to extend the autonomous Copilot cloud/coding agent with external tools via MCP servers, separate from IDE Copilot Chat MCP usage.",
+      "relevance_suggestion": "medium",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Model Context Protocol (MCP) and GitHub Copilot cloud agent"
+        }
+      ]
+    },
+    {
+      "candidate_id": "mcp_registry",
+      "name": "GitHub MCP Registry",
+      "group": "extensibility",
+      "definition": "A curated registry/list of MCP servers from partners and the community that users can discover and connect to Copilot, distinct from the GitHub Marketplace app catalog.",
+      "relevance_suggestion": "medium",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "For a curated list of MCP servers from partners and the community, see the GitHub MCP Registry."
+        }
+      ]
+    },
+    {
+      "candidate_id": "code_translation",
+      "name": "Code translation between languages",
+      "group": "editing_refactoring",
+      "definition": "Copilot restructures/rewrites code from one programming language into another via a natural-language request.",
+      "relevance_suggestion": "consider",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Translating code to a different programming language"
+        }
+      ]
+    },
+    {
+      "candidate_id": "legacy_code_modernization",
+      "name": "Legacy code modernization",
+      "group": "editing_refactoring",
+      "definition": "Copilot assists in modernizing/updating legacy codebases as a guided, multi-step editing task.",
+      "relevance_suggestion": "consider",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Modernizing legacy code with GitHub Copilot"
+        }
+      ]
+    },
+    {
+      "candidate_id": "lint_error_fix_suggestions",
+      "name": "Fixing lint errors via Copilot Chat",
+      "group": "testing_quality",
+      "definition": "Copilot Chat suggests fixes for issues flagged by a code linter, turning static-analysis findings into applied code corrections.",
+      "relevance_suggestion": "medium",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Fixing lint errors"
+        }
+      ]
+    },
+    {
+      "candidate_id": "pull_request_code_review",
+      "name": "Copilot code review of pull requests",
+      "group": "version_control",
+      "definition": "The tool can review pull request diffs and leave automated review comments/suggestions on changed code within the hosting platform's PR workflow.",
+      "relevance_suggestion": "Version-control capability distinct from PR creation or git operations; covers automated review feedback on PRs.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "When Copilot finishes, it will request a review from you, and you can leave pull request comments to ask Copilot to iterate."
+        }
+      ]
+    }
+  ]
+}

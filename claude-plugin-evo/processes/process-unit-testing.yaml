@@ -1,0 +1,224 @@
+# Phase 5 Process: Unit Testing
+# AI-Led process - AI generates tests, humans validate coverage
+---
+references:
+  rules: ../rules/phase5-implementation.md
+
+definition:
+  id: "PROC-5.2"
+  name: "Unit Testing"
+  description: |
+    Create and execute unit tests for implementation code.
+    This is an AI-Led process where AI can generate comprehensive tests
+    while humans validate coverage adequacy and test quality.
+
+    Supports two modes:
+    - QUICK: Core path tests for straightforward code (~20 min)
+    - FULL: Comprehensive test suite with edge cases (~1-2 hours)
+  version: "1.0.0"
+  phase: 5
+  information_composition:
+    formal: 60
+    tacit: 25
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "source_code"
+      required: true
+      description: "Output from PROC-5.1"
+    - type: "interface_specifications"
+      required: true
+      description: "API contracts for test cases"
+    - type: "testing_standards"
+      required: false
+      description: "Organisation testing conventions"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "test_suite"
+      description: "Unit tests for the implementation"
+    - type: "coverage_report"
+      description: "Test coverage analysis"
+    - type: "test_documentation"
+      description: "Test strategy and rationale"
+
+steps:
+  # Step 1: Analyse code for testability (AI-Led)
+  - id: "5.2.1"
+    name: "Analyse Testability"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Identify critical paths requiring tests"
+    ai_role: "Parse code structure; identify test boundaries; assess testability"
+    escalation_triggers:
+      - condition: "Code structure impedes testing"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Code [component] is difficult to test in isolation. Refactor for testability?"
+    completion_criteria: "Testability analysis complete"
+    validation: "Test boundaries identified"
+
+  # Step 2: Design test cases (AI-Led)
+  - id: "5.2.2"
+    name: "Design Test Cases"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Validate test cases cover requirements"
+    ai_role: "Generate test cases from specifications; identify equivalence classes; plan boundary tests"
+    escalation_triggers:
+      - condition: "Specification unclear for test case"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Expected behaviour unclear for [scenario]. What should the test assert?"
+    completion_criteria: "Test cases designed"
+    validation: "Test cases trace to requirements"
+
+  # Step 3: Implement tests (AI-Led)
+  - id: "5.2.3"
+    name: "Implement Tests"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Review test implementation quality"
+    ai_role: "Generate test code; set up fixtures; implement assertions"
+    escalation_triggers:
+      - condition: "Test requires external dependency"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Test needs [dependency]. Mock, stub, or integration test?"
+      - condition: "Test framework choice needed"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Multiple test frameworks available. Which should be used?"
+    completion_criteria: "Tests implemented"
+    validation: "Tests compile and run"
+
+  # Step 4: Execute tests (AI-Led)
+  - id: "5.2.4"
+    name: "Execute Tests"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Review test results"
+    ai_role: "Run test suite; capture results; identify failures"
+    escalation_triggers:
+      - condition: "Test failures detected"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "[N] tests failing. Bug in code or test? Review and decide."
+      - condition: "Tests timeout or hang"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Tests not completing. Investigate test or code issue."
+    completion_criteria: "Tests executed"
+    validation: "All tests pass"
+
+  # Step 5: Measure coverage (AI-Led)
+  - id: "5.2.5"
+    name: "Measure Coverage"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Approve coverage level"
+    ai_role: "Generate coverage report; identify gaps; recommend additional tests"
+    escalation_triggers:
+      - condition: "Coverage below threshold"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Coverage at [X]%, below [Y]% threshold. Add tests or accept?"
+      - condition: "Critical path untested"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Critical code path has no test coverage. Must address."
+    completion_criteria: "Coverage measured"
+    validation: "Coverage meets agreed threshold"
+
+  # Step 6: Document test strategy (AI-Led)
+  - id: "5.2.6"
+    name: "Document Strategy"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm documentation accuracy"
+    ai_role: "Document test approach; record coverage decisions; note deferred tests"
+    escalation_triggers:
+      - condition: "Test gaps intentional"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Documenting intentional test gap for [reason]. Confirm rationale."
+    completion_criteria: "Test strategy documented"
+    validation: "Test decisions recorded"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "5.2.3"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 20
+      depth: "Happy path; critical functions"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 120
+      depth: "Comprehensive coverage; edge cases"
+
+quality:
+  entry_criteria:
+    - "Source code available"
+    - "Interface specifications available"
+  exit_criteria:
+    - "Tests pass"
+    - "Coverage meets threshold"
+  sla:
+    expected_duration_minutes: 20
+    timeout_minutes: 150
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Complex logic requiring thorough testing"
+    - "Safety-critical or financial code"
+    - "Coverage requirements above standard threshold"
+    - "Human requests comprehensive testing"
+  upgrade_prompt: |
+    This code has complexity or risk warranting thorough test coverage.
+    Would you like to switch to FULL mode for comprehensive testing
+    including edge cases, boundary conditions, and error paths?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["5.2.1 Analyse Testability<br/>(Analyse, AI-Led)"]
+      S2["5.2.2 Design Test Cases<br/>(Generate, AI-Led)"]
+      S3["5.2.3 Implement Tests<br/>(Generate, AI-Led)"]
+      S4["5.2.4 Execute Tests<br/>(Validate, AI-Led)"]
+      S5["5.2.5 Measure Coverage<br/>(Analyse, AI-Led)"]
+      S6["5.2.6 Document Strategy<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Untestable"| ESC1[Escalate: refactor?]
+    S2 -->|"Unclear"| ESC2[Escalate: expected behaviour?]
+    S4 -->|"Failures"| ESC3[Escalate: bug or test issue?]
+    S5 -->|"Low coverage"| ESC4[Escalate: add tests?]
+    S5 -->|"Critical gap"| ESC5[Escalate: must address]
+
+    S6 --> OUT[Test Suite + Coverage Report]
+  ```
+---

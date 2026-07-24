@@ -1,0 +1,200 @@
+# Phase 6 Process: Integration Testing
+# AI-Led process - AI executes tests, humans validate integration behaviour
+---
+references:
+  rules: ../rules/phase6-testing.md
+
+definition:
+  id: "PROC-6.2"
+  name: "Integration Testing"
+  description: |
+    Test integration between system components and external systems.
+    This is an AI-Led process where AI can execute comprehensive
+    integration tests while humans validate integration behaviour.
+
+    Supports two modes:
+    - QUICK: Core integration paths (~30 min)
+    - FULL: Comprehensive integration coverage (~2-3 hours)
+  version: "1.0.0"
+  phase: 6
+  information_composition:
+    formal: 65
+    tacit: 20
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "source_code"
+      required: true
+      description: "Approved code from PROC-5.3"
+    - type: "interface_specifications"
+      required: true
+      description: "API contracts from PROC-4.2"
+    - type: "test_environment"
+      required: true
+      description: "Integration test environment configuration"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "integration_test_results"
+      description: "Test execution results and logs"
+    - type: "integration_report"
+      description: "Summary of integration status"
+    - type: "defect_list"
+      description: "Integration issues found"
+
+steps:
+  # Step 1: Prepare test environment (AI-Led)
+  - id: "6.2.1"
+    name: "Prepare Environment"
+    capability: Transform
+    pattern: AI-Led
+    human_role: "Confirm environment is correctly configured"
+    ai_role: "Set up test environment; configure dependencies; verify connectivity"
+    escalation_triggers:
+      - condition: "Environment setup fails"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Cannot establish test environment. Infrastructure issue?"
+      - condition: "External dependency unavailable"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "External system [X] is unavailable. Wait, mock, or skip?"
+    completion_criteria: "Test environment ready"
+    validation: "All dependencies accessible"
+
+  # Step 2: Design integration tests (AI-Led)
+  - id: "6.2.2"
+    name: "Design Tests"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Validate test coverage of integration points"
+    ai_role: "Generate integration test cases from interface specifications"
+    escalation_triggers:
+      - condition: "Interface specification unclear"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Expected integration behaviour unclear for [scenario]. Clarify?"
+    completion_criteria: "Integration tests designed"
+    validation: "Tests cover all integration points"
+
+  # Step 3: Execute integration tests (AI-Only)
+  - id: "6.2.3"
+    name: "Execute Tests"
+    capability: Validate
+    pattern: AI-Only
+    human_role: "None"
+    ai_role: "Run integration test suite; capture results and logs"
+    escalation_triggers:
+      - condition: "Tests cannot execute"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Test execution blocked. Environment or code issue?"
+    completion_criteria: "Tests executed"
+    validation: "Test results captured"
+
+  # Step 4: Analyse failures (AI-Led)
+  - id: "6.2.4"
+    name: "Analyse Failures"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Validate failure analysis"
+    ai_role: "Classify failures; identify root causes; suggest remediation"
+    escalation_triggers:
+      - condition: "Critical integration failure"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Critical integration path failing. Block release?"
+      - condition: "Failure cause unclear"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Cannot determine failure cause. Need investigation."
+    completion_criteria: "Failures analysed"
+    validation: "Each failure has classification and cause"
+
+  # Step 5: Report results (AI-Led)
+  - id: "6.2.5"
+    name: "Report Results"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Review report accuracy"
+    ai_role: "Generate integration report; compile metrics; document issues"
+    escalation_triggers:
+      - condition: "Significant integration issues"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Integration issues found. Proceed to system testing or fix first?"
+    completion_criteria: "Results reported"
+    validation: "Report generated with all findings"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "6.2.3"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Core integration paths"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 180
+      depth: "Comprehensive integration coverage"
+
+quality:
+  entry_criteria:
+    - "Code approved from review"
+    - "Test environment available"
+  exit_criteria:
+    - "Integration tests executed"
+    - "Results reported"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 240
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Multiple external integrations"
+    - "Complex data flows"
+    - "First integration with new system"
+    - "Human requests comprehensive testing"
+  upgrade_prompt: |
+    Integration complexity suggests thorough testing is warranted.
+    Would you like to switch to FULL mode for comprehensive
+    integration coverage including edge cases and error paths?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["6.2.1 Prepare Environment<br/>(Transform, AI-Led)"]
+      S2["6.2.2 Design Tests<br/>(Generate, AI-Led)"]
+      S3["6.2.3 Execute Tests<br/>(Validate, AI-Only)"]
+      S4["6.2.4 Analyse Failures<br/>(Analyse, AI-Led)"]
+      S5["6.2.5 Report Results<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+
+    S1 -->|"Setup fails"| ESC1[Escalate: infrastructure?]
+    S1 -->|"Dependency unavailable"| ESC2[Escalate: mock/wait?]
+    S3 -->|"Cannot execute"| ESC3[Escalate: blocked]
+    S4 -->|"Critical failure"| ESC4[Escalate: block release?]
+
+    S5 --> OUT[Integration Report + Defect List]
+  ```
+---

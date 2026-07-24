@@ -1,0 +1,9 @@
+id: DEC-20260724-064332
+timestamp: "2026-07-24T06:43:32Z"
+type: OPERATIONAL
+actor: "ai:claude"
+subject: "Bounded retry and repair-round enforcement (D-011)"
+outcome: "Python enforces both bounded loops via run.json counters: at most two technical retries then split the bundle into single-feature tasks; at most three repair rounds with a fourth refused; counters persist across resume"
+rationale: "run.schema.json caps the counters so code refuses before writing an out-of-range value; prepare-repair writes a per-round manifest and advances state"
+context: "PROC-5.1 Increment 2 item 7"
+tags: ["process-execution", "resumability"]

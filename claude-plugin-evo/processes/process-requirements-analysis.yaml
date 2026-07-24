@@ -1,0 +1,209 @@
+# Phase 3 Process: Requirements Analysis
+# Partnership process - AI assists in structuring and analysing requirements
+---
+references:
+  rules: ../rules/phase3-analysis.md
+
+definition:
+  id: "PROC-3.2"
+  name: "Requirements Analysis"
+  description: |
+    Analyse elicited requirements for completeness, consistency, and feasibility.
+    This is a partnership process where AI helps identify patterns and conflicts
+    while humans provide domain expertise for resolution.
+
+    Supports two modes:
+    - QUICK: Basic analysis for straightforward requirements (~30 min)
+    - FULL: Comprehensive analysis with modelling (~2-3 hours)
+  version: "1.0.0"
+  phase: 3
+  information_composition:
+    formal: 40
+    tacit: 35
+    emergent: 25
+
+interfaces:
+  inputs:
+    - type: "raw_requirements"
+      required: true
+      description: "Output from PROC-3.1"
+    - type: "scope_statement"
+      required: true
+      description: "Output from PROC-2.1 for scope checking"
+    - type: "risk_register"
+      required: false
+      description: "Output from PROC-2.2 for risk context"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "analysed_requirements"
+      description: "Requirements with analysis annotations"
+    - type: "conflicts_log"
+      description: "Identified conflicts and resolution status"
+    - type: "deferred_items"
+      description: "Analysis items needing further investigation"
+
+steps:
+  # Step 1: Classify requirements (Partnership)
+  - id: "3.2.1"
+    name: "Classify Requirements"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Validate classification of requirements by type"
+    ai_role: "Propose classification: functional, non-functional, constraint, assumption"
+    escalation_triggers:
+      - condition: "Requirement type ambiguous"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Classification unclear. How should we categorise this requirement?"
+    completion_criteria: "Requirements classified by type"
+    validation: "Each requirement has a type assigned"
+
+  # Step 2: Check completeness (Partnership)
+  - id: "3.2.2"
+    name: "Check Completeness"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Identify missing requirements based on domain knowledge"
+    ai_role: "Check for gaps using scope statement; flag underspecified requirements"
+    escalation_triggers:
+      - condition: "Significant gaps identified"
+        action: RETURN
+        severity: MEDIUM
+        target: "PROC-3.1"
+        context: "Requirements gaps suggest need for additional elicitation"
+    completion_criteria: "Completeness assessment done"
+    validation: "No critical scope areas without requirements"
+
+  # Step 3: Check consistency (AI-Led)
+  - id: "3.2.3"
+    name: "Check Consistency"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Validate identified conflicts; resolve where possible"
+    ai_role: "Identify contradictions, duplicates, and conflicts between requirements"
+    escalation_triggers:
+      - condition: "Unresolvable conflict between stakeholders"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Stakeholder conflict cannot be resolved technically. Escalate for decision?"
+    completion_criteria: "Consistency check complete"
+    validation: "Conflicts identified and logged"
+
+  # Step 4: Assess feasibility (Human-Led)
+  - id: "3.2.4"
+    name: "Assess Feasibility"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Judge technical and business feasibility"
+    ai_role: "Record and structure feasibility assessments; do not judge feasibility"
+    escalation_triggers:
+      - condition: "Requirement deemed infeasible"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Requirement may not be feasible. Negotiate with stakeholder or defer?"
+    completion_criteria: "Feasibility assessed for high-priority requirements"
+    validation: "Infeasible requirements flagged"
+
+  # Step 5: Identify dependencies (Partnership)
+  - id: "3.2.5"
+    name: "Map Dependencies"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Validate dependencies based on domain knowledge"
+    ai_role: "Propose dependencies between requirements; visualise dependency graph"
+    escalation_triggers:
+      - condition: "Circular dependency detected"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Requirements have circular dependency. How should we restructure?"
+    completion_criteria: "Key dependencies mapped"
+    validation: "No unresolved circular dependencies"
+
+  # Step 6: Record analysis results (AI-Led)
+  - id: "3.2.6"
+    name: "Record Analysis"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm analysis results and deferrals"
+    ai_role: "Compile analysis annotations; document outstanding items"
+    escalation_triggers:
+      - condition: "Many requirements have unresolved issues"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Significant unresolved issues. Proceed or address first?"
+    completion_criteria: "Analysis documented"
+    validation: "Each requirement has analysis status"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "3.2.1"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Basic classification and consistency check"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 150
+      depth: "Comprehensive analysis with dependency mapping"
+
+quality:
+  entry_criteria:
+    - "Raw requirements from PROC-3.1 available"
+    - "Human with domain expertise available"
+  exit_criteria:
+    - "Requirements classified and analysed"
+    - "Conflicts identified (resolution may be deferred)"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Multiple requirement conflicts identified"
+    - "Complex dependencies emerging"
+    - "Feasibility concerns raised"
+    - "Human requests detailed analysis"
+  upgrade_prompt: |
+    The requirements have complexity that warrants deeper analysis.
+    Would you like to switch to FULL mode? This helps identify
+    conflicts and dependencies before moving to validation.
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["3.2.1 Classify Requirements<br/>(Analyse, Partnership)"]
+      S2["3.2.2 Check Completeness<br/>(Analyse, Partnership)"]
+      S3["3.2.3 Check Consistency<br/>(Analyse, AI-Led)"]
+      S4["3.2.4 Assess Feasibility<br/>(Analyse, Human-Led)"]
+      S5["3.2.5 Map Dependencies<br/>(Analyse, Partnership)"]
+      S6["3.2.6 Record Analysis<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Ambiguous"| ESC1[Escalate: classify]
+    S2 -->|"Gaps"| RET[Return to PROC-3.1]
+    S3 -->|"Stakeholder conflict"| ESC2[Escalate: resolve]
+    S4 -->|"Infeasible"| ESC3[Escalate: negotiate]
+    S5 -->|"Circular"| ESC4[Escalate: restructure]
+
+    S6 --> OUT[Analysed Requirements + Conflicts Log]
+  ```
+---

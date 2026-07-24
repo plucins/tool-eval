@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/unresolved-issues.schema.json",
+  "title": "Unresolved issues",
+  "description": "Conflicts, access gaps, or protocol problems surfaced during research that could not be resolved deterministically (D-016 unresolved_issues section; requirements Sec 11).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["issues"],
+  "properties": {
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["issue_id", "kind", "description"],
+        "properties": {
+          "issue_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "kind": {
+            "type": "string",
+            "enum": ["conflict", "access_gap", "coverage_gap", "prompt_injection_warning", "other"]
+          },
+          "feature_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "description": { "type": "string", "minLength": 1 },
+          "related_source_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
+          }
+        }
+      }
+    }
+  }
+}

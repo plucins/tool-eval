@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/task.schema.json",
+  "title": "Task manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task_id", "run_id", "task_type", "skill", "inputs", "output_path"],
+  "properties": {
+    "task_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "run_id": { "type": "string" },
+    "task_type": {
+      "type": "string",
+      "enum": ["source-discovery", "feature-research", "profile-writing"]
+    },
+    "skill": { "type": "string" },
+    "feature_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+      "minItems": 1,
+      "maxItems": 4
+    },
+    "inputs": { "type": "object" },
+    "output_path": {
+      "type": "string",
+      "description": "Path relative to the task directory; must not escape it (D-017)."
+    }
+  }
+}

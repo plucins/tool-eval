@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/run.schema.json",
+  "title": "Run",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "operation",
+    "state",
+    "created_at",
+    "updated_at",
+    "initial_revisions",
+    "effective_revisions",
+    "config_hashes",
+    "mandatory_tasks",
+    "retry_counters",
+    "budgets",
+    "transitions"
+  ],
+  "properties": {
+    "run_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "operation": { "type": "string", "enum": ["research", "compare", "resume"] },
+    "state": {
+      "type": "string",
+      "enum": [
+        "initialized",
+        "sources_pending",
+        "sources_accepted",
+        "research_in_progress",
+        "merged",
+        "curation_pending",
+        "repair_in_progress",
+        "publishing",
+        "published",
+        "failed"
+      ]
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "initial_revisions": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "effective_revisions": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "config_hashes": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+    },
+    "mandatory_tasks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "retry_counters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["technical_retries", "repair_rounds"],
+      "properties": {
+        "technical_retries": { "type": "integer", "minimum": 0, "maximum": 2 },
+        "repair_rounds": { "type": "integer", "minimum": 0, "maximum": 3 }
+      }
+    },
+    "budgets": { "type": "object" },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["state", "at"],
+        "properties": {
+          "state": { "type": "string" },
+          "at": { "type": "string", "format": "date-time" },
+          "detail": { "type": "string" }
+        }
+      }
+    }
+  }
+}

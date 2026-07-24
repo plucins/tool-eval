@@ -1,0 +1,237 @@
+# Phase 5 Process: Code Review
+# Partnership process - AI analyses, humans make approval decisions
+---
+references:
+  rules: ../rules/phase5-implementation.md
+
+definition:
+  id: "PROC-5.3"
+  name: "Code Review"
+  description: |
+    Review implementation code for quality, correctness, and maintainability.
+    This is a Partnership process where AI provides analysis while
+    humans make approval decisions based on experience and context.
+
+    Supports two modes:
+    - QUICK: Automated checks with targeted human review (~20 min)
+    - FULL: Comprehensive review with detailed feedback (~1-2 hours)
+  version: "1.0.0"
+  phase: 5
+  information_composition:
+    formal: 60
+    tacit: 25
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "source_code"
+      required: true
+      description: "Code from PROC-5.1"
+    - type: "test_suite"
+      required: true
+      description: "Tests from PROC-5.2"
+    - type: "design_baseline"
+      required: true
+      description: "For design conformance check"
+    - type: "coding_standards"
+      required: false
+      description: "Organisation standards"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "review_report"
+      description: "Review findings and recommendations"
+    - type: "approval_status"
+      description: "Approved, conditionally approved, or rejected"
+    - type: "action_items"
+      description: "Required changes before merge"
+
+steps:
+  # Step 1: Run automated checks (AI-Led)
+  - id: "5.3.1"
+    name: "Run Automated Checks"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Review automated check configuration"
+    ai_role: "Run linters, type checkers, security scanners; compile results"
+    escalation_triggers:
+      - condition: "Security vulnerability detected"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Security issue found: [description]. Must address before approval."
+      - condition: "Automated checks failing"
+        action: RETURN
+        severity: HIGH
+        target: "PROC-5.1"
+        context: "Code fails automated checks. Return to fix issues."
+    completion_criteria: "Automated checks complete"
+    validation: "No blocking issues from automated checks"
+
+  # Step 2: Analyse code quality (AI-Led)
+  - id: "5.3.2"
+    name: "Analyse Quality"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Validate analysis relevance"
+    ai_role: "Assess complexity, duplication, naming; identify code smells"
+    escalation_triggers:
+      - condition: "High complexity detected"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Code complexity high in [area]. Accept or simplify?"
+      - condition: "Significant code duplication"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Duplication detected. Refactor to DRY or accept?"
+    completion_criteria: "Quality analysis complete"
+    validation: "Quality metrics documented"
+
+  # Step 3: Check design conformance (AI-Led)
+  - id: "5.3.3"
+    name: "Check Conformance"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Confirm design intent preserved"
+    ai_role: "Compare implementation to design; identify deviations"
+    escalation_triggers:
+      - condition: "Implementation deviates from design"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Code differs from design in [area]. Update design or code?"
+      - condition: "Missing design elements"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Design element [X] not implemented. Intentional or oversight?"
+    completion_criteria: "Conformance check complete"
+    validation: "Deviations documented and justified"
+
+  # Step 4: Review test coverage (AI-Led)
+  - id: "5.3.4"
+    name: "Review Test Coverage"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Approve test adequacy"
+    ai_role: "Verify tests exist for new code; assess test quality"
+    escalation_triggers:
+      - condition: "New code lacks tests"
+        action: RETURN
+        severity: HIGH
+        target: "PROC-5.2"
+        context: "New code has no tests. Must add before approval."
+      - condition: "Test quality concerns"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Tests exist but may not adequately verify behaviour. Review test assertions."
+    completion_criteria: "Test coverage reviewed"
+    validation: "Tests adequately cover new code"
+
+  # Step 5: Conduct human review (Human-Led)
+  - id: "5.3.5"
+    name: "Human Review"
+    capability: Validate
+    pattern: Human-Led
+    human_role: "Apply experience and context to assess code quality"
+    ai_role: "Record feedback; track discussion points; compile review notes"
+    escalation_triggers:
+      - condition: "Reviewer has concerns"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Concerns raised during review. Discuss and resolve."
+      - condition: "Multiple reviewers disagree"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Reviewers have different opinions. Reach consensus or escalate."
+    completion_criteria: "Human review complete"
+    validation: "Reviewer feedback captured"
+
+  # Step 6: Make approval decision (Human-Led)
+  - id: "5.3.6"
+    name: "Approve or Reject"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Make final approval decision"
+    ai_role: "Record decision; compile action items; document rationale"
+    escalation_triggers:
+      - condition: "Approval with significant caveats"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Approving with conditions. Ensure follow-up is tracked."
+    completion_criteria: "Decision made"
+    validation: "Approval status and rationale recorded"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "5.3.5"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 20
+      depth: "Automated checks; targeted human review"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 120
+      depth: "Comprehensive review; detailed feedback"
+
+quality:
+  entry_criteria:
+    - "Code complete and tests passing"
+    - "Automated checks configured"
+  exit_criteria:
+    - "Review decision made"
+    - "Action items documented"
+  sla:
+    expected_duration_minutes: 20
+    timeout_minutes: 150
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Changes to critical system components"
+    - "Complex architectural changes"
+    - "Security-sensitive code"
+    - "Human requests thorough review"
+  upgrade_prompt: |
+    This code change affects critical functionality or has security implications.
+    Would you like to switch to FULL mode for comprehensive review
+    with detailed analysis and multiple reviewer perspectives?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["5.3.1 Run Automated Checks<br/>(Validate, AI-Led)"]
+      S2["5.3.2 Analyse Quality<br/>(Analyse, AI-Led)"]
+      S3["5.3.3 Check Conformance<br/>(Validate, AI-Led)"]
+      S4["5.3.4 Review Test Coverage<br/>(Validate, AI-Led)"]
+      S5["5.3.5 Human Review<br/>(Validate, Human-Led)"]
+      S6["5.3.6 Approve or Reject<br/>(Decide, Human-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Security"| ESC1[Escalate: must fix]
+    S1 -->|"Failing"| RET1[Return to PROC-5.1]
+    S2 -->|"Complex"| ESC2[Escalate: simplify?]
+    S3 -->|"Deviation"| ESC3[Escalate: update which?]
+    S4 -->|"No tests"| RET2[Return to PROC-5.2]
+
+    S6 --> OUT[Review Report + Approval Status]
+  ```
+---

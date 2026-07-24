@@ -1,0 +1,18 @@
+# Runtime/operational limits (D-010, D-011, D-023). Values are MVP defaults;
+# per implementation_plan_v1.md Sec 4.3 exact limits are calibrated during the
+# pilot and may change without affecting the data contracts.
+
+concurrency:
+  max_concurrent_workers: 4
+
+bundling:
+  min_features_per_bundle: 2
+  max_features_per_bundle: 4
+
+retries:
+  max_technical_retries: 2
+  max_repair_rounds: 3
+
+failed_run_retention:
+  max_age_days: 30
+  max_count: 20

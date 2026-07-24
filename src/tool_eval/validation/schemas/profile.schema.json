@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/profile.schema.json",
+  "title": "Tool profile",
+  "description": "The active machine-readable profile (data/profiles/<tool_id>/profile.json). Partially normalized per D-016: sources are registered once at profile level and referenced by source_id from feature records, evidence, facts, and use cases.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "research",
+    "sources",
+    "feature_results"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool_id", "name"],
+      "properties": {
+        "tool_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "vendor": { "type": "string" },
+        "homepage": { "type": "string", "pattern": "^https?://[^\\s]+$" }
+      }
+    },
+    "research": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_id",
+        "researched_at",
+        "taxonomy_revision",
+        "template_revision",
+        "source_policy_revision",
+        "profile_state"
+      ],
+      "properties": {
+        "run_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+        "researched_at": { "type": "string", "format": "date-time" },
+        "taxonomy_revision": { "type": "integer", "minimum": 0 },
+        "template_revision": { "type": "integer", "minimum": 0 },
+        "source_policy_revision": { "type": "integer", "minimum": 0 },
+        "profile_state": { "type": "string", "enum": ["current", "requires_research"] }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/source.schema.json" }
+    },
+    "feature_results": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/feature-result.schema.json" }
+    },
+    "additional_facts": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/additional-fact.schema.json" }
+    },
+    "use_cases": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/use-case.schema.json" }
+    },
+    "unresolved_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["issue_id", "kind", "description"],
+        "properties": {
+          "issue_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "kind": {
+            "type": "string",
+            "enum": ["conflict", "access_gap", "coverage_gap", "prompt_injection_warning", "other"]
+          },
+          "feature_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "description": { "type": "string", "minLength": 1 },
+          "related_source_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
+          }
+        }
+      }
+    }
+  }
+}

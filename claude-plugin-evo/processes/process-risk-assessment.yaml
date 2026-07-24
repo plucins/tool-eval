@@ -1,0 +1,212 @@
+# Phase 2 Process: Risk Assessment
+# Hybrid process - AI identifies patterns, humans assess likelihood and impact
+---
+references:
+  rules: ../rules/phase2-planning.md
+
+definition:
+  id: "PROC-2.2"
+  name: "Risk Assessment"
+  description: |
+    Identify, assess, and plan responses to project risks.
+    This is a partnership process where AI helps identify risks and humans
+    assess their likelihood and impact based on organisational context.
+
+    Supports two modes:
+    - QUICK: Key risks only for low-complexity projects (~15 min)
+    - FULL: Comprehensive risk register with mitigation plans (~2 hours)
+  version: "1.0.0"
+  phase: 2
+  information_composition:
+    formal: 35
+    tacit: 55
+    emergent: 10
+
+interfaces:
+  inputs:
+    - type: "scope_statement"
+      required: true
+      description: "Output from PROC-2.1 or equivalent"
+    - type: "stakeholder_map"
+      required: false
+      description: "Output from PROC-1.2 if available"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "risk_register"
+      description: "Identified risks with assessment and response plans"
+    - type: "risk_matrix"
+      description: "Visual representation of risk landscape (FULL mode)"
+    - type: "deferred_items"
+      description: "Risks to monitor but not actively mitigate now"
+
+steps:
+  # Step 1: Identify risk categories (Partnership)
+  - id: "2.2.1"
+    name: "Identify Risk Categories"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Confirm relevant risk categories for this project"
+    ai_role: "Propose risk categories based on scope and project type"
+    escalation_triggers:
+      - condition: "No risk categories identified"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "All projects have risks. Let me suggest common categories to consider."
+    completion_criteria: "Risk categories identified"
+    validation: "At least one risk category selected"
+
+  # Step 2: Brainstorm risks (Partnership)
+  - id: "2.2.2"
+    name: "Identify Specific Risks"
+    capability: Elicit
+    pattern: Partnership
+    human_role: "Add risks from experience and organisational knowledge"
+    ai_role: "Suggest common risks for each category; prompt for project-specific risks"
+    escalation_triggers:
+      - condition: "Very few risks identified for significant project"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Few risks identified. Consider: technical, schedule, resource, stakeholder, external factors."
+    completion_criteria: "Specific risks listed"
+    validation: "Each risk has a clear description"
+
+  # Step 3: Assess likelihood (AI records, human assesses)
+  - id: "2.2.3"
+    name: "Assess Risk Likelihood"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Assign likelihood rating based on experience and context"
+    ai_role: "Record and structure ratings; do not suggest likelihood values"
+    escalation_triggers:
+      - condition: "Unable to assess likelihood"
+        action: DEFER
+        severity: LOW
+        target: "2.2.6"
+        context: "Likelihood unknown - mark for monitoring and revisit when more information available"
+    completion_criteria: "Likelihood assessed for each risk"
+    validation: "Rating scale used consistently"
+
+  # Step 4: Assess impact (AI records, human assesses)
+  - id: "2.2.4"
+    name: "Assess Risk Impact"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Assign impact rating based on business consequences"
+    ai_role: "Record and structure ratings; do not suggest impact values"
+    escalation_triggers:
+      - condition: "High-impact risk identified"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "High-impact risk detected. Should this be addressed before proceeding?"
+    completion_criteria: "Impact assessed for each risk"
+    validation: "Rating scale used consistently"
+
+  # Step 5: Plan responses (Human-Led)
+  - id: "2.2.5"
+    name: "Plan Risk Responses"
+    capability: Synthesise
+    pattern: Human-Led
+    human_role: "Decide response strategy for each significant risk"
+    ai_role: "Suggest response options; help document mitigation plans"
+    escalation_triggers:
+      - condition: "No viable response for high-priority risk"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "No clear mitigation for high-priority risk. Consider scope change or risk acceptance."
+      - condition: "Response requires resources not yet allocated"
+        action: DEFER
+        severity: MEDIUM
+        target: "PROC-2.3"
+        context: "Mitigation needs resources - carry forward to resource planning"
+    completion_criteria: "Response strategy defined for priority risks"
+    validation: "High-priority risks have explicit response plans"
+
+  # Step 6: Record deferrals and monitoring (AI-Led)
+  - id: "2.2.6"
+    name: "Record Deferrals"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm which risks to monitor vs. actively mitigate"
+    ai_role: "Compile risk register; identify monitoring triggers"
+    escalation_triggers:
+      - condition: "Many risks deferred without monitoring plan"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Multiple risks deferred. Should we define monitoring checkpoints?"
+    completion_criteria: "Risk register complete with monitoring plan"
+    validation: "Each deferred risk has a monitoring trigger"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "2.2.2"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 15
+      depth: "Top 5-10 risks; high-level mitigation"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 120
+      depth: "Comprehensive register; detailed mitigation plans"
+
+quality:
+  entry_criteria:
+    - "Scope statement available"
+    - "Human with project knowledge available"
+  exit_criteria:
+    - "Risks identified and assessed"
+    - "High-priority risks have response plans"
+  sla:
+    expected_duration_minutes: 15
+    timeout_minutes: 150
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "High-impact risks identified"
+    - "Complex dependencies mentioned"
+    - "Regulatory or compliance risks present"
+    - "Human requests detailed analysis"
+  upgrade_prompt: |
+    Some significant risks have emerged. Would you like to switch to
+    FULL mode for a comprehensive risk assessment? This helps ensure
+    adequate mitigation planning.
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["2.2.1 Identify Categories<br/>(Analyse, Partnership)"]
+      S2["2.2.2 Identify Risks<br/>(Elicit, Partnership)"]
+      S3["2.2.3 Assess Likelihood<br/>(Analyse, Human-Led)"]
+      S4["2.2.4 Assess Impact<br/>(Analyse, Human-Led)"]
+      S5["2.2.5 Plan Responses<br/>(Synthesise, Human-Led)"]
+      S6["2.2.6 Record Deferrals<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"No categories"| ESC1[Escalate: suggest categories]
+    S2 -->|"Few risks"| ESC2[Escalate: prompt for more]
+    S3 -->|"Unknown"| DEF1[Defer to 2.2.6]
+    S4 -->|"High impact"| ESC3[Escalate: address now?]
+    S5 -->|"No response"| ESC4[Escalate: scope change?]
+    S5 -->|"Needs resources"| DEF2[Defer to PROC-2.3]
+
+    S6 --> OUT[Risk Register + Deferrals]
+  ```
+---

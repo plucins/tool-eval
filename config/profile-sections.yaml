@@ -1,0 +1,28 @@
+# Editable list of description sections for `description.md` (requirements Sec 14).
+# Changing a `required` section bumps `revision`, which marks older profiles
+# as `requires_research` (D-016 / requirements Sec 7 "Profile template").
+
+revision: 1
+
+sections:
+  - id: characteristics
+    title: "Characteristics"
+    required: true
+  - id: access
+    title: "Access methods"
+    required: true
+  - id: internal_tools
+    title: "Internal tools and mechanisms"
+    required: false
+  - id: workflows
+    title: "Workflows and use cases"
+    required: true
+  - id: integrations
+    title: "Integrations"
+    required: false
+  - id: security
+    title: "Security"
+    required: false
+  - id: constraints
+    title: "Constraints"
+    required: true

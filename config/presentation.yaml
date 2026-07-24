@@ -1,0 +1,12 @@
+# Presentation-layer configuration for the self-contained comparison HTML
+# (D-013, D-014). No revision field: purely cosmetic, does not affect data.
+
+bootstrap_version: "5.3.3"
+
+supported_browsers:
+  - "Chrome (current stable)"
+  - "Edge (current stable)"
+  - "Firefox (current stable)"
+  - "Safari (current stable)"
+
+tooltip_behavior: "hover"

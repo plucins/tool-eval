@@ -1,0 +1,212 @@
+# Phase 3 Process: Requirements Validation
+# Human-Led process with AI support - stakeholders confirm requirements
+---
+references:
+  rules: ../rules/phase3-analysis.md
+
+definition:
+  id: "PROC-3.3"
+  name: "Requirements Validation"
+  description: |
+    Validate that requirements accurately represent stakeholder needs.
+    This is a human-led process where AI supports validation activities
+    but stakeholders must confirm requirements meet their needs.
+
+    Supports two modes:
+    - QUICK: Lightweight review for straightforward requirements (~30 min)
+    - FULL: Formal validation with multiple stakeholders (~2-3 hours)
+  version: "1.0.0"
+  phase: 3
+  information_composition:
+    formal: 40
+    tacit: 35
+    emergent: 25
+
+interfaces:
+  inputs:
+    - type: "analysed_requirements"
+      required: true
+      description: "Output from PROC-3.2"
+    - type: "stakeholder_map"
+      required: true
+      description: "For identifying validators"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "validated_requirements"
+      description: "Requirements with validation status"
+    - type: "change_requests"
+      description: "Modifications requested during validation"
+    - type: "deferred_items"
+      description: "Items requiring follow-up validation"
+
+steps:
+  # Step 1: Identify validators (Partnership)
+  - id: "3.3.1"
+    name: "Identify Validators"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Confirm who should validate which requirements"
+    ai_role: "Propose validators based on stakeholder map and requirement ownership"
+    escalation_triggers:
+      - condition: "Key validator unavailable"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Critical validator unavailable. Accept proxy or defer validation?"
+    completion_criteria: "Validators identified for key requirements"
+    validation: "High-priority requirements have assigned validators"
+
+  # Step 2: Prepare validation materials (AI-Led)
+  - id: "3.3.2"
+    name: "Prepare Materials"
+    capability: Synthesise
+    pattern: AI-Led
+    human_role: "Review and approve validation materials"
+    ai_role: "Create validation summaries; organise requirements for review"
+    escalation_triggers:
+      - condition: "Requirements too complex for simple presentation"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Requirements may need simplification for stakeholder review"
+    completion_criteria: "Validation materials prepared"
+    validation: "Materials suitable for stakeholder audience"
+
+  # Step 3: Conduct validation review (Human-Led)
+  - id: "3.3.3"
+    name: "Conduct Validation"
+    capability: Validate
+    pattern: Human-Led
+    human_role: "Lead validation sessions with stakeholders"
+    ai_role: "Record feedback; track validation decisions; note concerns"
+    escalation_triggers:
+      - condition: "Stakeholder rejects requirement"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Requirement rejected. Modify, remove, or escalate for decision?"
+      - condition: "New requirement identified during validation"
+        action: DEFER
+        severity: LOW
+        target: "3.3.6"
+        context: "New requirement surfaced - add to backlog for next iteration"
+    completion_criteria: "Validation conducted with key stakeholders"
+    validation: "Each high-priority requirement has validation status"
+
+  # Step 4: Capture acceptance criteria (Human-Led)
+  - id: "3.3.4"
+    name: "Define Acceptance Criteria"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Work with stakeholders to define how to verify requirements"
+    ai_role: "Record and structure criteria; suggest measurable formats"
+    escalation_triggers:
+      - condition: "Acceptance criteria unmeasurable"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Criteria may be unmeasurable. Is qualitative acceptance OK?"
+    completion_criteria: "Acceptance criteria defined for validated requirements"
+    validation: "Criteria are testable or verifiable"
+
+  # Step 5: Process change requests (Human-Led)
+  - id: "3.3.5"
+    name: "Process Changes"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Decide how to handle change requests from validation"
+    ai_role: "Record and structure changes; do not approve changes"
+    escalation_triggers:
+      - condition: "Change request affects scope significantly"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "This change may require scope revision. Update PROC-2.1?"
+    completion_criteria: "Change requests processed"
+    validation: "Each change has disposition (accept, reject, defer)"
+
+  # Step 6: Record validation results (AI-Led)
+  - id: "3.3.6"
+    name: "Record Results"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm validation status and deferrals"
+    ai_role: "Compile validation results; document outstanding items"
+    escalation_triggers:
+      - condition: "Many requirements remain unvalidated"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Significant validation gaps. Proceed or schedule follow-up?"
+    completion_criteria: "Validation results documented"
+    validation: "Each requirement has clear validation status"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "3.3.3"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Key requirements; primary stakeholders"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 150
+      depth: "All requirements; formal sign-off"
+
+quality:
+  entry_criteria:
+    - "Analysed requirements available"
+    - "Access to stakeholders for validation"
+  exit_criteria:
+    - "High-priority requirements validated"
+    - "Acceptance criteria defined"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Multiple stakeholder groups need to validate"
+    - "Formal sign-off required"
+    - "Significant changes identified"
+    - "Human requests formal validation"
+  upgrade_prompt: |
+    Validation is surfacing changes or needs broader stakeholder input.
+    Would you like to switch to FULL mode for formal validation with
+    documented sign-off?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["3.3.1 Identify Validators<br/>(Analyse, Partnership)"]
+      S2["3.3.2 Prepare Materials<br/>(Synthesise, AI-Led)"]
+      S3["3.3.3 Conduct Validation<br/>(Validate, Human-Led)"]
+      S4["3.3.4 Define Acceptance<br/>(Elicit, Human-Led)"]
+      S5["3.3.5 Process Changes<br/>(Analyse, Human-Led)"]
+      S6["3.3.6 Record Results<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Unavailable"| ESC1[Escalate: proxy?]
+    S2 -->|"Complex"| ESC2[Escalate: simplify]
+    S3 -->|"Rejected"| ESC3[Escalate: modify?]
+    S3 -->|"New requirement"| DEF[Defer to 3.3.6]
+    S4 -->|"Unmeasurable"| ESC4[Escalate: qualitative OK?]
+    S5 -->|"Scope impact"| ESC5[Escalate: scope revision]
+
+    S6 --> OUT[Validated Requirements + Changes]
+  ```
+---

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/subagent-result.schema.json",
+  "title": "Subagent (worker) result",
+  "description": "The validated JSON a tool-eval-worker writes into its own task directory (D-004/D-016). It uses the same feature-record format as the profile, so merging needs no semantic transformation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task_id", "run_id", "task_type"],
+  "properties": {
+    "task_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "run_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "task_type": {
+      "type": "string",
+      "enum": ["source-discovery", "feature-research", "profile-writing"]
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/source.schema.json" }
+    },
+    "feature_results": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/feature-result.schema.json" }
+    },
+    "candidates": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/candidate.schema.json" }
+    },
+    "additional_facts": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/additional-fact.schema.json" }
+    },
+    "use_cases": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/use-case.schema.json" }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Non-fatal notes, e.g. ignored prompt-injection attempts (D-017).",
+      "items": { "type": "string" }
+    }
+  }
+}

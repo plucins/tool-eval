@@ -1,0 +1,137 @@
+---
+# ProcessInstance Schema v1.0
+
+instance:
+  id: "PINST-20260724-055000"
+  created: "2026-07-24T05:50:00Z"
+  created_by: "ai:claude"
+
+  plain_english_description: >
+    Implement Increment 2 (complete tool research) of the AI Coding Tool
+    Comparison System: turn the Increment 1 foundation into a complete,
+    concurrent, resumable research operation for the whole feature taxonomy.
+    This delivers the profile model and record references, the bundle planner
+    and worker waves, the complete D-009 negative-research protocol with
+    evidence/constraints/conflicts, additional facts and documented/inferred
+    use cases plus description.md, the candidate/curation/waiting-room flow with
+    controlled taxonomy revisions, deterministic merge with completeness checks,
+    the bounded retry/repair loop, failed-run handling with retention and the
+    resume skill, and safe staged profile publication with rollback and recovery.
+
+  definition_source:
+    type: WELL_KNOWN
+    definition_id: "PROC-5.1"
+    definition_path: "claude-plugin-evo/processes/process-code-generation.yaml"
+
+  context:
+    trigger: "User requested Dialogue Framework delegation to implement Increment 2 (after fixing the Bash preflight hook)"
+    inputs:
+      design_baseline: >
+        docs/implementation_plan_v1.md - Section 5 "Increment 2 - complete tool
+        research" (9 numbered items, the in-parallel notes, and the gate), plus
+        the end-to-end workflow in Section 3.6 and adopted decisions D-006/D-009
+        (retained source data and complete not_found protocol), D-010 (bundles
+        and concurrency), D-011 (errors/retries/resume/failed-runs), D-012
+        (simplified publication with staging/rollback/recovery), and D-016
+        (profile model). Cross-check against requirements v2 Sec 12 (complete
+        search protocol), Sec 16-17 (workflow, validation, persistence), and
+        Sec 9-10 (statuses, constraints).
+      interface_specifications: >
+        docs/implementation_plan_v1.md Section 3.5 - the internal
+        `python -m tool_eval` command surface to be filled in for Increment 2:
+        research create-feature-tasks / validate-task / merge / curate-candidates
+        / prepare-repair / build-profile, profile validate / publish / list, run
+        resume-check, work cleanup / recover. Each returns the standard stdout
+        JSON envelope. The research/profile/work command stubs already exist in
+        src/tool_eval/cli.py returning INPUT_NOT_IMPLEMENTED.
+      data_model: >
+        docs/implementation_plan_v1.md D-016 and the run-artifact layout in
+        Section 3.4 (run.json, tasks/<task_id>/, merged/, repairs/<round>/,
+        publish/). Baseline JSON Schemas exist under
+        src/tool_eval/validation/schemas/ (run, task, source, feature-result);
+        Increment 2 completes the profile model and adds any missing schemas
+        (candidates, unresolved-issues, subagent-result, full profile.json).
+    parameters:
+      mode: FULL
+      current_state:
+        increment_1_complete: true
+        implemented_and_verified:
+          - "tool_eval CLI + JSON envelope (cli.py); config loader; run lifecycle (init/status/resume-check/fail)"
+          - "errors.py; paths.py safe path handling; 4 baseline JSON schemas; 26-feature DRAFT taxonomy"
+          - "orchestrator/worker agents and orchestration + 3 entry skills"
+        environment:
+          - "venv at .venv/ (Windows: .venv/Scripts/python.exe); package installed editable"
+          - "network/pip commands need CURL_CA_BUNDLE cleared (stray PostgreSQL cert path)"
+          - "the dialogue Bash preflight prompt-hook has been REMOVED, so Bash (tests, pip, python) works normally now; the deterministic .dialogue/ path guard remains, so use the dialogue-log-* / dialogue-manage-tasks skills for .dialogue/ writes rather than raw bash"
+      implementation_order:
+        - "1. Complete the profile model and references between records (schemas first)."
+        - "2. Bundle planner and worker-wave orchestration contract (Python side; up to 4)."
+        - "3. Complete D-009 protocol enforcement, evidence, constraints, conflicts in validation."
+        - "4. Additional facts, documented/inferred use cases, description.md assembly."
+        - "5. Candidates + single curation gate + waiting room + controlled revisions."
+        - "6. Deterministic merge + completeness verification across all features."
+        - "7. Two technical retries, bundle splitting, three repair rounds."
+        - "8. .work/failed-runs, retention, and the /tool-eval-resume wiring."
+        - "9. Staging, rollback, and safe replacement of the active profile."
+      testing_requirement: >
+        Create a tests/ suite (pytest) and run it. Every new CLI command,
+        validation rule, merge/completeness check, flag-independent business
+        rule, and the staging/rollback/recovery path must have tests that
+        actually pass before the step is considered done. Deterministic Python
+        only - do NOT call any model API or do web research here; workers/LLM
+        research is exercised with fixture JSON results.
+      focus_areas:
+        - determinism
+        - security
+        - resumability
+    test_mode: false
+
+  status: COMPLETED
+  execution_log_id: "EXEC-20260724-060000"
+
+  approval:
+    definition_approved: true
+    approved_by: "main (delegated)"
+    approved_at: "2026-07-24T06:00:12Z"
+    trust_level: REVIEW_EACH
+    approval_decision_id: "DEC-20260724-060012"
+
+  run_count: 1
+
+  started: "2026-07-24T06:00:00Z"
+  completed: "2026-07-24T06:49:00Z"
+
+  outcome:
+    execution_success: true
+    process_result: GENERATED
+    summary: >
+      Increment 2 implemented end to end in the instance's dependency order.
+      All 9 items have working, fully-tested vertical slices: 95 pytest tests
+      pass (0 failures). Increment 1 behaviour preserved (config validate + run
+      init re-verified). One open design item remains: the item-5 waiting-room
+      data model (pending.json vs a dedicated waiting room) was implemented per
+      the recommended interpretation but still needs operator confirmation; the
+      code is isolated so it is trivial to re-point.
+    outputs:
+      items_done:
+        - "1 profile model + 7 schemas (candidate, candidates, unresolved-issues, subagent-result, additional-fact, use-case, profile) + referential integrity - tested"
+        - "2 deterministic bundle planner + wave scheduler + research create-feature-tasks - tested"
+        - "3 D-009 protocol enforcement (evidence/constraints/conflicts/status degradation) - tested"
+        - "4 additional facts + documented/inferred use cases + description.md assembly + content completeness - tested"
+        - "5 candidates + single curation gate + waiting room + controlled taxonomy revisions + requires_research - tested (waiting-room persistence pending confirmation)"
+        - "6 deterministic merge + completeness verification across all features - tested"
+        - "7 two technical retries + bundle splitting + three repair rounds - tested"
+        - "8 .work/failed-runs retention + resume-check contract for /tool-eval-resume - tested"
+        - "9 staging + rollback + safe replacement + recovery of the active profile - tested"
+      items_remaining_or_pending: []
+      open_gate_items:
+        - "Confirm the waiting-room data model (pending.json as the persistent waiting room, rejected.json as the rejected log, accepted->taxonomy). Implemented per recommendation; adjust _append_waiting_room/_append_rejected in research/curation.py if the operator prefers a different layout."
+      test_results:
+        command: "CURL_CA_BUNDLE= ./.venv/Scripts/python.exe -m pytest -q"
+        passed: 95
+        failed: 0
+      new_cli_commands:
+        - "research create-feature-tasks / merge / curate-candidates / prepare-repair"
+        - "profile validate / publish / list"
+        - "work recover / cleanup"
+---

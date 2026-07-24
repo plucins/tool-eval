@@ -1,0 +1,221 @@
+# Phase 2 Process: Resource Planning
+# Hybrid process - AI structures, humans commit resources
+---
+references:
+  rules: ../rules/phase2-planning.md
+
+definition:
+  id: "PROC-2.3"
+  name: "Resource Planning"
+  description: |
+    Identify and plan resource allocation for the project.
+    This is a human-led process where AI helps structure resource needs
+    while humans make commitment decisions based on organisational capacity.
+
+    Supports two modes:
+    - QUICK: Key resource identification for small projects (~15 min)
+    - FULL: Detailed resource planning with allocation matrix (~2 hours)
+  version: "1.0.0"
+  phase: 2
+  information_composition:
+    formal: 35
+    tacit: 55
+    emergent: 10
+
+interfaces:
+  inputs:
+    - type: "scope_statement"
+      required: true
+      description: "Output from PROC-2.1"
+    - type: "work_breakdown"
+      required: true
+      description: "WBS from PROC-2.1"
+    - type: "risk_register"
+      required: false
+      description: "Output from PROC-2.2 (for risk mitigation resources)"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "resource_requirements"
+      description: "Identified resource needs by type"
+    - type: "resource_allocation"
+      description: "Proposed or confirmed resource assignments"
+    - type: "deferred_items"
+      description: "Resource decisions pending availability or approval"
+
+steps:
+  # Step 1: Identify resource types (AI-Led)
+  - id: "2.3.1"
+    name: "Identify Resource Types"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Confirm resource categories relevant to this project"
+    ai_role: "Propose resource categories based on WBS: people, tools, infrastructure, budget"
+    escalation_triggers:
+      - condition: "Resource type unclear or novel"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Unusual resource type identified. How should we categorise this?"
+    completion_criteria: "Resource categories identified"
+    validation: "At least people and tools categories addressed"
+
+  # Step 2: Estimate requirements (Partnership)
+  - id: "2.3.2"
+    name: "Estimate Resource Requirements"
+    capability: Synthesise
+    pattern: Partnership
+    human_role: "Validate estimates based on experience"
+    ai_role: "Propose initial estimates based on WBS items; flag uncertainties"
+    escalation_triggers:
+      - condition: "Estimates highly uncertain"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Resource estimates are uncertain. Should we plan for contingency?"
+    completion_criteria: "Resource estimates for each WBS area"
+    validation: "Estimates have basis (experience, comparison, or explicit assumption)"
+
+  # Step 3: Check availability (AI records, human assesses)
+  - id: "2.3.3"
+    name: "Check Resource Availability"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Assess actual availability of required resources"
+    ai_role: "Record and structure availability status; do not assume availability"
+    escalation_triggers:
+      - condition: "Key resource unavailable"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Critical resource gap identified. This affects project viability."
+      - condition: "Availability unknown"
+        action: DEFER
+        severity: MEDIUM
+        target: "2.3.6"
+        context: "Availability to be confirmed - mark as dependency"
+    completion_criteria: "Availability status for key resources"
+    validation: "No critical resources with unknown availability"
+
+  # Step 4: Identify skill gaps (Partnership)
+  - id: "2.3.4"
+    name: "Identify Skill Gaps"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Assess team capabilities against requirements"
+    ai_role: "Compare WBS requirements to known team skills; highlight gaps"
+    escalation_triggers:
+      - condition: "Critical skill gap with no clear path"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Skill gap may block project. Options: train, hire, contract, rescope?"
+    completion_criteria: "Skill gaps identified"
+    validation: "Critical gaps have proposed resolution path"
+
+  # Step 5: Propose allocation (Human-Led)
+  - id: "2.3.5"
+    name: "Propose Resource Allocation"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Make or propose resource allocation decisions"
+    ai_role: "Structure allocation options; highlight trade-offs"
+    escalation_triggers:
+      - condition: "Allocation conflicts with other projects"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Resource conflict detected. Escalate for prioritisation decision?"
+      - condition: "Allocation requires approval"
+        action: DEFER
+        severity: MEDIUM
+        target: "2.3.6"
+        context: "Allocation pending approval - document request"
+    completion_criteria: "Resource allocation proposed or confirmed"
+    validation: "Critical roles have named or typed assignments"
+
+  # Step 6: Record deferrals (AI-Led)
+  - id: "2.3.6"
+    name: "Record Deferrals"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm pending items and next steps"
+    ai_role: "Compile pending allocations and approval requirements"
+    escalation_triggers:
+      - condition: "Many allocations pending without timeline"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Multiple resource decisions pending. Should we define approval milestones?"
+    completion_criteria: "Pending items documented with owners"
+    validation: "Each pending item has follow-up action"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "2.3.2"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 15
+      depth: "Key resources only; high-level allocation"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 120
+      depth: "Detailed requirements; allocation matrix"
+
+quality:
+  entry_criteria:
+    - "Scope and WBS available"
+    - "Human with resource authority or knowledge available"
+  exit_criteria:
+    - "Resource requirements identified"
+    - "Critical allocations addressed or escalated"
+  sla:
+    expected_duration_minutes: 15
+    timeout_minutes: 150
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Resource conflicts identified"
+    - "Significant skill gaps detected"
+    - "Complex allocation across teams"
+    - "Human requests detailed planning"
+  upgrade_prompt: |
+    Resource planning is complex for this project. Would you like to
+    switch to FULL mode for detailed allocation planning? This helps
+    ensure realistic scheduling.
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["2.3.1 Identify Types<br/>(Analyse, AI-Led)"]
+      S2["2.3.2 Estimate Requirements<br/>(Synthesise, Partnership)"]
+      S3["2.3.3 Check Availability<br/>(Elicit, Human-Led)"]
+      S4["2.3.4 Identify Skill Gaps<br/>(Analyse, Partnership)"]
+      S5["2.3.5 Propose Allocation<br/>(Decide, Human-Led)"]
+      S6["2.3.6 Record Deferrals<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Novel type"| ESC1[Escalate: categorise]
+    S2 -->|"Uncertain"| ESC2[Escalate: contingency?]
+    S3 -->|"Unavailable"| ESC3[Escalate: critical gap]
+    S3 -->|"Unknown"| DEF1[Defer to 2.3.6]
+    S4 -->|"Critical gap"| ESC4[Escalate: resolution path]
+    S5 -->|"Conflict"| ESC5[Escalate: prioritise]
+    S5 -->|"Needs approval"| DEF2[Defer to 2.3.6]
+
+    S6 --> OUT[Resource Requirements + Allocation + Deferrals]
+  ```
+---

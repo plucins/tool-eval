@@ -1,0 +1,8 @@
+id: OBS-20260724-064845
+timestamp: "2026-07-24T06:48:45Z"
+type: EVENT
+observer: "ai:claude"
+subject: "Increment 2 item 5 - curation gate implemented; waiting-room model needs confirmation"
+value: "curate_candidates enforces the single gate (every candidate resolved), applies accept/reject/defer, promotes accepted features into the taxonomy with a controlled revision bump (resume stays valid), and marks other profiles requires_research. Open design question for the operator: plan Sec 3.3 defines pending.json and rejected.json but not whether pending.json IS the waiting room. Implemented recommended model: pending.json is the persistent waiting room, rejected.json the rejected log, accepted go to the taxonomy. 95 tests pass."
+context: "PROC-5.1 Increment 2 item 5"
+tags: ["process-execution", "design-gap"]

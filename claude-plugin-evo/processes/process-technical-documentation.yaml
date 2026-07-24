@@ -1,0 +1,210 @@
+# Phase 5 Process: Technical Documentation
+# AI-Led process - AI generates documentation, humans validate accuracy
+---
+references:
+  rules: ../rules/phase5-implementation.md
+
+definition:
+  id: "PROC-5.4"
+  name: "Technical Documentation"
+  description: |
+    Create technical documentation for implementation.
+    This is an AI-Led process where AI can generate comprehensive
+    documentation while humans validate technical accuracy.
+
+    Supports two modes:
+    - QUICK: Essential API docs and README (~20 min)
+    - FULL: Comprehensive documentation with examples (~1-2 hours)
+  version: "1.0.0"
+  phase: 5
+  information_composition:
+    formal: 60
+    tacit: 25
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "source_code"
+      required: true
+      description: "Approved code from PROC-5.3"
+    - type: "design_baseline"
+      required: true
+      description: "Design context for documentation"
+    - type: "interface_specifications"
+      required: true
+      description: "API contracts to document"
+    - type: "documentation_standards"
+      required: false
+      description: "Organisation documentation conventions"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "api_documentation"
+      description: "Reference documentation for APIs"
+    - type: "developer_guide"
+      description: "How to use and extend the implementation"
+    - type: "maintenance_notes"
+      description: "Notes for future maintainers"
+
+steps:
+  # Step 1: Extract documentation from code (AI-Led)
+  - id: "5.4.1"
+    name: "Extract From Code"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Confirm extraction captures intent"
+    ai_role: "Parse code structure; extract docstrings; identify public interfaces"
+    escalation_triggers:
+      - condition: "Inline documentation missing"
+        action: RETURN
+        severity: MEDIUM
+        target: "PROC-5.1"
+        context: "Code lacks inline documentation. Add before generating docs?"
+    completion_criteria: "Code documentation extracted"
+    validation: "Public interfaces identified"
+
+  # Step 2: Generate API reference (AI-Led)
+  - id: "5.4.2"
+    name: "Generate API Reference"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Validate API documentation accuracy"
+    ai_role: "Generate reference documentation; document parameters, returns, exceptions"
+    escalation_triggers:
+      - condition: "Complex API behaviour"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "API has complex behaviour. Should documentation include detailed examples?"
+    completion_criteria: "API reference generated"
+    validation: "All public APIs documented"
+
+  # Step 3: Create usage examples (Partnership)
+  - id: "5.4.3"
+    name: "Create Examples"
+    capability: Generate
+    pattern: Partnership
+    human_role: "Provide real-world use case scenarios"
+    ai_role: "Generate example code; verify examples compile/run"
+    escalation_triggers:
+      - condition: "Example doesn't work"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Generated example fails. Fix example or update code?"
+    completion_criteria: "Usage examples created"
+    validation: "Examples are runnable"
+
+  # Step 4: Document architecture context (Partnership)
+  - id: "5.4.4"
+    name: "Document Context"
+    capability: Synthesise
+    pattern: Partnership
+    human_role: "Add tacit knowledge about design decisions"
+    ai_role: "Link to design documents; explain architectural context; document trade-offs"
+    escalation_triggers:
+      - condition: "Design rationale unclear"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Why was [decision] made? Please provide context for documentation."
+    completion_criteria: "Architectural context documented"
+    validation: "Design rationale captured"
+
+  # Step 5: Create maintenance notes (Partnership)
+  - id: "5.4.5"
+    name: "Create Maintenance Notes"
+    capability: Preserve
+    pattern: Partnership
+    human_role: "Add tacit knowledge for future maintainers"
+    ai_role: "Document known limitations; note areas of complexity; list dependencies"
+    escalation_triggers:
+      - condition: "Technical debt to document"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Should we document [limitation] for future maintainers?"
+    completion_criteria: "Maintenance notes created"
+    validation: "Key maintenance considerations documented"
+
+  # Step 6: Review and publish (Human-Led)
+  - id: "5.4.6"
+    name: "Review and Publish"
+    capability: Validate
+    pattern: Human-Led
+    human_role: "Final review and publication approval"
+    ai_role: "Format for publication; verify links; check completeness"
+    escalation_triggers:
+      - condition: "Documentation incomplete for audience"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Documentation may not serve [audience]. Add more detail or accept?"
+    completion_criteria: "Documentation published"
+    validation: "Documentation approved and accessible"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "5.4.2"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 20
+      depth: "API reference; basic README"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 120
+      depth: "Comprehensive docs with examples"
+
+quality:
+  entry_criteria:
+    - "Code reviewed and approved"
+    - "Design baseline available"
+  exit_criteria:
+    - "API documentation complete"
+    - "Documentation published"
+  sla:
+    expected_duration_minutes: 20
+    timeout_minutes: 150
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Public-facing API"
+    - "Complex integration requirements"
+    - "Multiple consumer teams"
+    - "Human requests comprehensive documentation"
+  upgrade_prompt: |
+    This implementation has documentation needs beyond basic reference.
+    Would you like to switch to FULL mode for comprehensive documentation
+    including tutorials, examples, and maintenance guides?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["5.4.1 Extract From Code<br/>(Analyse, AI-Led)"]
+      S2["5.4.2 Generate API Reference<br/>(Generate, AI-Led)"]
+      S3["5.4.3 Create Examples<br/>(Generate, Partnership)"]
+      S4["5.4.4 Document Context<br/>(Synthesise, Partnership)"]
+      S5["5.4.5 Create Maintenance Notes<br/>(Preserve, Partnership)"]
+      S6["5.4.6 Review and Publish<br/>(Validate, Human-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Missing"| RET1[Return to PROC-5.1]
+    S3 -->|"Broken"| ESC1[Escalate: fix example?]
+    S4 -->|"Unclear"| ESC2[Escalate: rationale?]
+
+    S6 --> OUT[API Docs + Developer Guide + Maintenance Notes]
+  ```
+---

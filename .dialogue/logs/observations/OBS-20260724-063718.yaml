@@ -1,0 +1,8 @@
+id: OBS-20260724-063718
+timestamp: "2026-07-24T06:37:18Z"
+type: EVENT
+observer: "ai:claude"
+subject: "Increment 2 items 8 and 9 complete - retention, resume, staged publication"
+value: "Item 9: publish_profile validates staged files then replaces data/profiles/<tool_id>/ via journal+backup with rollback on write failure; recover() restores interrupted replacements or clears stale journals; invalid staged profile never touches the active one (criterion 10). profile validate/publish/list and work recover wired to CLI. Item 8: cleanup_failed_runs enforces max_age_days and max_count deterministically; resume-check detects frozen-revision drift; work cleanup wired. 79 tests pass."
+context: "PROC-5.1 Increment 2 items 8-9"
+tags: ["process-execution", "resumability", "security"]

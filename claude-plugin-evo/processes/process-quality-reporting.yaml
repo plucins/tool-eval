@@ -1,0 +1,209 @@
+# Phase 6 Process: Quality Reporting
+# AI-Led process - AI compiles metrics, humans validate conclusions
+---
+references:
+  rules: ../rules/phase6-testing.md
+
+definition:
+  id: "PROC-6.4"
+  name: "Quality Reporting"
+  description: |
+    Compile and report quality metrics across all testing activities.
+    This is an AI-Led process where AI generates comprehensive
+    quality reports while humans validate conclusions and recommendations.
+
+    Supports two modes:
+    - QUICK: Summary metrics and status (~15 min)
+    - FULL: Comprehensive quality analysis (~1 hour)
+  version: "1.0.0"
+  phase: 6
+  information_composition:
+    formal: 65
+    tacit: 20
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "unit_test_results"
+      required: true
+      description: "From PROC-5.2"
+    - type: "integration_test_results"
+      required: true
+      description: "From PROC-6.2"
+    - type: "system_test_results"
+      required: true
+      description: "From PROC-6.3"
+    - type: "quality_thresholds"
+      required: false
+      description: "Organisation quality standards"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "quality_report"
+      description: "Comprehensive quality metrics and analysis"
+    - type: "trend_analysis"
+      description: "Quality trends compared to baseline"
+    - type: "recommendations"
+      description: "Quality improvement recommendations"
+
+steps:
+  # Step 1: Collect metrics (AI-Only)
+  - id: "6.4.1"
+    name: "Collect Metrics"
+    capability: Elicit
+    pattern: AI-Only
+    human_role: "None"
+    ai_role: "Aggregate test results; compile metrics from all sources"
+    escalation_triggers:
+      - condition: "Test results unavailable"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Cannot access [test type] results. Proceed with partial data?"
+    completion_criteria: "Metrics collected"
+    validation: "All available test data aggregated"
+
+  # Step 2: Calculate quality indicators (AI-Only)
+  - id: "6.4.2"
+    name: "Calculate Indicators"
+    capability: Analyse
+    pattern: AI-Only
+    human_role: "None"
+    ai_role: "Calculate coverage, defect density, pass rates, trends"
+    escalation_triggers: []
+    completion_criteria: "Indicators calculated"
+    validation: "Quality indicators have values"
+
+  # Step 3: Compare to thresholds (AI-Led)
+  - id: "6.4.3"
+    name: "Compare Thresholds"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Validate threshold application"
+    ai_role: "Compare metrics to thresholds; identify violations"
+    escalation_triggers:
+      - condition: "Quality below threshold"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Quality metric [X] at [value], below threshold [threshold]. Accept or address?"
+      - condition: "Threshold not defined"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "No threshold defined for [metric]. What should be the standard?"
+    completion_criteria: "Thresholds compared"
+    validation: "All metrics assessed against thresholds"
+
+  # Step 4: Analyse trends (AI-Led)
+  - id: "6.4.4"
+    name: "Analyse Trends"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Validate trend interpretation"
+    ai_role: "Compare to historical data; identify improving/declining trends"
+    escalation_triggers:
+      - condition: "Declining quality trend"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Quality declining over [period]. Investigate root cause?"
+    completion_criteria: "Trends analysed"
+    validation: "Trend direction documented"
+
+  # Step 5: Generate recommendations (AI-Led)
+  - id: "6.4.5"
+    name: "Generate Recommendations"
+    capability: Synthesise
+    pattern: AI-Led
+    human_role: "Review recommendation relevance"
+    ai_role: "Synthesise findings; propose quality improvements"
+    escalation_triggers:
+      - condition: "Significant improvement needed"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Quality issues require process changes. Discuss improvements?"
+    completion_criteria: "Recommendations generated"
+    validation: "Recommendations are actionable"
+
+  # Step 6: Publish report (Human-Led)
+  - id: "6.4.6"
+    name: "Publish Report"
+    capability: Preserve
+    pattern: Human-Led
+    human_role: "Approve and distribute quality report"
+    ai_role: "Format report; prepare distribution; record publication"
+    escalation_triggers:
+      - condition: "Report contains sensitive findings"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Report contains [sensitive data]. Restrict distribution?"
+    completion_criteria: "Report published"
+    validation: "Report distributed to stakeholders"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "6.4.3"
+      max_iterations: 1
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 15
+      depth: "Summary metrics and status"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 60
+      depth: "Comprehensive analysis with trends"
+
+quality:
+  entry_criteria:
+    - "Test results available from testing processes"
+  exit_criteria:
+    - "Quality report generated"
+    - "Report published"
+  sla:
+    expected_duration_minutes: 15
+    timeout_minutes: 90
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Major release milestone"
+    - "Quality issues detected"
+    - "Stakeholder requests detailed analysis"
+    - "Compliance reporting required"
+  upgrade_prompt: |
+    Quality metrics suggest detailed analysis would be valuable.
+    Would you like to switch to FULL mode for comprehensive
+    quality reporting with trend analysis and recommendations?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["6.4.1 Collect Metrics<br/>(Elicit, AI-Only)"]
+      S2["6.4.2 Calculate Indicators<br/>(Analyse, AI-Only)"]
+      S3["6.4.3 Compare Thresholds<br/>(Validate, AI-Led)"]
+      S4["6.4.4 Analyse Trends<br/>(Analyse, AI-Led)"]
+      S5["6.4.5 Generate Recommendations<br/>(Synthesise, AI-Led)"]
+      S6["6.4.6 Publish Report<br/>(Preserve, Human-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Data unavailable"| ESC1[Escalate: partial data?]
+    S3 -->|"Below threshold"| ESC2[Escalate: accept?]
+    S4 -->|"Declining"| ESC3[Escalate: investigate?]
+
+    S6 --> OUT[Quality Report + Recommendations]
+  ```
+---

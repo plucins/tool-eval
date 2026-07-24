@@ -1,0 +1,9 @@
+id: DEC-20260724-061037
+timestamp: "2026-07-24T06:10:37Z"
+type: OPERATIONAL
+actor: "ai:claude"
+subject: "Bundle planner rebalancing and wave contract"
+outcome: "Deterministic same-group chunking with min-size tail rebalancing; isolated features get solo bundles; waves capped at max_concurrent_workers"
+rationale: "D-010 requires 2-4 same-group features per bundle and <=4 concurrent workers. A naive chunk of 5 gives 4+1, violating min=2; planner rebalances the tail to 3+2. Planning sorts inputs so it is reproducible (determinism focus area). Complex/disputed features passed via --isolate get single-feature tasks; split_bundle supports the retry-then-split path."
+context: "PROC-5.1 Increment 2 item 2"
+tags: ["process-execution", "determinism"]

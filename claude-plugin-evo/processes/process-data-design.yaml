@@ -1,0 +1,215 @@
+# Phase 4 Process: Data Design
+# AI-Led process - AI generates models, humans validate domain semantics
+---
+references:
+  rules: ../rules/phase4-design.md
+
+definition:
+  id: "PROC-4.3"
+  name: "Data Design"
+  description: |
+    Design data structures, storage, and access patterns.
+    This is an AI-Led process where AI can generate data models
+    while humans validate domain semantics and operational requirements.
+
+    Supports two modes:
+    - QUICK: Core entities and relationships (~30 min)
+    - FULL: Comprehensive data model with migration strategy (~2-3 hours)
+  version: "1.0.0"
+  phase: 4
+  information_composition:
+    formal: 50
+    tacit: 30
+    emergent: 20
+
+interfaces:
+  inputs:
+    - type: "architecture_document"
+      required: true
+      description: "Output from PROC-4.1"
+    - type: "requirements_specification"
+      required: true
+      description: "For data requirements"
+    - type: "interface_specifications"
+      required: false
+      description: "Output from PROC-4.2 for data format alignment"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "data_model"
+      description: "Entity definitions, relationships, constraints"
+    - type: "storage_design"
+      description: "Database selection, schema, indexing strategy"
+    - type: "deferred_items"
+      description: "Data decisions for later refinement"
+
+steps:
+  # Step 1: Identify data entities (AI-Led)
+  - id: "4.3.1"
+    name: "Identify Entities"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Validate entities reflect domain correctly"
+    ai_role: "Extract entities from requirements; identify attributes and types"
+    escalation_triggers:
+      - condition: "Entity semantics unclear from requirements"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Entity meaning ambiguous. Can you clarify the domain concept?"
+    completion_criteria: "Data entities identified"
+    validation: "Entities have clear definitions and attributes"
+
+  # Step 2: Define relationships (AI-Led)
+  - id: "4.3.2"
+    name: "Define Relationships"
+    capability: Synthesise
+    pattern: AI-Led
+    human_role: "Validate relationships reflect business rules"
+    ai_role: "Model relationships; identify cardinality and constraints"
+    escalation_triggers:
+      - condition: "Complex many-to-many relationship"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Complex relationship may need intermediate entity. Should we normalise?"
+    completion_criteria: "Relationships defined"
+    validation: "All relationships have cardinality specified"
+
+  # Step 3: Apply normalisation (AI-Led)
+  - id: "4.3.3"
+    name: "Normalise Model"
+    capability: Transform
+    pattern: AI-Led
+    human_role: "Approve normalisation level for performance trade-offs"
+    ai_role: "Apply normalisation rules; identify denormalisation opportunities"
+    escalation_triggers:
+      - condition: "Normalisation conflicts with performance requirements"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Full normalisation may impact performance. Accept denormalisation?"
+    completion_criteria: "Model normalised appropriately"
+    validation: "Normalisation level documented with rationale"
+
+  # Step 4: Design storage (Partnership)
+  - id: "4.3.4"
+    name: "Design Storage"
+    capability: Decide
+    pattern: Partnership
+    human_role: "Choose storage technology based on operational requirements"
+    ai_role: "Propose storage options; document trade-offs and constraints"
+    escalation_triggers:
+      - condition: "Multiple storage technologies needed"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Polyglot persistence adds complexity. Is this justified?"
+      - condition: "Storage choice conflicts with existing infrastructure"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Proposed storage not in tech stack. Justify or adapt?"
+    completion_criteria: "Storage technology selected"
+    validation: "Selection has documented rationale"
+
+  # Step 5: Define access patterns (Partnership)
+  - id: "4.3.5"
+    name: "Define Access Patterns"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Validate access patterns against use cases"
+    ai_role: "Identify access patterns; propose indexing strategy"
+    escalation_triggers:
+      - condition: "Conflicting access patterns"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Access patterns conflict. Prioritise reads or writes?"
+    completion_criteria: "Access patterns documented"
+    validation: "Key queries have supporting indexes"
+
+  # Step 6: Record deferrals (AI-Led)
+  - id: "4.3.6"
+    name: "Record Deferrals"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm deferred items and migration notes"
+    ai_role: "Compile deferred decisions; note migration considerations"
+    escalation_triggers:
+      - condition: "Migration complexity underestimated"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Data migration may be complex. Should we address now?"
+    completion_criteria: "Deferrals documented"
+    validation: "Migration considerations noted"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "4.3.1"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Core entities; key relationships"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 150
+      depth: "Complete model; migration strategy"
+
+quality:
+  entry_criteria:
+    - "Architecture document available"
+    - "Data requirements identified"
+  exit_criteria:
+    - "Data model defined"
+    - "Storage approach selected"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Complex domain model identified"
+    - "Data migration from existing system"
+    - "Performance-critical data access"
+    - "Human requests detailed design"
+  upgrade_prompt: |
+    Data design has complexity that warrants detailed specification.
+    Would you like to switch to FULL mode for comprehensive data model
+    with storage strategy and migration planning?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["4.3.1 Identify Entities<br/>(Analyse, AI-Led)"]
+      S2["4.3.2 Define Relationships<br/>(Synthesise, AI-Led)"]
+      S3["4.3.3 Normalise Model<br/>(Transform, AI-Led)"]
+      S4["4.3.4 Design Storage<br/>(Decide, Partnership)"]
+      S5["4.3.5 Define Access Patterns<br/>(Analyse, Partnership)"]
+      S6["4.3.6 Record Deferrals<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Unclear"| ESC1[Escalate: clarify domain]
+    S2 -->|"Complex M:M"| ESC2[Escalate: normalise?]
+    S3 -->|"Performance"| ESC3[Escalate: denormalise?]
+    S4 -->|"Multiple"| ESC4[Escalate: polyglot?]
+    S4 -->|"Not in stack"| ESC5[Escalate: justify?]
+    S5 -->|"Conflicts"| ESC6[Escalate: prioritise?]
+
+    S6 --> OUT[Data Model + Storage Design]
+  ```
+---

@@ -1,0 +1,9 @@
+id: DEC-20260724-060012
+timestamp: "2026-07-24T06:00:12Z"
+type: OPERATIONAL
+actor: "ai:claude"
+subject: "Entry criteria for Increment 2 code generation"
+outcome: "APPROVED - proceed under REVIEW_EACH"
+rationale: "Design baseline (implementation_plan_v1.md Increment 2) approved and interface specs (Sec 3.5 CLI surface) available; coordinator granted delegated approval with trust_level REVIEW_EACH"
+context: "PROC-5.1 Increment 2 execution"
+tags: ["process-execution"]

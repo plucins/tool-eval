@@ -1,0 +1,206 @@
+# Phase 4 Process: Interface Design
+# AI-Led process - AI generates interfaces, humans validate contracts
+---
+references:
+  rules: ../rules/phase4-design.md
+
+definition:
+  id: "PROC-4.2"
+  name: "Interface Design"
+  description: |
+    Define interfaces between system components and external systems.
+    This is an AI-Led process where AI can generate interface specifications
+    while humans validate contracts and integration requirements.
+
+    Supports two modes:
+    - QUICK: Key interfaces for simple systems (~30 min)
+    - FULL: Comprehensive API design with contracts (~2-3 hours)
+  version: "1.0.0"
+  phase: 4
+  information_composition:
+    formal: 50
+    tacit: 30
+    emergent: 20
+
+interfaces:
+  inputs:
+    - type: "architecture_document"
+      required: true
+      description: "Output from PROC-4.1"
+    - type: "requirements_specification"
+      required: true
+      description: "For interface requirements"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "interface_specifications"
+      description: "API contracts, protocols, data formats"
+    - type: "integration_requirements"
+      description: "Requirements for external system integration"
+    - type: "deferred_items"
+      description: "Interface decisions for later refinement"
+
+steps:
+  # Step 1: Identify interfaces (AI-Led)
+  - id: "4.2.1"
+    name: "Identify Interfaces"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Validate interface inventory is complete"
+    ai_role: "Extract interfaces from architecture; categorise by type (internal, external, user)"
+    escalation_triggers:
+      - condition: "Undocumented external dependency found"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "External interface not in architecture. Should we update PROC-4.1?"
+    completion_criteria: "Interface inventory created"
+    validation: "All component boundaries have interface definitions"
+
+  # Step 2: Define contracts (AI-Led)
+  - id: "4.2.2"
+    name: "Define Contracts"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Review and refine generated contracts"
+    ai_role: "Generate interface contracts: methods, parameters, return types, errors"
+    escalation_triggers:
+      - condition: "Contract complexity suggests missing abstraction"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Interface seems complex. Should we introduce intermediate abstraction?"
+    completion_criteria: "Contracts defined for key interfaces"
+    validation: "Contracts are complete and consistent"
+
+  # Step 3: Specify protocols (Partnership)
+  - id: "4.2.3"
+    name: "Specify Protocols"
+    capability: Synthesise
+    pattern: Partnership
+    human_role: "Choose protocols based on operational requirements"
+    ai_role: "Propose protocol options; document trade-offs"
+    escalation_triggers:
+      - condition: "Protocol mismatch with existing systems"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Proposed protocol conflicts with existing infrastructure. Adapt or negotiate?"
+    completion_criteria: "Protocols specified"
+    validation: "Protocol choices documented with rationale"
+
+  # Step 4: Define data formats (AI-Led)
+  - id: "4.2.4"
+    name: "Define Data Formats"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Validate data formats meet requirements"
+    ai_role: "Generate schemas, DTOs, validation rules from requirements"
+    escalation_triggers:
+      - condition: "Data format conflicts between interfaces"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Interfaces use incompatible data formats. Standardise or transform?"
+    completion_criteria: "Data formats defined"
+    validation: "Formats are consistent across related interfaces"
+
+  # Step 5: Document integration requirements (Partnership)
+  - id: "4.2.5"
+    name: "Document Integration"
+    capability: Preserve
+    pattern: Partnership
+    human_role: "Add operational context for integration"
+    ai_role: "Compile integration requirements; identify dependencies"
+    escalation_triggers:
+      - condition: "Integration requires unavailable system access"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Integration depends on system we can't access. Alternative approach?"
+    completion_criteria: "Integration requirements documented"
+    validation: "External dependencies have contact/access information"
+
+  # Step 6: Record deferrals (AI-Led)
+  - id: "4.2.6"
+    name: "Record Deferrals"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm deferred items and triggers"
+    ai_role: "Compile deferred interface decisions"
+    escalation_triggers:
+      - condition: "Critical interface deferred"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Key interface deferred. This may block implementation."
+    completion_criteria: "Deferrals documented"
+    validation: "Each deferral has resolution timeline"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "4.2.2"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Key interfaces; essential contracts"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 150
+      depth: "All interfaces; detailed contracts with schemas"
+
+quality:
+  entry_criteria:
+    - "Architecture document available"
+    - "Component boundaries defined"
+  exit_criteria:
+    - "Interface contracts defined"
+    - "Data formats specified"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Multiple external integrations required"
+    - "Complex data transformations needed"
+    - "Versioning or backward compatibility required"
+    - "Human requests detailed specifications"
+  upgrade_prompt: |
+    Interface design has complexity that warrants detailed specification.
+    Would you like to switch to FULL mode for comprehensive API design
+    with schemas and validation rules?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["4.2.1 Identify Interfaces<br/>(Analyse, AI-Led)"]
+      S2["4.2.2 Define Contracts<br/>(Generate, AI-Led)"]
+      S3["4.2.3 Specify Protocols<br/>(Synthesise, Partnership)"]
+      S4["4.2.4 Define Data Formats<br/>(Generate, AI-Led)"]
+      S5["4.2.5 Document Integration<br/>(Preserve, Partnership)"]
+      S6["4.2.6 Record Deferrals<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Undocumented"| ESC1[Escalate: update arch?]
+    S2 -->|"Complex"| ESC2[Escalate: abstraction?]
+    S3 -->|"Mismatch"| ESC3[Escalate: adapt?]
+    S4 -->|"Conflicts"| ESC4[Escalate: standardise?]
+    S5 -->|"No access"| ESC5[Escalate: alternative?]
+
+    S6 --> OUT[Interface Specs + Integration Reqs]
+  ```
+---

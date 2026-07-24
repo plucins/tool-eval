@@ -1,0 +1,207 @@
+# Phase 3 Process: Requirements Documentation
+# Partnership process - AI assists in creating formal documentation
+---
+references:
+  rules: ../rules/phase3-analysis.md
+
+definition:
+  id: "PROC-3.4"
+  name: "Requirements Documentation"
+  description: |
+    Create formal requirements documentation for downstream phases.
+    This is a partnership process where AI generates drafts and humans
+    review for accuracy and completeness.
+
+    Supports two modes:
+    - QUICK: Essential documentation for agile/iterative projects (~30 min)
+    - FULL: Formal specification for regulated or complex systems (~3-4 hours)
+  version: "1.0.0"
+  phase: 3
+  information_composition:
+    formal: 40
+    tacit: 35
+    emergent: 25
+
+interfaces:
+  inputs:
+    - type: "validated_requirements"
+      required: true
+      description: "Output from PROC-3.3"
+    - type: "change_requests"
+      required: false
+      description: "Outstanding changes from PROC-3.3"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "requirements_specification"
+      description: "Formal requirements document"
+    - type: "traceability_matrix"
+      description: "Requirements to source traceability (FULL mode)"
+    - type: "deferred_items"
+      description: "Documentation items for future iterations"
+
+steps:
+  # Step 1: Select documentation format (Human-Led)
+  - id: "3.4.1"
+    name: "Select Format"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Choose documentation format based on project needs"
+    ai_role: "Present format options; recommend based on project context"
+    escalation_triggers:
+      - condition: "Format requirements unclear"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "No standard format specified. What format does downstream work need?"
+    completion_criteria: "Documentation format selected"
+    validation: "Format suitable for intended audience"
+
+  # Step 2: Generate requirement specifications (AI-Led)
+  - id: "3.4.2"
+    name: "Generate Specifications"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Review and correct AI-generated specifications"
+    ai_role: "Draft formal requirement statements from validated requirements"
+    escalation_triggers:
+      - condition: "Requirement cannot be formalised cleanly"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Requirement is ambiguous for formal specification. Clarify intent?"
+    completion_criteria: "Specification drafts generated"
+    validation: "Each requirement has formal specification"
+
+  # Step 3: Create use cases / user stories (Partnership)
+  - id: "3.4.3"
+    name: "Create Use Cases"
+    capability: Synthesise
+    pattern: Partnership
+    human_role: "Validate use cases reflect actual user workflows"
+    ai_role: "Draft use cases from requirements; identify actors and flows"
+    escalation_triggers:
+      - condition: "Use case complexity suggests missing requirements"
+        action: RETURN
+        severity: MEDIUM
+        target: "PROC-3.1"
+        context: "Complex use case may indicate missing requirements"
+    completion_criteria: "Key use cases documented"
+    validation: "Use cases trace to requirements"
+
+  # Step 4: Build traceability matrix (AI-Led)
+  - id: "3.4.4"
+    name: "Build Traceability"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Verify traceability links are accurate"
+    ai_role: "Create requirement-to-source traceability; flag gaps"
+    escalation_triggers:
+      - condition: "Requirement has no source traceability"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Requirement cannot be traced to source. Is this a valid requirement?"
+    completion_criteria: "Traceability matrix created"
+    validation: "All requirements traceable to sources"
+
+  # Step 5: Review and refine (Human-Led)
+  - id: "3.4.5"
+    name: "Review Documentation"
+    capability: Validate
+    pattern: Human-Led
+    human_role: "Review documentation for accuracy, completeness, clarity"
+    ai_role: "Support review; highlight potential issues; track feedback"
+    escalation_triggers:
+      - condition: "Significant documentation gaps identified"
+        action: RETURN
+        severity: MEDIUM
+        target: "3.4.2"
+        context: "Documentation has gaps. Revise specifications?"
+    completion_criteria: "Documentation reviewed"
+    validation: "Documentation approved for downstream use"
+
+  # Step 6: Finalise and version (AI-Led)
+  - id: "3.4.6"
+    name: "Finalise Documentation"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Approve final documentation and version"
+    ai_role: "Apply formatting; create version; compile deferred items"
+    escalation_triggers:
+      - condition: "Documentation incomplete but deadline pressure"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Documentation incomplete. Release as-is or extend timeline?"
+    completion_criteria: "Documentation finalised"
+    validation: "Version recorded; baselin established"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "3.4.2"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Essential specs; lightweight traceability"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 210
+      depth: "Formal specification; complete traceability"
+
+quality:
+  entry_criteria:
+    - "Validated requirements available"
+    - "Documentation format known or can be decided"
+  exit_criteria:
+    - "Requirements specification created"
+    - "Documentation suitable for downstream phases"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 240
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Regulatory or compliance requirements"
+    - "Formal traceability required"
+    - "Multiple teams consuming documentation"
+    - "Human requests formal specification"
+  upgrade_prompt: |
+    The project may need more formal documentation. Would you like to
+    switch to FULL mode for comprehensive specification with complete
+    traceability?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["3.4.1 Select Format<br/>(Decide, Human-Led)"]
+      S2["3.4.2 Generate Specs<br/>(Generate, AI-Led)"]
+      S3["3.4.3 Create Use Cases<br/>(Synthesise, Partnership)"]
+      S4["3.4.4 Build Traceability<br/>(Analyse, AI-Led)"]
+      S5["3.4.5 Review Documentation<br/>(Validate, Human-Led)"]
+      S6["3.4.6 Finalise<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Format unclear"| ESC1[Escalate: clarify]
+    S2 -->|"Ambiguous"| ESC2[Escalate: clarify]
+    S3 -->|"Complex"| RET1[Return to PROC-3.1]
+    S4 -->|"No source"| ESC3[Escalate: valid?]
+    S5 -->|"Gaps"| RET2[Return to 3.4.2]
+    S6 -->|"Incomplete"| ESC4[Escalate: release?]
+
+    S6 --> OUT[Requirements Spec + Traceability]
+  ```
+---

@@ -1,0 +1,182 @@
+# Phase 1 Process: Opportunity Identification
+# Hybrid process - AI facilitates, humans decide
+---
+references:
+  rules: ../rules/phase1-initiation.md
+
+definition:
+  id: "PROC-1.1"
+  name: "Opportunity Identification"
+  description: |
+    Identify and frame an opportunity or problem that warrants a project.
+    This is a human-led process where AI acts as Facilitator and Scribe.
+
+    Supports two modes:
+    - QUICK: Minimal viable output for small/obvious projects (~15 min)
+    - FULL: Complete analysis for significant investments (~2-4 hours)
+  version: "1.0.0"
+  phase: 1
+  information_composition:
+    formal: 5
+    tacit: 75
+    emergent: 20
+
+interfaces:
+  inputs:
+    - type: "initial_context"
+      required: true
+      description: "Brief description of what prompted this exploration (a sentence or two)"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK for fast value)"
+  outputs:
+    - type: "opportunity_statement"
+      description: "Structured opportunity/problem statement with rationale"
+    - type: "deferred_items"
+      description: "Items marked for later refinement (supports progressive completion)"
+
+steps:
+  # Step 1: Elicit initial framing (AI-facilitated)
+  - id: "1.1.1"
+    name: "Elicit Initial Framing"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Share the opportunity or problem in your own words"
+    ai_role: "Facilitate with structured questions; record responses"
+    escalation_triggers:
+      - condition: "Human indicates uncertainty about opportunity definition"
+        action: DEFER
+        severity: LOW
+        target: "1.1.4"
+        context: "Uncertainty is normal at this stage - capture what's known, mark gaps"
+    completion_criteria: "Initial opportunity description captured"
+    validation: "At least one sentence describing what prompted this"
+
+  # Step 2: Distinguish problem from solution (AI-facilitated)
+  - id: "1.1.2"
+    name: "Separate Problem and Solution"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Clarify: what is the actual problem vs. proposed solutions"
+    ai_role: "Ask clarifying questions; help distinguish problem-space from solution-space"
+    escalation_triggers:
+      - condition: "Problem and solution conflated - human unsure how to separate"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "This is a common challenge. Would you like examples of problem/solution separation?"
+    completion_criteria: "Problem statement separated from any solution ideas"
+    validation: "Problem framed without prescribing specific solution"
+
+  # Step 3: Capture rationale (AI records, human provides substance)
+  - id: "1.1.3"
+    name: "Articulate Rationale"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Explain WHY this matters - business value, strategic fit, urgency"
+    ai_role: "Record and structure human input; do not suggest or generate rationale"
+    escalation_triggers:
+      - condition: "Rationale unclear or missing"
+        action: RETURN
+        severity: LOW
+        target: "1.1.3"
+        context: "Rationale is essential for Phase 1 validation. What makes this worth pursuing?"
+    completion_criteria: "At least one clear rationale statement"
+    validation: "Rationale explains why, not just what"
+
+  # Step 4: Synthesise opportunity statement (AI-assisted)
+  - id: "1.1.4"
+    name: "Synthesise Opportunity Statement"
+    capability: Synthesise
+    pattern: Human-Led
+    human_role: "Review and refine AI-drafted statement"
+    ai_role: "Draft structured opportunity statement from captured inputs"
+    escalation_triggers:
+      - condition: "Human disagrees with synthesis"
+        action: RETURN
+        severity: LOW
+        target: "1.1.1"
+        context: "Let's revisit the inputs to improve the synthesis"
+    completion_criteria: "Opportunity statement accepted by human"
+    validation: "Statement includes: problem, rationale, and scope indication"
+
+  # Step 5: Mark deferrals (AI-assisted)
+  - id: "1.1.5"
+    name: "Identify Deferred Items"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm which items to defer vs. address now"
+    ai_role: "List items mentioned but not fully addressed; propose deferrals"
+    escalation_triggers:
+      - condition: "No deferrals identified despite uncertainty or gaps mentioned"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "I didn't find items to defer, but want to confirm nothing was missed. Is this complete enough to proceed?"
+    completion_criteria: "Deferred items list created (may be empty)"
+    validation: "Each deferral has a reason and suggested revisit point"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "1.1.1"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 15
+      depth: "Capture essentials; defer details"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 120
+      depth: "Thorough exploration; minimise deferrals"
+
+quality:
+  entry_criteria:
+    - "Human available to participate in dialogue"
+    - "Initial context provided (even one sentence)"
+  exit_criteria:
+    - "Opportunity statement captured"
+    - "Rationale articulated (even if brief)"
+  sla:
+    expected_duration_minutes: 15
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+# Progressive disclosure: Start with QUICK mode, suggest FULL if complexity emerges
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Multiple stakeholders mentioned"
+    - "Significant investment indicated"
+    - "Strategic implications identified"
+    - "Human requests deeper analysis"
+  upgrade_prompt: |
+    This seems more complex than a quick assessment. Would you like to
+    switch to FULL mode for a more thorough exploration? We can continue
+    where we left off.
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["1.1.1 Elicit Initial Framing<br/>(Elicit, Human-Led)"]
+      S2["1.1.2 Separate Problem/Solution<br/>(Analyse, Human-Led)"]
+      S3["1.1.3 Articulate Rationale<br/>(Elicit, Human-Led)"]
+      S4["1.1.4 Synthesise Statement<br/>(Synthesise, Human-Led)"]
+      S5["1.1.5 Identify Deferrals<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+
+    S1 -->|"Uncertainty"| DEF[Defer to 1.1.4]
+    S2 -->|"Conflated"| ESC[Escalate: examples]
+    S3 -->|"Missing rationale"| S3
+    S4 -->|"Disagrees"| S1
+
+    S5 --> OUT[Opportunity Statement + Deferrals]
+  ```
+---

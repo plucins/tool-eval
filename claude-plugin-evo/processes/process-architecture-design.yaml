@@ -1,0 +1,216 @@
+# Phase 4 Process: Architecture Design
+# Partnership/AI-Led process - AI proposes structures, humans validate
+---
+references:
+  rules: ../rules/phase4-design.md
+
+definition:
+  id: "PROC-4.1"
+  name: "Architecture Design"
+  description: |
+    Define system architecture to satisfy requirements.
+    This is a partnership process where AI can propose architectural patterns
+    and structures while humans validate against constraints and context.
+
+    Supports two modes:
+    - QUICK: High-level architecture for simple systems (~45 min)
+    - FULL: Detailed architecture with ADRs for complex systems (~4-6 hours)
+  version: "1.0.0"
+  phase: 4
+  information_composition:
+    formal: 50
+    tacit: 30
+    emergent: 20
+
+interfaces:
+  inputs:
+    - type: "requirements_specification"
+      required: true
+      description: "Output from PROC-3.4"
+    - type: "constraints"
+      required: true
+      description: "Technical and business constraints from earlier phases"
+    - type: "risk_register"
+      required: false
+      description: "Output from PROC-2.2 for risk-informed design"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "architecture_document"
+      description: "System architecture with components, relationships, decisions"
+    - type: "architecture_decision_records"
+      description: "ADRs documenting key decisions (FULL mode)"
+    - type: "deferred_items"
+      description: "Design decisions for later refinement"
+
+steps:
+  # Step 1: Identify architectural drivers (Partnership)
+  - id: "4.1.1"
+    name: "Identify Drivers"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Validate key drivers: quality attributes, constraints, risks"
+    ai_role: "Extract drivers from requirements; propose priority based on patterns"
+    escalation_triggers:
+      - condition: "Conflicting quality attributes identified"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Quality attributes conflict (e.g., security vs usability). How should we prioritise?"
+    completion_criteria: "Architectural drivers identified and prioritised"
+    validation: "Key quality attributes have explicit priority"
+
+  # Step 2: Propose architectural patterns (AI-Led)
+  - id: "4.1.2"
+    name: "Propose Patterns"
+    capability: Synthesise
+    pattern: AI-Led
+    human_role: "Evaluate proposed patterns against context and constraints"
+    ai_role: "Propose candidate architectural patterns based on drivers and requirements"
+    escalation_triggers:
+      - condition: "No clear pattern fit"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Standard patterns may not fit well. Custom architecture needed?"
+    completion_criteria: "Candidate patterns proposed"
+    validation: "At least one viable pattern identified"
+
+  # Step 3: Define system structure (Partnership)
+  - id: "4.1.3"
+    name: "Define Structure"
+    capability: Synthesise
+    pattern: Partnership
+    human_role: "Refine component boundaries based on domain knowledge"
+    ai_role: "Draft component decomposition; identify interfaces and dependencies"
+    escalation_triggers:
+      - condition: "Component boundaries unclear"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Boundaries could be drawn differently. What grouping makes most sense?"
+      - condition: "Circular dependency detected"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Circular dependency in architecture. How should we restructure?"
+    completion_criteria: "System structure defined"
+    validation: "Components have clear responsibilities and interfaces"
+
+  # Step 4: Document decisions (Partnership)
+  - id: "4.1.4"
+    name: "Document Decisions"
+    capability: Preserve
+    pattern: Partnership
+    human_role: "Validate decision rationale; add context AI may miss"
+    ai_role: "Draft ADRs for key decisions; capture alternatives considered"
+    escalation_triggers:
+      - condition: "Decision rationale unclear"
+        action: RETURN
+        severity: LOW
+        target: "4.1.3"
+        context: "Decision needs clearer rationale. Let's revisit the reasoning."
+    completion_criteria: "Key decisions documented"
+    validation: "Each major decision has rationale recorded"
+
+  # Step 5: Validate against requirements (AI-Led)
+  - id: "4.1.5"
+    name: "Validate Traceability"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Confirm architecture addresses requirements"
+    ai_role: "Check requirement coverage; identify gaps in architecture"
+    escalation_triggers:
+      - condition: "Requirements not addressed by architecture"
+        action: RETURN
+        severity: HIGH
+        target: "4.1.3"
+        context: "Architecture doesn't address all requirements. Revise structure?"
+    completion_criteria: "Architecture validated against requirements"
+    validation: "All high-priority requirements traceable to architecture"
+
+  # Step 6: Record deferrals (AI-Led)
+  - id: "4.1.6"
+    name: "Record Deferrals"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm items to defer and their triggers"
+    ai_role: "Compile deferred decisions; note when they must be resolved"
+    escalation_triggers:
+      - condition: "Critical decisions deferred without timeline"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Important decisions deferred. When should they be resolved?"
+    completion_criteria: "Deferrals documented"
+    validation: "Each deferral has resolution trigger"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "4.1.2"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 45
+      depth: "High-level architecture; key decisions only"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 300
+      depth: "Detailed architecture; comprehensive ADRs"
+
+quality:
+  entry_criteria:
+    - "Requirements specification available"
+    - "Constraints documented"
+    - "Human with architecture authority available"
+  exit_criteria:
+    - "Architecture structure defined"
+    - "Key decisions documented"
+  sla:
+    expected_duration_minutes: 45
+    timeout_minutes: 360
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Multiple architectural styles under consideration"
+    - "Significant trade-offs between quality attributes"
+    - "Integration with existing systems required"
+    - "Human requests detailed documentation"
+  upgrade_prompt: |
+    The architecture has significant complexity or trade-offs.
+    Would you like to switch to FULL mode for detailed architecture
+    with comprehensive decision records?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["4.1.1 Identify Drivers<br/>(Analyse, Partnership)"]
+      S2["4.1.2 Propose Patterns<br/>(Synthesise, AI-Led)"]
+      S3["4.1.3 Define Structure<br/>(Synthesise, Partnership)"]
+      S4["4.1.4 Document Decisions<br/>(Preserve, Partnership)"]
+      S5["4.1.5 Validate Traceability<br/>(Validate, AI-Led)"]
+      S6["4.1.6 Record Deferrals<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Conflicts"| ESC1[Escalate: prioritise]
+    S2 -->|"No fit"| ESC2[Escalate: custom?]
+    S3 -->|"Unclear"| ESC3[Escalate: boundaries]
+    S3 -->|"Circular"| ESC4[Escalate: restructure]
+    S4 -->|"Unclear rationale"| RET1[Return to 4.1.3]
+    S5 -->|"Gaps"| RET2[Return to 4.1.3]
+
+    S6 --> OUT[Architecture + ADRs]
+  ```
+---

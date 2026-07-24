@@ -1,0 +1,162 @@
+---
+# ExecutionLog Schema v1.0
+execution:
+  id: "EXEC-20260724-060000"
+  instance_id: "PINST-20260724-055000"
+  started: "2026-07-24T06:00:00Z"
+  completed: "2026-07-24T06:49:00Z"
+  status: COMPLETED
+  executor:
+    agent: "process-executor"
+
+  engagement:
+    non_formal_percent: 40
+    level: Medium
+    rationale: "tacit 25 + emergent 15 = 40% => Medium engagement per PROC-5.1 information_composition. Confirmed at the curation-gate decision point (item 5 design gap escalated); sanity-checked outputs at each item via passing tests."
+
+  parameters:
+    mode: FULL
+    focus_areas: [determinism, security, resumability]
+    test_mode: false
+
+  validation:
+    V1_information_composition_sum: "PASS (60+25+15=100)"
+    V2_constraints_C1_C4: "PASS (all steps AI-Led/Partnership with human governance; no Human-Only/AI-Only)"
+    V3_step_id_sequencing: "PASS (5.1.1..5.1.6 consecutive)"
+    V4_return_targets: "PASS (retry_policy return_to 5.1.3 exists)"
+    V5_severity_present: "PASS (all escalation triggers carry severity)"
+    V6_fix_step_validity: "PASS (no fix_steps defined)"
+    V7_flow_diagram: "PASS (Mermaid flow present)"
+    V8_input_interface: "PASS (design_baseline, interface_specifications, data_model provided; mode=FULL)"
+
+  entry_criteria:
+    - criterion: "Design baseline approved"
+      result: "MET - implementation_plan_v1.md Section 5 Increment 2 (9 items + gate)"
+    - criterion: "Interface specifications available"
+      result: "MET - Section 3.5 internal CLI surface; stubs existed in cli.py"
+    approval_decision_id: "DEC-20260724-060012"
+    trust_level: REVIEW_EACH
+
+step_executions:
+  - step_id: "5.1.1"
+    step_name: "Analyse Specifications"
+    capability: Analyse
+    pattern: AI-Led
+    status: COMPLETED
+    outcome_summary: >
+      Read implementation_plan_v1.md Increment 2 (9 items + gate), cross-checked
+      requirements v2 Sec 7-16, and inventoried existing Increment 1 code
+      (cli.py, config loader, run manager, paths, 4 baseline schemas, taxonomy).
+      Grounded scope in D-006/D-009/D-010/D-011/D-012/D-016.
+    decisions: ["DEC-20260724-060012"]
+    observations: []
+    iteration: 1
+  - step_id: "5.1.2"
+    step_name: "Structure Code"
+    capability: Transform
+    pattern: AI-Led
+    status: COMPLETED
+    outcome_summary: >
+      Added tests/ suite + pytest dev extra to pyproject; extended
+      validation/ (schema.py, business.py), research/ (planner, tasks, merge,
+      pipeline, repair, curation), profiles/ (description, validate, publication)
+      and runs/ (retention). No change to Increment 1 module layout.
+    decisions: []
+    observations: []
+    iteration: 1
+  - step_id: "5.1.3"
+    step_name: "Generate Code"
+    capability: Generate
+    pattern: AI-Led
+    status: COMPLETED
+    outcome_summary: >
+      Implemented all 9 Increment 2 items in dependency order. Item 1: 7 new
+      JSON Schemas + referencing-registry validator + referential integrity.
+      Item 2: deterministic bundle planner + wave scheduler + create-feature-tasks.
+      Item 3: D-009 status enforcement. Item 4: description.md assembly + content
+      completeness. Item 5: curation gate + waiting room + controlled revisions.
+      Item 6: deterministic merge + completeness gate. Item 7: retries/split/repair
+      rounds. Item 8: failed-run retention + resume-check. Item 9: staged publish +
+      rollback + recovery. New CLI: research create-feature-tasks/merge/
+      curate-candidates/prepare-repair, profile validate/publish/list, work
+      recover/cleanup.
+    decisions: ["DEC-20260724-061037", "DEC-20260724-062703", "DEC-20260724-064332"]
+    observations:
+      - "OBS-20260724-060553"
+      - "OBS-20260724-061329"
+      - "OBS-20260724-061932"
+      - "OBS-20260724-063718"
+      - "OBS-20260724-064845"
+    iteration: 1
+  - step_id: "5.1.4"
+    step_name: "Handle Edge Cases"
+    capability: Generate
+    pattern: Partnership
+    status: COMPLETED
+    outcome_summary: >
+      Enforced the hard edges: not_found degrades to uncertain on any access
+      gap / conflict / incomplete protocol (D-009); has/partial must cite an
+      official source (D-017); merge blocks on any missing/invalid worker result
+      and rejects duplicate/foreign features; publication rolls back on write
+      failure and recover() restores interrupted replacements; technical retries
+      cap at 2 then split, repair rounds cap at 3 (4th refused); curation refuses
+      unless every candidate is resolved; task input briefs carry no host paths.
+      Partnership decision point - the item-5 waiting-room data-model gap - was
+      surfaced (recommendation implemented, confirmation still requested).
+    decisions: []
+    observations: ["OBS-20260724-064845"]
+    iteration: 1
+  - step_id: "5.1.5"
+    step_name: "Apply Standards"
+    capability: Transform
+    pattern: AI-Led
+    status: COMPLETED
+    outcome_summary: >
+      Deterministic English-only code; pure functions separated from filesystem
+      wrappers for testability; JSON envelope contract preserved; Increment 1
+      behaviour re-verified (config validate + run init still return valid
+      envelopes). 95 pytest tests pass.
+    decisions: []
+    observations: []
+    iteration: 1
+  - step_id: "5.1.6"
+    step_name: "Document Code"
+    capability: Preserve
+    pattern: AI-Led
+    status: COMPLETED
+    outcome_summary: >
+      Every new module carries a docstring citing its governing decision; the
+      curation module documents the open waiting-room design question inline and
+      points to the two functions that change if the model is re-pointed.
+    decisions: []
+    observations: []
+    iteration: 1
+
+audit_summary:
+  total_decisions: 4
+  total_observations: 5
+  decision_ids:
+    - "DEC-20260724-060012"  # entry criteria approval
+    - "DEC-20260724-061037"  # item 2 planner rebalancing/wave contract
+    - "DEC-20260724-062703"  # item 6 merge + completeness gate
+    - "DEC-20260724-064332"  # item 7 retry/repair enforcement
+  observation_ids:
+    - "OBS-20260724-060553"  # item 1 profile model + schemas
+    - "OBS-20260724-061329"  # item 3 D-009 enforcement
+    - "OBS-20260724-061932"  # item 4 facts/use-cases/description
+    - "OBS-20260724-063718"  # items 8-9 retention/resume/publication
+    - "OBS-20260724-064845"  # item 5 curation gate + design-gap escalation
+  note: >
+    Two step-level log calls were transiently blocked by the dialogue plugin's
+    PreToolUse:Bash hook (same false-positive documented in EXEC-20260724-053600)
+    and succeeded on immediate retry. No audit data was lost.
+
+control_flow_events: []
+errors: []
+
+exit_criteria:
+  - criterion: "Code generated and compiles"
+    result: "MET - all modules import; CLI parser builds; 95 tests pass"
+  - criterion: "Implementation documented"
+    result: "MET - module docstrings + inline design-gap note"
+---

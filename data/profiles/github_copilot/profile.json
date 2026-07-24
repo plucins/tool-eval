@@ -1,0 +1,1280 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "tool_id": "github_copilot",
+    "name": "GitHub Copilot"
+  },
+  "research": {
+    "run_id": "research-20260724-073346-87e0a1e1",
+    "researched_at": "2026-07-24T09:42:45Z",
+    "taxonomy_revision": 4,
+    "template_revision": 1,
+    "source_policy_revision": 1,
+    "profile_state": "current"
+  },
+  "sources": [
+    {
+      "source_id": "devto_copilot_code_review_guide",
+      "source_type": "specialist",
+      "title": "GitHub Copilot Code Review: Complete Guide (2026) - DEV Community",
+      "url": "https://dev.to/rahulxsingh/github-copilot-code-review-complete-guide-2026-255h",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": false
+    },
+    {
+      "source_id": "gh_copilot_changelog",
+      "source_type": "changelog",
+      "title": "Use Case: copilot - GitHub Changelog",
+      "url": "https://github.blog/changelog/label/copilot/",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "gh_copilot_docs",
+      "source_type": "documentation",
+      "title": "GitHub Copilot documentation - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "gh_copilot_extensions_docs",
+      "source_type": "integration_catalog",
+      "title": "Using extensions to integrate external tools with Copilot Chat - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/using-github-copilot/using-extensions-to-integrate-external-tools-with-copilot-chat",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "gh_copilot_marketplace",
+      "source_type": "integration_catalog",
+      "title": "Marketplace \u00b7 GitHub (Copilot apps)",
+      "url": "https://github.com/marketplace?type=apps&copilot_app=true",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "gh_copilot_pricing",
+      "source_type": "pricing",
+      "title": "GitHub Copilot \u00b7 Plans & pricing",
+      "url": "https://github.com/features/copilot/plans",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "gh_copilot_product_page",
+      "source_type": "product_page",
+      "title": "GitHub Copilot \u00b7 Your AI pair programmer",
+      "url": "https://github.com/features/copilot",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    }
+  ],
+  "feature_results": [
+    {
+      "feature_id": "audit_logging",
+      "status": "has",
+      "rationale": "Official GitHub docs describe admin-accessible audit log events for GitHub Copilot Business/Enterprise. Organization owners and enterprise administrators can review actions such as Copilot setting/policy changes and seat assignments, searchable via the copilot audit log category. This is an admin-facing per-event audit log, not personal client-side history, satisfying the HAS bar.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The audit log lists events related to your Copilot Business plan for the last 180 days. You can use the audit logs for Copilot Business to review actions taken by users in your organization."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "You can search for any of the GitHub Copilot audit log events using the action qualifier and the copilot category, with action:copilot returning all GitHub Copilot audit log events for your organization or enterprise."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Copilot audit log events are surfaced in the organization/enterprise audit log for Copilot Business and Copilot Enterprise plans and are accessible to organization owners and enterprise administrators, not individual users.",
+          "source_id": "gh_copilot_docs"
+        },
+        {
+          "type": "product_version",
+          "description": "Audit log retention is limited to the last 180 days; GitHub recommends streaming the audit log to a SIEM for longer-term history.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot audit log events enterprise organization docs.github.com",
+          "\"action:copilot\" audit log \"180 days\" Copilot Business events reviewing audit logs github docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_code_review",
+      "status": "has",
+      "rationale": "GitHub Copilot offers a dedicated code-review workflow ('Copilot as a reviewer') on pull requests: users request Copilot under Reviewers, it returns review comments and suggested changes, and automatic review on new pushes can be configured via rulesets. This is a hosting-platform-integrated PR review, not merely chat inspection.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Using GitHub Copilot code review on GitHub"
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Configuring automatic code review by GitHub Copilot"
+        },
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "Request Copilot code review from GitHub CLI"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Full pull-request review runs on GitHub.com (requesting Copilot under Reviewers, REST API copilot-pull-request-reviewer[bot], or gh CLI); automatic review is configured via repository rulesets ('Review new pushes').",
+          "source_id": "gh_copilot_docs"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Selection review is available on the free tier, but pull-request review requires a paid Copilot plan.",
+          "source_id": "gh_copilot_pricing"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot code review pull request reviewer docs.github.com",
+          "\"Copilot code review\" \"generate tests\" pricing plans github.com features copilot"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_refactoring",
+      "status": "has",
+      "rationale": "GitHub Copilot proposes and applies refactors that span multiple edit locations (and multiple files) driven by natural-language instructions. Edit mode lets the user prompt for changes and Copilot proposes edits across chosen files; agent mode autonomously determines which files to change to complete a task such as a restructuring. A dedicated official tutorial ('Refactoring code with GitHub Copilot') covers AI-driven refactors including extract-method style restructuring, going beyond single-symbol renames and beyond IDE-native refactor commands.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "In edit mode, you choose which files Copilot can make changes to, provide context to Copilot with each iteration, and decide whether or not to accept the suggested edits after each turn."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "In agent mode, Copilot determines which files to make changes to, offers code changes and terminal commands to complete the task, and iterates to remediate issues until the original task is complete."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot can help you to split up complex blocks of code into smaller units that are more suitable for reuse."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "AI-driven multi-location refactoring via edit/agent mode is delivered through supported IDEs (e.g. VS Code, Visual Studio, JetBrains); specific invocation and mode availability vary by IDE.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot refactor code natural language edits multiple files",
+          "Refactoring code with GitHub Copilot tutorial extract method rename edit mode",
+          "GitHub Copilot features page edit mode agent mode accept suggested edits"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_test_generation",
+      "status": "has",
+      "rationale": "GitHub's official documentation provides dedicated tutorials for generating tests on demand for specified functions/files via Copilot Chat and smart actions, going beyond incidental code generation. This is a documented, targeted test-generation capability.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Writing tests with GitHub Copilot"
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Generating unit tests"
+        },
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "How to generate unit tests with GitHub Copilot: Tips and examples"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Test generation is driven through Copilot Chat, inline chat, and the 'Generate Tests' smart action in supported IDEs (e.g. Visual Studio Code, JetBrains).",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot generate unit tests documentation docs.github.com",
+          "\"Copilot code review\" \"generate tests\" pricing plans github.com features copilot"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "autonomous_task_execution",
+      "status": "has",
+      "rationale": "GitHub Copilot ships an 'agent mode' that takes a high-level natural-language prompt, plans multi-step actions, selects files, runs terminal commands/tests, applies edits, and iterates (detecting and fixing errors) until the task is complete. This decomposes a task into steps and executes them autonomously, matching the HAS definition and exceeding the single-suggested-edit exclusion. The Copilot CLI additionally provides an autopilot mode that works through a task without stopping for input after each step.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "GitHub Copilot agent mode is an autonomous and agentic real-time, synchronous collaborator that performs multi-step coding tasks based on natural-language prompts. Agent mode can reason across your entire project, take multi-step actions, and hold onto a significant amount of context across a session."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Autopilot mode allows Copilot CLI to work through a task without waiting for your input after each step. Once you give the initial instruction, Copilot CLI works through each step autonomously until it determines the task is complete."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Agent mode runs inside supported IDEs (VS Code, with JetBrains/Eclipse/Xcode previews) and the Copilot CLI; availability and behavior vary by client.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot agent mode autonomous task execution docs.github.com",
+          "GitHub Copilot agent mode VS Code edits multi-step autonomously docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "background_long_running_tasks",
+      "status": "has",
+      "rationale": "GitHub Copilot cloud/coding agent is an asynchronous, autonomous agent: a user assigns an issue or kicks off a prompt and Copilot works in the background in its own cloud environment (powered by GitHub Actions), continuing even if the user's computer is off, then opens a draft pull request and requests review on completion. This satisfies the HAS definition of a task that continues without occupying the active session and notifies on completion, and clearly exceeds the synchronous-blocking exclusion.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot coding agent is an asynchronous, autonomous developer agent that allows you to assign an issue to Copilot, and Copilot will work in the background and create a draft pull request for your review."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "While working on a coding task, Copilot cloud agent has access to its own ephemeral development environment, powered by GitHub Actions, where it can explore your code, make changes, execute automated tests and linters and more."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Copilot cloud/coding agent is a paid capability gated to specific Copilot subscription plans; availability depends on the account's plan.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot coding agent background task assign issue pull request docs.github.com about coding agent",
+          "GitHub Copilot coding agent run in background parallel multiple tasks batch delegate"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "codebase_semantic_search",
+      "status": "has",
+      "rationale": "GitHub Copilot Chat exposes #codebase (and @workspace) which finds relevant code across the whole indexed repository by meaning rather than plain text matching. Official docs state repositories are automatically indexed and that semantic code search finds relevant code based on meaning rather than exact text matches like grep. This is repo-wide, ranked-by-meaning retrieval, so it qualifies as HAS (beyond only the open file/folder and beyond substring/regex).",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot uses an index to quickly and accurately search your codebase for relevant code snippets. Repositories are automatically indexed the first time @workspace or #codebase is used."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The Copilot cloud agent uses semantic code search to find relevant code based on meaning, rather than relying solely on exact text matches with tools like grep. When the agent doesn't know the precise names or patterns to search for, semantic code search helps it locate the right code faster."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Repository indexing for context-enriched chat answers is documented for GitHub.com and Visual Studio Code; #codebase / @workspace referencing is used in the IDE chat.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot #codebase chat variable semantic search docs.github.com",
+          "GitHub Copilot chat #codebase workspace relevant search whole repository files not open",
+          "GitHub Copilot indexing repositories semantic code search index up to date docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "changelog",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "data_retention_training_opt_out",
+      "status": "has",
+      "rationale": "Official GitHub docs provide a customer-facing setting for individual subscribers (Free/Pro/Pro+) to opt out of model-training data use via the \"Allow GitHub to use my data for AI model training\" control in Copilot settings. Separately, GitHub's official policy states Copilot Business and Copilot Enterprise interaction data is contractually not used for model training. Both an actionable toggle and a plan-level exclusion are documented, exceeding generic privacy-policy language and satisfying the HAS bar.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Select the \"Allow GitHub to use my data for AI model training\" dropdown menu and click Disabled."
+        },
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "Copilot Business and Copilot Enterprise users are not affected by this update. GitHub states that contractual commitments to Business and Enterprise customers prohibit using their interaction data for training, and those commitments are being honored."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "The self-serve training opt-out toggle applies to personal Copilot plans (Free, Pro, Pro+). Copilot Business and Copilot Enterprise interaction data is contractually excluded from model training by default, without a per-user toggle.",
+          "source_id": "gh_copilot_changelog"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot data used for AI model training opt out setting business enterprise privacy",
+          "GitHub Copilot \"Allow GitHub to use my data for AI model training\" toggle settings docs",
+          "Copilot Business prompts suggestions not used to train models content exclusions github docs privacy"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "diff_review_apply_workflow",
+      "status": "has",
+      "rationale": "Copilot Edits (edit mode) and agent mode present generated changes for review before they are finalized: Copilot proposes edits and the user reviews and accepts or discards them. In edit mode the user reviews changes and accepts or discards edits per file (and per change/hunk inside the editor), and in agent mode changes require the user's approval. This is a reviewable accept/reject workflow rather than direct unsupervised writes.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "In response to your prompt, Copilot Edits determines which files in your working set to change and adds a short description of the change. Review the changes and Accept or Discard the edits for each file."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "In edit mode, you choose which files Copilot can make changes to, provide context to Copilot with each iteration, and decide whether or not to accept the suggested edits after each turn."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Review granularity and controls depend on the IDE; official GitHub docs describe per-file Accept/Discard in Copilot Edits, with finer per-change acceptance available within the editor in some IDEs.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Copilot Chat edit mode review changes accept discard hunk",
+          "Copilot edit mode review the suggested changes accept discard each file working set",
+          "GitHub Copilot edit mode agent mode review diff accept reject changes docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "enterprise_sso_access_control",
+      "status": "has",
+      "rationale": "Official GitHub docs describe SAML single sign-on and SCIM provisioning for enterprise accounts, plus team-based management of which users receive Copilot Business licenses. This covers SSO plus role/permission management for an enterprise plan, exceeding basic team membership and personal 2FA, satisfying the HAS bar.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Organizations can configure SAML single sign-on (SSO) so that users authenticate to an external identity system, and add users to the enterprise by provisioning managed user accounts from an identity provider (IdP) using SCIM."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Teams are created in the enterprise to manage which users receive Copilot Business licenses, and team membership can be managed from the IdP, on GitHub, or with the REST API."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "SAML SSO and SCIM provisioning apply to GitHub enterprise/Copilot Business deployments; SCIM at the enterprise level requires an Enterprise Managed Users account, otherwise SAML SSO must be configured at the organization level. Not available on personal accounts.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot SAML SSO SCIM enterprise access control admin roles docs.github.com"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "git_native_workflow",
+      "status": "has",
+      "rationale": "GitHub Copilot provides documented native git workflow capabilities beyond plain-text suggestions. It offers AI commit message generation (title and description) from selected changes, and the Copilot coding/cloud agent automates branch creation and commit message writing and pushing as part of an autonomous workflow. This satisfies HAS (both commit-message generation and broader git operations such as branch creation and commits).",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot commit message generation is an AI-powered feature that allows you to create a commit message summary (title) and description based on the changes you've selected to commit in GitHub.com."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot automates branch creation, commit message writing and pushing, PR opening, and PR description writing."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "The Copilot cloud/coding agent (which handles branch creation and commit writing/pushing) is available with GitHub Copilot Pro, Pro+, Business, and Enterprise plans.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot commit message generation VS Code source control docs",
+          "GitHub Copilot coding agent opens pull request creates branch commits docs",
+          "\"Copilot\" coding agent \"create a pull request\" \"create a branch\" automates commit"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "inline_code_completion",
+      "status": "has",
+      "rationale": "GitHub Copilot generates inline suggestions as ghost text at the cursor while the user types, without an explicit chat prompt. The user accepts, dismisses, or ignores them. This is exactly the ghost-text/inline completion capability described by HAS. Official docs confirm the ghost-text mechanism and broad (though language-varying) support.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The response generated by Copilot is formatted as \"ghost text\" that is visually distinct from the surrounding code and presented to the user as a suggestion."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "GitHub Copilot provides suggestions for numerous languages and a wide variety of frameworks, but works especially well for Python, JavaScript, TypeScript, Ruby, Go, C# and C++."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Inline code suggestions are delivered in supported IDEs/editors (e.g., VS Code, Visual Studio, JetBrains IDEs, Xcode, Eclipse); availability and quality vary by language and editor.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot code completion inline suggestions documentation",
+          "\"Copilot\" \"as you type\" ghost text \"code completion\" site features docs.github.com"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "ip_indemnity_duplication_filter",
+      "status": "has",
+      "rationale": "Both qualifying conditions are documented on official GitHub sources. (1) A customer-facing duplication-detection control exists: the 'Suggestions matching public code' filter (a.k.a. code referencing) which, when set to Block, prevents suggestions that match public code on GitHub from being shown. (2) A stated IP indemnification / Copilot Copyright Commitment is offered for the paid Business and Enterprise plans. Because at least one (in fact both) of the two conditions is met with official evidence, status is HAS. Note the indemnity is plan-limited and contingent on the duplication filter being set to Block.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "When the filter is enabled, GitHub Copilot checks code suggestions with their surrounding code of about 150 characters against public code on GitHub. If there is a match or near match, the suggestion will not be shown to you."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Under Suggestions matching public code, select the dropdown menu, then click Allow to allow suggestions matching public code, or Block to block suggestions matching public code."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "GitHub Copilot Individual includes all the features of GitHub Copilot Business except organizational license management, policy management, and IP indemnity."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "IP indemnity (the Copilot Copyright Commitment) is available only on the paid Copilot Business and Copilot Enterprise plans, not on Individual/Free/Pro tiers. The duplication-detection filter itself is available across plans but can be enforced/locked by organization or enterprise administrators.",
+          "source_id": "gh_copilot_docs"
+        },
+        {
+          "type": "other",
+          "description": "IP indemnification applies to unmodified Copilot suggestions only when the duplication-detection / 'Suggestions matching public code' setting is set to Block at the time the code is generated.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot suggestions matching public code duplication detection filter setting docs.github.com",
+          "GitHub Copilot IP indemnity intellectual property indemnification enterprise business plan trust center",
+          "GitHub Copilot trust center copyright commitment indemnification duplication detection enabled business enterprise",
+          "GitHub Copilot code referencing suggestion will not be shown 150 characters block allow duplication detection docs.github.com",
+          "github.com/features/copilot/plans IP indemnity Business Enterprise feature list"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "long_context_large_repo_handling",
+      "status": "has",
+      "rationale": "GitHub documents a repo-scale handling mechanism via automatic repository indexing plus semantic code search retrieval, explicitly addressing large repositories (background indexing that can take up to 60 seconds for a large repository, with fast incremental re-indexing). This is a codebase-specific retrieval/indexing mechanism rather than a bare model context-window figure, so it qualifies as HAS.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Indexing runs in the background and initial indexing can take up to 60 seconds for a large repository. Once a repository has been indexed for the first time, re-indexing is much quicker and the index will typically be automatically updated to include the latest changes within seconds of you starting a new conversation."
+        },
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "Previously, the semantic code search indexing process would take approximately five minutes to complete, but with this update, indexing now completes in just a few seconds in most cases, though it may take up to 60 seconds."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "Instant semantic code search indexing was announced as generally available in the March 2025 changelog.",
+          "source_id": "gh_copilot_changelog"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Repository indexing / semantic code search retrieval is documented for GitHub.com and Visual Studio Code contexts.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot indexing repositories semantic code search index up to date docs",
+          "GitHub Copilot indexing repositories concepts semantic code search large repository background docs.github.com"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "mcp_or_plugin_extensibility",
+      "status": "has",
+      "rationale": "GitHub documents two supported, third-party-open extension mechanisms for adding external capabilities to Copilot: the Model Context Protocol (MCP) and Copilot Extensions. Official docs describe MCP as an open standard for connecting external tools to Copilot Chat and the coding agent, and describe Copilot Extensions as integrations (historically built as GitHub Apps, now converging on MCP servers) that bring external tools into the Chat experience. Both are documented, supported mechanisms open to third parties, so this exceeds the PARTIAL bar of a closed vendor-curated list.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_extensions_docs",
+          "excerpt": "You can use Copilot Extensions to interact with external tools in GitHub Copilot Chat."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The Model Context Protocol (MCP) is an open standard that defines how applications share context with large language models (LLMs)."
+        },
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "MCP provides an open standard that's modular and easy to integrate into a variety of AI assistants and agents, allowing you to build your server once and have it work with GitHub Copilot, Claude Code, and any other MCP-compatible host app."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "GitHub App-based Copilot Extensions are being deprecated (sunset notice dated 2025-09-24, effective around 2025-11-10) in favor of MCP servers as the recommended extension mechanism.",
+          "source_id": "gh_copilot_changelog"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Enterprise/organization use of MCP servers is governed by an admin policy that is disabled by default; Copilot Business/Enterprise users need an organization administrator to enable extensions.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot extensions MCP Model Context Protocol documentation docs.github.com",
+          "GitHub Copilot Extensions integrate external tools Copilot Chat marketplace apps docs",
+          "\"Copilot Extensions\" GitHub Marketplace list of apps integrations third-party"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "integration_catalog",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "mobile_app_access",
+      "status": "has",
+      "rationale": "GitHub documents Copilot Chat (the assistant itself) through the official GitHub Mobile app on both iOS and Android, not merely account management or a responsive web view. Copilot Chat in GitHub Mobile is generally available, exceeding the PARTIAL/EXCLUDE thresholds and meeting HAS.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "GitHub Copilot Chat is available on GitHub.com, in supported IDEs (VS Code, Visual Studio, JetBrains, and Eclipse), on GitHub Mobile, and in Windows Terminal."
+        },
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "Download or update GitHub Mobile apps today from the Apple App Store or Google Play Store to experience the AI coding assistance right at your fingertips."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Delivered via the GitHub Mobile app installed from the Apple App Store (iOS) or Google Play Store (Android); a free tier provides a monthly quota of chat messages and completions, with in-app purchase upgrades to Copilot Pro/Pro+/Max.",
+          "source_id": "gh_copilot_changelog"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot Chat GitHub Mobile app iOS Android documentation"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "changelog",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_agent_orchestration",
+      "status": "has",
+      "rationale": "GitHub documents multi-agent orchestration as a supported mechanism. Custom agents can be delegated to as sub-agents by the Copilot runtime in an isolated context, and the Copilot CLI /fleet command has the main agent act as an orchestrator that decomposes an objective into work items and dispatches multiple sub-agents to run in parallel. This matches the HAS definition of documented delegation to sub-agents / parallel agent instances, beyond the manual-multiple-sessions exclusion.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "When a user's request matches an agent's expertise, the Copilot runtime automatically delegates to that agent as a sub-agent\u2014running it in an isolated context while streaming lifecycle events back to the parent session."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The /fleet slash command in Copilot CLI enables Copilot to simultaneously work with multiple subagents in parallel. If the main agent decides to assign some or all subtasks to subagents, it will act as orchestrator, managing the workflow and dependencies between subtasks, and where possible, will run the subagents in parallel."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Sub-agent orchestration and the /fleet command are documented for the Copilot CLI and Copilot SDK; not necessarily present in every IDE client.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot CLI subagents delegate custom agents parallel orchestration docs.github.com",
+          "GitHub Copilot coding agent run in background parallel multiple tasks batch delegate"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_file_code_generation",
+      "status": "has",
+      "rationale": "Copilot agent mode takes a single instruction and autonomously determines which files to change, applies coordinated code changes across the codebase, runs terminal commands, and iterates until the task is complete. A single prompt yields coordinated edits across more than one file without manual per-file re-invocation, matching HAS for multi-file code generation.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "In agent mode, Copilot determines which files to make changes to, offers code changes and terminal commands to complete the task, and iterates to remediate issues until the original task is complete."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "Agent mode was documented as being in public preview and subject to change at time of research.",
+          "source_id": "gh_copilot_docs"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Agent mode availability is tied to specific editors/versions (e.g., VS Code and Visual Studio 17.14 and later).",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot agent mode edits multiple files across codebase single instruction",
+          "Copilot features \"In agent mode\" \"Copilot determines which files to make changes to\""
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_ide_support",
+      "status": "has",
+      "rationale": "GitHub officially ships Copilot as first-party extensions across multiple distinct IDEs/editors (Visual Studio Code, Visual Studio, JetBrains IDEs, Neovim/Vim, Xcode, and Eclipse), far exceeding the two-IDE HAS threshold and not relying on community plugins.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_product_page",
+          "excerpt": "GitHub Copilot integrates with leading editors, including Visual Studio Code, Visual Studio, JetBrains IDEs, and Neovim."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "GitHub Copilot is available as an extension in Visual Studio Code, Visual Studio, Vim, Neovim, the JetBrains suite of IDEs, and Azure Data Studio."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Inline code suggestions are available across all supported editor extensions, but Chat and agent capabilities vary by IDE per the Copilot feature matrix (e.g. Chat available in VS Code, Visual Studio, JetBrains, and Eclipse).",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot supported IDEs VS Code Visual Studio JetBrains Neovim Xcode Eclipse"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "natural_language_code_generation",
+      "status": "has",
+      "rationale": "Copilot Chat accepts a plain-language prompt describing a task and produces runnable code the user did not type (code suggestions, tests, fixes). This matches HAS for natural-language code generation. It is distinct from inline completion because it is prompt-driven rather than continuation of code already being typed.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "GitHub Copilot Chat can give you code suggestions, explain code, generate unit tests, and suggest code fixes."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Copilot Chat is available on the GitHub website, in GitHub Mobile, in supported IDEs, and in Windows Terminal.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot chat natural language prompt generate code snippet documentation",
+          "GitHub Copilot Chat \"write code\" \"explain code\" ask questions IDE what can it do"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "on_premises_private_deployment",
+      "status": "not_found",
+      "rationale": "No registered official GitHub source describes a supported on-premises or dedicated private-cloud deployment of the Copilot service itself. Official documentation, the product page and pricing present Copilot as a cloud service that requires a GitHub.com organization / GitHub Enterprise Cloud (multi-tenant SaaS), which the feature definition explicitly excludes. The official Copilot changelog was reached and scanned: it announces only (a) self-hosted Actions runners for the Copilot coding agent (an execution environment, explicitly excluded), (b) BYOK / local model support for Copilot CLI and Copilot app (connecting the client to your own model provider, not a private deployment of the Copilot service), (c) cloud/local sandboxes (execution isolation), and (d) GitHub Enterprise Cloud with data residency (still GitHub-hosted cloud). None of these constitute a private deployment of the Copilot service. GitHub also states it does not offer a self-hosted Copilot model. All relevant official source classes (documentation, product_page, pricing, changelog) were reachable and checked, and none document the feature; therefore not_found with the negative protocol complete and no genuine access gap.",
+      "evidence": [],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot on-premises deployment self-hosted private cloud dedicated instance docs",
+          "GitHub Enterprise Local sovereign private cloud Copilot deployment",
+          "GitHub Enterprise Local Copilot docs.github.com deploy on-premises",
+          "GitHub Copilot changelog on-premises Enterprise Local private cloud self-hosted deployment",
+          "github.blog changelog copilot enterprise local sovereign private cloud on-premises deploy service"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "pricing",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "persistent_project_memory",
+      "status": "has",
+      "rationale": "GitHub documents repository custom instructions via a committed .github/copilot-instructions.md file whose guidance is automatically added to Copilot requests without re-pasting each prompt, and it persists across sessions because it lives in the repository and is applied automatically once saved. This matches the HAS definition (automatic, persistent instructions file).",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "In the root of your repository, create a file named `.github/copilot-instructions.md`. Create the `.github` directory if it does not already exist. Add natural language instructions to the file, in Markdown format."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The instructions in the file(s) are available for use by Copilot as soon as you save the file(s). Instructions are automatically added to requests that you submit to Copilot."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Because the file lives in the repository's .github/ directory, repository custom instructions are usable across major supported IDEs (VS Code, Visual Studio, JetBrains) and GitHub.com.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot repository custom instructions .github/copilot-instructions.md docs persist"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "pull_request_creation",
+      "status": "has",
+      "rationale": "The GitHub Copilot cloud/coding agent can open a pull request on GitHub without the user leaving the tool: it picks up a task from an issue, PR comment, or Copilot Chat, creates a branch, makes code changes, and opens a pull request, also writing the PR description/body. This satisfies HAS.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The Copilot cloud agent can pick up a task from an issue, a pull request comment, or Copilot Chat, create a branch, generate tailored code changes, and open a pull request."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot automates branch creation, commit message writing and pushing, PR opening, and PR description writing."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Pull request creation via the Copilot cloud/coding agent requires GitHub Copilot Pro, Pro+, Business, or Enterprise plans.",
+          "source_id": "gh_copilot_docs"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Automated PR creation targets the GitHub hosting platform; it can be triggered from GitHub Issues, the agents panel, Copilot Chat, the GitHub CLI, and IDEs/tools with Model Context Protocol (MCP) support.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot coding agent opens pull request creates branch commits docs",
+          "\"Copilot\" coding agent \"create a pull request\" \"create a branch\" automates commit"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "sandboxed_execution_environment",
+      "status": "has",
+      "rationale": "Official GitHub docs describe the Copilot cloud (coding) agent executing in an ephemeral, isolated environment powered by GitHub Actions with restricted internet access and limited repository permissions. A June 2026 changelog also introduces cloud and local sandboxes running in fully isolated, ephemeral Linux environments. This matches the HAS definition (cloud/coding agent in an ephemeral GitHub Actions environment).",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot cloud agent has access to its own ephemeral development environment, powered by GitHub Actions, where it can explore your code, make changes, execute automated tests and linters and more."
+        },
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "Cloud and local sandboxes for GitHub Copilot now in public preview"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Sandboxed/isolated execution applies to the cloud (coding) agent's ephemeral GitHub Actions environment. Local Copilot CLI execution runs in the user's own shell unless the local sandbox feature is used.",
+          "source_id": "gh_copilot_docs"
+        },
+        {
+          "type": "release_stage",
+          "description": "The dedicated cloud and local sandboxes feature was announced as public preview (June 2026 changelog).",
+          "source_id": "gh_copilot_changelog"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "The cloud agent's ephemeral environment is compatible only with Ubuntu x64 and Windows 64-bit runners; self-hosted runners are also supported.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot coding agent GitHub Actions ephemeral environment sandbox docs",
+          "\"Copilot cloud agent\" \"ephemeral development environment\" \"powered by GitHub Actions\" explore code execute tests"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "changelog",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "standalone_cli",
+      "status": "has",
+      "rationale": "GitHub documents a dedicated GitHub Copilot CLI, installable via npm and invoked as the `copilot` command in the terminal, providing core interactive and agentic coding functionality independent of any IDE. This satisfies HAS.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "The command-line interface (CLI) for GitHub Copilot allows you to use Copilot directly from your terminal."
+        },
+        {
+          "source_id": "gh_copilot_product_page",
+          "excerpt": "GitHub Copilot CLI brings the power of Copilot coding agent directly to your terminal."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Installed via npm (npm install -g @github/copilot) and started with the `copilot` command; supports macOS, Linux, and Windows, offering interactive chat plus agentic modes such as autopilot and the /delegate slash command.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot CLI command line copilot documentation terminal"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "static_analysis_integration",
+      "status": "has",
+      "rationale": "GitHub documents a linter/static-analyzer integration where findings from CodeQL, ESLint, and PMD are surfaced within Copilot code review output, configurable via repository rulesets. This feeds static-analysis findings into the assistant's review, satisfying HAS.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "Linter integration with Copilot code review now in public preview"
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Managing static analysis tools in Copilot code review"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "Linter integration with Copilot code review is in public preview.",
+          "source_id": "gh_copilot_changelog"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Available to paid GitHub users; CodeQL on by default for preview participants, with ESLint and PMD selectable.",
+          "source_id": "gh_copilot_changelog"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Configured through repository rulesets (Settings > Rules > Rulesets) using the 'Manage static analysis tools in Copilot code review' rule at Enterprise, Organization, Team, or Repository level.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot static analysis linter integration findings suggestions docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "terminal_command_execution",
+      "status": "has",
+      "rationale": "Official GitHub docs document that Copilot can execute shell commands and act on their output. The Copilot CLI is an agentic assistant in the terminal that runs commands (with user approval), and the cloud agent runs automated tests and linters in its environment. This exceeds mere text suggestion, so HAS. Execution requires explicit user approval by default (autonomous 'autopilot'/--allow-tool modes are opt-in).",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Tools that can modify your system\u2014such as running destructive shell commands, editing files, or accessing URLs\u2014require your explicit approval before Copilot can use them. The first time that Copilot needs to use a tool that may require approval\u2014for example, touch, chmod, node, or sed\u2014it will ask you whether you want to allow it to run."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "copilot --allow-tool='shell' allows Copilot to use any shell command without individual approval."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot cloud agent has access to its own ephemeral development environment, powered by GitHub Actions, where it can explore your code, make changes, execute automated tests and linters and more."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Command execution in the terminal is provided through GitHub Copilot CLI (an agentic terminal assistant); the cloud/coding agent executes commands in its own environment. Plain Copilot chat inline suggestions do not execute commands.",
+          "source_id": "gh_copilot_docs"
+        },
+        {
+          "type": "other",
+          "description": "By default Copilot CLI prompts for explicit approval before running potentially destructive commands; fully autonomous execution requires opt-in flags (e.g. --allow-tool='shell', --allow-all-tools/--yolo) or autopilot mode.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot agent mode run commands integrated terminal docs.github.com",
+          "Copilot CLI execute commands terminal permission approve run"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "third_party_integration_catalog",
+      "status": "has",
+      "rationale": "GitHub maintains an official integration catalog of Copilot-enabled third-party apps/extensions on GitHub Marketplace (filterable via type=apps&copilot_app=true), and official docs describe installing Copilot Extensions from the Marketplace. Numerous named third-party partners are listed, well beyond the PARTIAL threshold of 1-2 documented integrations. Extensions can be published to the Marketplace and installed by users, confirming a vendor-endorsed catalog.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_extensions_docs",
+          "excerpt": "You can add additional functionality to Copilot in your personal account, by installing certain GitHub Apps from GitHub Marketplace."
+        },
+        {
+          "source_id": "gh_copilot_changelog",
+          "excerpt": "Users can access Copilot Extensions from DataStax, Docker, Lambda Test, LaunchDarkly, McKinsey & Company, Octopus Deploy, Pangea, Pinecone, Product Science, ReadMe, Sentry, and Teams Toolkit on the GitHub Marketplace."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Individual Copilot subscribers can install and use Copilot Extensions; Copilot Business/Enterprise users require an organization administrator to enable the feature and grant access to organization resources.",
+          "source_id": "gh_copilot_extensions_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot Extensions integrate external tools Copilot Chat marketplace apps docs",
+          "\"Copilot Extensions\" GitHub Marketplace list of apps integrations third-party"
+        ],
+        "source_classes_checked": [
+          "integration_catalog",
+          "documentation",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "web_hosted_access",
+      "status": "has",
+      "rationale": "GitHub documents Copilot Chat on github.com in the browser, including a full-page immersive mode at https://github.com/copilot that provides core coding-assistant functionality (asking questions, subthreads, image attachment), rather than mere docs pages or account/billing management. This satisfies HAS.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "You can only attach an image in the immersive view of Copilot Chat (https://github.com/copilot), not in the chat panel."
+        },
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "GitHub Copilot Chat is available on GitHub.com, in supported IDEs (VS Code, Visual Studio, JetBrains, and Eclipse), on GitHub Mobile, and in Windows Terminal."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Web access is provided through Copilot Chat on GitHub.com, available both as a page-level chat panel and as a full-page immersive mode reached from the button next to the search bar; immersive mode supports subthreads and image attachment.",
+          "source_id": "gh_copilot_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "GitHub Copilot Chat on github.com website immersive mode documentation"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    }
+  ],
+  "additional_facts": [
+    {
+      "fact_id": "free_plan_limits",
+      "topic": "Free tier limits",
+      "description": "Copilot Free gives individual developers a limited, no-cost entry point capped at a fixed monthly allowance of code completions and chat messages, with models available only through automatic model selection.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_pricing",
+          "excerpt": "2,000 code completions and 50 chat messages per month"
+        }
+      ]
+    },
+    {
+      "fact_id": "mcp_extensibility",
+      "topic": "Extensibility via MCP",
+      "description": "Copilot Chat can be extended with external tools and services through the Model Context Protocol (MCP), an open standard for sharing context with large language models, letting teams connect Copilot to a wide range of existing tools.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_extensions_docs",
+          "excerpt": "The Model Context Protocol (MCP) is an open standard that defines how applications share context with large language models (LLMs). You can use MCP to extend the capabilities of GitHub Copilot by integrating it with a wide range of existing tools and services."
+        }
+      ]
+    },
+    {
+      "fact_id": "pricing_tiers",
+      "topic": "Plans & pricing",
+      "description": "Copilot is sold in individual tiers (including a free tier and paid Pro-level tiers) and organizational tiers (Copilot Business and Copilot Enterprise). Copilot Business is priced at $19 per user per month and Copilot Enterprise at $39 per user per month, with Enterprise adding a larger AI-credit allowance and earlier access to new models and features.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_pricing",
+          "excerpt": "Copilot Business costs $19 USD per user per month"
+        },
+        {
+          "source_id": "gh_copilot_pricing",
+          "excerpt": "Copilot Enterprise is priced at $39 USD per user per month"
+        }
+      ]
+    },
+    {
+      "fact_id": "vendor_identity",
+      "topic": "Vendor identity",
+      "description": "GitHub Copilot is an AI coding assistant offered by GitHub (a Microsoft subsidiary), positioned as an 'AI pair programmer' that assists across the software development lifecycle.",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_product_page",
+          "excerpt": "GitHub Copilot \u00b7 Your AI pair programmer"
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    {
+      "use_case_id": "agent_mode_multi_file_changes",
+      "title": "Multi-file changes with agent mode in the editor",
+      "description": "Within the IDE, a developer uses Copilot agent mode to understand the project and make coordinated edits spanning multiple files, moving from explanation through to validated changes.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_product_page",
+          "excerpt": "Copilot in your editor does it all, from explaining concepts and completing code, to proposing edits and validating files with agent mode."
+        },
+        {
+          "source_id": "gh_copilot_product_page",
+          "excerpt": "GitHub Copilot's Agent Mode can understand your entire project and make complex changes across multiple files."
+        }
+      ]
+    },
+    {
+      "use_case_id": "automated_pull_request_review",
+      "title": "Automated pull request review",
+      "description": "A developer requests a Copilot code review on a pull request; Copilot analyzes the change, flags issues, and proposes fixes that can be applied directly.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "Copilot reviews your pull requests, identifies issues, and suggests fixes you can apply in a couple of clicks."
+        }
+      ]
+    },
+    {
+      "use_case_id": "delegate_task_to_cloud_agent",
+      "title": "Delegate a background task to the cloud coding agent",
+      "description": "A developer assigns a task to the Copilot cloud agent, which works independently in the background to research the repository, plan an implementation, and make code changes on a branch.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "gh_copilot_docs",
+          "excerpt": "With Copilot cloud agent, GitHub Copilot can work independently in the background to complete tasks, just like a human developer."
+        }
+      ]
+    },
+    {
+      "use_case_id": "onboard_to_unfamiliar_repo",
+      "title": "Onboard quickly to an unfamiliar codebase",
+      "description": "A newly assigned engineer uses Copilot Chat and codebase search to ask natural-language questions about how an unfamiliar repository is structured and what specific modules do, accelerating ramp-up before making changes.",
+      "kind": "inferred",
+      "rationale": "Copilot documents both explaining concepts/code in the editor and understanding an entire project for agent-driven changes; these capabilities directly support answering onboarding questions about an unfamiliar repo even though the vendor frames them around editing rather than onboarding specifically.",
+      "supporting_features": [
+        "codebase_semantic_search",
+        "natural_language_code_generation",
+        "long_context_large_repo_handling"
+      ]
+    },
+    {
+      "use_case_id": "raise_test_coverage_before_release",
+      "title": "Raise test coverage on a legacy module before release",
+      "description": "A team facing a release deadline asks Copilot to generate and debug unit tests for an under-tested legacy module, then delegates broader test-suite expansion to the cloud agent as a background task.",
+      "kind": "inferred",
+      "rationale": "Copilot Chat is documented as helping write and debug tests, and the cloud agent is documented as able to develop additional test suites; combining these supports a realistic 'increase coverage before release' workflow that the vendor does not describe as a single packaged scenario.",
+      "supporting_features": [
+        "automated_test_generation",
+        "background_long_running_tasks",
+        "natural_language_code_generation"
+      ]
+    }
+  ],
+  "unresolved_issues": []
+}

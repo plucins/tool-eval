@@ -1,0 +1,228 @@
+# Phase 7 Process: Deployment Preparation
+# AI-Led process - AI prepares deployment, humans approve release
+---
+references:
+  rules: ../rules/phase7-deployment.md
+
+definition:
+  id: "PROC-7.1"
+  name: "Deployment Preparation"
+  description: |
+    Prepare deployment artifacts and environments for release.
+    This is an AI-Led process where AI can prepare comprehensive
+    deployment packages while humans approve release readiness.
+
+    Supports two modes:
+    - QUICK: Standard deployment prep (~30 min)
+    - FULL: Complex deployment with rollback planning (~2 hours)
+  version: "1.0.0"
+  phase: 7
+  information_composition:
+    formal: 55
+    tacit: 30
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "release_readiness"
+      required: true
+      description: "Approval from PROC-6.3"
+    - type: "source_code"
+      required: true
+      description: "Approved code to deploy"
+    - type: "deployment_target"
+      required: true
+      description: "Target environment specification"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "deployment_package"
+      description: "Deployable artifacts"
+    - type: "deployment_runbook"
+      description: "Step-by-step deployment instructions"
+    - type: "rollback_plan"
+      description: "Recovery procedures if deployment fails"
+
+steps:
+  # Step 1: Verify release readiness (AI-Led)
+  - id: "7.1.1"
+    name: "Verify Readiness"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Confirm all approvals in place"
+    ai_role: "Check release approval; verify test results; confirm documentation"
+    escalation_triggers:
+      - condition: "Release not approved"
+        action: RETURN
+        severity: HIGH
+        target: "PROC-6.3"
+        context: "Release approval required before deployment preparation."
+      - condition: "Outstanding blockers"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Blockers exist: [list]. Resolve or override?"
+    completion_criteria: "Release readiness verified"
+    validation: "All prerequisites met"
+
+  # Step 2: Build deployment package (AI-Led)
+  - id: "7.1.2"
+    name: "Build Package"
+    capability: Transform
+    pattern: AI-Led
+    human_role: "Verify package contents are correct"
+    ai_role: "Build deployment artifacts; package dependencies; create checksums"
+    escalation_triggers:
+      - condition: "Build failure"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Build failed: [error]. Cannot proceed without resolution."
+      - condition: "Dependency conflict"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Dependency conflict detected. Resolve before packaging."
+    completion_criteria: "Deployment package built"
+    validation: "Package passes integrity checks"
+
+  # Step 3: Prepare environment (AI-Led)
+  - id: "7.1.3"
+    name: "Prepare Environment"
+    capability: Transform
+    pattern: AI-Led
+    human_role: "Approve environment changes"
+    ai_role: "Configure target environment; verify connectivity; prepare resources"
+    escalation_triggers:
+      - condition: "Environment unavailable"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Target environment not accessible. Infrastructure issue?"
+      - condition: "Configuration drift"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Environment differs from expected. Reconcile or proceed?"
+    completion_criteria: "Environment prepared"
+    validation: "Environment matches requirements"
+
+  # Step 4: Create runbook (AI-Led)
+  - id: "7.1.4"
+    name: "Create Runbook"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Review runbook accuracy"
+    ai_role: "Generate deployment steps; document prerequisites; list verification checks"
+    escalation_triggers:
+      - condition: "Complex manual steps required"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Manual intervention needed at [steps]. Confirm procedures?"
+    completion_criteria: "Runbook created"
+    validation: "Runbook covers all deployment steps"
+
+  # Step 5: Plan rollback (Partnership)
+  - id: "7.1.5"
+    name: "Plan Rollback"
+    capability: Synthesise
+    pattern: Partnership
+    human_role: "Approve rollback triggers and procedures"
+    ai_role: "Generate rollback procedures; identify rollback triggers; estimate recovery time"
+    escalation_triggers:
+      - condition: "Rollback not possible"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Deployment cannot be rolled back. Proceed with caution?"
+      - condition: "Rollback requires downtime"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Rollback requires [duration] downtime. Acceptable?"
+    completion_criteria: "Rollback plan created"
+    validation: "Rollback procedures documented"
+
+  # Step 6: Approve deployment (Human-Led)
+  - id: "7.1.6"
+    name: "Approve Deployment"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Final deployment approval"
+    ai_role: "Present deployment summary; confirm readiness; record approval"
+    escalation_triggers:
+      - condition: "Approval concerns"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Concerns raised about deployment. Address or defer?"
+    completion_criteria: "Deployment approved"
+    validation: "Approval recorded with signature"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "7.1.2"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Standard deployment preparation"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 120
+      depth: "Complex deployment with detailed rollback"
+
+quality:
+  entry_criteria:
+    - "Release approved from testing"
+    - "Target environment available"
+  exit_criteria:
+    - "Deployment package ready"
+    - "Deployment approved"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Production deployment"
+    - "Complex infrastructure changes"
+    - "Multiple environment targets"
+    - "Human requests detailed planning"
+  upgrade_prompt: |
+    This deployment has characteristics requiring detailed preparation.
+    Would you like to switch to FULL mode for comprehensive deployment
+    planning with detailed rollback procedures?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["7.1.1 Verify Readiness<br/>(Validate, AI-Led)"]
+      S2["7.1.2 Build Package<br/>(Transform, AI-Led)"]
+      S3["7.1.3 Prepare Environment<br/>(Transform, AI-Led)"]
+      S4["7.1.4 Create Runbook<br/>(Generate, AI-Led)"]
+      S5["7.1.5 Plan Rollback<br/>(Synthesise, Partnership)"]
+      S6["7.1.6 Approve Deployment<br/>(Decide, Human-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Not approved"| RET1[Return to PROC-6.3]
+    S2 -->|"Build failed"| ESC1[Escalate: resolve]
+    S3 -->|"Unavailable"| ESC2[Escalate: infrastructure]
+    S5 -->|"No rollback"| ESC3[Escalate: proceed?]
+
+    S6 --> OUT[Deployment Package + Runbook + Rollback Plan]
+  ```
+---

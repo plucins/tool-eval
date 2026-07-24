@@ -1,0 +1,187 @@
+/*
+ * Capgemini-inspired theme for the tool-eval comparison report.
+ *
+ * Replicates the Capgemini brand look & feel (palette, blue->teal gradient,
+ * Montserrat typography) using only locally embedded assets. It contains NO
+ * Capgemini logo, imagery, or trademarked assets. Montserrat is bundled under
+ * the SIL Open Font License (see fonts/OFL.txt).
+ *
+ * Font files are referenced by relative URL here; the offline HTML builder
+ * (reporting/assets.py) inlines each `url("fonts/*.woff2")` as a base64
+ * data: URI so the final report is a single self-contained file.
+ */
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/montserrat-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/montserrat-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/montserrat-700.woff2") format("woff2");
+}
+
+:root {
+  --cg-blue: #0070ad;          /* Capgemini Blue (primary) */
+  --cg-vibrant: #12abdb;       /* Vibrant / Gamma Blue (secondary) */
+  --cg-deep: #12405f;          /* deep navy for text on light surfaces */
+  --cg-gradient: linear-gradient(90deg, #0070ad 0%, #12abdb 100%);
+  --cg-gradient-diag: linear-gradient(135deg, #0070ad 0%, #12abdb 100%);
+  --cg-surface: #f5f8fb;
+  --cg-border: #d5e2ec;
+  --cg-radius: 10px;
+
+  --bs-primary: var(--cg-blue);
+  --bs-primary-rgb: 0, 112, 173;
+  --bs-link-color: var(--cg-blue);
+  --bs-link-hover-color: var(--cg-deep);
+  --bs-body-font-family: "Montserrat", Arial, "Helvetica Neue", sans-serif;
+  --bs-body-color: #26333d;
+}
+
+body {
+  font-family: var(--bs-body-font-family);
+  color: var(--bs-body-color);
+  background: var(--cg-surface);
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand, .nav-link, .btn, th {
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+/* Header / brand bar with the signature blue->teal gradient. */
+.cg-header {
+  background: var(--cg-gradient-diag);
+  color: #fff;
+  padding: 1.75rem 0;
+  box-shadow: 0 2px 10px rgba(18, 64, 95, 0.18);
+}
+.cg-header h1 {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+.cg-header .cg-subtitle {
+  opacity: 0.9;
+  font-weight: 400;
+}
+.cg-accent-bar {
+  height: 4px;
+  background: var(--cg-gradient);
+  border: 0;
+  opacity: 1;
+  margin: 0;
+}
+
+/* Nav tabs in Capgemini blue. */
+.nav-tabs .nav-link {
+  color: var(--cg-deep);
+  border: 0;
+  border-bottom: 3px solid transparent;
+  font-weight: 600;
+}
+.nav-tabs .nav-link:hover {
+  border-bottom-color: var(--cg-vibrant);
+}
+.nav-tabs .nav-link.active {
+  color: var(--cg-blue);
+  background: transparent;
+  border-bottom-color: var(--cg-blue);
+}
+
+/* Comparison table. */
+.cg-table {
+  background: #fff;
+  border: 1px solid var(--cg-border);
+  border-radius: var(--cg-radius);
+  overflow: hidden;
+}
+.cg-table thead th {
+  background: var(--cg-gradient);
+  color: #fff;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.cg-table tbody th {
+  background: var(--cg-surface);
+  font-weight: 600;
+  color: var(--cg-deep);
+}
+.cg-table td, .cg-table th {
+  border-color: var(--cg-border);
+}
+
+/* Feature-status badges. */
+.cg-status {
+  display: inline-block;
+  min-width: 92px;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.cg-status-has { background: #d6f0e2; color: #0d6b45; }
+.cg-status-partial { background: #fdeecd; color: #8a5a00; }
+.cg-status-not_found { background: #f3d9d9; color: #8a1f1f; }
+.cg-status-uncertain { background: #e2e8ee; color: #47535d; }
+.cg-status-requires_research {
+  background: repeating-linear-gradient(45deg, #eef3f7, #eef3f7 6px, #e0e9f0 6px, #e0e9f0 12px);
+  color: #47535d;
+}
+
+/* Distribution flags. */
+.cg-flag {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  margin: 0.1rem 0.15rem 0.1rem 0;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--cg-blue);
+  background: rgba(18, 171, 219, 0.12);
+  border: 1px solid rgba(0, 112, 173, 0.25);
+}
+
+/* Warning banners (freshness / requires_research). */
+.cg-warning {
+  border-left: 4px solid var(--cg-vibrant);
+  background: #eaf6fb;
+  color: var(--cg-deep);
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Freshness pills. */
+.cg-fresh { font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.5rem; border-radius: 6px; }
+.cg-fresh-current { background: #d6f0e2; color: #0d6b45; }
+.cg-fresh-aging { background: #fdeecd; color: #8a5a00; }
+.cg-fresh-stale { background: #f3d9d9; color: #8a1f1f; }
+
+/* Constraint chips + tooltips inherit Bootstrap; tint them Capgemini blue. */
+.cg-constraint {
+  font-size: 0.72rem;
+  color: var(--cg-deep);
+  border-bottom: 1px dotted var(--cg-blue);
+  cursor: help;
+}
+
+.cg-footer {
+  color: #6c7a85;
+  font-size: 0.8rem;
+  padding: 1.5rem 0;
+}

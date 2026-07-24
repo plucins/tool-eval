@@ -1,0 +1,40 @@
+# Source classification and conflict-resolution policy (requirements Sec 11).
+#
+# Semantics of each claim type live in the domain skills; this file only holds
+# the ordering/fallback data those skills and the merge step read.
+
+revision: 1
+
+claim_types:
+  current_capability:
+    preferred_source_types: [documentation, product_page]
+  release_or_deprecation:
+    preferred_source_types: [changelog]
+  availability_stage:
+    preferred_source_types: [changelog, documentation]
+  plan_and_price:
+    preferred_source_types: [pricing]
+  integration:
+    preferred_source_types: [integration_catalog]
+  technical_constraint:
+    preferred_source_types: [documentation]
+  generic:
+    preferred_source_types: [documentation, product_page, changelog, pricing, integration_catalog, specialist]
+
+# Applied in order until a resolution is reached; the last step always
+# resolves to `uncertain` rather than looping (requirements Sec 11).
+conflict_resolution_order:
+  - scope_match
+  - current_state_over_history
+  - recency
+  - claim_type_policy
+  - broader_research
+  - mark_uncertain
+
+official_domain_required_for:
+  - current_capability
+  - release_or_deprecation
+  - availability_stage
+  - plan_and_price
+  - integration
+  - technical_constraint

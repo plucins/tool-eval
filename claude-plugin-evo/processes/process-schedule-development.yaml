@@ -1,0 +1,218 @@
+# Phase 2 Process: Schedule Development
+# Hybrid process - AI structures, humans commit timelines
+---
+references:
+  rules: ../rules/phase2-planning.md
+
+definition:
+  id: "PROC-2.4"
+  name: "Schedule Development"
+  description: |
+    Develop project schedule based on scope, resources, and risks.
+    This is a partnership process where AI helps structure dependencies
+    while humans make timeline commitments based on experience.
+
+    Supports two modes:
+    - QUICK: Key milestones for small projects (~20 min)
+    - FULL: Detailed schedule with dependencies (~2-3 hours)
+  version: "1.0.0"
+  phase: 2
+  information_composition:
+    formal: 35
+    tacit: 55
+    emergent: 10
+
+interfaces:
+  inputs:
+    - type: "work_breakdown"
+      required: true
+      description: "WBS from PROC-2.1"
+    - type: "resource_allocation"
+      required: true
+      description: "Output from PROC-2.3"
+    - type: "risk_register"
+      required: false
+      description: "Output from PROC-2.2 (for risk-based buffers)"
+    - type: "constraints"
+      required: false
+      description: "Timeline constraints from PROC-2.1"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "project_schedule"
+      description: "Timeline with milestones and dependencies"
+    - type: "critical_path"
+      description: "Identified critical path items (FULL mode)"
+    - type: "deferred_items"
+      description: "Schedule items pending resource confirmation"
+
+steps:
+  # Step 1: Sequence activities (Partnership)
+  - id: "2.4.1"
+    name: "Sequence Activities"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Validate logical dependencies between activities"
+    ai_role: "Propose activity sequence based on WBS; identify obvious dependencies"
+    escalation_triggers:
+      - condition: "Circular dependency detected"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Circular dependency in activities. How should we restructure?"
+    completion_criteria: "Activity sequence with dependencies"
+    validation: "No circular dependencies; start and end points clear"
+
+  # Step 2: Estimate durations (Human-Led)
+  - id: "2.4.2"
+    name: "Estimate Durations"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Provide duration estimates based on experience"
+    ai_role: "Structure estimation; flag wide variances; suggest comparison points"
+    escalation_triggers:
+      - condition: "High variance in estimates"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Duration estimates have high uncertainty. Add buffer or refine scope?"
+      - condition: "No basis for estimate"
+        action: DEFER
+        severity: LOW
+        target: "2.4.6"
+        context: "Estimate requires more information - mark as planning assumption"
+    completion_criteria: "Duration estimate for each activity"
+    validation: "Estimates have explicit basis or marked as assumptions"
+
+  # Step 3: Identify critical path (AI-Led)
+  - id: "2.4.3"
+    name: "Identify Critical Path"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Validate critical path makes sense"
+    ai_role: "Calculate critical path from dependencies and durations"
+    escalation_triggers:
+      - condition: "Critical path exceeds timeline constraint"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Critical path exceeds deadline. Options: compress, rescope, or renegotiate deadline?"
+    completion_criteria: "Critical path identified"
+    validation: "Total duration calculated; constraint compliance checked"
+
+  # Step 4: Add buffers and contingency (AI records, human decides)
+  - id: "2.4.4"
+    name: "Add Contingency"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Decide buffer allocation based on risk appetite and experience"
+    ai_role: "Record and structure buffer decisions; do not suggest buffer amounts"
+    escalation_triggers:
+      - condition: "No buffer for high-risk activities"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "High-risk activities without buffer. Accept risk or add contingency?"
+    completion_criteria: "Buffers/contingency decided"
+    validation: "Buffer approach documented (even if zero)"
+
+  # Step 5: Set milestones (Human-Led)
+  - id: "2.4.5"
+    name: "Define Milestones"
+    capability: Synthesise
+    pattern: Human-Led
+    human_role: "Define key milestones and decision points"
+    ai_role: "Suggest milestone points; ensure coverage of phases and deliverables"
+    escalation_triggers:
+      - condition: "Long gaps between milestones"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Large gaps without checkpoints. Add intermediate milestones?"
+    completion_criteria: "Milestones defined"
+    validation: "Milestones cover phase transitions and key deliverables"
+
+  # Step 6: Record deferrals (AI-Led)
+  - id: "2.4.6"
+    name: "Record Deferrals"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm planning assumptions and dependencies"
+    ai_role: "Compile schedule dependencies and assumptions"
+    escalation_triggers:
+      - condition: "Many schedule items dependent on unconfirmed resources"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Schedule has unresolved dependencies. Proceed at risk or resolve first?"
+    completion_criteria: "Assumptions and dependencies documented"
+    validation: "Each assumption has trigger for revisiting"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "2.4.1"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 20
+      depth: "Key milestones; high-level timeline"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 150
+      depth: "Detailed schedule; critical path analysis"
+
+quality:
+  entry_criteria:
+    - "WBS and resource allocation available"
+    - "Human with scheduling authority available"
+  exit_criteria:
+    - "Project schedule with milestones"
+    - "Critical path identified (at least in FULL mode)"
+  sla:
+    expected_duration_minutes: 20
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Complex dependencies identified"
+    - "Timeline constraints tight"
+    - "Multiple parallel workstreams"
+    - "Human requests detailed schedule"
+  upgrade_prompt: |
+    The schedule has complexity that benefits from detailed analysis.
+    Would you like to switch to FULL mode for critical path analysis
+    and dependency mapping?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["2.4.1 Sequence Activities<br/>(Analyse, Partnership)"]
+      S2["2.4.2 Estimate Durations<br/>(Elicit, Human-Led)"]
+      S3["2.4.3 Identify Critical Path<br/>(Analyse, AI-Led)"]
+      S4["2.4.4 Add Contingency<br/>(Decide, Human-Led)"]
+      S5["2.4.5 Define Milestones<br/>(Synthesise, Human-Led)"]
+      S6["2.4.6 Record Deferrals<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Circular"| ESC1[Escalate: restructure]
+    S2 -->|"High variance"| ESC2[Escalate: buffer?]
+    S2 -->|"No basis"| DEF1[Defer to 2.4.6]
+    S3 -->|"Exceeds deadline"| ESC3[Escalate: options]
+    S4 -->|"No buffer"| ESC4[Escalate: accept risk?]
+    S5 -->|"Large gaps"| ESC5[Escalate: add milestones?]
+
+    S6 --> OUT[Project Schedule + Critical Path + Deferrals]
+  ```
+---

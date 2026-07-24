@@ -1,0 +1,40 @@
+# Session memo for splucins
+username: "splucins"
+last_session: "2026-07-24T05:55:00Z"
+active_focus: >
+  tool-eval MVP build via Dialogue Framework. Increment 1 (foundation) DONE and
+  verified; Increment 2 (complete tool research) IN PROGRESS - delegated to a
+  background Process Executor (PINST-20260724-055000).
+recent_tasks:
+  - "PINST-20260724-053000"  # Increment 1 - COMPLETED (process_result GENERATED)
+  - "PINST-20260724-055000"  # Increment 2 - IN PROGRESS (background executor)
+recent_decisions:
+  - "Removed the broken prompt-type Bash preflight hook from claude-plugin-evo/hooks/hooks.json (was false-blocking every command incl. the framework's own logging scripts). Deterministic .dialogue/ path guard retained."
+  - "Full Process delegation chosen as the framework mode (Increments 1 and 2)."
+open_questions:
+  - "Waiting-room data model: does pending.json double as the waiting room, or add a dedicated deferred file? (Increment 2 executor will escalate this at the curation gate.)"
+  - "Document the intentional omission of config/tools/ (per D-016 sources live in profile.json)?"
+  - "config/feature-taxonomy.yaml is a DRAFT - needs human curator review before being frozen for real runs."
+  - "Two of five gap-analysis review observations (flag-type test coverage, feature-schema fields) were never logged - the earlier hook blocked them; re-log now that the hook is fixed."
+notes: |
+  Increment 1 delivered: pyproject.toml (hatchling), src/tool_eval package with
+  the `python -m tool_eval` CLI + JSON envelope, config loader (safe_load +
+  revisions/hashes), run lifecycle (init/status/resume-check/fail), errors.py,
+  paths.py (safe paths, D-017), 4 baseline JSON schemas, 26-feature DRAFT
+  taxonomy, orchestrator/worker agents, orchestration + 3 entry skills,
+  .gitignore. Gate green: installs on 3.11+, config valid, agents/skills
+  registered, no API key. Verified in .venv (Windows: .venv/Scripts/python.exe;
+  prefix pip/network with CURL_CA_BUNDLE= due to a stray PostgreSQL cert path).
+
+  Increment 1 EXEC/PINST audit records were finalised by direct file write
+  because the (now-fixed) Bash hook had blocked the executor's logging scripts.
+
+  Next when resuming: await the Increment 2 background executor's completion /
+  escalation; relay the curation-gate design question to the user; then verify
+  its pytest suite and item-by-item DONE/REMAINING report; nothing has been
+  git-committed yet (user has not authorised commits).
+interaction_mode_preference: partnership
+feature_explanations_given:
+  decision_logging: 0
+  observation_logging: 0
+  task_management: 0

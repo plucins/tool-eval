@@ -1,0 +1,210 @@
+# Phase 1 Process: Business Case Development
+# Hybrid process - AI facilitates, humans decide
+---
+references:
+  rules: ../rules/phase1-initiation.md
+
+definition:
+  id: "PROC-1.4"
+  name: "Business Case Development"
+  description: |
+    Develop justification for pursuing the opportunity. Synthesises outputs
+    from PROC-1.1 through PROC-1.3 into a coherent case for investment.
+
+    Supports two modes:
+    - QUICK: Lightweight justification for small/low-risk projects (~20 min)
+    - FULL: Formal business case for significant investments (~2-4 hours)
+  version: "1.0.0"
+  phase: 1
+  information_composition:
+    formal: 15
+    tacit: 65
+    emergent: 20
+
+interfaces:
+  inputs:
+    - type: "opportunity_statement"
+      required: true
+      description: "Output from PROC-1.1"
+    - type: "stakeholder_map"
+      required: false
+      description: "Output from PROC-1.2"
+    - type: "problem_statement"
+      required: false
+      description: "Output from PROC-1.3"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "business_case"
+      description: "Justification including value, costs, risks, recommendation"
+    - type: "go_no_go_recommendation"
+      description: "Proceed, defer, or decline with rationale"
+    - type: "deferred_items"
+      description: "Analysis items for later if proceeding"
+
+steps:
+  # Step 1: Articulate value proposition (AI-facilitated)
+  - id: "1.4.1"
+    name: "Articulate Value Proposition"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Describe the value this would deliver if successful"
+    ai_role: "Help structure value in business terms; quantify where possible"
+    escalation_triggers:
+      - condition: "Value cannot be articulated clearly"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Difficulty articulating value may indicate weak opportunity. Is this worth pursuing?"
+    completion_criteria: "Value proposition stated"
+    validation: "Value linked to business outcomes, not just activities"
+
+  # Step 2: Estimate costs and effort (AI-facilitated)
+  - id: "1.4.2"
+    name: "Estimate Costs and Effort"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Provide rough estimates of investment required"
+    ai_role: "Structure cost categories; help identify hidden costs"
+    escalation_triggers:
+      - condition: "Costs highly uncertain"
+        action: DEFER
+        severity: LOW
+        target: "1.4.6"
+        context: "Cost uncertainty noted - may need Phase 2 planning to refine"
+    completion_criteria: "Rough cost/effort estimate captured"
+    validation: "At least order-of-magnitude estimate provided"
+
+  # Step 3: Assess risks (AI records, human judges)
+  - id: "1.4.3"
+    name: "Assess Key Risks"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Identify major risks - what could go wrong?"
+    ai_role: "Record and structure human assessment; do not suggest risks"
+    escalation_triggers:
+      - condition: "Critical risk identified with no mitigation"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "This risk could be fatal to the project. How should we address it?"
+    completion_criteria: "Key risks identified"
+    validation: "At least one risk considered (even if 'none significant')"
+
+  # Step 4: Consider alternatives (AI-facilitated)
+  - id: "1.4.4"
+    name: "Consider Alternatives"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "What alternatives exist? Including doing nothing"
+    ai_role: "Prompt for alternative categories; help compare options"
+    escalation_triggers:
+      - condition: "Better alternative identified"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "An alternative may be preferable. Should we pursue that instead?"
+    completion_criteria: "Alternatives considered"
+    validation: "At least 'do nothing' alternative addressed"
+
+  # Step 5: Make recommendation (AI records, human decides)
+  - id: "1.4.5"
+    name: "Form Recommendation"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Decide: proceed, defer, or decline - with rationale"
+    ai_role: "Record and structure human decision; do not suggest recommendation"
+    escalation_triggers:
+      - condition: "Decision unclear or contested"
+        action: DEFER
+        severity: MEDIUM
+        target: "1.4.6"
+        context: "Decision deferred - may need escalation to decision-maker"
+    completion_criteria: "Recommendation formed"
+    validation: "Recommendation includes clear rationale"
+
+  # Step 6: Synthesise business case (AI-assisted)
+  - id: "1.4.6"
+    name: "Synthesise Business Case"
+    capability: Synthesise
+    pattern: Human-Led
+    human_role: "Review and approve synthesised business case"
+    ai_role: "Draft business case document from all inputs"
+    escalation_triggers:
+      - condition: "Human disagrees with synthesis"
+        action: RETURN
+        severity: LOW
+        target: "1.4.1"
+        context: "Let's revisit the inputs"
+    completion_criteria: "Business case accepted"
+    validation: "Case includes: value, costs, risks, alternatives, recommendation"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "1.4.1"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 20
+      depth: "Lightweight justification; key points only"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 180
+      depth: "Formal business case; detailed analysis"
+
+quality:
+  entry_criteria:
+    - "Opportunity statement available"
+    - "Human with authority/knowledge for recommendation available"
+  exit_criteria:
+    - "Value proposition articulated"
+    - "Go/no-go recommendation formed"
+  sla:
+    expected_duration_minutes: 20
+    timeout_minutes: 240
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Significant investment indicated (>1 person-month)"
+    - "Multiple stakeholders need to approve"
+    - "High risk identified"
+    - "Formal business case required by governance"
+    - "Human requests formal documentation"
+  upgrade_prompt: |
+    This seems to warrant a more formal business case. Would you like to
+    switch to FULL mode? This produces documentation suitable for
+    governance review and investment decisions.
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["1.4.1 Articulate Value<br/>(Elicit, Human-Led)"]
+      S2["1.4.2 Estimate Costs<br/>(Analyse, Human-Led)"]
+      S3["1.4.3 Assess Risks<br/>(Analyse, Human-Led)"]
+      S4["1.4.4 Consider Alternatives<br/>(Analyse, Human-Led)"]
+      S5["1.4.5 Form Recommendation<br/>(Decide, Human-Led)"]
+      S6["1.4.6 Synthesise Case<br/>(Synthesise, Human-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Value unclear"| ESC1[Escalate: worth it?]
+    S2 -->|"Costs uncertain"| DEF1[Defer]
+    S3 -->|"Critical risk"| ESC2[Escalate: address]
+    S4 -->|"Better alternative"| ESC3[Escalate: switch?]
+    S5 -->|"Unclear"| DEF2[Defer to decision-maker]
+    S6 -->|"Disagrees"| S1
+
+    S6 --> OUT[Business Case + Recommendation]
+  ```
+---

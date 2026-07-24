@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <style>{{ assets.bootstrap_css|safe }}</style>
+  <style>{{ assets.theme_css|safe }}</style>
+</head>
+<body>
+  <header class="cg-header">
+    <div class="container">
+      <h1>{{ title }}</h1>
+      <div class="cg-subtitle">Generated {{ model.generated_at }} &middot; {{ model.tools|length }} tools compared</div>
+    </div>
+  </header>
+  <hr class="cg-accent-bar">
+
+  <main class="container my-4">
+
+    {% if model.warnings %}
+    <section aria-label="Warnings" class="mb-3">
+      {% for warning in model.warnings %}
+      <div class="cg-warning">&#9888; {{ warning }}</div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <ul class="nav nav-tabs" role="tablist">
+      {% for group in model.groups %}
+      <li class="nav-item" role="presentation">
+        <button class="nav-link{% if loop.first %} active{% endif %}"
+                id="tab-{{ group.group_id }}" data-bs-toggle="tab"
+                data-bs-target="#panel-{{ group.group_id }}" type="button" role="tab">
+          {{ group.name }}
+        </button>
+      </li>
+      {% endfor %}
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-profiles" data-bs-toggle="tab"
+                data-bs-target="#panel-profiles" type="button" role="tab">Profiles</button>
+      </li>
+    </ul>
+
+    <div class="tab-content pt-3">
+      {% for group in model.groups %}
+      <div class="tab-pane fade{% if loop.first %} show active{% endif %}"
+           id="panel-{{ group.group_id }}" role="tabpanel">
+        <div class="mb-2">
+          <input type="search" class="form-control form-control-sm" style="max-width:20rem"
+                 placeholder="Filter features&hellip;" data-cg-filter="table-{{ group.group_id }}">
+        </div>
+        <div class="table-responsive">
+          <table class="table cg-table align-middle mb-0" id="table-{{ group.group_id }}">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                {% for tool in model.tools %}
+                <th scope="col">{{ tool.name }}</th>
+                {% endfor %}
+                <th scope="col">Flags</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for feature in group.features %}
+              <tr data-cg-feature="{{ feature.name }} {{ feature.feature_id }}">
+                <th scope="row">
+                  <span class="cg-constraint" data-bs-toggle="tooltip" title="{{ feature.definition }}">{{ feature.name }}</span>
+                </th>
+                {% for cell in feature.cells %}
+                <td>
+                  {% if not cell.researched %}
+                  <span class="cg-status cg-status-requires_research" title="Unresearched">&mdash;</span>
+                  {% else %}
+                  <span class="cg-status cg-status-{{ cell.status }}"
+                        {% if cell.rationale %}data-bs-toggle="tooltip" title="{{ cell.rationale }}"{% endif %}>{{ status_labels[cell.status] }}</span>
+                  {% if cell.has_constraints %}
+                  <div class="mt-1">
+                    {% for constraint in cell.constraints %}
+                    <span class="cg-constraint" data-bs-toggle="tooltip"
+                          title="{{ constraint.get('description') or constraint.get('type') }}">{{ constraint.type }}</span>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  {% endif %}
+                </td>
+                {% endfor %}
+                <td>
+                  {% for flag in feature.flags %}
+                  <span class="cg-flag">{{ flag }}</span>
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="tab-pane fade" id="panel-profiles" role="tabpanel">
+        <ul class="nav nav-pills mb-3" role="tablist">
+          {% for tool in model.tools %}
+          <li class="nav-item" role="presentation">
+            <button class="nav-link{% if loop.first %} active{% endif %}" data-bs-toggle="pill"
+                    data-bs-target="#profile-{{ tool.tool_id }}" type="button" role="tab">{{ tool.name }}</button>
+          </li>
+          {% endfor %}
+        </ul>
+        <div class="tab-content">
+          {% for tool in model.tools %}
+          {% set profile = profiles_by_id[tool.tool_id] %}
+          <div class="tab-pane fade{% if loop.first %} show active{% endif %}"
+               id="profile-{{ tool.tool_id }}" role="tabpanel">
+            <div class="d-flex flex-wrap gap-2 align-items-center mb-2">
+              <h2 class="h4 mb-0">{{ tool.name }}</h2>
+              {% if tool.vendor %}<span class="text-muted">by {{ tool.vendor }}</span>{% endif %}
+              <span class="cg-fresh cg-fresh-{{ tool.freshness }}">{{ freshness_labels[tool.freshness] }} &middot; researched {{ tool.researched_at }}</span>
+              {% if tool.profile_state == 'requires_research' %}
+              <span class="cg-flag">requires_research</span>
+              {% endif %}
+            </div>
+            {% if tool.homepage %}
+            <p><a href="{{ tool.homepage }}" rel="noopener noreferrer nofollow" target="_blank">{{ tool.homepage }}</a></p>
+            {% endif %}
+            {% if descriptions.get(tool.tool_id) %}
+            <div class="cg-description">{{ descriptions[tool.tool_id] }}</div>
+            {% endif %}
+            {% if profile.get('additional_facts') %}
+            <h3 class="h6 mt-3">Additional facts</h3>
+            <ul>
+              {% for fact in profile.get('additional_facts') %}
+              <li><strong>{{ fact.topic }}:</strong> {{ fact.description|md }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            {% if profile.get('use_cases') %}
+            <h3 class="h6 mt-3">Use cases</h3>
+            <ul>
+              {% for uc in profile.get('use_cases') %}
+              <li><strong>{{ uc.title }}</strong> ({{ uc.kind }}) &mdash; {{ uc.description|md }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <footer class="cg-footer">
+      <p class="mb-1">Flags describe only the compared set, not the wider market. Unresearched or uncertain cells are excluded from flags.</p>
+      <p class="mb-0">Self-contained offline report. Bundled Bootstrap (MIT) and Montserrat (SIL OFL). Capgemini-inspired theme; no Capgemini logo or trademarked assets.</p>
+    </footer>
+  </main>
+
+  <script>{{ assets.bootstrap_js|safe }}</script>
+  <script>{{ assets.app_js|safe }}</script>
+</body>
+</html>

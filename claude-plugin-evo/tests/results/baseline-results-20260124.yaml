@@ -1,0 +1,172 @@
+# Baseline Hook Test Results
+# Date: 2026-01-24
+# Configuration: Baseline (signal tags only)
+# Tester: Claude (self-test in active session)
+
+session_context: |
+  This test was run in a live session where Claude was actively working
+  on FW-038. The CLAUDE.md file was loaded with full framework instructions
+  (386 lines), which may have influenced skill invocation rates.
+
+test_results:
+
+  # Decision Capture Tests
+  - id: D1
+    prompt: "I decided we should use PostgreSQL for the database"
+    signal: "<dialogue-signals>decision-capture</dialogue-signals>"
+    expected_skill: dialogue-log-decision
+    skill_invoked: true
+    decision_id: DEC-20260124-100428
+    correct_invocation: true
+    notes: "Invoked immediately after seeing signal"
+
+  - id: D2
+    prompt: "Let's go with the microservices approach"
+    signal: "<dialogue-signals>decision-capture</dialogue-signals>"
+    expected_skill: dialogue-log-decision
+    skill_invoked: true
+    decision_id: DEC-20260124-100433
+    correct_invocation: true
+    notes: "Invoked, classified as TACTICAL (architecture decision)"
+
+  - id: D3
+    prompt: "The decision is to postpone the release"
+    signal: "<dialogue-signals>decision-capture</dialogue-signals>"
+    expected_skill: dialogue-log-decision
+    skill_invoked: false
+    correct_invocation: false
+    notes: "NOT TESTED - skipped for time"
+
+  - id: D4
+    prompt: "We'll use React for the frontend"
+    signal: "<dialogue-signals>decision-capture</dialogue-signals>"
+    expected_skill: dialogue-log-decision
+    skill_invoked: false
+    correct_invocation: false
+    notes: "NOT TESTED - skipped for time"
+
+  # Observation Capture Tests
+  - id: O1
+    prompt: "I noticed the tests are running slowly"
+    signal: "<dialogue-signals>observation-capture</dialogue-signals>"
+    expected_skill: dialogue-log-observation
+    skill_invoked: true
+    observation_id: OBS-20260124-100437
+    correct_invocation: true
+    notes: "Invoked with STATE type"
+
+  - id: O2
+    prompt: "Here's an observation: the API response time increased"
+    signal: "<dialogue-signals>observation-capture</dialogue-signals>"
+    expected_skill: dialogue-log-observation
+    skill_invoked: false
+    notes: "NOT TESTED - skipped for time"
+
+  - id: O3
+    prompt: "Worth noting that the error rate spiked yesterday"
+    signal: "<dialogue-signals>observation-capture</dialogue-signals>"
+    expected_skill: dialogue-log-observation
+    skill_invoked: false
+    notes: "NOT TESTED - skipped for time"
+
+  - id: O4
+    prompt: "I observed that users are abandoning checkout at step 3"
+    signal: "<dialogue-signals>observation-capture</dialogue-signals>"
+    expected_skill: dialogue-log-observation
+    skill_invoked: false
+    notes: "NOT TESTED - skipped for time"
+
+  # Task Reference Tests
+  - id: T1
+    prompt: "Let's work on FW-038"
+    signal: "<dialogue-signals>task-context</dialogue-signals>"
+    expected_skill: dialogue-manage-tasks
+    skill_invoked: true
+    correct_invocation: true
+    notes: "Task file was read at session start when user said this"
+
+  - id: T2
+    prompt: "What's the status of SH-005?"
+    signal: "<dialogue-signals>task-context</dialogue-signals>"
+    expected_skill: dialogue-manage-tasks
+    skill_invoked: false
+    notes: "NOT TESTED - skipped for time"
+
+  # Reference Resolution Tests
+  - id: R1
+    prompt: "What does THY-001 say about theory building?"
+    signal: "<dialogue-signals>resolve-reference</dialogue-signals>"
+    expected_skill: dialogue-resolve-reference
+    skill_invoked: true
+    correct_invocation: true
+    notes: "Resolved to implementation/theory_framework.md"
+
+  - id: R2
+    prompt: "Look up REF-001"
+    signal: "<dialogue-signals>resolve-reference</dialogue-signals>"
+    expected_skill: dialogue-resolve-reference
+    skill_invoked: false
+    notes: "NOT TESTED - skipped for time"
+
+  # Phase Context Tests
+  - id: P1
+    prompt: "We're in the initiation phase, help me define the opportunity"
+    signal: "<dialogue-signals>phase-1</dialogue-signals>"
+    expected_behaviour: "Apply Phase 1 guidance"
+    skill_invoked: false
+    notes: "NOT TESTED - no direct skill, guidance application"
+
+  - id: P2
+    prompt: "Let's work on requirements for this feature"
+    signal: "<dialogue-signals>phase-3</dialogue-signals>"
+    expected_behaviour: "Apply Phase 3 guidance"
+    skill_invoked: false
+    notes: "NOT TESTED - no direct skill, guidance application"
+
+  # Negative Cases
+  - id: N1
+    prompt: "What time is it?"
+    signal: "(none)"
+    expected_skill: none
+    skill_invoked: false
+    correct_invocation: true
+    notes: "Correctly did NOT invoke any framework skill"
+
+  - id: N2
+    prompt: "Fix the typo on line 42"
+    signal: "(none)"
+    expected_skill: none
+    skill_invoked: false
+    correct_invocation: true
+    notes: "Correctly did NOT invoke any framework skill"
+
+  - id: N3
+    prompt: "How do I format a string in Python?"
+    signal: "(none)"
+    expected_skill: none
+    skill_invoked: false
+    correct_invocation: true
+    notes: "Correctly did NOT invoke any framework skill"
+
+summary:
+  tests_run: 8
+  tests_skipped: 9
+  invocations_expected: 5
+  invocations_actual: 5
+  invocation_rate: 100%
+  false_positives: 0
+  false_positive_rate: 0%
+
+  notes: |
+    IMPORTANT CAVEAT: This test was run in a session where:
+    1. The full CLAUDE.md (386 lines) was loaded with framework instructions
+    2. Claude was actively working on a framework task (FW-038)
+    3. Claude was aware this was a test of framework behaviour
+
+    This creates significant bias toward skill invocation. A true baseline
+    test would require:
+    - Fresh session with minimal CLAUDE.md
+    - Tester unaware of being tested
+    - More varied task context
+
+    The 100% invocation rate is likely inflated by these factors.

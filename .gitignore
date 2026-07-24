@@ -1,0 +1,14 @@
+# Active and failed run working directories (D-011/D-012): never committed.
+.work/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db

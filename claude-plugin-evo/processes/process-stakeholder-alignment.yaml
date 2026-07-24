@@ -1,0 +1,183 @@
+# Phase 1 Process: Stakeholder Alignment
+# Hybrid process - AI facilitates, humans decide
+---
+references:
+  rules: ../rules/phase1-initiation.md
+
+definition:
+  id: "PROC-1.2"
+  name: "Stakeholder Alignment"
+  description: |
+    Identify stakeholders and establish initial alignment on the opportunity.
+    This is a human-led process where AI acts as Facilitator and Scribe.
+
+    Supports two modes:
+    - QUICK: Single stakeholder or obvious stakeholder set (~10 min)
+    - FULL: Complex stakeholder landscape analysis (~1-2 hours)
+  version: "1.0.0"
+  phase: 1
+  information_composition:
+    formal: 5
+    tacit: 80
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "opportunity_statement"
+      required: true
+      description: "Output from PROC-1.1 or equivalent description"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "stakeholder_map"
+      description: "Identified stakeholders with interests and influence"
+    - type: "alignment_status"
+      description: "Current alignment state and gaps"
+    - type: "deferred_items"
+      description: "Stakeholders or concerns to address later"
+
+steps:
+  # Step 1: Identify key stakeholders (AI-facilitated)
+  - id: "1.2.1"
+    name: "Identify Stakeholders"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Name the people/groups who care about or influence this opportunity"
+    ai_role: "Prompt with stakeholder categories; record identified stakeholders"
+    escalation_triggers:
+      - condition: "Only one stakeholder identified for significant project"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Most projects have multiple stakeholders. Are there others affected by or influencing this?"
+    completion_criteria: "At least one stakeholder identified"
+    validation: "Each stakeholder has a name or role"
+
+  # Step 2: Map interests and influence (AI-facilitated)
+  - id: "1.2.2"
+    name: "Map Interests and Influence"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Describe each stakeholder's interest and level of influence"
+    ai_role: "Structure the mapping; ask clarifying questions"
+    escalation_triggers:
+      - condition: "Stakeholder interests conflict"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Conflicting interests detected. This is important to acknowledge early."
+    completion_criteria: "Each stakeholder has interest and influence noted"
+    validation: "No stakeholder left with unknown interest"
+
+  # Step 3: Assess current alignment (AI records, human judges)
+  - id: "1.2.3"
+    name: "Assess Alignment State"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Judge current alignment: supportive, neutral, resistant, unknown"
+    ai_role: "Record and structure human assessment; do not suggest alignment states"
+    escalation_triggers:
+      - condition: "Key stakeholder resistant or unknown"
+        action: DEFER
+        severity: MEDIUM
+        target: "1.2.5"
+        context: "Resistance or unknowns flagged for follow-up action"
+    completion_criteria: "Alignment state recorded for each stakeholder"
+    validation: "No stakeholder left as 'not assessed'"
+
+  # Step 4: Identify alignment actions (AI-assisted)
+  - id: "1.2.4"
+    name: "Identify Alignment Actions"
+    capability: Synthesise
+    pattern: Human-Led
+    human_role: "Decide what actions needed to improve alignment"
+    ai_role: "Suggest action categories; help prioritise"
+    escalation_triggers:
+      - condition: "No clear path to alignment with key stakeholder"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "This may be a project risk. Consider whether to proceed or address first."
+    completion_criteria: "Actions identified for misaligned stakeholders"
+    validation: "Critical misalignments have actions or explicit risk acceptance"
+
+  # Step 5: Record deferrals and next steps (AI-assisted)
+  - id: "1.2.5"
+    name: "Record Deferrals"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm deferrals and next steps"
+    ai_role: "Compile deferred items and recommended follow-ups"
+    escalation_triggers:
+      - condition: "Stakeholder alignment gaps exist but no follow-up actions defined"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "There are alignment gaps without clear next steps. Should we define actions or explicitly accept the risk?"
+    completion_criteria: "Deferred items and next steps documented"
+    validation: "Each deferral has owner and timeframe"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "1.2.1"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 10
+      depth: "Key stakeholders only; defer peripheral analysis"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 90
+      depth: "Comprehensive mapping; influence/interest matrix"
+
+quality:
+  entry_criteria:
+    - "Opportunity statement available"
+    - "Human with stakeholder knowledge available"
+  exit_criteria:
+    - "At least one stakeholder identified"
+    - "Alignment state assessed"
+  sla:
+    expected_duration_minutes: 10
+    timeout_minutes: 120
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "More than 3 stakeholders identified"
+    - "Conflicting interests detected"
+    - "Political complexity mentioned"
+    - "Human requests deeper analysis"
+  upgrade_prompt: |
+    The stakeholder landscape seems complex. Would you like to switch to
+    FULL mode for a more thorough analysis? This helps surface potential
+    alignment challenges early.
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["1.2.1 Identify Stakeholders<br/>(Elicit, Human-Led)"]
+      S2["1.2.2 Map Interests/Influence<br/>(Analyse, Human-Led)"]
+      S3["1.2.3 Assess Alignment<br/>(Analyse, Human-Led)"]
+      S4["1.2.4 Identify Actions<br/>(Synthesise, Human-Led)"]
+      S5["1.2.5 Record Deferrals<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+
+    S1 -->|"Single stakeholder"| ESC1[Escalate: check for others]
+    S2 -->|"Conflicts"| ESC2[Escalate: acknowledge]
+    S3 -->|"Resistant/unknown"| DEF[Defer to 1.2.5]
+    S4 -->|"No alignment path"| ESC3[Escalate: risk decision]
+
+    S5 --> OUT[Stakeholder Map + Alignment Status]
+  ```
+---

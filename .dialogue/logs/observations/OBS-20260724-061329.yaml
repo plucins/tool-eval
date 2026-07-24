@@ -1,0 +1,8 @@
+id: OBS-20260724-061329
+timestamp: "2026-07-24T06:13:29Z"
+type: EVENT
+observer: "ai:claude"
+subject: "Increment 2 item 3 complete - D-009 enforcement"
+value: "Business validator now enforces D-009: not_found requires protocol_complete plus all relevant source classes checked and forbids access gaps, unresolved conflict, or positive evidence (else degrade to uncertain); has/partial need a non-empty excerpt from an official source (D-017/Sec 10); uncertain must be justified by conflict/gap/incomplete protocol. Relaxed the over-strict schema rule that forced uncertain to carry a conflict, moving status semantics to the business validator per D-016. 47 tests pass."
+context: "PROC-5.1 Increment 2 item 3"
+tags: ["process-execution", "determinism", "security"]

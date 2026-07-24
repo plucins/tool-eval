@@ -1,0 +1,8 @@
+id: OBS-20260724-060553
+timestamp: "2026-07-24T06:05:53Z"
+type: EVENT
+observer: "ai:claude"
+subject: "Increment 2 item 1 complete - profile model and schemas"
+value: "Added 7 JSON Schemas (candidate, candidates, unresolved-issues, subagent-result, additional-fact, use-case, profile) with cross-file source_id referencing per D-016; schema.py referencing-registry validator resolves refs offline; business.py enforces referential integrity and use-case supporting-feature refs. 18 pytest tests pass. Increment 1 config validate re-verified OK."
+context: "PROC-5.1 Increment 2 item 1"
+tags: ["process-execution", "determinism"]

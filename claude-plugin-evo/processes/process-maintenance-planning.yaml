@@ -1,0 +1,218 @@
+# Phase 7 Process: Maintenance Planning
+# Partnership process - AI analyses, humans prioritise
+---
+references:
+  rules: ../rules/phase7-deployment.md
+
+definition:
+  id: "PROC-7.4"
+  name: "Maintenance Planning"
+  description: |
+    Plan ongoing maintenance and improvement activities.
+    This is a Partnership process where AI analyses system health
+    while humans prioritise maintenance activities.
+
+    Supports two modes:
+    - QUICK: Regular maintenance review (~30 min)
+    - FULL: Comprehensive maintenance planning (~2 hours)
+  version: "1.0.0"
+  phase: 7
+  information_composition:
+    formal: 55
+    tacit: 30
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "system_metrics"
+      required: true
+      description: "Performance, reliability, and usage data"
+    - type: "incident_history"
+      required: false
+      description: "Past incidents and resolutions"
+    - type: "technical_debt_register"
+      required: false
+      description: "Known technical debt items"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "maintenance_backlog"
+      description: "Prioritised maintenance tasks"
+    - type: "health_assessment"
+      description: "System health summary"
+    - type: "improvement_roadmap"
+      description: "Planned improvements"
+
+steps:
+  # Step 1: Collect metrics (AI-Only)
+  - id: "7.4.1"
+    name: "Collect Metrics"
+    capability: Elicit
+    pattern: AI-Only
+    human_role: "None"
+    ai_role: "Gather system metrics; aggregate performance data; compile trends"
+    escalation_triggers:
+      - condition: "Metrics unavailable"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Cannot access [data source]. Proceed with partial data?"
+    completion_criteria: "Metrics collected"
+    validation: "Key metrics available for analysis"
+
+  # Step 2: Analyse system health (AI-Led)
+  - id: "7.4.2"
+    name: "Analyse Health"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Validate health assessment"
+    ai_role: "Identify degradation trends; flag anomalies; assess capacity"
+    escalation_triggers:
+      - condition: "Critical health issue"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Critical degradation detected. Immediate action needed?"
+      - condition: "Capacity threshold approaching"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Capacity at [X]%, threshold is [Y]%. Plan expansion?"
+    completion_criteria: "Health analysed"
+    validation: "Health assessment documented"
+
+  # Step 3: Review technical debt (Partnership)
+  - id: "7.4.3"
+    name: "Review Technical Debt"
+    capability: Analyse
+    pattern: Partnership
+    human_role: "Provide context on debt priority"
+    ai_role: "Inventory debt items; assess impact; estimate remediation effort"
+    escalation_triggers:
+      - condition: "Debt blocking new work"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Technical debt blocking feature development. Prioritise cleanup?"
+      - condition: "Debt increasing"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Technical debt growing. Allocate capacity for reduction?"
+    completion_criteria: "Debt reviewed"
+    validation: "Debt items prioritised"
+
+  # Step 4: Identify improvements (AI-Led)
+  - id: "7.4.4"
+    name: "Identify Improvements"
+    capability: Synthesise
+    pattern: AI-Led
+    human_role: "Evaluate improvement suggestions"
+    ai_role: "Suggest optimisations; identify modernisation opportunities; propose enhancements"
+    escalation_triggers:
+      - condition: "Significant investment required"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Proposed improvement requires [investment]. Include in roadmap?"
+    completion_criteria: "Improvements identified"
+    validation: "Improvement options documented"
+
+  # Step 5: Prioritise maintenance (Human-Led)
+  - id: "7.4.5"
+    name: "Prioritise Maintenance"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Prioritise maintenance activities"
+    ai_role: "Present options with trade-offs; record prioritisation decisions"
+    escalation_triggers:
+      - condition: "Resource constraints"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Cannot address all items with available resources. What to defer?"
+    completion_criteria: "Priorities set"
+    validation: "Backlog prioritised"
+
+  # Step 6: Create roadmap (AI-Led)
+  - id: "7.4.6"
+    name: "Create Roadmap"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Approve maintenance roadmap"
+    ai_role: "Compile prioritised items; create timeline; document dependencies"
+    escalation_triggers:
+      - condition: "Roadmap conflicts"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Maintenance items conflict with feature work. Resolve scheduling?"
+    completion_criteria: "Roadmap created"
+    validation: "Roadmap documented and approved"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "7.4.4"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Key metrics; urgent items"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 120
+      depth: "Comprehensive analysis; full roadmap"
+
+quality:
+  entry_criteria:
+    - "System operational"
+    - "Metrics accessible"
+  exit_criteria:
+    - "Health assessed"
+    - "Maintenance planned"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Quarterly planning cycle"
+    - "Significant system changes"
+    - "After major incident"
+    - "Human requests comprehensive review"
+  upgrade_prompt: |
+    System conditions suggest comprehensive maintenance review.
+    Would you like to switch to FULL mode for detailed health
+    analysis and roadmap planning?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["7.4.1 Collect Metrics<br/>(Elicit, AI-Only)"]
+      S2["7.4.2 Analyse Health<br/>(Analyse, AI-Led)"]
+      S3["7.4.3 Review Technical Debt<br/>(Analyse, Partnership)"]
+      S4["7.4.4 Identify Improvements<br/>(Synthesise, AI-Led)"]
+      S5["7.4.5 Prioritise Maintenance<br/>(Decide, Human-Led)"]
+      S6["7.4.6 Create Roadmap<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Unavailable"| ESC1[Escalate: partial data?]
+    S2 -->|"Critical"| ESC2[Escalate: immediate action?]
+    S2 -->|"Capacity"| ESC3[Escalate: expand?]
+    S3 -->|"Blocking"| ESC4[Escalate: prioritise?]
+
+    S6 --> OUT[Maintenance Backlog + Health Assessment + Roadmap]
+  ```
+---

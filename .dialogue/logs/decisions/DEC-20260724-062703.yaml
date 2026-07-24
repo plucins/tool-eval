@@ -1,0 +1,9 @@
+id: DEC-20260724-062703
+timestamp: "2026-07-24T06:27:03Z"
+type: OPERATIONAL
+actor: "ai:claude"
+subject: "Deterministic merge and completeness gate"
+outcome: "Merge dedups sources by source_id (conflict on inconsistent definition), rejects duplicate feature results, sorts all output for reproducibility; completeness requires exactly one result per effective-taxonomy feature, flagging missing/foreign/duplicate; merge blocks entirely if any mandatory task result is missing or schema-invalid"
+rationale: "D-010 makes merge a single-writer Python step that waits for every mandatory task; requirements Sec 16 completeness gate. Sorting output guarantees determinism (focus area). Blocking on missing results enforces the 'missing worker result blocks merging' gate from plan Sec 3.6."
+context: "PROC-5.1 Increment 2 item 6"
+tags: ["process-execution", "determinism"]

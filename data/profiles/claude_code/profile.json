@@ -1,0 +1,1234 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "tool_id": "claude_code",
+    "name": "Claude Code"
+  },
+  "research": {
+    "run_id": "research-20260724-072142-3c21d386",
+    "researched_at": "2026-07-24T07:43:15Z",
+    "taxonomy_revision": 1,
+    "template_revision": 1,
+    "source_policy_revision": 1,
+    "profile_state": "requires_research"
+  },
+  "sources": [
+    {
+      "source_id": "cc_admin_setup",
+      "url": "https://code.claude.com/docs/en/admin-setup",
+      "title": "Set up Claude Code for your organization - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_agents_parallel",
+      "url": "https://code.claude.com/docs/en/agents",
+      "title": "Run agents in parallel - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_bedrock_vertex",
+      "url": "https://code.claude.com/docs/en/bedrock-vertex",
+      "title": "Enterprise deployment overview - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_best_practices",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "title": "Best practices for Claude Code - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_changelog",
+      "url": "https://docs.anthropic.com/en/release-notes/claude-code",
+      "title": "Release Notes - Claude Code",
+      "source_type": "changelog",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_code_review_docs",
+      "url": "https://code.claude.com/docs/en/code-review",
+      "title": "Code Review - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_common_workflows",
+      "url": "https://code.claude.com/docs/en/common-workflows",
+      "title": "Common workflows - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_context_window",
+      "url": "https://code.claude.com/docs/en/context-window",
+      "title": "Explore the context window - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_data_usage",
+      "url": "https://code.claude.com/docs/en/data-usage",
+      "title": "Data usage - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_docs_overview",
+      "url": "https://docs.anthropic.com/en/docs/claude-code/overview",
+      "title": "Overview - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_enterprise",
+      "url": "https://claude.com/product/claude-code/enterprise",
+      "title": "Claude Code for Enterprise | Claude by Anthropic",
+      "source_type": "specialist",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_faq",
+      "url": "https://support.claude.com/en/articles/12386420-claude-code-faq",
+      "title": "Claude Code FAQ - Claude Help Center",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_hooks_docs",
+      "url": "https://code.claude.com/docs/en/hooks",
+      "title": "Hooks reference - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_how_it_works",
+      "url": "https://code.claude.com/docs/en/how-claude-code-works",
+      "title": "How Claude Code works - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_large_codebases",
+      "url": "https://code.claude.com/docs/en/large-codebases",
+      "title": "Set up Claude Code in a monorepo or large codebase - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_mcp_integrations",
+      "url": "https://docs.anthropic.com/en/docs/claude-code/mcp",
+      "title": "Connect Claude Code to tools via MCP - Claude Code Docs",
+      "source_type": "integration_catalog",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_memory",
+      "url": "https://code.claude.com/docs/en/memory",
+      "title": "How Claude remembers your project - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_permission_modes",
+      "url": "https://code.claude.com/docs/en/permission-modes",
+      "title": "Choose a permission mode - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_pricing",
+      "url": "https://claude.com/pricing",
+      "title": "Plans & Pricing | Claude by Anthropic",
+      "source_type": "pricing",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_product_page",
+      "url": "https://claude.com/product/claude-code",
+      "title": "Claude Code by Anthropic | AI Coding Agent, Terminal, IDE",
+      "source_type": "product_page",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_quickstart",
+      "url": "https://code.claude.com/docs/en/quickstart",
+      "title": "Quickstart - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_quickstart_docs",
+      "url": "https://code.claude.com/docs/en/quickstart",
+      "title": "Quickstart - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_sandbox_docs",
+      "url": "https://code.claude.com/docs/en/sandbox-environments",
+      "title": "Choose a sandbox environment - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_security",
+      "url": "https://code.claude.com/docs/en/security",
+      "title": "Security - Claude Code Docs",
+      "source_type": "specialist",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_subagents",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "title": "Create custom subagents - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_tools_reference",
+      "url": "https://code.claude.com/docs/en/tools-reference",
+      "title": "Tools reference - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cc_web_docs",
+      "url": "https://code.claude.com/docs/en/claude-code-on-the-web",
+      "title": "Use Claude Code on the web - Claude Code Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    }
+  ],
+  "feature_results": [
+    {
+      "feature_id": "automated_code_review",
+      "status": "has",
+      "rationale": "Claude Code provides a dedicated automated Code Review workflow that analyzes GitHub pull requests using a fleet of specialized agents and posts findings as inline comments on the PR. It can be triggered automatically on PR open, on every push, or manually. This exceeds a mere chat-based review and integrates with the GitHub PR platform, satisfying the has_criteria.",
+      "evidence": [
+        {
+          "source_id": "cc_code_review_docs",
+          "excerpt": "looking for logic errors, security vulnerabilities, broken edge cases, and subtle regressions"
+        },
+        {
+          "source_id": "cc_code_review_docs",
+          "excerpt": "Code Review is in research preview, available for Team and Enterprise subscriptions"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Managed Code Review is available for Team and Enterprise subscriptions.",
+          "source_id": "cc_code_review_docs"
+        },
+        {
+          "type": "release_stage",
+          "description": "Code Review is offered as a research preview.",
+          "source_id": "cc_code_review_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code GitHub Actions automated PR code review claude app documentation",
+          "\"Claude Code\" code review \"pull request\" \"inline comments\" logic errors security vulnerabilities",
+          "code.claude.com code-review posts findings as inline comments logic errors security vulnerabilities"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_refactoring",
+      "status": "has",
+      "rationale": "Official Claude Code documentation describes instruction-driven refactoring that spans multiple files: Claude reads relevant files across the project and applies coordinated edits, and the common-workflows guide documents a dedicated 'Refactor legacy code' workflow driven by natural-language prompts rather than an IDE refactor command. This meets the has_criteria (a refactor spanning more than a single edit location, driven by instruction).",
+      "evidence": [
+        {
+          "source_id": "cc_how_it_works",
+          "excerpt": "it searches for relevant files, reads multiple files to understand context, makes coordinated edits across them, runs tests to verify the fix, and commits the changes if you ask."
+        },
+        {
+          "source_id": "cc_common_workflows",
+          "excerpt": "suggest how to refactor utils.js to use modern JavaScript features"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code refactoring across multiple files natural language",
+          "Claude Code common workflows \"make targeted edits\" refactor legacy code",
+          "Claude Code common workflows \"Refactor legacy code\" \"Ask Claude to identify\" verbatim documentation"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_test_generation",
+      "status": "has",
+      "rationale": "Claude Code documents generating tests for existing or new code on request; the Quickstart shows asking Claude to write unit tests for specified functions, and Claude locates the relevant code, writes the tests, and can run them and fix failures. This is a documented test-generation capability, satisfying the has_criteria across languages/frameworks (no framework limitation documented).",
+      "evidence": [
+        {
+          "source_id": "cc_quickstart_docs",
+          "excerpt": "write unit tests for the calculator functions"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code write tests generate unit tests common workflows testing",
+          "Claude Code quickstart Write unit tests run them fix failures example"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "autonomous_task_execution",
+      "status": "has",
+      "rationale": "Claude Code is documented as an agentic tool that reads the codebase, edits files, and runs commands autonomously, iterating on multi-step development tasks until the goal is complete.",
+      "evidence": [
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Claude Code is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools."
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code overview autonomous agent multi-step tasks",
+          "Claude Code overview \"agentic\" edits runs commands docs.anthropic.com overview"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "background_long_running_tasks",
+      "status": "has",
+      "rationale": "Claude Code officially supports running commands in the background asynchronously, returning a task ID and letting the user/agent continue working while long-running processes execute, with /tasks to manage them.",
+      "evidence": [
+        {
+          "source_id": "cc_tools_reference",
+          "excerpt": "Claude Code supports running Bash commands in the background, allowing you to continue working while long-running processes execute."
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code background tasks run in background docs.anthropic.com",
+          "Claude Code \"background tasks\" long-running processes dev servers without blocking docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "codebase_semantic_search",
+      "status": "partial",
+      "rationale": "Claude Code answers natural-language questions about code across the whole repository, but it does NOT build a semantic/embedding index (RAG over code). Anthropic documents an intentional agentic-search design: Claude navigates on demand using file reads, grep/glob and LSP symbol lookups, driven by the model's understanding of the query, and explicitly declines codebase indexing. This delivers meaning-based, repository-wide retrieval as an outcome, but not via the semantic index / codebase indexing / RAG mechanism the feature centrally describes, and it is more than plain substring/regex alone. Because the core indexing mechanism is deliberately absent while meaning-based whole-repo retrieval is nonetheless achieved through agentic exploration, the strict judgment is partial rather than has or not_found.",
+      "evidence": [
+        {
+          "source_id": "cc_faq",
+          "excerpt": "Claude Code finds this approach more effective and flexible than full codebase indexing."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Claude Code maintains no embedding pipeline or persistent semantic/centralized index; codebase retrieval is performed by live agentic exploration (file reads, grep/glob, LSP symbol search) rather than meaning-based index retrieval. An external code-search/RAG index can only be added by exposing it as an MCP tool.",
+          "source_id": "cc_faq"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code context window large codebase handling agentic search",
+          "Claude Code \"agentic search\" no index embedding large codebase \"does not\"",
+          "Claude Code FAQ \"Does Claude Code index\" codebase agentic search grep glob",
+          "Claude Code large-codebases monorepo \"agentic search\" instead of indexing docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "data_retention_training_opt_out",
+      "status": "has",
+      "rationale": "Anthropic's official Claude Code data-usage documentation describes concrete, customer-facing controls over training use and data retention. Under commercial terms (Team, Enterprise, API, third-party platforms, Claude Gov) code and prompts sent to Claude Code are not used to train models by default unless the customer chooses to opt in (e.g., the Development Partner Program), and Enterprise/commercial organizations can configure custom data retention controls and zero-data-retention arrangements. This exceeds generic privacy-policy language and constitutes actionable opt-out/no-training controls.",
+      "evidence": [
+        {
+          "source_id": "cc_data_usage",
+          "excerpt": "Anthropic does not train generative models using code or prompts sent to Claude Code under commercial terms, unless the customer has chosen to provide their data to us for model improvement."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "The no-training default applies under commercial terms (Team, Enterprise, API, third-party platforms). Configurable custom data retention controls and zero-data-retention arrangements are positioned for Enterprise/commercial organizations rather than for all consumer tiers.",
+          "source_id": "cc_data_usage"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code data retention zero data retention training opt-out commercial terms",
+          "\"Claude Code\" data usage \"we will not train\" OR \"do not train\" commercial code prompts",
+          "code.claude.com data-usage \"Anthropic does not train generative models using code or prompts sent to Claude Code\""
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "diff_review_apply_workflow",
+      "status": "has",
+      "rationale": "In the default (Manual) permission mode, Claude Code presents each proposed file edit as a side-by-side diff and requires the user to approve before the change is written to disk, with explicit accept/reject controls. This satisfies the has_criteria (changes shown as a diff with accept/reject controls prior to being written).",
+      "evidence": [
+        {
+          "source_id": "cc_permission_modes",
+          "excerpt": "When Claude wants to edit a file, it shows a side-by-side comparison of the original and proposed changes, then asks for permission."
+        },
+        {
+          "source_id": "cc_permission_modes",
+          "excerpt": "You can accept, reject, or tell Claude what to do instead."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Inline per-edit diff review with accept/reject is the default (Manual) behavior; other permission modes such as acceptEdits or bypassPermissions auto-approve edits and defer or skip the inline review step.",
+          "source_id": "cc_permission_modes"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code review edits diff accept reject permission before writing files",
+          "Claude Code permission modes default \"asks for approval\" edits proposes changes",
+          "\"Claude proposes every change\" OR \"asks for approval before\" permission mode Claude Code diff accept reject"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "enterprise_sso_access_control",
+      "status": "has",
+      "rationale": "Official Claude Code enterprise/admin documentation describes SAML 2.0 / OIDC single sign-on plus role-based permissions, SCIM provisioning, and organization-wide managed policy settings for Enterprise (and Team) plans. This satisfies both the SSO and the role/permission-management requirements and goes well beyond personal-account 2FA.",
+      "evidence": [
+        {
+          "source_id": "cc_admin_setup",
+          "excerpt": "Claude for Enterprise adds SSO, domain capture, role-based permissions, compliance API, and managed policy settings for organization-wide Claude Code configurations."
+        },
+        {
+          "source_id": "cc_admin_setup",
+          "excerpt": "Claude Code enforces organization policy through managed settings that take precedence over local developer configuration."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "SSO, SCIM provisioning, and role-based permissions are provided on Enterprise (and, for SSO/JIT, Team) plans / Console organizations, not on personal consumer accounts.",
+          "source_id": "cc_admin_setup"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code enterprise SSO SAML OIDC role-based access control documentation",
+          "Claude Code enterprise \"single sign-on\" \"SCIM\" \"managed policy\" roles admin",
+          "code.claude.com admin-setup Claude Code SSO role-based organization enterprise"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "git_native_workflow",
+      "status": "has",
+      "rationale": "Claude Code's official documentation describes handling git workflows as a core capability, and the Quickstart documents conversational git operations including creating commits with generated messages, creating branches, and viewing history. This meets has_criteria: creating commits/branches and generating commit messages are documented features, not merely suggested plain-text commands the user runs manually.",
+      "evidence": [
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands."
+        },
+        {
+          "source_id": "cc_quickstart",
+          "excerpt": "commit my changes with a descriptive message"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code git commits branches commit messages create pull request docs.anthropic.com",
+          "Claude Code overview \"agentic coding tool that lives in your terminal\" \"handling git workflows\" natural language commands",
+          "Claude Code common workflows create git commit \"commit changes\" section documentation",
+          "Claude Code quickstart \"commit my changes\" OR \"create a commit\" example Claude will commit"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "inline_code_completion",
+      "status": "not_found",
+      "rationale": "No official Anthropic source describes as-you-type ghost-text or inline code suggestions generated in an editor without an explicit prompt. Claude Code is an agent-driven CLI/IDE tool; the overview explicitly positions it as a shift away from autocomplete-based assistants (it works 'through natural language commands'). The only autocomplete-like features found in the changelog are slash-command autocomplete and bash-mode history tab completion, which are command-UI conveniences, not inline completion of source code as defined by this feature. Documentation, product page, changelog, and pricing were all checked with no supporting statement.",
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code inline autocomplete ghost text tab completion editor",
+          "Claude Code VS Code extension inline diffs autocomplete suggestions as you type",
+          "Claude Code changelog ghost text slash command autocomplete tab completion feature",
+          "Claude Code is an agentic coding tool that lives in your terminal understands codebase natural language commands"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "long_context_large_repo_handling",
+      "status": "has",
+      "rationale": "Anthropic documents explicit context-scale handling mechanisms for Claude Code beyond a raw model window: automatic compaction summarizes work into a new context window near the limit, extended (1M-token) context windows are supported on newer models, and agentic search plus subagent delegation keep large-codebase exploration out of the main context. These are codebase/session-specific handling mechanisms, satisfying the has_criteria.",
+      "evidence": [
+        {
+          "source_id": "cc_context_window",
+          "excerpt": "Claude Code also auto-compacts when you get close to the limit, so you will rarely hit a hard wall."
+        },
+        {
+          "source_id": "cc_context_window",
+          "excerpt": "When you're nearing the end of the context window, the task you've been working on is automatically summarized into a smaller description and the model continues the work in a new context window."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "model",
+          "description": "The extended 1M-token context window is available only on specific newer models; other models rely on the standard window plus auto-compaction and manual /compact and /clear controls.",
+          "source_id": "cc_context_window"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code context window large codebase handling agentic search",
+          "Claude Code \"context window\" 1M tokens compaction \"auto-compact\" documentation manage",
+          "Claude Code large-codebases monorepo \"agentic search\" instead of indexing docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "mcp_or_plugin_extensibility",
+      "status": "has",
+      "rationale": "Anthropic officially documents a supported, open extension mechanism for Claude Code via the Model Context Protocol (MCP), allowing users to add external tools, databases, and APIs. This satisfies the has_criteria of a documented extension mechanism (MCP) for adding external capabilities. Plugins bundling MCP servers and hooks are also officially documented, but the MCP documentation alone fully meets the criterion.",
+      "evidence": [
+        {
+          "source_id": "cc_mcp_integrations",
+          "excerpt": "Claude Code can connect to hundreds of external tools and data sources through the Model Context Protocol (MCP), an open source standard for AI-tool integrations."
+        },
+        {
+          "source_id": "cc_mcp_integrations",
+          "excerpt": "MCP servers give Claude Code access to your tools, databases, and APIs."
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code MCP Model Context Protocol documentation add external tools data sources",
+          "Claude Code plugins hooks marketplace documentation",
+          "\"Claude Code\" MCP \"hundreds of external tools\" open source standard exact text docs.anthropic.com"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "integration_catalog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_agent_orchestration",
+      "status": "has",
+      "rationale": "Claude Code documents subagents as separate agent instances the main agent spawns to handle focused subtasks, with automatic delegation and support for running agents in parallel.",
+      "evidence": [
+        {
+          "source_id": "cc_subagents",
+          "excerpt": "Subagents are separate agent instances that your main agent can spawn to handle focused subtasks."
+        },
+        {
+          "source_id": "cc_subagents",
+          "excerpt": "You can use them to isolate context, run multiple analyses in parallel, and apply specialized instructions without adding to the main agent's prompt."
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code subagents documentation Anthropic",
+          "Claude Code subagents \"Custom subagents\" code.claude.com docs",
+          "code.claude.com sub-agents \"Subagents are\" \"run multiple analyses in parallel\""
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_file_code_generation",
+      "status": "has",
+      "rationale": "Official sources confirm that a single natural-language instruction results in coordinated code written across more than one file in one operation. The product page states Claude Code 'plans the approach, writes the code across multiple files, and verifies it works,' and the docs overview confirms it 'can work across multiple files and tools to get things done.'",
+      "evidence": [
+        {
+          "source_id": "cc_product_page",
+          "excerpt": "You describe what you want in plain language. Claude Code plans the approach, writes the code across multiple files, and verifies it works."
+        },
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Claude Code understands your entire codebase and can work across multiple files and tools to get things done."
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code overview documentation edit files across codebase natural language",
+          "Claude Code product page Describe what you want plain language plans writes code multiple files verifies"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_ide_support",
+      "status": "has",
+      "rationale": "Anthropic officially ships native IDE extensions for two distinct IDE families: VS Code (and VS Code forks such as Cursor) and JetBrains IDEs. This exceeds the has_criteria of two or more officially supported IDEs/editors.",
+      "evidence": [
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Native extensions are available for VS Code (+ Cursor, Devin Desktop) and JetBrains IDEs."
+        },
+        {
+          "source_id": "cc_product_page",
+          "excerpt": "There are native extensions for VS Code (plus Cursor, Devin Desktop) and JetBrains IDEs."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Officially supported IDEs are VS Code (and VS Code forks such as Cursor and Devin Desktop) and JetBrains IDEs (e.g. IntelliJ, PyCharm); the JetBrains plugin is installed from the JetBrains Marketplace.",
+          "source_id": "cc_product_page"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code IDE integrations VS Code JetBrains official documentation",
+          "Claude Code product page Meet Claude Code terminal IDE agentic coding agent"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "natural_language_code_generation",
+      "status": "has",
+      "rationale": "A natural-language description of desired behavior produces runnable code the user did not write. The docs overview describes Claude Code as helping 'you code faster ... all through natural language commands,' and the product page states the user describes what they want 'in plain language' after which Claude Code 'writes the code ... and verifies it works.' Granularity spans snippets through full multi-file implementations.",
+      "evidence": [
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands."
+        },
+        {
+          "source_id": "cc_product_page",
+          "excerpt": "You describe what you want in plain language. Claude Code plans the approach, writes the code across multiple files, and verifies it works."
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code overview documentation edit files across codebase natural language",
+          "Claude Code product page Describe what you want plain language plans writes code multiple files verifies"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "on_premises_private_deployment",
+      "status": "has",
+      "rationale": "Official Claude Code enterprise deployment documentation states that customers can run Claude Code against models in their own existing Amazon Bedrock or Google Cloud Vertex AI (and Microsoft Foundry) instances within their existing VPC, integrating with their own IAM/logging, so data stays within the customer's control rather than only Anthropic's shared cloud. This matches the definition's 'dedicated private cloud instance rather than only the vendor's shared cloud' and satisfies the has criteria. Note this is a customer-cloud/private-VPC deployment via cloud-provider integrations, not a fully air-gapped self-hosting of the model weights on the customer's own hardware.",
+      "evidence": [
+        {
+          "source_id": "cc_bedrock_vertex",
+          "excerpt": "Enterprise users can run Claude Code using models in existing Amazon Bedrock or Google Cloud Vertex AI instances."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Private/dedicated deployment is achieved via the customer's own Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry account within their existing VPC; it is not a vendor-provided air-gapped on-premises model-hosting product.",
+          "source_id": "cc_bedrock_vertex"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "The Bedrock/Vertex/Foundry deployment path is documented for enterprise users.",
+          "source_id": "cc_bedrock_vertex"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code Amazon Bedrock Google Vertex AI deployment private",
+          "Claude Code \"Bedrock\" \"Vertex\" run within your existing infrastructure enterprise deployment",
+          "\"Enterprise users can run Claude Code using models in\" Amazon Bedrock Google Cloud Vertex AI instances"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "persistent_project_memory",
+      "status": "has",
+      "rationale": "Claude Code documents CLAUDE.md files as persistent, project-scoped instructions written once and loaded automatically at the start of every session (with user, project and organization scopes concatenated by specificity), plus an Auto memory system that accumulates project knowledge across sessions without manual re-entry. This is a documented mechanism that persists guidance across sessions and is applied automatically, fully meeting the has_criteria.",
+      "evidence": [
+        {
+          "source_id": "cc_memory",
+          "excerpt": "CLAUDE.md files are markdown files that give Claude persistent instructions for a project, your personal workflow, or your entire organization."
+        },
+        {
+          "source_id": "cc_memory",
+          "excerpt": "Auto memory lets Claude accumulate knowledge across sessions without you writing anything."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "CLAUDE.md files are loaded into the context window at the start of every session and consume tokens; very large memory files can reduce instruction adherence, so path-scoped rules or trimming are recommended.",
+          "source_id": "cc_memory"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code CLAUDE.md memory persistent project instructions documentation",
+          "\"CLAUDE.md\" Claude Code \"automatically\" loaded memory file project scope hierarchy"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "pull_request_creation",
+      "status": "has",
+      "rationale": "Official documentation states Claude Code can open pull requests directly from the tool using the GitHub CLI (gh), driven by natural-language prompts such as \"create a pr\". PR creation happens within the Claude Code session without the user leaving the tool, satisfying has_criteria. A separate GitHub CLI install/authentication is required.",
+      "evidence": [
+        {
+          "source_id": "cc_best_practices",
+          "excerpt": "If you use GitHub, install the gh CLI. Claude knows how to use it for creating issues, opening pull requests, and reading comments."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Pull request creation relies on the GitHub CLI (gh) being installed and authenticated; without it Claude falls back to the GitHub API, which is subject to unauthenticated rate limits.",
+          "source_id": "cc_best_practices"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code overview git operations create pull requests gh CLI GitHub",
+          "Claude Code common workflows \"Create a pull request\" exact steps \"gh\" documentation",
+          "\"Claude Code\" best practices \"gh CLI\" \"Claude knows how to use it\" GitHub issues pull requests"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "sandboxed_execution_environment",
+      "status": "has",
+      "rationale": "Official Claude Code documentation describes a built-in sandboxed Bash tool that uses OS-level primitives (Seatbelt on macOS, bubblewrap on Linux/WSL2) to isolate filesystem and network access, plus a range of isolated execution environments from per-command sandboxes to full VMs and Anthropic-managed cloud sandboxes.",
+      "evidence": [
+        {
+          "source_id": "cc_sandbox_docs",
+          "excerpt": "The sandboxed Bash tool uses operating system primitives to restrict the filesystem and network access of every Bash command Claude runs: Seatbelt on macOS, and bubblewrap on Linux and WSL2."
+        },
+        {
+          "source_id": "cc_sandbox_docs",
+          "excerpt": "Claude Code can run in several kinds of isolated environments, ranging from a lightweight per-command sandbox to a fully separate virtual machine."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "The built-in sandboxed Bash tool relies on OS primitives: Seatbelt on macOS and bubblewrap on Linux and WSL2. Additional isolation options (dev containers, Docker, VMs, Anthropic-managed cloud sandboxes) are also documented.",
+          "source_id": "cc_sandbox_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code sandbox sandboxing isolated execution environment devcontainer",
+          "code.claude.com sandbox-environments Claude Code sandbox isolated per-command filesystem network",
+          "The sandboxed Bash tool sandbox runtime Claude Code Seatbelt bubblewrap without asking permission"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "standalone_cli",
+      "status": "has",
+      "rationale": "Claude Code is fundamentally a command-line tool that runs in the terminal independently of any IDE or GUI, providing the full agentic coding functionality (reading the codebase, editing files, running commands) from the command line. This meets the has_criteria for a documented CLI providing core functionality.",
+      "evidence": [
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Claude Code runs in your terminal and works alongside your preferred IDE and development tools without requiring you to change your workflow."
+        },
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Claude Code is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "The CLI runs on macOS, Linux, and Windows.",
+          "source_id": "cc_product_page"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code overview in your terminal IDE command line documentation docs.anthropic.com",
+          "Claude Code product page Meet Claude Code terminal IDE agentic coding agent"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "static_analysis_integration",
+      "status": "has",
+      "rationale": "Claude Code documents running linters/static-analysis tools via PostToolUse hooks after edits, and the hooks mechanism feeds the tool's stderr output back to Claude as an error message so it can adjust its subsequent output. This means static-analysis findings inform the assistant's suggestions, satisfying the has_criteria. Note the integration is user-configured through hooks rather than a bundled linter.",
+      "evidence": [
+        {
+          "source_id": "cc_hooks_docs",
+          "excerpt": "stderr text is fed back to Claude as an error message"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Linter/static-analysis feedback requires the user to configure a PostToolUse hook that runs the tool; no built-in linter is bundled.",
+          "source_id": "cc_hooks_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code hooks lint results run linter after edit static analysis feedback",
+          "Claude Code hooks guide PostToolUse exit code 2 stderr blocks feedback Claude run linters automatically"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "terminal_command_execution",
+      "status": "has",
+      "rationale": "Official documentation states Claude Code runs shell commands on the user's behalf as a core capability, using a permission-based confirmation model: read-only commands run without a prompt, while commands that modify the system require explicit approval.",
+      "evidence": [
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Claude Code is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools."
+        },
+        {
+          "source_id": "cc_security",
+          "excerpt": "When additional actions are needed (editing files, running tests, executing commands), Claude Code requests explicit permission."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Command execution follows a permission-based model: a built-in set of read-only commands (e.g. ls, cat, git status) runs without a prompt, while commands that can modify the system require explicit user approval (once or auto-allow).",
+          "source_id": "cc_security"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code bash tool permission confirmation model run shell commands documentation",
+          "Claude Code overview edit files run commands terminal what it does",
+          "Claude Code security permission-based asks for permission bash commands read-only by default"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "third_party_integration_catalog",
+      "status": "has",
+      "rationale": "Anthropic officially documents connecting Claude Code to a large number of third-party tools and data sources through MCP, which the brief states counts as an officially documented integration catalog. The MCP documentation describes connecting to hundreds of external tools and references specific third-party services (issue trackers, monitoring dashboards, databases). This satisfies the has_criteria of an official documentation page listing supported third-party integrations, exceeding the partial threshold of only 1-2.",
+      "evidence": [
+        {
+          "source_id": "cc_mcp_integrations",
+          "excerpt": "Claude Code can connect to hundreds of external tools and data sources through the Model Context Protocol (MCP), an open source standard for AI-tool integrations."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Third-party integrations are accessed by configuring and adding MCP servers/connectors; each external tool requires connecting its MCP server.",
+          "source_id": "cc_mcp_integrations"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code MCP connect integrations catalog Sentry GitHub Notion Figma list documented connectors",
+          "Claude Code mcp docs \"Popular MCP servers\" table GitHub Sentry Socket Notion exact list"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "integration_catalog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "web_hosted_access",
+      "status": "has",
+      "rationale": "Claude Code on the web is a documented browser-based web application (accessed at claude.ai/code) that provides core coding functionality: users connect a GitHub repository, submit coding tasks that run on Anthropic-managed cloud infrastructure without local setup, and review the resulting pull request. This meets the has_criteria of a documented web application providing access to core functionality, though it is offered as a research preview.",
+      "evidence": [
+        {
+          "source_id": "cc_web_docs",
+          "excerpt": "Claude Code on the web runs on Anthropic-managed cloud infrastructure instead of your machine."
+        },
+        {
+          "source_id": "cc_web_docs",
+          "excerpt": "Claude Code on the web is in research preview for Pro, Max, and Team users, and for Enterprise users with premium seats or Chat + Claude Code seats."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "Claude Code on the web is offered as a research preview (beta) rather than general availability.",
+          "source_id": "cc_web_docs"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Access requires a Pro, Max, or Team plan, or an Enterprise plan with premium seats or Chat + Claude Code seats.",
+          "source_id": "cc_web_docs"
+        },
+        {
+          "type": "integration_required",
+          "description": "A connected GitHub repository is required to submit and run web-hosted coding tasks.",
+          "source_id": "cc_web_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Claude Code on the web browser access claude.ai",
+          "Claude Code on the web research preview claude.com blog delegate coding tasks browser",
+          "Use Claude Code on the web docs run coding tasks cloud GitHub pull request"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": []
+      }
+    }
+  ],
+  "additional_facts": [
+    {
+      "fact_id": "access_surfaces",
+      "topic": "Platform and access surfaces",
+      "description": "Claude Code is primarily a terminal CLI that runs alongside the developer's existing IDE, with native extensions for VS Code (and forks such as Cursor and Devin Desktop) and JetBrains IDEs, plus a cloud-hosted web experience at claude.ai/code.",
+      "evidence": [
+        {
+          "source_id": "cc_docs_overview",
+          "excerpt": "Native extensions are available for VS Code (+ Cursor, Devin Desktop) and JetBrains IDEs."
+        },
+        {
+          "source_id": "cc_web_docs",
+          "excerpt": "Claude Code on the web runs on Anthropic-managed cloud infrastructure instead of your machine."
+        }
+      ]
+    },
+    {
+      "fact_id": "data_no_training_default",
+      "topic": "Data usage",
+      "description": "Under commercial terms, Anthropic does not use code or prompts sent to Claude Code to train its generative models unless the customer explicitly opts in, and Enterprise/commercial organizations can configure custom data-retention and zero-data-retention arrangements.",
+      "evidence": [
+        {
+          "source_id": "cc_data_usage",
+          "excerpt": "Anthropic does not train generative models using code or prompts sent to Claude Code under commercial terms, unless the customer has chosen to provide their data to us for model improvement."
+        }
+      ]
+    },
+    {
+      "fact_id": "models_and_context",
+      "topic": "Models and context handling",
+      "description": "Claude Code runs on Anthropic's Claude models and manages long sessions with automatic compaction near the context limit; extended 1M-token context windows are supported on specific newer models. Enterprises can also run Claude Code against Claude models hosted in their own Amazon Bedrock or Google Cloud Vertex AI instances.",
+      "evidence": [
+        {
+          "source_id": "cc_context_window",
+          "excerpt": "Claude Code also auto-compacts when you get close to the limit, so you will rarely hit a hard wall."
+        },
+        {
+          "source_id": "cc_bedrock_vertex",
+          "excerpt": "Enterprise users can run Claude Code using models in existing Amazon Bedrock or Google Cloud Vertex AI instances."
+        }
+      ]
+    },
+    {
+      "fact_id": "plan_availability",
+      "topic": "Plans and availability",
+      "description": "Claude Code is offered across Anthropic's Pro, Max, Team, and Enterprise plans, and some capabilities are gated to higher tiers. For example, Claude Code on the web is available for Pro, Max, and Team users and for Enterprise users with premium or Chat + Claude Code seats, while managed Code Review is limited to Team and Enterprise subscriptions.",
+      "evidence": [
+        {
+          "source_id": "cc_web_docs",
+          "excerpt": "Claude Code on the web is in research preview for Pro, Max, and Team users, and for Enterprise users with premium seats or Chat + Claude Code seats."
+        },
+        {
+          "source_id": "cc_code_review_docs",
+          "excerpt": "Code Review is in research preview, available for Team and Enterprise subscriptions"
+        }
+      ]
+    },
+    {
+      "fact_id": "research_preview_features",
+      "topic": "Release stage",
+      "description": "Several newer Claude Code capabilities are offered as research previews rather than general availability, including the browser-based Claude Code on the web and the managed GitHub Code Review workflow.",
+      "evidence": [
+        {
+          "source_id": "cc_web_docs",
+          "excerpt": "Claude Code on the web is in research preview for Pro, Max, and Team users, and for Enterprise users with premium seats or Chat + Claude Code seats."
+        },
+        {
+          "source_id": "cc_code_review_docs",
+          "excerpt": "Code Review is in research preview, available for Team and Enterprise subscriptions"
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    {
+      "use_case_id": "automated_pr_review",
+      "title": "Automated pull request review on GitHub",
+      "description": "On Team and Enterprise plans, Claude Code can review GitHub pull requests automatically, analyzing changes for logic errors, security vulnerabilities, and regressions and posting findings as inline comments.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "cc_code_review_docs",
+          "excerpt": "looking for logic errors, security vulnerabilities, broken edge cases, and subtle regressions"
+        }
+      ]
+    },
+    {
+      "use_case_id": "generate_and_run_unit_tests",
+      "title": "Generate and run unit tests for existing code",
+      "description": "A developer asks Claude Code to write unit tests for specified functions; it locates the relevant code, writes the tests, and can run them and fix any failures.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "cc_quickstart_docs",
+          "excerpt": "write unit tests for the calculator functions"
+        }
+      ]
+    },
+    {
+      "use_case_id": "onboard_to_large_codebase",
+      "title": "Onboard onto and navigate a large codebase",
+      "description": "An engineer joining an unfamiliar monorepo uses Claude Code to answer meaning-based questions across the whole repository, relying on agentic search and long-context handling while project conventions persist between sessions via CLAUDE.md.",
+      "kind": "inferred",
+      "rationale": "The tool documents whole-repo agentic retrieval, context-scale handling (auto-compaction and extended windows), and persistent CLAUDE.md/auto memory, which together support exploratory onboarding to a large project even though no single doc frames this exact scenario.",
+      "supporting_features": [
+        "codebase_semantic_search",
+        "long_context_large_repo_handling",
+        "persistent_project_memory"
+      ]
+    },
+    {
+      "use_case_id": "refactor_legacy_code",
+      "title": "Refactor legacy code across multiple files",
+      "description": "A developer asks Claude Code in natural language to modernize or restructure existing code; it searches for the relevant files, reads them for context, and applies coordinated edits across the codebase before verifying the result.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "cc_common_workflows",
+          "excerpt": "suggest how to refactor utils.js to use modern JavaScript features"
+        },
+        {
+          "source_id": "cc_how_it_works",
+          "excerpt": "it searches for relevant files, reads multiple files to understand context, makes coordinated edits across them, runs tests to verify the fix, and commits the changes if you ask."
+        }
+      ]
+    },
+    {
+      "use_case_id": "secure_enterprise_rollout",
+      "title": "Governed enterprise rollout with isolation and data controls",
+      "description": "A platform team deploys Claude Code across the organization with SSO and role-based access, runs agent commands inside OS-level sandboxes, keeps data in their own cloud via Bedrock/Vertex, and relies on the no-training-by-default commercial terms.",
+      "kind": "inferred",
+      "rationale": "Enterprise SSO/RBAC, sandboxed execution, customer-cloud private deployment, and training opt-out controls are each individually supported features that combine into a governed, security-conscious enterprise deployment pattern.",
+      "supporting_features": [
+        "enterprise_sso_access_control",
+        "sandboxed_execution_environment",
+        "on_premises_private_deployment",
+        "data_retention_training_opt_out"
+      ]
+    }
+  ],
+  "unresolved_issues": []
+}

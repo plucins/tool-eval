@@ -1,0 +1,206 @@
+# Phase 1 Process: Problem Framing
+# Hybrid process - AI facilitates, humans decide
+---
+references:
+  rules: ../rules/phase1-initiation.md
+
+definition:
+  id: "PROC-1.3"
+  name: "Problem Framing"
+  description: |
+    Deepen understanding of the problem space before jumping to solutions.
+    This is a human-led process where AI acts as Facilitator and Scribe.
+
+    Supports two modes:
+    - QUICK: Validate existing framing is adequate (~15 min)
+    - FULL: Thorough problem exploration and reframing (~1-2 hours)
+  version: "1.0.0"
+  phase: 1
+  information_composition:
+    formal: 10
+    tacit: 70
+    emergent: 20
+
+interfaces:
+  inputs:
+    - type: "opportunity_statement"
+      required: true
+      description: "Output from PROC-1.1"
+    - type: "stakeholder_map"
+      required: false
+      description: "Output from PROC-1.2 (enhances framing)"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "problem_statement"
+      description: "Well-framed problem with boundaries and success criteria"
+    - type: "constraints"
+      description: "Known constraints and assumptions"
+    - type: "deferred_items"
+      description: "Aspects needing further exploration"
+
+steps:
+  # Step 1: Surface current understanding (AI-facilitated)
+  - id: "1.3.1"
+    name: "Surface Current Understanding"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Describe the problem as you currently understand it"
+    ai_role: "Listen actively; reflect back understanding; note ambiguities"
+    escalation_triggers:
+      - condition: "Problem description contains solution assumptions"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "I notice solution ideas embedded in the problem. Let's separate them to keep options open."
+    completion_criteria: "Current problem understanding articulated"
+    validation: "Problem described in human's own words"
+
+  # Step 2: Explore problem boundaries (AI-facilitated)
+  - id: "1.3.2"
+    name: "Explore Problem Boundaries"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Define what's in scope and out of scope"
+    ai_role: "Ask boundary-clarifying questions; help identify adjacent problems"
+    escalation_triggers:
+      - condition: "Scope creep detected - boundaries expanding during discussion"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "The scope seems to be growing. Should we focus on a core problem first?"
+    completion_criteria: "Boundaries articulated"
+    validation: "At least one in-scope and one out-of-scope item identified"
+
+  # Step 3: Identify root causes (AI records, human provides insight)
+  - id: "1.3.3"
+    name: "Identify Root Causes"
+    capability: Analyse
+    pattern: Human-Led
+    human_role: "Share your understanding of why this problem exists"
+    ai_role: "Record and structure human analysis; do not suggest root causes"
+    escalation_triggers:
+      - condition: "Root causes unclear or contested"
+        action: DEFER
+        severity: LOW
+        target: "1.3.6"
+        context: "Root cause uncertainty noted - may need investigation"
+    completion_criteria: "At least one potential root cause identified"
+    validation: "Root cause is distinct from symptoms"
+
+  # Step 4: Define success criteria (Human-led)
+  - id: "1.3.4"
+    name: "Define Success Criteria"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Describe what 'solved' looks like - how would you know?"
+    ai_role: "Help make criteria concrete and measurable where possible"
+    escalation_triggers:
+      - condition: "Success criteria vague or unmeasurable"
+        action: RETURN
+        severity: LOW
+        target: "1.3.4"
+        context: "Could we make this more specific? What would you observe if successful?"
+    completion_criteria: "At least one success criterion defined"
+    validation: "Criteria are observable or measurable"
+
+  # Step 5: Surface constraints and assumptions (AI-facilitated)
+  - id: "1.3.5"
+    name: "Surface Constraints"
+    capability: Elicit
+    pattern: Human-Led
+    human_role: "Identify constraints: budget, time, technology, organisational"
+    ai_role: "Prompt for common constraint categories; distinguish constraints from preferences"
+    escalation_triggers:
+      - condition: "Constraints make problem unsolvable"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "These constraints may make the problem unsolvable. Should we revisit scope or constraints?"
+    completion_criteria: "Key constraints identified"
+    validation: "Constraints distinguished from preferences"
+
+  # Step 6: Synthesise problem statement (AI-assisted)
+  - id: "1.3.6"
+    name: "Synthesise Problem Statement"
+    capability: Synthesise
+    pattern: Human-Led
+    human_role: "Review and refine synthesised problem statement"
+    ai_role: "Draft structured problem statement integrating all inputs"
+    escalation_triggers:
+      - condition: "Human disagrees with synthesis"
+        action: RETURN
+        severity: LOW
+        target: "1.3.1"
+        context: "Let's revisit the framing"
+    completion_criteria: "Problem statement accepted"
+    validation: "Statement includes: problem, boundaries, success criteria, constraints"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "1.3.1"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 15
+      depth: "Validate framing is adequate; note gaps"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 90
+      depth: "Thorough exploration; multiple perspectives"
+
+quality:
+  entry_criteria:
+    - "Opportunity statement available"
+    - "Human with problem context available"
+  exit_criteria:
+    - "Problem statement articulated"
+    - "At least one success criterion defined"
+  sla:
+    expected_duration_minutes: 15
+    timeout_minutes: 120
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Root causes unclear or multiple"
+    - "Stakeholder perspectives differ on problem"
+    - "Problem boundaries unclear"
+    - "Human requests deeper analysis"
+  upgrade_prompt: |
+    The problem seems to have more depth than initially apparent. Would you
+    like to switch to FULL mode for a more thorough exploration? Better
+    problem framing leads to better solutions.
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["1.3.1 Surface Understanding<br/>(Elicit, Human-Led)"]
+      S2["1.3.2 Explore Boundaries<br/>(Analyse, Human-Led)"]
+      S3["1.3.3 Identify Root Causes<br/>(Analyse, Human-Led)"]
+      S4["1.3.4 Define Success Criteria<br/>(Elicit, Human-Led)"]
+      S5["1.3.5 Surface Constraints<br/>(Elicit, Human-Led)"]
+      S6["1.3.6 Synthesise Statement<br/>(Synthesise, Human-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Solution in problem"| ESC1[Escalate: separate]
+    S2 -->|"Scope creep"| ESC2[Escalate: focus?]
+    S3 -->|"Unclear causes"| DEF[Defer]
+    S4 -->|"Vague criteria"| S4
+    S5 -->|"Unsolvable"| ESC3[Escalate: revisit]
+    S6 -->|"Disagrees"| S1
+
+    S6 --> OUT[Problem Statement + Constraints]
+  ```
+---

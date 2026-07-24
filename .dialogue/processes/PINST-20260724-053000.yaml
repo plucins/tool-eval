@@ -1,0 +1,119 @@
+---
+# ProcessInstance Schema v1.0
+
+instance:
+  id: "PINST-20260724-053000"
+  created: "2026-07-24T05:30:00Z"
+  created_by: "ai:claude"
+
+  plain_english_description: >
+    Complete Increment 1 (project foundation) of the AI Coding Tool Comparison
+    System: an installable Python package skeleton with the tool_eval CLI,
+    portable configuration and runtime directories, baseline JSON Schemas and
+    feature taxonomy, the structured error model, and the Claude Code
+    orchestrator/worker agents plus the three entry-skill skeletons. Steps 1-6
+    of Increment 1 are already implemented and verified (config validate and
+    run init both return valid CLI envelopes); the remaining work is the agent
+    definitions and skill skeletons (plan steps 7-8) and finalising the
+    increment against its gate.
+
+  definition_source:
+    type: WELL_KNOWN
+    definition_id: "PROC-5.1"
+    definition_path: "claude-plugin-evo/processes/process-code-generation.yaml"
+
+  context:
+    trigger: "User requested full Dialogue Framework process delegation to implement Increment 1"
+    inputs:
+      design_baseline: >
+        docs/implementation_plan_v1.md - Section 5 "Increment 1 - project
+        foundation" (8 numbered steps and the gate), plus adopted decisions
+        D-008 (Python/platforms), D-011 (errors/retries/resume), D-014 (minimal
+        dependency stack), D-015 (Claude Code integration and skill packaging),
+        D-018 (invocation and user documentation), and D-019 (vertical
+        increments).
+      interface_specifications: >
+        docs/implementation_plan_v1.md Section 3.5 "User skills and internal
+        CLI" - the `python -m tool_eval <command>` surface and the stdout JSON
+        envelope {status, code, run_id, next_action, artifacts, errors}. Already
+        implemented in src/tool_eval/cli.py.
+      data_model: >
+        docs/implementation_plan_v1.md D-016 "Profile model and system
+        language" and the baseline JSON Schemas already authored under
+        src/tool_eval/validation/schemas/ (run, task, source, feature-result).
+    parameters:
+      mode: FULL
+      current_state:
+        implemented_and_verified:
+          - "pyproject.toml (hatchling, Python 3.11+) and editable install into .venv"
+          - "src/tool_eval package: __main__.py, cli.py (argparse + JSON envelope)"
+          - "paths.py: project-root discovery, runtime dirs, resolve_within (D-017)"
+          - "config/ loader with PyYAML safe_load, revisions, SHA-256 hashes"
+          - "runs/manager.py: init, status, resume-check, fail (D-011)"
+          - "errors.py: structured error families (D-011)"
+          - "6 config YAML files under config/"
+          - "4 JSON Schemas (run, task, source, feature-result)"
+          - "config/feature-taxonomy.yaml: 26-feature DRAFT pending curator review"
+        remaining_work:
+          - "plan step 7: .claude/agents/tool-eval-orchestrator.md, tool-eval-worker.md, .claude/skills/tool-eval-orchestration/SKILL.md"
+          - "plan step 8: .claude/skills/{tool-eval-research,tool-eval-compare,tool-eval-resume}/SKILL.md skeletons"
+          - "finalise: confirm Increment 1 gate (installs on 3.11+, config valid, agents/skills recognised, no API key required)"
+      known_gaps_from_review:
+        - "config/tools/ directory in requirements Sec 22 is intentionally omitted; per-tool sources live in profile.json (D-016) - decide whether to document this."
+        - "waiting-room data model: only pending.json and rejected.json defined; confirm pending.json doubles as the waiting room."
+      focus_areas:
+        - portability
+        - security
+        - self-contained-offline
+    test_mode: false
+
+  status: COMPLETED
+  execution_log_id: "EXEC-20260724-053600"
+
+  approval:
+    definition_approved: true
+    approved_by: "orchestrator (delegated authority)"
+    approved_at: "2026-07-24T05:36:00Z"
+    trust_level: REVIEW_EACH
+    approval_decision_id: null
+
+  run_count: 1
+
+  started: "2026-07-24T05:36:00Z"
+  completed: "2026-07-24T05:43:00Z"
+
+  outcome:
+    execution_success: true
+    process_result: "GENERATED"
+    summary: >
+      Increment 1 (project foundation) is complete. Plan steps 1-6 were already
+      implemented and verified before this run; the process generated the
+      remaining plan steps 7-8: the tool-eval-orchestrator and tool-eval-worker
+      agent definitions, the tool-eval-orchestration workflow skill, and the
+      three operator entry-skill skeletons (research, compare, resume). All six
+      files parse and register in Claude Code. The CLI gate was re-verified
+      (config validate => CONFIG_VALID; run init => RUN_INITIALIZED) and no
+      existing code was modified. One environmental limitation: the dialogue
+      plugin's own PreToolUse:Bash hook blocked the log-observation.sh /
+      log-decision.sh scripts, so step-level DEC/OBS logging could not be written
+      through the framework scripts; the ExecutionLog and this outcome were
+      finalised via direct file writes instead.
+    outputs:
+      files_created:
+        - ".claude/agents/tool-eval-orchestrator.md"
+        - ".claude/agents/tool-eval-worker.md"
+        - ".claude/skills/tool-eval-orchestration/SKILL.md"
+        - ".claude/skills/tool-eval-research/SKILL.md"
+        - ".claude/skills/tool-eval-compare/SKILL.md"
+        - ".claude/skills/tool-eval-resume/SKILL.md"
+      gate_status:
+        installs_on_py311_plus: true
+        configuration_valid: true
+        agents_and_skills_registered: true
+        no_api_key_required: true
+      open_items:
+        - "config/feature-taxonomy.yaml is a DRAFT pending human curator review before being frozen for real runs."
+        - "Decide whether to document the intentional omission of config/tools/ (per D-016 sources live in profile.json)."
+        - "Confirm the waiting-room data model (pending.json vs a dedicated deferred file)."
+        - "Framework audit logging (DEC/OBS scripts) is blocked by the plugin's Bash preflight hook and needs attention."
+---

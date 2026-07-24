@@ -1,0 +1,29 @@
+version: "0.1"
+
+# Interaction mode controls how Claude communicates (help verbosity, proactivity)
+# Options: human-led | partnership | ai-led
+# - human-led: Concise, on-demand help; minimal session start output
+# - partnership: Balanced help with hints; suggests next steps (default)
+# - ai-led: Verbose, proactive; recommends actions and explains features
+interaction_mode: partnership
+
+# Team mode controls collaboration features (FW-040)
+# Options: auto | solo | team
+# - auto: Detect from active user count (2+ users within 30 days = team)
+# - solo: Simplified mode - no user registration, single session memo, no sync reminders
+# - team: Full features - user tracking, per-user memos, git sync checks and reminders
+team_mode: solo
+
+# Project document locations (adjust paths to match your project)
+artifacts:
+  adr:
+    directory: "docs/decisions"
+    pattern: "ADR-*.md"
+
+# Log locations (per-file directories)
+logs:
+  decisions: "file://D:/Projekty/tool-eval/.dialogue/logs/decisions/"
+  observations: "file://D:/Projekty/tool-eval/.dialogue/logs/observations/"
+
+# Tasks (per-file directory)
+tasks: "file://D:/Projekty/tool-eval/.dialogue/tasks/"

@@ -1,0 +1,8 @@
+id: OBS-20260724-061932
+timestamp: "2026-07-24T06:19:32Z"
+type: EVENT
+observer: "ai:claude"
+subject: "Increment 2 item 4 complete - facts, use cases, description.md"
+value: "Added deterministic description.md assembler driven by profile-sections.yaml (required-section enforcement, unknown-section rejection, config-ordered headers; semantic prose stays LLM-provided per D-007). Added check_profile_content enforcing criterion 14: at least one additional fact and at least one use case of each kind (documented and inferred). use-case schema already enforces documented=>evidence and inferred=>rationale+supporting_features from item 1. 58 tests pass."
+context: "PROC-5.1 Increment 2 item 4"
+tags: ["process-execution"]

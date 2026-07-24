@@ -1,0 +1,532 @@
+# Feature taxonomy - Python-managed after curation edits (D-016).
+revision: 4
+groups:
+- id: code_generation
+  name: Code Generation & Completion
+- id: agentic_autonomy
+  name: Agentic Autonomy
+- id: context_understanding
+  name: Context & Codebase Understanding
+- id: editing_refactoring
+  name: Editing & Refactoring
+- id: testing_quality
+  name: Testing & Quality
+- id: terminal_execution
+  name: Terminal & Execution
+- id: version_control
+  name: Version Control Integration
+- id: ide_support
+  name: IDE & Editor Support
+- id: extensibility
+  name: Extensibility & Integrations
+- id: security_compliance
+  name: Security & Compliance
+features:
+- feature_id: inline_code_completion
+  name: Inline code completion
+  group: code_generation
+  definition: 'Suggests single-line or multi-line code completions inline in the editor
+    as the developer types.
+
+    '
+  has_criteria: Ghost-text or inline suggestions are generated while typing, without
+    an explicit chat prompt.
+  partial_criteria: Completions are offered only in a subset of supported languages
+    or editors.
+  exclusions: Full-file generation from a chat prompt is not inline completion.
+  aliases:
+  - autocomplete
+  - ghost text
+  - predictive typing
+  - tab completion
+  research_question: Does the tool provide inline, as-you-type code completion, and
+    in which editors/languages?
+- feature_id: natural_language_code_generation
+  name: Natural-language-to-code generation
+  group: code_generation
+  definition: 'Generates new code (functions, files, or components) from a natural-language
+    description provided by the user.
+
+    '
+  has_criteria: A prompt describing desired behavior produces runnable code the user
+    did not write.
+  partial_criteria: Generation is limited to short snippets and cannot produce multi-file
+    output.
+  exclusions: Inline completion of code already being typed is not this feature.
+  aliases:
+  - prompt-to-code
+  - text-to-code
+  - code synthesis
+  research_question: Can the tool generate new code from a natural-language description,
+    and at what granularity (snippet, function, file, multi-file)?
+- feature_id: multi_file_code_generation
+  name: Multi-file code generation
+  group: code_generation
+  definition: 'Generates or modifies multiple related files in a single operation
+    to implement a requested change.
+
+    '
+  has_criteria: A single instruction results in coordinated edits or new files across
+    more than one file.
+  partial_criteria: Multi-file output is possible but requires manual re-invocation
+    per file.
+  exclusions: Single-file suggestions, even if large, do not qualify.
+  aliases:
+  - cross-file generation
+  - project-wide edits
+  research_question: Does the tool support generating or editing multiple files in
+    one coordinated operation?
+- feature_id: autonomous_task_execution
+  name: Autonomous multi-step task execution
+  group: agentic_autonomy
+  definition: 'Independently plans and executes a sequence of actions (edits, commands,
+    tool calls) to complete a higher-level task with minimal step-by-step user confirmation.
+
+    '
+  has_criteria: The tool can decompose a task into steps and execute them autonomously,
+    reporting back on completion.
+  partial_criteria: Autonomy is limited to a fixed, non-extensible set of predefined
+    workflows.
+  exclusions: A single suggested edit accepted by the user is not autonomous execution.
+  aliases:
+  - agent mode
+  - autonomous agent
+  - task automation
+  research_question: Does the tool support autonomous, multi-step execution of a task
+    without step-by-step confirmation?
+- feature_id: background_long_running_tasks
+  name: Background / long-running task execution
+  group: agentic_autonomy
+  definition: 'Executes tasks asynchronously in the background while the user continues
+    other work, notifying on completion.
+
+    '
+  has_criteria: A task can be started and continues running without occupying the
+    user's active session.
+  partial_criteria: Background execution exists only for a narrow task type (e.g.
+    tests only).
+  exclusions: Synchronous operations that block the UI until finished are not background
+    execution.
+  aliases:
+  - async agents
+  - background agents
+  research_question: Can the tool run tasks in the background and notify the user
+    asynchronously on completion?
+- feature_id: multi_agent_orchestration
+  name: Multi-agent / sub-agent orchestration
+  group: agentic_autonomy
+  definition: 'Coordinates multiple specialized agent instances or sub-agents working
+    on parts of a larger task.
+
+    '
+  has_criteria: The product documents delegation to sub-agents or parallel agent instances
+    as a supported mechanism.
+  partial_criteria: Sub-agent-like behavior exists only through undocumented or experimental
+    flags.
+  exclusions: Running multiple independent sessions manually by the user is not orchestration.
+  aliases:
+  - subagents
+  - agent teams
+  - multi-agent workflows
+  research_question: Does the tool support delegating work to multiple coordinated
+    sub-agents?
+- feature_id: codebase_semantic_search
+  name: Codebase-wide semantic search
+  group: context_understanding
+  definition: 'Retrieves relevant code or documentation from the whole project using
+    meaning-based (not just text) search.
+
+    '
+  has_criteria: A natural-language query returns relevant code locations across the
+    repository, ranked by relevance rather than plain text match.
+  partial_criteria: Semantic search is available only within the currently open file
+    or folder.
+  exclusions: Plain substring/regex search across files is not semantic search.
+  aliases:
+  - semantic code search
+  - codebase indexing
+  - RAG over code
+  research_question: Does the tool index the project and support meaning-based search
+    across the whole codebase?
+- feature_id: long_context_large_repo_handling
+  name: Large-repository / long-context handling
+  group: context_understanding
+  definition: 'Maintains useful context and produces coherent results when working
+    within large repositories or long conversation/task histories.
+
+    '
+  has_criteria: Vendor documentation states a context window or repository-scale handling
+    mechanism (e.g. chunking, retrieval, extended context models).
+  partial_criteria: Large-repo handling is documented only for specific model/plan
+    combinations.
+  exclusions: General model context-window size alone, without codebase-specific handling,
+    does not qualify.
+  aliases:
+  - large context window
+  - big repo support
+  research_question: What mechanism does the tool document for maintaining context
+    in large repositories or long sessions?
+- feature_id: persistent_project_memory
+  name: Persistent project memory / custom instructions
+  group: context_understanding
+  definition: 'Stores project-specific instructions, conventions, or memory that persists
+    across sessions and is automatically applied.
+
+    '
+  has_criteria: A documented mechanism (e.g. a rules/instructions file) persists guidance
+    across sessions without re-entering it.
+  partial_criteria: Memory persists only within a single session, not across sessions.
+  exclusions: Manually pasting the same instructions into every new prompt is not
+    persistent memory.
+  aliases:
+  - project rules
+  - custom instructions
+  - memory files
+  research_question: Does the tool support persistent, project-scoped instructions
+    or memory applied automatically across sessions?
+- feature_id: automated_refactoring
+  name: Automated refactoring
+  group: editing_refactoring
+  definition: 'Performs structural code changes (renames, extractions, restructuring)
+    across one or more files while preserving behavior.
+
+    '
+  has_criteria: The tool can propose or apply a refactor spanning more than a single
+    edit location, driven by an instruction rather than a manual IDE refactor command.
+  partial_criteria: Refactoring is limited to single-symbol renames.
+  exclusions: Standard IDE-native refactor commands not driven by the AI tool are
+    out of scope.
+  aliases:
+  - AI refactoring
+  - structural code changes
+  research_question: Can the tool perform or propose multi-location refactors driven
+    by natural-language instruction?
+- feature_id: diff_review_apply_workflow
+  name: Diff review and selective apply
+  group: editing_refactoring
+  definition: 'Presents proposed changes as a reviewable diff that the user can accept,
+    reject, or partially apply before changes take effect.
+
+    '
+  has_criteria: Generated changes are shown as a diff with accept/reject controls
+    prior to being written to disk.
+  partial_criteria: Diff review exists but only at whole-file granularity, not per-hunk.
+  exclusions: Changes applied directly without any review step do not qualify.
+  aliases:
+  - change preview
+  - patch review
+  research_question: Does the tool show a reviewable diff before applying AI-generated
+    changes?
+- feature_id: automated_test_generation
+  name: Automated test generation
+  group: testing_quality
+  definition: 'Generates unit or integration tests for existing or newly written code.
+
+    '
+  has_criteria: The tool can produce test code targeting specified functions/files
+    on request.
+  partial_criteria: Test generation is limited to a small set of frameworks or languages.
+  exclusions: General code generation that happens to produce a test only incidentally
+    does not qualify unless documented as a test-generation capability.
+  aliases:
+  - test writing
+  - unit test generation
+  research_question: Does the tool provide a documented capability to generate tests
+    for existing or new code?
+- feature_id: automated_code_review
+  name: Automated code review / PR review
+  group: testing_quality
+  definition: 'Analyzes a diff or pull request and produces review comments, risk
+    flags, or suggested fixes.
+
+    '
+  has_criteria: The tool documents automatically reviewing a diff or PR and producing
+    comments or suggestions.
+  partial_criteria: Review is limited to local diffs and does not integrate with a
+    PR/hosting platform.
+  exclusions: Manually asking the assistant to look at code in chat, with no dedicated
+    review workflow, does not qualify.
+  aliases:
+  - PR review bot
+  - AI code review
+  research_question: Does the tool provide a dedicated automated code review or PR
+    review workflow?
+- feature_id: static_analysis_integration
+  name: Static analysis / linting integration
+  group: testing_quality
+  definition: 'Integrates with or runs static analysis/lint tooling and surfaces results
+    to the AI assistant for use in its suggestions.
+
+    '
+  has_criteria: Documented integration with a linter/static analyzer whose findings
+    inform the assistant's output.
+  partial_criteria: Integration is limited to displaying lint errors without feeding
+    them back into AI suggestions.
+  exclusions: The editor's own built-in linting, unconnected to the AI feature, does
+    not qualify.
+  aliases:
+  - lint integration
+  - static analysis
+  research_question: Does the tool integrate static analysis/lint results into its
+    AI-driven suggestions?
+- feature_id: terminal_command_execution
+  name: Terminal command execution
+  group: terminal_execution
+  definition: 'Executes shell/terminal commands on behalf of the user as part of completing
+    a task.
+
+    '
+  has_criteria: The tool can run a shell command and use its output, documented as
+    a supported capability.
+  partial_criteria: Command execution requires the user to manually copy/paste and
+    run suggested commands.
+  exclusions: Merely suggesting a command as text without any execution capability
+    does not qualify.
+  aliases:
+  - shell execution
+  - command running
+  research_question: Can the tool execute terminal/shell commands directly, and under
+    what confirmation model?
+- feature_id: sandboxed_execution_environment
+  name: Sandboxed / isolated execution environment
+  group: terminal_execution
+  definition: 'Runs generated code or commands in an isolated sandbox or container
+    rather than directly on the user''s machine.
+
+    '
+  has_criteria: Vendor documentation describes execution occurring in a sandbox, VM,
+    or container isolated from the host.
+  partial_criteria: Sandboxing is available only in a specific plan or cloud-hosted
+    mode.
+  exclusions: Execution directly in the user's local shell, without isolation, does
+    not qualify.
+  aliases:
+  - sandbox mode
+  - isolated execution
+  research_question: Does the tool document a sandboxed or isolated execution environment
+    for running code/commands?
+- feature_id: git_native_workflow
+  name: Native git workflow support
+  group: version_control
+  definition: 'Generates commits, branches, or commit messages, or otherwise operates
+    git as part of its workflow.
+
+    '
+  has_criteria: The tool can create commits/branches or generate commit messages as
+    a documented feature.
+  partial_criteria: Only commit-message generation is supported, without broader git
+    operations.
+  exclusions: The user manually running git commands suggested as plain text does
+    not qualify.
+  aliases:
+  - git integration
+  - commit generation
+  research_question: Does the tool support native git operations (commits, branches,
+    commit messages) as part of its workflow?
+- feature_id: pull_request_creation
+  name: Pull request creation
+  group: version_control
+  definition: 'Creates a pull/merge request on a hosting platform (e.g. GitHub, GitLab)
+    directly from the tool.
+
+    '
+  has_criteria: The tool can open a PR/MR on a supported hosting platform without
+    the user leaving the tool.
+  partial_criteria: PR creation requires a separate manual step outside the tool's
+    own interface, e.g. a generated link only.
+  exclusions: Merely generating a commit that the user then pushes and opens a PR
+    for manually does not qualify.
+  aliases:
+  - PR automation
+  - MR creation
+  research_question: Can the tool create a pull/merge request directly on a supported
+    hosting platform?
+- feature_id: multi_ide_support
+  name: Multi-IDE / multi-editor support
+  group: ide_support
+  definition: 'Is available as a plugin or native mode in more than one IDE or editor.
+
+    '
+  has_criteria: The vendor officially supports the tool in two or more distinct IDEs/editors.
+  partial_criteria: Support in a second IDE is documented as beta or experimental.
+  exclusions: Community-maintained, vendor-unendorsed plugins for additional editors
+    do not qualify.
+  aliases:
+  - cross-editor support
+  - IDE plugins
+  research_question: In which IDEs/editors is the tool officially supported?
+- feature_id: standalone_cli
+  name: Standalone CLI access
+  group: ide_support
+  definition: 'Provides a command-line interface usable without any IDE or GUI.
+
+    '
+  has_criteria: A documented CLI binary/package exists and provides the tool's core
+    functionality.
+  partial_criteria: A CLI exists but only exposes a subset of functionality (e.g.
+    auth only).
+  exclusions: A terminal panel embedded inside an IDE-only product is not a standalone
+    CLI.
+  aliases:
+  - command-line tool
+  - headless mode
+  research_question: Does the tool provide a standalone CLI usable outside any IDE?
+- feature_id: web_hosted_access
+  name: Web-hosted / browser access
+  group: ide_support
+  definition: 'Can be used through a web browser without local installation.
+
+    '
+  has_criteria: A documented web application provides access to core functionality.
+  partial_criteria: Web access exists only for account/billing management, not for
+    core coding functionality.
+  exclusions: Documentation pages viewed in a browser do not qualify as product access.
+  aliases:
+  - web app
+  - browser-based access
+  research_question: Can the tool's core functionality be used through a web browser
+    without local installation?
+- feature_id: mcp_or_plugin_extensibility
+  name: MCP / plugin extensibility
+  group: extensibility
+  definition: 'Supports adding external tools or data sources through a documented
+    plugin or protocol mechanism (e.g. Model Context Protocol).
+
+    '
+  has_criteria: The vendor documents a supported extension mechanism (plugin API,
+    MCP, or equivalent) for adding external capabilities.
+  partial_criteria: Extensibility is limited to a closed, vendor-curated list with
+    no third-party mechanism.
+  exclusions: Internal, undocumented extension points are not extensibility.
+  aliases:
+  - MCP support
+  - plugin API
+  - tool integrations
+  research_question: Does the tool support a documented extension mechanism such as
+    MCP or a plugin API?
+- feature_id: third_party_integration_catalog
+  name: Third-party integration catalog
+  group: extensibility
+  definition: 'Officially documents and supports integrations with third-party products
+    (e.g. issue trackers, CI systems, design tools).
+
+    '
+  has_criteria: An official integration catalog or documentation page lists supported
+    third-party integrations.
+  partial_criteria: Only a small number (1-2) of integrations are officially documented.
+  exclusions: Community marketplace listings not endorsed by the vendor do not qualify
+    (per requirements Sec 10).
+  aliases:
+  - integration marketplace
+  - official integrations
+  research_question: Does the vendor officially document supported third-party integrations,
+    and how many?
+- feature_id: enterprise_sso_access_control
+  name: Enterprise SSO / access control
+  group: security_compliance
+  definition: 'Supports single sign-on and role-based access control for organizational
+    deployments.
+
+    '
+  has_criteria: Documentation describes SSO (SAML/OIDC) and role/permission management
+    for an enterprise/team plan.
+  partial_criteria: Only basic team membership exists, without SSO or granular roles.
+  exclusions: Personal-account 2FA alone does not qualify as enterprise access control.
+  aliases:
+  - SSO
+  - RBAC
+  - enterprise access control
+  research_question: Does the tool support enterprise SSO and role-based access control?
+- feature_id: data_retention_training_opt_out
+  name: Data retention / training opt-out controls
+  group: security_compliance
+  definition: 'Allows the customer to control whether their code/data is retained
+    or used to train models.
+
+    '
+  has_criteria: Documentation describes a customer-facing setting to opt out of data
+    retention or model training use.
+  partial_criteria: Opt-out is available only on specific enterprise plans, not documented
+    for all tiers.
+  exclusions: Generic privacy-policy language without a concrete, actionable control
+    does not qualify.
+  aliases:
+  - zero data retention
+  - training opt-out
+  - no-training mode
+  research_question: Does the tool provide a customer-facing control to opt out of
+    data retention or training use?
+- feature_id: on_premises_private_deployment
+  name: On-premises / private cloud deployment
+  group: security_compliance
+  definition: 'Can be deployed within the customer''s own infrastructure or a dedicated
+    private cloud instance rather than only the vendor''s shared cloud.
+
+    '
+  has_criteria: Documentation describes a supported on-premises or dedicated private
+    deployment option.
+  partial_criteria: Private deployment is offered only through a separate, differently-branded
+    enterprise product tier requiring explicit confirmation of feature parity.
+  exclusions: Standard multi-tenant SaaS deployment, even for enterprise plans, does
+    not qualify.
+  aliases:
+  - self-hosted
+  - private cloud
+  - on-prem
+  research_question: Does the tool support on-premises or dedicated private cloud
+    deployment?
+- feature_id: ip_indemnity_duplication_filter
+  name: IP indemnity / public-code duplication filter
+  group: security_compliance
+  definition: Provides a configurable filter that blocks code suggestions matching
+    public code, and/or a vendor IP indemnification commitment covering generated
+    code for eligible plans.
+  has_criteria: Documentation describes a customer-facing setting to block suggestions
+    matching public code, or a stated IP indemnification commitment for a paid/enterprise
+    plan.
+  partial_criteria: Only one of the two (duplication filter or indemnification) is
+    documented, or the control is available only on specific plans.
+  exclusions: Generic 'we respect IP' marketing language without a concrete filter
+    setting or a stated indemnity commitment does not qualify.
+  aliases:
+  - duplication detection filter
+  - matching public code filter
+  - IP indemnification
+  - copyright commitment
+  research_question: Does the tool offer a public-code duplication filter and/or an
+    IP indemnification commitment, and on which plans?
+- feature_id: audit_logging
+  name: Audit logging & usage metrics
+  group: security_compliance
+  definition: Exposes audit log events and/or usage metrics for organization or enterprise
+    administrators covering tool access, configuration changes, and activity.
+  has_criteria: Documentation describes admin-accessible audit log events or a usage-metrics
+    API/report covering the tool's access or configuration.
+  partial_criteria: Only aggregate usage dashboards are available without per-event
+    audit logs, or logging is limited to a specific enterprise tier.
+  exclusions: Personal, client-side activity history visible only to the individual
+    user does not qualify.
+  aliases:
+  - audit log
+  - usage metrics API
+  - admin activity log
+  research_question: Does the tool provide admin audit logs and/or usage metrics for
+    organizational oversight, and on which plans?
+- feature_id: mobile_app_access
+  name: Mobile app access
+  group: ide_support
+  definition: Provides access to the tool's core assistant functionality through a
+    dedicated mobile (iOS/Android) application.
+  has_criteria: Vendor documents access to the assistant (e.g. chat) through an official
+    mobile app on iOS or Android.
+  partial_criteria: Mobile access is limited to a responsive web view or to account
+    management rather than the assistant itself.
+  exclusions: Using the web app in a mobile browser, without a documented mobile app
+    experience, does not qualify.
+  aliases:
+  - mobile access
+  - iOS app
+  - Android app
+  - mobile chat
+  research_question: Can the tool's core assistant be used through an official mobile
+    application?

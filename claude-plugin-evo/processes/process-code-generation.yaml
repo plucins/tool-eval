@@ -1,0 +1,222 @@
+# Phase 5 Process: Code Generation
+# AI-Led process - AI generates code, humans validate design alignment
+---
+references:
+  rules: ../rules/phase5-implementation.md
+
+definition:
+  id: "PROC-5.1"
+  name: "Code Generation"
+  description: |
+    Generate implementation code from design specifications.
+    This is an AI-Led process where AI can generate substantial code
+    while humans validate design alignment and quality standards.
+
+    Supports two modes:
+    - QUICK: Core implementation for straightforward features (~30 min)
+    - FULL: Comprehensive implementation with edge cases (~2-3 hours)
+  version: "1.0.0"
+  phase: 5
+  information_composition:
+    formal: 60
+    tacit: 25
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "design_baseline"
+      required: true
+      description: "Approved design from PROC-4.4"
+    - type: "interface_specifications"
+      required: true
+      description: "API contracts from PROC-4.2"
+    - type: "data_model"
+      required: true
+      description: "Data structures from PROC-4.3"
+    - type: "coding_standards"
+      required: false
+      description: "Organisation coding conventions"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "source_code"
+      description: "Implementation code for the feature"
+    - type: "implementation_notes"
+      description: "Notes on design decisions made during implementation"
+    - type: "deferred_items"
+      description: "Items for later implementation phases"
+
+steps:
+  # Step 1: Analyse design specifications (AI-Led)
+  - id: "5.1.1"
+    name: "Analyse Specifications"
+    capability: Analyse
+    pattern: AI-Led
+    human_role: "Confirm interpretation of design intent"
+    ai_role: "Parse design documents; identify implementation requirements; map to code structures"
+    escalation_triggers:
+      - condition: "Design ambiguity found"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Design doesn't specify [aspect]. Clarify before generating code?"
+      - condition: "Design conflicts with existing codebase"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Design conflicts with existing implementation. Adapt design or refactor existing?"
+    completion_criteria: "Design specifications analysed"
+    validation: "Implementation requirements documented"
+
+  # Step 2: Set up code structure (AI-Led)
+  - id: "5.1.2"
+    name: "Structure Code"
+    capability: Transform
+    pattern: AI-Led
+    human_role: "Validate structure follows project conventions"
+    ai_role: "Create file structure; set up modules and imports; establish code organisation"
+    escalation_triggers:
+      - condition: "Structure deviates from project patterns"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Proposed structure differs from existing patterns. Accept deviation or conform?"
+    completion_criteria: "Code structure established"
+    validation: "Structure follows project conventions"
+
+  # Step 3: Generate implementation (AI-Led)
+  - id: "5.1.3"
+    name: "Generate Code"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Review generated code for correctness"
+    ai_role: "Generate implementation code; apply design patterns; handle standard cases"
+    escalation_triggers:
+      - condition: "Complex algorithm required"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Complex algorithm needed. Should I proceed with [approach] or explore alternatives?"
+      - condition: "Third-party dependency needed"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Implementation requires [dependency]. Approved for use?"
+    completion_criteria: "Core implementation generated"
+    validation: "Code compiles/parses without errors"
+
+  # Step 4: Handle edge cases (Partnership)
+  - id: "5.1.4"
+    name: "Handle Edge Cases"
+    capability: Generate
+    pattern: Partnership
+    human_role: "Identify edge cases from domain knowledge"
+    ai_role: "Implement error handling; generate validation logic; handle boundary conditions"
+    escalation_triggers:
+      - condition: "Edge case handling unclear"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "How should system handle [edge case]? Fail gracefully or prevent?"
+    completion_criteria: "Edge cases handled"
+    validation: "Error paths have appropriate handling"
+
+  # Step 5: Apply coding standards (AI-Led)
+  - id: "5.1.5"
+    name: "Apply Standards"
+    capability: Transform
+    pattern: AI-Led
+    human_role: "Verify standards compliance"
+    ai_role: "Format code; apply naming conventions; ensure style consistency"
+    escalation_triggers:
+      - condition: "Standards conflict with clarity"
+        action: ESCALATE
+        severity: LOW
+        target: human
+        context: "Standard [X] reduces readability here. Override for clarity?"
+    completion_criteria: "Coding standards applied"
+    validation: "Code passes linting/style checks"
+
+  # Step 6: Document implementation (AI-Led)
+  - id: "5.1.6"
+    name: "Document Code"
+    capability: Preserve
+    pattern: AI-Led
+    human_role: "Confirm documentation captures intent"
+    ai_role: "Generate inline comments; document public interfaces; note implementation decisions"
+    escalation_triggers:
+      - condition: "Implementation deviates from design"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Implementation differs from design due to [reason]. Update design or implementation?"
+    completion_criteria: "Code documented"
+    validation: "Public interfaces have documentation"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "5.1.3"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 30
+      depth: "Core implementation; happy path"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 150
+      depth: "Complete implementation with edge cases"
+
+quality:
+  entry_criteria:
+    - "Design baseline approved"
+    - "Interface specifications available"
+  exit_criteria:
+    - "Code generated and compiles"
+    - "Implementation documented"
+  sla:
+    expected_duration_minutes: 30
+    timeout_minutes: 180
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Complex business logic identified"
+    - "Multiple integration points"
+    - "Performance-critical component"
+    - "Human requests comprehensive implementation"
+  upgrade_prompt: |
+    This implementation has complexity requiring detailed edge case handling.
+    Would you like to switch to FULL mode for comprehensive implementation
+    including error handling and boundary conditions?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["5.1.1 Analyse Specifications<br/>(Analyse, AI-Led)"]
+      S2["5.1.2 Structure Code<br/>(Transform, AI-Led)"]
+      S3["5.1.3 Generate Code<br/>(Generate, AI-Led)"]
+      S4["5.1.4 Handle Edge Cases<br/>(Generate, Partnership)"]
+      S5["5.1.5 Apply Standards<br/>(Transform, AI-Led)"]
+      S6["5.1.6 Document Code<br/>(Preserve, AI-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Ambiguity"| ESC1[Escalate: clarify design]
+    S1 -->|"Conflict"| ESC2[Escalate: adapt or refactor]
+    S3 -->|"Complex"| ESC3[Escalate: algorithm choice]
+    S3 -->|"Dependency"| ESC4[Escalate: approve lib]
+    S4 -->|"Unclear"| ESC5[Escalate: edge case handling]
+
+    S6 --> OUT[Source Code + Implementation Notes]
+  ```
+---

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tool-eval.internal/schemas/candidates.schema.json",
+  "title": "Candidate set",
+  "description": "The merged set of new-feature candidates detected in a run (merged/candidates.json), plus the operator's curation decisions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["candidates"],
+  "properties": {
+    "candidates": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/candidate.schema.json" }
+    },
+    "decisions": {
+      "type": "array",
+      "description": "One decision per curated candidate (requirements Sec 8/16). Every candidate must be resolved before publication.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["candidate_id", "decision"],
+        "properties": {
+          "candidate_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "decision": { "type": "string", "enum": ["accept", "reject", "defer"] },
+          "decided_at": { "type": "string", "format": "date-time" },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  }
+}

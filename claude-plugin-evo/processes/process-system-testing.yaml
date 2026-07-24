@@ -1,0 +1,218 @@
+# Phase 6 Process: System Testing
+# AI-Led process - AI executes system tests, humans validate end-to-end behaviour
+---
+references:
+  rules: ../rules/phase6-testing.md
+
+definition:
+  id: "PROC-6.3"
+  name: "System Testing"
+  description: |
+    Verify the complete system meets requirements and specifications.
+    This is an AI-Led process where AI can execute comprehensive
+    system tests while humans validate end-to-end behaviour.
+
+    Supports two modes:
+    - QUICK: Critical path testing (~1 hour)
+    - FULL: Comprehensive system validation (~4-6 hours)
+  version: "1.0.0"
+  phase: 6
+  information_composition:
+    formal: 65
+    tacit: 20
+    emergent: 15
+
+interfaces:
+  inputs:
+    - type: "integration_test_results"
+      required: true
+      description: "Passed integration from PROC-6.2"
+    - type: "requirements_specification"
+      required: true
+      description: "For traceability validation"
+    - type: "test_environment"
+      required: true
+      description: "System test environment (production-like)"
+    - type: "mode"
+      required: false
+      description: "QUICK or FULL (default: QUICK)"
+  outputs:
+    - type: "system_test_results"
+      description: "Test execution results"
+    - type: "requirements_traceability"
+      description: "Mapping of tests to requirements"
+    - type: "release_readiness"
+      description: "Assessment of release readiness"
+
+steps:
+  # Step 1: Verify prerequisites (AI-Led)
+  - id: "6.3.1"
+    name: "Verify Prerequisites"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Confirm system is ready for testing"
+    ai_role: "Check integration test results; verify environment; validate deployment"
+    escalation_triggers:
+      - condition: "Integration tests not passed"
+        action: RETURN
+        severity: HIGH
+        target: "PROC-6.2"
+        context: "Integration tests must pass before system testing."
+      - condition: "Environment not production-like"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Test environment differs from production. Accept risk?"
+    completion_criteria: "Prerequisites verified"
+    validation: "System ready for testing"
+
+  # Step 2: Design system tests (AI-Led)
+  - id: "6.3.2"
+    name: "Design System Tests"
+    capability: Generate
+    pattern: AI-Led
+    human_role: "Validate test scenarios cover user journeys"
+    ai_role: "Generate end-to-end test scenarios; map to requirements"
+    escalation_triggers:
+      - condition: "Requirements ambiguous for test design"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Cannot derive test from requirement [X]. Clarify acceptance criteria?"
+    completion_criteria: "System tests designed"
+    validation: "Tests map to requirements"
+
+  # Step 3: Execute functional tests (AI-Only)
+  - id: "6.3.3"
+    name: "Execute Functional Tests"
+    capability: Validate
+    pattern: AI-Only
+    human_role: "None"
+    ai_role: "Execute functional test suite; capture results"
+    escalation_triggers:
+      - condition: "Critical functional failure"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Core functionality failing. Investigation required."
+    completion_criteria: "Functional tests executed"
+    validation: "All functional tests have results"
+
+  # Step 4: Execute non-functional tests (AI-Led)
+  - id: "6.3.4"
+    name: "Execute Non-Functional Tests"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Validate non-functional test approach"
+    ai_role: "Execute performance, security, accessibility tests as applicable"
+    escalation_triggers:
+      - condition: "Performance below threshold"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Performance at [X], below threshold [Y]. Accept or investigate?"
+      - condition: "Security vulnerability found"
+        action: ESCALATE
+        severity: HIGH
+        target: human
+        context: "Security issue detected. Must address before release."
+    completion_criteria: "Non-functional tests executed"
+    validation: "Non-functional requirements validated"
+
+  # Step 5: Validate traceability (AI-Led)
+  - id: "6.3.5"
+    name: "Validate Traceability"
+    capability: Validate
+    pattern: AI-Led
+    human_role: "Confirm coverage meets standards"
+    ai_role: "Map test results to requirements; identify coverage gaps"
+    escalation_triggers:
+      - condition: "Requirements not covered by tests"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Requirements [list] have no test coverage. Accept or add tests?"
+    completion_criteria: "Traceability validated"
+    validation: "Coverage meets threshold"
+
+  # Step 6: Assess release readiness (Human-Led)
+  - id: "6.3.6"
+    name: "Assess Readiness"
+    capability: Decide
+    pattern: Human-Led
+    human_role: "Make release readiness decision"
+    ai_role: "Present test summary; compile metrics; document known issues"
+    escalation_triggers:
+      - condition: "Mixed results require judgement"
+        action: ESCALATE
+        severity: MEDIUM
+        target: human
+        context: "Some tests failed but may not block release. Decide on severity."
+    completion_criteria: "Readiness assessed"
+    validation: "Release decision documented"
+
+control_flow:
+  retry_policy:
+    on_validation_failure:
+      return_to: "6.3.3"
+      max_iterations: 2
+  mode_variations:
+    QUICK:
+      skip_steps: []
+      time_budget_minutes: 60
+      depth: "Critical paths; key NFRs"
+    FULL:
+      skip_steps: []
+      time_budget_minutes: 360
+      depth: "Comprehensive validation"
+
+quality:
+  entry_criteria:
+    - "Integration tests passed"
+    - "System test environment available"
+  exit_criteria:
+    - "System tests executed"
+    - "Release readiness assessed"
+  sla:
+    expected_duration_minutes: 60
+    timeout_minutes: 480
+    warning_threshold_percent: 80
+
+progressive_disclosure:
+  initial_mode: QUICK
+  upgrade_triggers:
+    - "Critical system or major release"
+    - "Regulatory compliance requirements"
+    - "Significant changes from prior baseline"
+    - "Human requests comprehensive validation"
+  upgrade_prompt: |
+    This release has characteristics requiring thorough system validation.
+    Would you like to switch to FULL mode for comprehensive testing
+    including full NFR validation and traceability analysis?
+
+flow: |
+  ```mermaid
+  flowchart TD
+    subgraph Steps
+      S1["6.3.1 Verify Prerequisites<br/>(Validate, AI-Led)"]
+      S2["6.3.2 Design System Tests<br/>(Generate, AI-Led)"]
+      S3["6.3.3 Execute Functional Tests<br/>(Validate, AI-Only)"]
+      S4["6.3.4 Execute Non-Functional Tests<br/>(Validate, AI-Led)"]
+      S5["6.3.5 Validate Traceability<br/>(Validate, AI-Led)"]
+      S6["6.3.6 Assess Readiness<br/>(Decide, Human-Led)"]
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    S1 -->|"Integration failed"| RET1[Return to PROC-6.2]
+    S3 -->|"Critical failure"| ESC1[Escalate: investigate]
+    S4 -->|"Performance"| ESC2[Escalate: threshold?]
+    S4 -->|"Security"| ESC3[Escalate: must fix]
+
+    S6 --> OUT[System Test Results + Release Readiness]
+  ```
+---

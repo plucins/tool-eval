@@ -1,0 +1,267 @@
+# Hook Effectiveness Test Results
+# Mode: baseline
+# Timestamp: 20260124-100411
+# Session Hook: /Users/pidster/src/github.com/pidster/project-2501/claude-plugin-evo/hooks/scripts/session-start.sh
+# Prompt Hook: /Users/pidster/src/github.com/pidster/project-2501/claude-plugin-evo/hooks/scripts/user-prompt-submit.sh
+
+session_start_output: |
+  {"continue": true, "systemMessage": "Dialogue Framework: NOT INITIALISED. Run `dialogue init` to set up."}
+
+test_cases:
+
+  - id: "D1"
+    prompt: "I decided we should use PostgreSQL for the database"
+    expected_skill: "dialogue-log-decision"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>decision-capture</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>decision-capture</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "D2"
+    prompt: "Let's go with the microservices approach"
+    expected_skill: "dialogue-log-decision"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>decision-capture</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>decision-capture</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "D3"
+    prompt: "The decision is to postpone the release"
+    expected_skill: "dialogue-log-decision"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>decision-capture</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>decision-capture</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "D4"
+    prompt: "We'll use React for the frontend"
+    expected_skill: "dialogue-log-decision"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>decision-capture</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>decision-capture</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "O1"
+    prompt: "I noticed the tests are running slowly"
+    expected_skill: "dialogue-log-observation"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>observation-capture</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>observation-capture</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "O2"
+    prompt: "Here's an observation: the API response time increased"
+    expected_skill: "dialogue-log-observation"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>observation-capture</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>observation-capture</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "O3"
+    prompt: "Worth noting that the error rate spiked yesterday"
+    expected_skill: "dialogue-log-observation"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>observation-capture</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>observation-capture</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "O4"
+    prompt: "I observed that users are abandoning checkout at step 3"
+    expected_skill: "dialogue-log-observation"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>observation-capture</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>observation-capture</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "T1"
+    prompt: "Let's work on FW-038"
+    expected_skill: "dialogue-manage-tasks"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>task-context</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>task-context</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "T2"
+    prompt: "What's the status of SH-005?"
+    expected_skill: "dialogue-manage-tasks"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>task-context</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>task-context</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "R1"
+    prompt: "What does THY-001 say about theory building?"
+    expected_skill: "dialogue-resolve-reference"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>resolve-reference</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>resolve-reference</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "R2"
+    prompt: "Look up REF-001"
+    expected_skill: "dialogue-resolve-reference"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>resolve-reference</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>resolve-reference</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "P1"
+    prompt: "We're in the initiation phase, help me define the opportunity"
+    expected_skill: "phase-guidance"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>phase-1</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>phase-1</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "P2"
+    prompt: "Let's work on requirements for this feature"
+    expected_skill: "phase-guidance"
+    hook_output: |
+            {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "<dialogue-signals>phase-3</dialogue-signals>"
+        }
+      }
+    extracted_context: "<dialogue-signals>phase-3</dialogue-signals>"
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "N1"
+    prompt: "What time is it?"
+    expected_skill: "none"
+    hook_output: |
+            
+    extracted_context: ""
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "N2"
+    prompt: "Fix the typo on line 42"
+    expected_skill: "none"
+    hook_output: |
+            
+    extracted_context: ""
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
+
+  - id: "N3"
+    prompt: "How do I format a string in Python?"
+    expected_skill: "none"
+    hook_output: |
+            
+    extracted_context: ""
+    # Manual scoring (fill in after Claude session test):
+    # skill_invoked:
+    # correct_invocation:
+    # notes:
