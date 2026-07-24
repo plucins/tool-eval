@@ -9,7 +9,12 @@ bundling:
   min_features_per_bundle: 2
   max_features_per_bundle: 4
 
-retries:
+# Bounded-work budgets enforced by Python gates (D-010/D-011). Python tracks
+# these in run state and checks them at the gates the orchestrator calls; the
+# deterministic core never runs the research loop itself. max_technical_retries
+# and max_repair_rounds are also the standard's hard upper bounds (<=2 / <=3).
+budgets:
+  max_worker_tasks: 40
   max_technical_retries: 2
   max_repair_rounds: 3
 

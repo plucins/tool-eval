@@ -85,7 +85,7 @@ def cmd_run_init(args: argparse.Namespace) -> dict[str, Any]:
         status="ok",
         code="RUN_INITIALIZED",
         run_id=record.run_id,
-        next_action="Proceed with the next phase for this operation.",
+        next_action=f"Run initialized for '{args.operation}'; continue with this operation's next phase.",
         artifacts=[str(root / ".work" / "runs" / record.run_id / "run.json")],
     )
 

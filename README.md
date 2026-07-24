@@ -5,13 +5,19 @@ as the agent harness. See `docs/ai_coding_tool_comparison_system_requirements_v2
 for the product requirements and `docs/implementation_plan_v1.md` for the
 architecture and work plan.
 
-**Status:** Increments 2 and 3 implemented. The full research pipeline — profile
+**Status:** Increments 2–4 implemented. The full research pipeline — profile
 model, bundle planning, D-009 protocol enforcement, curation, deterministic
 merge, bounded retries/repairs, failed-run handling, and staged profile
 publication with rollback/recovery — is in place and unit-tested. Comparison and
 self-contained HTML (Increment 3) are implemented: `compare build` produces a
 single offline, Capgemini-themed HTML report with deterministic freshness and
 flags, embedded assets (no CDN), and no execution of profile data as code.
+Operations and documentation (Increment 4) add configurable run budgets
+(`config/runtime.yaml: budgets`), cleanup/retention, publication recovery, and a
+full operator guide.
+
+**New here? Read the [User Guide](docs/user-guide.md)** — install, starting the
+orchestrator, the three entry skills, sample sessions, and troubleshooting.
 
 ## Installation
 

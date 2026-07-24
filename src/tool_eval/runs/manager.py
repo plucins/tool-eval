@@ -22,6 +22,21 @@ from tool_eval.errors import ErrorFamily, ToolEvalError
 RUN_STATE_INITIALIZED = "initialized"
 RUN_STATE_FAILED = "failed"
 
+# Bounded-work budget defaults (D-010/D-011); overridable via runtime.yaml: budgets.
+# max_technical_retries / max_repair_rounds are also the standard's hard caps.
+DEFAULT_BUDGETS: dict[str, int] = {
+    "max_worker_tasks": 40,
+    "max_technical_retries": 2,
+    "max_repair_rounds": 3,
+}
+
+
+def load_budgets(root: Path) -> dict[str, int]:
+    """Read bounded-work budgets from runtime.yaml, falling back to defaults."""
+    bundle = load_config_bundle(root)
+    configured = bundle.files["runtime.yaml"].data.get("budgets") or {}
+    return {key: int(configured.get(key, default)) for key, default in DEFAULT_BUDGETS.items()}
+
 
 def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -85,7 +100,7 @@ def init_run(root: Path, operation: str, budgets: dict[str, Any] | None = None) 
         initial_revisions=revisions,
         effective_revisions=dict(revisions),
         config_hashes=bundle.hashes(),
-        budgets=budgets or {},
+        budgets=budgets if budgets is not None else load_budgets(root),
         transitions=[
             TransitionRecord(
                 state=RUN_STATE_INITIALIZED, at=now, detail="run created"
@@ -136,7 +151,30 @@ def read_run(root: Path, run_id: str) -> RunRecord:
 
 def run_status(root: Path, run_id: str) -> dict[str, Any]:
     record = read_run(root, run_id)
-    return record.to_dict()
+    data = record.to_dict()
+    data["budget_status"] = _budget_status(root, run_id, record)
+    return data
+
+
+def _budget_status(root: Path, run_id: str, record: RunRecord) -> dict[str, Any]:
+    """Used-vs-limit view of the run's bounded-work budgets (D-010/D-011)."""
+    tasks_dir = _run_dir(root, run_id) / "tasks"
+    worker_tasks = (
+        sum(1 for p in tasks_dir.iterdir() if p.is_dir()) if tasks_dir.is_dir() else 0
+    )
+    budgets = record.budgets
+    counters = record.retry_counters
+    return {
+        "worker_tasks": {"used": worker_tasks, "limit": budgets.get("max_worker_tasks")},
+        "technical_retries": {
+            "used": counters.get("technical_retries", 0),
+            "limit": budgets.get("max_technical_retries"),
+        },
+        "repair_rounds": {
+            "used": counters.get("repair_rounds", 0),
+            "limit": budgets.get("max_repair_rounds"),
+        },
+    }
 
 
 def resume_check(root: Path, run_id: str) -> dict[str, Any]:

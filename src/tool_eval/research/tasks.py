@@ -18,7 +18,7 @@ from tool_eval.config import load_config_bundle
 from tool_eval.errors import ErrorFamily, ToolEvalError
 from tool_eval.paths import resolve_within
 from tool_eval.research.planner import Bundle, plan_bundles, plan_waves
-from tool_eval.runs.manager import read_run, save_run, transition
+from tool_eval.runs.manager import DEFAULT_BUDGETS, read_run, save_run, transition
 from tool_eval.validation import schema
 
 
@@ -70,6 +70,26 @@ def create_feature_tasks(
     waves = plan_waves(bundles, max_concurrent=max_concurrent)
 
     tasks_root = run_dir / "tasks"
+    # Worker-task budget gate (D-010/D-011): count tasks already delegated for
+    # this run plus the ones about to be planned. Budget excess terminates the
+    # run without retry, so we raise before writing any manifest.
+    max_worker_tasks = int(
+        record.budgets.get("max_worker_tasks", DEFAULT_BUDGETS["max_worker_tasks"])
+    )
+    existing_tasks = (
+        sum(1 for p in tasks_root.iterdir() if p.is_dir()) if tasks_root.is_dir() else 0
+    )
+    planned_total = existing_tasks + len(bundles)
+    if planned_total > max_worker_tasks:
+        raise ToolEvalError(
+            code=f"{ErrorFamily.BUDGET}_TASKS_EXCEEDED",
+            message=(
+                f"worker-task budget exceeded: {planned_total} task(s) would be "
+                f"delegated for this run but max_worker_tasks is {max_worker_tasks}; "
+                "fail the run instead of retrying (D-010/D-011)."
+            ),
+        )
+
     manifest_paths: list[str] = []
     for bundle in bundles:
         manifest = bundle.to_task_manifest(run_id)

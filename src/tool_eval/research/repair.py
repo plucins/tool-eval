@@ -23,8 +23,15 @@ from tool_eval.errors import ErrorFamily, ToolEvalError
 from tool_eval.research.planner import Bundle, split_bundle
 from tool_eval.runs.manager import RunRecord, read_run, save_run, transition
 
+# Standard's hard caps (runs.md) and the fallback when a run has no frozen
+# budgets (e.g. a run created before budgets were recorded).
 MAX_TECHNICAL_RETRIES = 2
 MAX_REPAIR_ROUNDS = 3
+
+
+def _budget(record: Any, key: str, default: int) -> int:
+    """Read a frozen budget off the run record, falling back to the default."""
+    return int(getattr(record, "budgets", {}).get(key, default))
 
 
 def plan_retry_or_split(
@@ -44,12 +51,16 @@ def plan_retry_or_split(
 
 
 def record_technical_retry(
-    record: RunRecord, *, max_retries: int = MAX_TECHNICAL_RETRIES
+    record: RunRecord, *, max_retries: int | None = None
 ) -> bool:
     """Increment the technical-retry counter; return True if a retry is allowed.
 
-    Returns False once the cap is reached (caller should split the bundle).
+    The cap comes from the run's frozen budget (falling back to
+    ``MAX_TECHNICAL_RETRIES``). Returns False once reached (caller should split
+    the bundle).
     """
+    if max_retries is None:
+        max_retries = _budget(record, "max_technical_retries", MAX_TECHNICAL_RETRIES)
     current = record.retry_counters.get("technical_retries", 0)
     if current >= max_retries:
         return False
@@ -100,7 +111,8 @@ def prepare_repair(
             message="prepare-repair requires at least one invalid feature_id",
         )
 
-    round_number = next_repair_round(record)
+    max_rounds = _budget(record, "max_repair_rounds", MAX_REPAIR_ROUNDS)
+    round_number = next_repair_round(record, max_rounds=max_rounds)
     record.retry_counters["repair_rounds"] = round_number
 
     repair_dir = run_dir / "repairs" / str(round_number)
@@ -122,7 +134,7 @@ def prepare_repair(
     return {
         "run_id": run_id,
         "round": round_number,
-        "max_rounds": MAX_REPAIR_ROUNDS,
+        "max_rounds": max_rounds,
         "feature_ids": manifest["feature_ids"],
         "repair_manifest": str(repair_dir / "repair.json"),
     }
