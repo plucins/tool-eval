@@ -1,5 +1,5 @@
 # Feature taxonomy - Python-managed after curation edits (D-016).
-revision: 6
+revision: 7
 groups:
 - id: code_authoring
   name: Code Authoring & Editing
@@ -870,3 +870,84 @@ features:
   - recurring tasks
   research_question: Does the tool provide a native mechanism to schedule a
     task to run at a future time or on a recurring interval?
+- feature_id: data_processing_region_control
+  name: Data processing / residency region control
+  group: security_governance
+  definition: 'Lets the customer choose or restrict the geographic region (e.g.
+    EU, US, or other) in which their code/prompts are processed and/or stored.
+
+    '
+  has_criteria: Documentation describes a customer-facing setting or
+    contractual guarantee restricting the processing/storage region to a
+    specific geography.
+  partial_criteria: A default processing region is documented but not
+    configurable/guaranteed per customer, or the guarantee covers storage
+    only, not processing.
+  exclusions: Generic "data may be processed globally" language without any
+    region-specific control or guarantee does not qualify.
+  aliases:
+  - data residency
+  - regional data processing
+  - EU data boundary
+  - geographic data control
+  research_question: Does the tool let the customer choose or restrict the
+    geographic region where their data is processed and/or stored?
+- feature_id: sub_processor_disclosure
+  name: Sub-processor / third-party data-sharing disclosure
+  group: security_governance
+  definition: 'Vendor publishes a documented list of sub-processors (third
+    parties that may process customer data) as part of its data-processing
+    documentation.
+
+    '
+  has_criteria: A published, vendor-maintained sub-processor list or
+    equivalent disclosure exists and is publicly accessible.
+  partial_criteria: Sub-processor use is mentioned in general privacy-policy
+    language without an itemized list.
+  exclusions: No mention of sub-processors/third-party data sharing at all
+    does not qualify (falls to not_found).
+  aliases:
+  - sub-processor list
+  - third-party data sharing
+  - data-processing addendum
+  research_question: Does the vendor publish a list of sub-processors involved
+    in processing customer data?
+- feature_id: data_processing_agreement_availability
+  name: Data Processing Agreement (DPA) availability
+  group: security_governance
+  definition: 'Vendor offers a signable Data Processing Agreement (DPA)
+    governing how customer data is processed, typically required for
+    GDPR-relevant B2B contracts.
+
+    '
+  has_criteria: Documentation states a DPA is available to customers (e.g.
+    downloadable, or available on request/via sales).
+  partial_criteria: A DPA is available only on specific enterprise tiers, not
+    documented as generally available.
+  exclusions: Generic privacy-policy language without a concrete, named DPA
+    document does not qualify.
+  aliases:
+  - DPA
+  - data processing addendum
+  - GDPR agreement
+  research_question: Does the vendor offer a Data Processing Agreement (DPA) to
+    customers, and on which plans?
+- feature_id: encryption_in_transit_at_rest
+  name: Encryption in transit & at rest
+  group: security_governance
+  definition: 'Vendor documents that customer code/data is encrypted both in
+    transit (e.g. TLS) and at rest (e.g. storage-level encryption).
+
+    '
+  has_criteria: Documentation explicitly states both in-transit and at-rest
+    encryption are applied to customer data.
+  partial_criteria: Only one of the two (in-transit or at-rest) is explicitly
+    documented.
+  exclusions: Generic "we take security seriously" language without a concrete
+    encryption statement does not qualify.
+  aliases:
+  - encryption at rest
+  - TLS encryption
+  - data encryption
+  research_question: Does the vendor document encrypting customer data both in
+    transit and at rest?
