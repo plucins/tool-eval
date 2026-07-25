@@ -29,13 +29,26 @@
     });
   }
 
+  function initTabScrollers() {
+    var buttons = document.querySelectorAll("[data-cg-scroll-target]");
+    Array.prototype.forEach.call(buttons, function (button) {
+      button.addEventListener("click", function () {
+        var track = document.getElementById(button.getAttribute("data-cg-scroll-target"));
+        if (!track) return;
+        track.scrollBy({ left: 220, behavior: "smooth" });
+      });
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       initTooltips();
       initFilters();
+      initTabScrollers();
     });
   } else {
     initTooltips();
     initFilters();
+    initTabScrollers();
   }
 })();

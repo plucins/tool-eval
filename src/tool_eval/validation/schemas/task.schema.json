@@ -17,7 +17,7 @@
       "type": "array",
       "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
       "minItems": 1,
-      "maxItems": 4
+      "maxItems": 8
     },
     "inputs": { "type": "object" },
     "output_path": {

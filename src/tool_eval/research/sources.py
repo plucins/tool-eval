@@ -42,6 +42,25 @@ DEFAULT_SOURCE_CLASSES: tuple[str, ...] = (
     "specialist",
 )
 
+# Fields a worker needs to decide what to WebFetch; staleness bookkeeping
+# (checked_at/available/redirect_from) stays in the registry, not the brief.
+_KNOWN_SOURCE_FIELDS = ("source_id", "url", "title", "source_type", "official")
+
+
+def project_known_sources(run_dir: Path) -> list[dict[str, Any]]:
+    """Project the accepted source registry for reuse by later-phase workers.
+
+    Returns ``[]`` if source-discovery hasn't been accepted yet for this run
+    (real orchestration order guarantees it has by the time feature-research
+    or profile-writing tasks are planned; a soft default just keeps
+    direct/unit-test callers working).
+    """
+    registry_path = run_dir / "merged" / "sources.json"
+    if not registry_path.is_file():
+        return []
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    return [{k: source[k] for k in _KNOWN_SOURCE_FIELDS} for source in registry]
+
 
 def normalise_tool_id(tool_name: str) -> str:
     """Normalise a free-text tool name to a ``^[a-z][a-z0-9_]*$`` tool_id (D-016)."""

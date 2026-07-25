@@ -24,6 +24,7 @@ from tool_eval.profiles.validate import validate_profile
 from tool_eval.profiles.build import build_profile
 from tool_eval.research.pipeline import merge_run, taxonomy_feature_ids
 from tool_eval.research.curation import curate_candidates
+from tool_eval.research.profile_writing import create_profile_writing_task
 from tool_eval.research.repair import prepare_repair
 from tool_eval.research.sources import accept_sources, create_source_task
 from tool_eval.research.task_validation import validate_task
@@ -171,6 +172,22 @@ def cmd_research_accept_sources(args: argparse.Namespace) -> dict[str, Any]:
         next_action=(
             f"Registry accepted with {summary['source_count']} source(s), "
             f"{summary['official_count']} official; feature research is unblocked."
+        ),
+        artifacts=[json.dumps(summary)],
+    )
+
+
+def cmd_research_create_profile_writing_task(args: argparse.Namespace) -> dict[str, Any]:
+    root = discover_project_root()
+    summary = create_profile_writing_task(root, args.run_id)
+    return _envelope(
+        status="ok",
+        code="PROFILE_WRITING_TASK_CREATED",
+        run_id=args.run_id,
+        next_action=(
+            f"Delegate the profile-writing task for {summary['tool_id']!r} to a worker, "
+            "then run `research validate-task` and `research build-profile` "
+            "(no `research merge` step for this task type)."
         ),
         artifacts=[json.dumps(summary)],
     )
@@ -448,6 +465,10 @@ def build_parser() -> argparse.ArgumentParser:
     rc_accept_sources = research_sub.add_parser("accept-sources")
     rc_accept_sources.add_argument("run_id")
     rc_accept_sources.set_defaults(handler=cmd_research_accept_sources)
+
+    rc_profile_writing_task = research_sub.add_parser("create-profile-writing-task")
+    rc_profile_writing_task.add_argument("run_id")
+    rc_profile_writing_task.set_defaults(handler=cmd_research_create_profile_writing_task)
 
     rc_validate_task = research_sub.add_parser("validate-task")
     rc_validate_task.add_argument("run_id")

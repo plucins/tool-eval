@@ -23,7 +23,7 @@ from tool_eval.research.curation import (
 from tool_eval.runs.manager import init_run, read_run
 
 
-def _candidate(cid, group="code_generation"):
+def _candidate(cid, group="code_authoring"):
     return {
         "candidate_id": cid,
         "name": cid.title(),
@@ -33,7 +33,7 @@ def _candidate(cid, group="code_generation"):
     }
 
 
-def _full_feature(fid, group="code_generation"):
+def _full_feature(fid, group="code_authoring"):
     return {
         "feature_id": fid,
         "name": "New Feature",
@@ -142,7 +142,7 @@ def test_accept_bumps_taxonomy_revision_and_is_controlled(temp_project: Path):
 def test_accept_requires_complete_feature_definition(temp_project: Path):
     run = init_run(temp_project, operation="research")
     _write_candidates(temp_project, run.run_id, [_candidate("c1")])
-    incomplete = {"feature_id": "c1", "name": "x", "group": "code_generation"}
+    incomplete = {"feature_id": "c1", "name": "x", "group": "code_authoring"}
     with pytest.raises(ToolEvalError) as exc:
         curate_candidates(
             temp_project,

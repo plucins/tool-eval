@@ -44,8 +44,13 @@ Follows Sec 3.6. Gates are hard stops.
 1. Discover known and new official sources (delegate source discovery to a
    worker); validate the logical source registry via the CLI.
    Gate: without an accepted source registry, feature research is blocked.
-2. Create feature task bundles (2-4 features each) and launch workers up to four
-   at a time. Each worker gets one manifest path and the research skill name.
+2. Create feature task bundles (2-8 features each, per `runtime.yaml`
+   `bundling`) and launch workers up to `runtime.yaml` `concurrency.
+   max_concurrent_workers` at a time (currently 8). Each worker gets one
+   manifest path and the research skill name. Each bundle's input also
+   carries the accepted source registry and tool identity, so a worker can
+   reuse known official sources via `WebFetch` instead of re-searching for
+   them (see `tool-eval-worker.md`).
 3. Validate each worker result with the CLI. On a technical failure, do a bounded
    technical retry or split the bundle; a missing result blocks the merge.
    Workers run in the background: each completion arrives as a `task-notification`.
@@ -57,7 +62,29 @@ Follows Sec 3.6. Gates are hard stops.
    workflow are the single curation gate (step 6) and any publish confirmation.
 4. Merge deterministically through Python and verify exactly one result per
    feature in the frozen taxonomy revision.
-5. Extract facts, use cases, and candidate features.
+5. `python -m tool_eval research create-profile-writing-task <run_id>` (after
+   `research merge`, once the run has an accepted source registry and merged
+   feature results) writes the `profile-writing-01` manifest, inlining tool
+   identity, known sources, the merged feature results, the
+   `profile-sections.yaml` section list, the `additional-fact-sections.yaml`
+   groupings, and an unambiguous release-history capture directive (`{"mode":
+   "since_date", "since_date": ...}` if the tool has a previously published
+   profile, else `{"mode": "most_recent", "max_items": ...}` for a first-ever
+   pass — see `tool-eval-worker.md`). Delegate that task (`task_type:
+   profile-writing`, skill `profile-writing`) to a worker to write
+   `additional_facts`, `use_cases`, `release_history`, `description_sections`
+   (the `description.md` prose for each section, including every `required`
+   one), and any `unresolved_issues` — all in the one result file the worker
+   returns. Every `release_history` entry needs at least one cited *official*
+   changelog source — either repository-hosted (e.g. a `CHANGELOG.md` file or
+   a GitHub/GitLab Releases page in the product's own repo) or hosted on the
+   vendor's own website (a dedicated changelog/release-notes page); a
+   third-party aggregator or blog never qualifies (D-017). Validate the
+   result with the CLI (`research validate-task`) same as any other worker
+   result; unlike feature-research results, this task type is consumed
+   directly by `build-profile` — there is no `research merge` step for it.
+   New-feature candidates are unrelated to this step: they are already merged
+   from feature-research task results by step 4's `research merge`.
 6. Single curation gate (see below).
 7. For accepted candidates: the CLI validates the definition, updates the
    taxonomy, increments the revision, records a controlled transition in the run,

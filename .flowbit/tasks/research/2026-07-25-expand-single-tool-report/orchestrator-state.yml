@@ -1,0 +1,116 @@
+orchestrator:
+  started_phase: phase-1
+  completed_phases: [phase-1, phase-2, phase-3, phase-4, phase-5, phase-6]
+  failed_phases: []
+  auto_fix_attempts:
+    phase-1: 0
+  options:
+    brainstorming_enabled: true
+    design_enabled: true
+  created: "2026-07-25T00:00:00Z"
+  updated: "2026-07-25T00:00:00Z"
+  task_path: .flowbit/tasks/research/2026-07-25-expand-single-tool-report
+  task_ids:
+    phase-1: "1"
+    phase-2: "2"
+    phase-3: "3"
+    phase-4: "4"
+    phase-5: "5"
+    phase-6: "6"
+
+task:
+  title: "Expand single-tool report content model"
+  description: >
+    User wants to expand the single-tool profile/report so that, looking at one
+    tool's report, they can see its use cases, its built-in tools/capabilities,
+    and whatever else a comprehensive AI coding tool overview should contain.
+  status: in_progress
+  tags: [reporting, profiles, schema]
+  priority: medium
+
+research_context:
+  research_type: mixed
+  research_question: >
+    What content should the single-tool profile/report contain to give a full
+    overview of an AI coding tool - specifically its use cases and built-in
+    tools/capabilities - and what other sections should be added for
+    completeness?
+  scope:
+    included:
+      - "src/tool_eval/validation/schemas/profile.schema.json"
+      - "src/tool_eval/validation/schemas/use-case.schema.json"
+      - "src/tool_eval/validation/schemas/feature-result.schema.json"
+      - "config/feature-taxonomy.yaml"
+      - "src/tool_eval/reporting/ (html.py, markdown.py, templates/)"
+      - "src/tool_eval/profiles/description.py"
+      - "data/profiles/*/profile.json (example data)"
+      - "docs/user-guide.md"
+      - "industry practice for AI coding tool evaluation/comparison reports"
+    excluded:
+      - "implementing the schema/report changes (research + recommendation only)"
+      - "live scoring, benchmarking execution, or network calls (core stays offline/deterministic)"
+    constraints:
+      - "Python core must remain deterministic and offline (no LLM/network calls in src/tool_eval)"
+      - "JSON Schema remains the source of truth for any new profile fields (D-016)"
+      - "Any new report content must be sourced from research already gathered (documented or LLM-inferred with rationale), not fabricated"
+  methodology: []
+  sources: []
+  confidence_level: null
+  gathering_strategy:
+    categories: []
+    count: 0
+    source: null
+  phase_summaries:
+    phase-3:
+      summary: >
+        solution-brainstormer generated 3-4 alternatives per decision area for
+        4 decision areas (rendering path, grouping mechanism, known
+        limitations, built-in-tools taxonomy gaps), written to
+        outputs/solution-exploration.md.
+    phase-4:
+      summary: >
+        User converged on the recommended alternative for all 4 decision
+        areas: enrich existing tab pane (1A), hybrid grouping via native
+        group: field + config-mapping table (2D), defer known-limitations
+        section (3D), model built-in-tools gaps via additional_facts only
+        (4B).
+      decision_areas:
+        - area: "Single-tool report rendering path"
+          alternatives_count: 3
+          chosen_approach: "1A - enrich existing comparison.html.j2 tab pane in place"
+        - area: "Grouping feature_results/additional_facts into named sections"
+          alternatives_count: 4
+          chosen_approach: "2D - feature_results grouped natively by group: field; additional_facts grouped via new config-mapping table (2C), 2B deferred"
+        - area: "Modeling known limitations"
+          alternatives_count: 4
+          chosen_approach: "3D - do not add the section now; revisit sourcing-rigor tension separately"
+        - area: "Closing built-in-tools taxonomy gaps (bundled linters/formatters, named sub-agents)"
+          alternatives_count: 3
+          chosen_approach: "4B - model via additional_facts only, no taxonomy/curation-gate change"
+        - area: "Changelog / last N releases section (new scope added mid-workflow)"
+          alternatives_count: 4
+          chosen_approach: "5A/5D - new release_history schema array, mandatory per-entry evidence, since-last-research delta-and-cap population policy, mandatory rendered freshness caveat"
+      deferred_ideas:
+        - "Hardening additional-fact.schema.json to require evidence (matching use-case.schema.json's conditional minItems)"
+        - "Fixing architecture.md's stale 'stubbed' language for Comparison & Reporting"
+        - "Whether tool.vendor/tool.homepage should become mandatory first-class fields"
+        - "Completing the missing example-profiles-data.md gatherer output as a research-process follow-up"
+        - "A canonical 'recommended additional_facts topics' checklist"
+        - "'Best for X' positioning summary and independent-benchmarks sections (ranked lowest priority)"
+  project_doc_paths:
+    - ".flowbit/docs/project/tech-stack.md"
+    - ".flowbit/docs/project/architecture.md"
+    - ".flowbit/docs/standards/global/error-handling.md"
+    - ".flowbit/docs/standards/global/validation.md"
+    - ".flowbit/docs/standards/global/conventions.md"
+    - ".flowbit/docs/standards/global/coding-style.md"
+    - ".flowbit/docs/standards/global/commenting.md"
+    - ".flowbit/docs/standards/global/minimal-implementation.md"
+    - ".flowbit/docs/standards/global/architecture.md"
+    - ".flowbit/docs/standards/global/security.md"
+    - ".flowbit/docs/standards/global/research-protocol.md"
+    - ".flowbit/docs/standards/backend/api.md"
+    - ".flowbit/docs/standards/backend/runs.md"
+    - ".flowbit/docs/standards/backend/models.md"
+    - ".flowbit/docs/standards/backend/queries.md"
+    - ".flowbit/docs/standards/backend/migrations.md"

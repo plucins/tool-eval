@@ -1,0 +1,42 @@
+# Maps additional_facts entries into named single-tool-report sections
+# (ADR-002). A fact's `fact_id` (preferred, exact) or `topic` (case-insensitive
+# exact match) is looked up against the sections below, in order; a fact that
+# matches neither falls into the renderer's built-in "Other" bucket so it
+# stays visible instead of being silently dropped. Python-managed after
+# curation edits (D-016), same convention as feature-taxonomy.yaml.
+
+revision: 1
+
+sections:
+  - heading: "Built-in tools"
+    # The two ADR-004 taxonomy gaps (vendor-bundled linters/formatters; named
+    # sub-agent roles) plus any pre-existing agent-orchestration-style fact.
+    fact_ids:
+      - bundled_formatter_linter
+      - named_sub_agent_roles
+    topics:
+      - "Bundled tooling"
+      - "Named sub-agents"
+      - "Multi-agent orchestration"
+
+  - heading: "Pricing & licensing"
+    fact_ids: []
+    topics:
+      - "Pricing"
+      - "Pricing note"
+      - "Pricing tiers"
+      - "Plans and tiers"
+      - "Plans & pricing"
+      - "Plans and availability"
+      - "Plans and deployment"
+      - "Free tier limits"
+
+  - heading: "Security & data handling"
+    fact_ids: []
+    topics:
+      - "Data usage"
+
+  - heading: "Extensibility & MCP ecosystem"
+    fact_ids: []
+    topics:
+      - "Extensibility via MCP"

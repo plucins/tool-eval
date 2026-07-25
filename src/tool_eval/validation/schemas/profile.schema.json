@@ -61,6 +61,10 @@
       "type": "array",
       "items": { "$ref": "https://tool-eval.internal/schemas/use-case.schema.json" }
     },
+    "release_history": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/release-history-entry.schema.json" }
+    },
     "unresolved_issues": {
       "type": "array",
       "items": {

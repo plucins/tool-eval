@@ -87,6 +87,10 @@ def check_referential_integrity(profile: dict[str, Any]) -> list[BusinessError]:
         for j, ev in enumerate(uc.get("evidence", []) or []):
             _check(ev["source_id"], f"use_cases[{i}].evidence[{j}].source_id")
 
+    for i, rel in enumerate(profile.get("release_history", []) or []):
+        for j, ev in enumerate(rel.get("evidence", []) or []):
+            _check(ev["source_id"], f"release_history[{i}].evidence[{j}].source_id")
+
     for i, issue in enumerate(profile.get("unresolved_issues", []) or []):
         for sid in issue.get("related_source_ids", []) or []:
             _check(sid, f"unresolved_issues[{i}].related_source_ids")

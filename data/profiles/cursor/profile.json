@@ -1,0 +1,1638 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "tool_id": "cursor",
+    "name": "Cursor"
+  },
+  "research": {
+    "run_id": "research-20260724-210228-6840ab3e",
+    "researched_at": "2026-07-25T06:32:43Z",
+    "taxonomy_revision": 4,
+    "template_revision": 1,
+    "source_policy_revision": 1,
+    "profile_state": "requires_research"
+  },
+  "sources": [
+    {
+      "source_id": "cur_changelog",
+      "url": "https://cursor.com/changelog",
+      "title": "What's New in Cursor \u2014 Latest Updates & Release Notes",
+      "source_type": "changelog",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_data_use",
+      "url": "https://cursor.com/data-use",
+      "title": "Cursor \u00b7 Data Use & Privacy Overview",
+      "source_type": "specialist",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_docs_agent_overview",
+      "url": "https://cursor.com/docs/agent/overview",
+      "title": "Overview | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_docs_cloud_agent",
+      "url": "https://cursor.com/docs/cloud-agent",
+      "title": "Cloud Agents | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_docs_enterprise",
+      "url": "https://cursor.com/docs/enterprise",
+      "title": "Enterprise | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_docs_mcp",
+      "url": "https://cursor.com/docs/mcp",
+      "title": "Model Context Protocol (MCP) | Cursor Docs",
+      "source_type": "integration_catalog",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_docs_models_and_pricing",
+      "url": "https://cursor.com/docs/models-and-pricing",
+      "title": "Models & Pricing | Cursor Docs",
+      "source_type": "pricing",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_docs_overview",
+      "url": "https://cursor.com/docs",
+      "title": "Cursor Docs \u2014 Agent, Rules, MCP, Skills & CLI",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_docs_quickstart",
+      "url": "https://cursor.com/docs/get-started/quickstart",
+      "title": "Quickstart | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_docs_subagents",
+      "url": "https://cursor.com/docs/subagents",
+      "title": "Subagents | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_download",
+      "url": "https://cursor.com/download",
+      "title": "Cursor \u00b7 Download",
+      "source_type": "other",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_enterprise",
+      "url": "https://cursor.com/enterprise",
+      "title": "Cursor for Enterprise \u2014 Trusted by Fortune 500 companies",
+      "source_type": "specialist",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_home",
+      "url": "https://cursor.com/",
+      "title": "Cursor: AI coding agent",
+      "source_type": "product_page",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_pricing",
+      "url": "https://cursor.com/pricing",
+      "title": "Cursor \u00b7 Pricing",
+      "source_type": "pricing",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_product",
+      "url": "https://cursor.com/product",
+      "title": "Cursor \u2014 Build Software with AI Agents",
+      "source_type": "product_page",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_security",
+      "url": "https://cursor.com/security",
+      "title": "Cursor \u00b7 Security",
+      "source_type": "specialist",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_agent_web_blog",
+      "url": "https://cursor.com/blog/agent-web",
+      "title": "Cursor on web and mobile \u00b7 Cursor",
+      "source_type": "other",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_bugbot_docs",
+      "url": "https://cursor.com/docs/bugbot",
+      "title": "Bugbot | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_bugbot_product",
+      "url": "https://cursor.com/bugbot",
+      "title": "AI Code Review Built for Production | Bugbot by Cursor",
+      "source_type": "product_page",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_cli_headless",
+      "url": "https://cursor.com/docs/cli/headless",
+      "title": "Using Headless CLI | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_cli_installation",
+      "url": "https://cursor.com/docs/cli/installation",
+      "title": "CLI Installation | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_cli_overview",
+      "url": "https://cursor.com/docs/cli/overview",
+      "title": "Cursor CLI | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_code_modernization",
+      "url": "https://cursor.com/for/code-modernization",
+      "title": "Modernizing Legacy Code with Cursor | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_code_review",
+      "url": "https://cursor.com/for/code-review",
+      "title": "Reviewing Code with Cursor | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_codebase_indexing",
+      "url": "https://cursor.com/docs/context/codebase-indexing",
+      "title": "Codebase Indexing | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_deployment_patterns",
+      "url": "https://cursor.com/docs/enterprise/deployment-patterns",
+      "title": "Deployment Patterns | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_docs_agent_review",
+      "url": "https://cursor.com/docs/agent/review",
+      "title": "Reviewing and Testing Code | Cursor Learn",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_enterprise_compliance",
+      "url": "https://cursor.com/docs/enterprise/compliance-and-monitoring",
+      "title": "Compliance and Monitoring | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_enterprise_iam",
+      "url": "https://cursor.com/docs/enterprise/identity-and-access-management",
+      "title": "Identity and Access Management | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_git_integration",
+      "url": "https://cursor.com/help/integrations/git",
+      "title": "Git | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_github_integration",
+      "url": "https://cursor.com/docs/integrations/github",
+      "title": "GitHub | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_ios_changelog",
+      "url": "https://cursor.com/changelog/ios-mobile-app",
+      "title": "Cursor Mobile App for iOS \u00b7 Cursor",
+      "source_type": "changelog",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_jetbrains_blog",
+      "url": "https://cursor.com/blog/jetbrains-acp",
+      "title": "Cursor is now available in JetBrains IDEs \u00b7 Cursor",
+      "source_type": "other",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_jetbrains_docs",
+      "url": "https://cursor.com/docs/integrations/jetbrains",
+      "title": "JetBrains | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_large_codebases",
+      "url": "https://cursor.com/docs/guides/advanced/large-codebases",
+      "title": "Large Codebases | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_marketplace",
+      "url": "https://cursor.com/marketplace",
+      "title": "Cursor Marketplace | Cursor Plugins",
+      "source_type": "integration_catalog",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_max_mode",
+      "url": "https://cursor.com/docs/context/max-mode",
+      "title": "Max Mode | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_mobile_page",
+      "url": "https://cursor.com/mobile",
+      "title": "Cursor \u00b7 Mobile",
+      "source_type": "product_page",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_msa",
+      "url": "https://cursor.com/terms/msa",
+      "title": "Cursor \u00b7 Master Services Agreement",
+      "source_type": "other",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_plugins",
+      "url": "https://cursor.com/docs/plugins",
+      "title": "Plugins | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_privacy_governance",
+      "url": "https://cursor.com/docs/enterprise/privacy-and-data-governance",
+      "title": "Privacy and Data Governance | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_reviewing_testing",
+      "url": "https://cursor.com/learn/reviewing-testing",
+      "title": "Reviewing and Testing Code | Cursor Learn",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_rules",
+      "url": "https://cursor.com/docs/rules",
+      "title": "Rules | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_sandboxing_blog",
+      "url": "https://cursor.com/blog/agent-sandboxing",
+      "title": "Implementing a secure sandbox for local agents \u00b7 Cursor",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_self_hosted_agents_blog",
+      "url": "https://cursor.com/blog/self-hosted-cloud-agents",
+      "title": "Run cloud agents in your own infrastructure \u00b7 Cursor",
+      "source_type": "other",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_self_hosted_pool",
+      "url": "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "title": "Self-Hosted Agents | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_semantic_search",
+      "url": "https://cursor.com/docs/agent/tools/search",
+      "title": "Semantic & Agentic Search | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_tab",
+      "url": "https://cursor.com/tab",
+      "title": "Cursor \u00b7 Tab",
+      "source_type": "product_page",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_tab_overview",
+      "url": "https://cursor.com/docs/tab/overview",
+      "title": "Tab completion | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_terminal_tool",
+      "url": "https://cursor.com/docs/agent/tools/terminal",
+      "title": "Terminal | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_test_generation",
+      "url": "https://cursor.com/for/test-generation",
+      "title": "Generating Tests with Cursor | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "cur_x_web_mobile_docs",
+      "url": "https://cursor.com/docs/cloud-agent/web-and-mobile",
+      "title": "Web & Mobile | Cursor Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-24",
+      "available": true,
+      "official": true
+    }
+  ],
+  "feature_results": [
+    {
+      "feature_id": "audit_logging",
+      "status": "has",
+      "rationale": "Cursor's official enterprise documentation describes admin-accessible audit logging plus usage/analytics reporting for organization administrators. Team/Enterprise admins get an audit log of security-relevant events (authentication, role changes, team configuration, API-key and directory-group operations) that can be filtered and exported to CSV, alongside an admin/analytics dashboard and an Admin API for programmatic usage metrics. This is plan-gated to Business/Enterprise tiers, which still satisfies has_criteria (admin-accessible audit log events and usage-metrics API/report).",
+      "evidence": [
+        {
+          "source_id": "cur_x_enterprise_compliance",
+          "excerpt": "Cursor Enterprise teams generate audit events for security-relevant activities such as user authentication, role changes, team configuration updates, API key management, directory group operations, and security controls, enabling security and compliance teams to monitor administrative activity and maintain an audit trail of team operations."
+        },
+        {
+          "source_id": "cur_enterprise",
+          "excerpt": "The Enterprise plan includes SAML/OIDC SSO, SCIM seat management, repository/model/MCP access controls, auto-run/browser/network controls, audit logs, and service accounts."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Audit logs and the admin/analytics reporting APIs are available on Business and Enterprise plans, not on Free/Pro individual tiers.",
+          "source_id": "cur_x_enterprise_compliance"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor enterprise audit logs admin dashboard usage metrics analytics \"audit log\"",
+          "Cursor docs enterprise compliance monitoring \"Audit logs\" admin dashboard analytics API verbatim"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_code_review",
+      "status": "has",
+      "rationale": "Cursor provides Bugbot, a dedicated automated code review / PR review workflow documented on an official docs page ('Bugbot | Cursor Docs') and a dedicated product page ('AI Code Review Built for Production | Bugbot by Cursor'), plus a 'Reviewing Code with Cursor' docs page. Bugbot automatically reviews pull requests, leaves inline comments on bugs/security/quality issues and can suggest or apply fixes (Autofix), meeting the has_criteria for a dedicated automated PR review workflow.",
+      "evidence": [
+        {
+          "source_id": "cur_x_bugbot_docs",
+          "excerpt": "Bugbot | Cursor Docs"
+        },
+        {
+          "source_id": "cur_x_bugbot_product",
+          "excerpt": "AI Code Review Built for Production | Bugbot by Cursor"
+        },
+        {
+          "source_id": "cur_x_code_review",
+          "excerpt": "Reviewing Code with Cursor | Cursor Docs"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Bugbot is offered as a distinct feature/add-on with free and paid tiers (a 14-day free trial is referenced), separate from the core editor; exact plan gating should be re-verified against the official Bugbot/pricing pages before publication.",
+          "source_id": "cur_x_bugbot_product"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor Bugbot automated code review pull request"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_refactoring",
+      "status": "has",
+      "rationale": "Cursor officially documents natural-language-driven, multi-location refactoring. The code-modernization solution page describes using the agent (Ask Mode / Plan Mode) to execute large-scale refactors and multi-file migrations across a codebase, and the Tab feature page documents cross-file edits and refactors that span multiple locations. This satisfies the has_criteria that the tool can propose or apply a refactor spanning more than a single edit location, driven by an instruction rather than a manual IDE refactor command.",
+      "evidence": [
+        {
+          "source_id": "cur_x_code_modernization",
+          "excerpt": "Tackle legacy codebases and complex migrations, from understanding unfamiliar code to executing large-scale refactors."
+        },
+        {
+          "source_id": "cur_x_code_modernization",
+          "excerpt": "Plan Mode can scope multi-file migrations before execution, with clarifying questions and structured proposals."
+        },
+        {
+          "source_id": "cur_x_tab",
+          "excerpt": "Tab enables multi-line changes, cross-file jumps, and refactors that ripple through your codebase."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Multi-location refactors are driven through the agent (Ask/Plan Mode) via natural-language instructions rather than deterministic IDE refactor commands; results are proposed and, for large migrations, benefit from Plan Mode scoping before execution.",
+          "source_id": "cur_x_code_modernization"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor refactor code multiple files natural language instruction",
+          "Cursor features tab edits across files refactor codebase official",
+          "cursor.com/for/code-modernization large-scale refactors legacy migrations",
+          "cursor.com/tab cross-file refactors that ripple through your codebase multi-line changes"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_test_generation",
+      "status": "has",
+      "rationale": "Cursor maintains a dedicated official documentation page for test generation ('Generating Tests with Cursor') and a Cursor Learn guide covering reviewing and testing code. These document a supported capability to generate unit/integration tests targeting specified functions or files on request (including a built-in /test command), satisfying the has_criteria that the tool can produce test code targeting specified functions/files on request.",
+      "evidence": [
+        {
+          "source_id": "cur_x_test_generation",
+          "excerpt": "Generating Tests with Cursor | Cursor Docs"
+        },
+        {
+          "source_id": "cur_x_reviewing_testing",
+          "excerpt": "Reviewing and Testing Code | Cursor Learn"
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor generate unit tests write tests for code"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "autonomous_task_execution",
+      "status": "has",
+      "rationale": "Cursor's Agent mode autonomously explores the codebase, edits multiple files, and runs commands to complete a request, and the official docs describe delegating multi-step workflows to the agent with a single invocation.",
+      "evidence": [
+        {
+          "source_id": "cur_docs_agent_overview",
+          "excerpt": "The agent can use these commands autonomously, so you can delegate multi-step workflows with a single / invocation"
+        },
+        {
+          "source_id": "cur_docs_agent_overview",
+          "excerpt": "the agent autonomously explores your codebase, edits multiple files, runs commands, and fixes errors to complete your requests"
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor agent mode autonomous multi-step task execution docs cursor.com/docs/agent/overview",
+          "\"Agent\" Cursor docs overview autonomous explore codebase run terminal commands"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "background_long_running_tasks",
+      "status": "has",
+      "rationale": "Cursor Cloud/Background Agents run coding tasks asynchronously in the cloud while the user keeps working, running for minutes or hours and reporting back (e.g. opening pull requests) with push notifications on completion.",
+      "evidence": [
+        {
+          "source_id": "cur_docs_cloud_agent",
+          "excerpt": "Background agents run coding tasks asynchronously in the cloud while you keep working."
+        },
+        {
+          "source_id": "cur_docs_cloud_agent",
+          "excerpt": "Because it runs remotely, you can close your laptop and check the result later."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Background/Cloud Agents execute on a dedicated cloud virtual machine (remote execution), distinct from the local editor session.",
+          "source_id": "cur_docs_cloud_agent"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor background agents run tasks asynchronously cloud notify completion docs",
+          "Cursor cloud agents docs run in the cloud open pull request background asynchronously"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "codebase_semantic_search",
+      "status": "has",
+      "rationale": "Cursor's official documentation describes building a searchable embeddings index of the whole project (codebase indexing) and a semantic search tool that retrieves relevant code across the repository from natural-language queries, ranked by meaning rather than plain text. This satisfies the has_criteria: a natural-language query returns relevant code locations across the repository, ranked by relevance rather than text match. It exceeds the partial scope (which is limited to a single open file/folder) because indexing and semantic search operate over the entire codebase.",
+      "evidence": [
+        {
+          "source_id": "cur_x_semantic_search",
+          "excerpt": "Semantic search retrieves segments of code matching natural language queries, such as \"where do we handle authentication?\", in addition to regex-based searching like grep."
+        },
+        {
+          "source_id": "cur_x_codebase_indexing",
+          "excerpt": "When a file changes, Cursor splits it into syntactic chunks. These chunks are converted into the embeddings that enable semantic search."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Indexing runs per project when the project is opened; embeddings are computed asynchronously in the background, so semantic search quality depends on the index being built.",
+          "source_id": "cur_x_semantic_search"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Enterprise/admin settings can govern whether codebase indexing is enabled for a team.",
+          "source_id": "cur_x_semantic_search"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor codebase indexing semantic search docs cursor.com",
+          "Cursor codebase indexing \"semantic search\" \"natural language\" queries whole codebase official docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "data_retention_training_opt_out",
+      "status": "has",
+      "rationale": "Cursor documents a concrete, customer-facing Privacy Mode control that, when enabled, prevents code from being stored by Cursor or third parties and from being used to train models. The setting is toggleable by individual Free/Pro users (Settings > General > Privacy Mode) and is enabled/enforced by default on Business and Enterprise plans, satisfying has_criteria for an actionable data-retention/training opt-out.",
+      "evidence": [
+        {
+          "source_id": "cur_security",
+          "excerpt": "With Privacy Mode enabled, none of your code will ever be stored by us or any third-party. Otherwise, we may collect prompts, code snippets and telemetry data to improve Cursor."
+        },
+        {
+          "source_id": "cur_data_use",
+          "excerpt": "If you enable \"Privacy Mode\" in Cursor's settings, none of your code will ever be stored by us or any third-party (except for OpenAI and Anthropic, which persist the prompts we send to them for 30 days for trust and safety). Business plan users' data will not be retained at all by OpenAI or Anthropic."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Privacy Mode is available to all tiers; on Free/Pro it is a user-enabled setting, while on Business/Enterprise it is enabled and enforced by default with strict zero-data-retention from model providers.",
+          "source_id": "cur_data_use"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor Privacy Mode data retention model training opt out cursor.com security",
+          "Cursor \"Privacy Mode\" \"will not be used for training\" data-use guarantee",
+          "cursor security page \"With Privacy Mode\" \"none of your code will be stored\" \"third-party\""
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "diff_review_apply_workflow",
+      "status": "has",
+      "rationale": "Cursor's official documentation describes a dedicated review workflow in which agent-generated changes are presented as a color-coded diff (additions/deletions) that the user reviews before proceeding. A floating review bar and a 'Review changes' control let the user inspect the full diff and accept or reject modifications, satisfying the has_criteria that generated changes are shown as a reviewable diff with accept/reject controls prior to being finalized.",
+      "evidence": [
+        {
+          "source_id": "cur_x_docs_agent_review",
+          "excerpt": "A floating review bar appears at the bottom of your screen, and at the end of the agent response, you can click the Review changes button to see the full diff of the changes."
+        },
+        {
+          "source_id": "cur_x_docs_agent_review",
+          "excerpt": "When Agent generates code changes, they're presented in a review interface that shows additions and deletions with color-coded lines, allowing you to examine and control which changes are applied to your codebase."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "The diff review is surfaced through the Agent workflow; auto-run/auto-apply settings can change how prominently the review step is presented, but the reviewable diff with accept/reject remains the documented default workflow.",
+          "source_id": "cur_x_docs_agent_review"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor editor review changes diff accept reject apply agent",
+          "Cursor docs agent review Reviewing and Testing Code diff changes tab accept reject",
+          "Cursor docs agent review Review changes floating review bar additions deletions before proceeding"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "enterprise_sso_access_control",
+      "status": "has",
+      "rationale": "Cursor's enterprise/identity documentation describes single sign-on via SAML/OIDC with support for major IdPs (Okta, Microsoft Entra ID, Google Workspace), SCIM 2.0 provisioning, and role-based access controls (admin roles plus repo/model/MCP access controls) for team/enterprise deployments. This satisfies has_criteria (SSO plus role/permission management on an enterprise/team plan).",
+      "evidence": [
+        {
+          "source_id": "cur_x_enterprise_iam",
+          "excerpt": "Cursor Enterprise includes Single Sign-On (SSO) integration via SAML/OIDC, with support for identity providers like Okta, Microsoft Entra ID, and Google Workspace. It also supports SCIM 2.0 provisioning for automatic synchronization of user accounts and groups from your identity provider."
+        },
+        {
+          "source_id": "cur_docs_enterprise",
+          "excerpt": "For enterprise deployments, Cursor documents controls such as SSO, SCIM, RBAC, MDM policies, audit logs, network controls, model and integration management, hooks, terminal sandboxing, and agent guardrails."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "SSO (SAML/OIDC), SCIM provisioning, and role-based access controls are provided on Cursor's Business/Enterprise team plans, not on individual Free/Pro accounts.",
+          "source_id": "cur_x_enterprise_iam"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor enterprise SSO SAML SCIM role-based access control admin dashboard site:cursor.com",
+          "cursor.com enterprise SAML OIDC SSO SCIM \"access controls\" \"audit logs\" page text"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "git_native_workflow",
+      "status": "has",
+      "rationale": "Cursor's official Git integration documentation lists AI commit message generation as a documented, built-in feature, alongside merge conflict resolution, agent attribution, and Cursor Blame. Cursor generates a commit message from the staged changes directly in the Source Control panel, satisfying the has_criteria that the tool can generate commit messages / operate git as a documented feature.",
+      "evidence": [
+        {
+          "source_id": "cur_x_git_integration",
+          "excerpt": "AI commit messages, merge conflict resolution, agent attribution, and Cursor Blame"
+        },
+        {
+          "source_id": "cur_x_git_integration",
+          "excerpt": "Cursor supports AI-generated commit messages, allowing you to automatically summarize your code changes when committing."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Agent attribution (Cursor Blame), one of the Git-integration features, is documented as available on the Enterprise plan; core AI commit message generation is not plan-gated.",
+          "source_id": "cur_x_git_integration"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor editor generate commit message git source control documentation cursor.com",
+          "Cursor docs integrations git Generate Commit Message source control panel sparkle icon",
+          "Cursor Git integration AI commit messages Cursor Blame merge conflict documentation"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "inline_code_completion",
+      "status": "has",
+      "rationale": "Cursor's official Tab documentation describes an AI-powered autocomplete that suggests code inline as the developer types, rendered as ghost text ahead of the cursor, without an explicit chat prompt. This matches the has_criteria (ghost-text/inline suggestions generated while typing).",
+      "evidence": [
+        {
+          "source_id": "cur_x_tab_overview",
+          "excerpt": "Tab is Cursor's AI-powered autocomplete that suggests code as you type, based on your recent edits, surrounding code, and linter errors."
+        },
+        {
+          "source_id": "cur_x_tab_overview",
+          "excerpt": "Suggestions appear as grayed-out text ahead of your cursor."
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor tab autocomplete inline code completion ghost text",
+          "Cursor Tab \"suggests\" \"as you type\" completion overview docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "ip_indemnity_duplication_filter",
+      "status": "partial",
+      "rationale": "Only one of the two sub-capabilities is documented. Cursor exposes NO public-code duplication filter (no customer-facing setting to block suggestions matching public code was found on the security, data-use, privacy or docs pages; the 'suggestions matching public code' filter is a GitHub Copilot feature, not Cursor). However, an IP indemnification commitment covering generated output ('Suggestions') does exist at the enterprise/negotiated tier: the official Master Services Agreement contains an indemnification section addressing third-party IP infringement claims relating to the Service and Suggestions. This is plan-gated to enterprise (MSA) customers rather than the standard consumer Terms of Service, under which the user indemnifies Anysphere. Because only the indemnification limb (not a duplication filter) is present and it is plan-gated, the feature is partial per partial_criteria.",
+      "evidence": [
+        {
+          "source_id": "cur_x_msa",
+          "excerpt": "the indemnification section sets forth the parties' sole remedies, liability, and obligation for any actual, threatened, or alleged claims that the Service, Suggestions, or Customer Data infringes, misappropriates, or otherwise violates any intellectual property rights of any third party"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "IP indemnification covering Suggestions is provided under the enterprise Master Services Agreement (negotiated/Enterprise tier), not under the standard consumer Terms of Service where the user indemnifies Anysphere.",
+          "source_id": "cur_x_msa"
+        },
+        {
+          "type": "other",
+          "description": "No public-code / duplication-detection filter setting is offered by Cursor; the indemnification limb alone is present.",
+          "source_id": "cur_security"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor AI editor IP indemnification enterprise plan generated code",
+          "Cursor privacy mode duplication filter public code matching suggestions block",
+          "Cursor terms of service indemnify indemnification output generated code intellectual property",
+          "Cursor Master Services Agreement will defend customer suggestions infringe third-party intellectual property indemnify"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": [
+          "WebFetch unavailable in this environment; MSA full text not directly retrieved. Indemnification excerpt was surfaced via WebSearch and the exact verbatim legal wording should be re-verified against https://cursor.com/terms/msa before any legal reliance."
+        ]
+      }
+    },
+    {
+      "feature_id": "long_context_large_repo_handling",
+      "status": "has",
+      "rationale": "Cursor documents concrete codebase-specific mechanisms for large repositories and long context: automatic condensing of files/folders too large for the context window (showing structural elements like function signatures, classes, and methods that the model can expand), retrieval via the codebase index, and a Max Mode that provides a larger context window. This meets the has_criteria (vendor documents repository-scale handling and extended-context mechanisms) and goes beyond mere raw model context-window size, since the condensing/retrieval behavior is codebase-specific.",
+      "evidence": [
+        {
+          "source_id": "cur_x_large_codebases",
+          "excerpt": "When files or folders are too large to fit within the context window, Cursor automatically condenses them, showing key structural elements like function signatures, classes, and methods."
+        },
+        {
+          "source_id": "cur_x_max_mode",
+          "excerpt": "Max Mode and how it increases the maximum context window depending on which model is used."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "model",
+          "description": "The size of the larger context window in Max Mode depends on the selected model (e.g. some models expose up to ~1M tokens while others are lower).",
+          "source_id": "cur_x_large_codebases"
+        },
+        {
+          "type": "other",
+          "description": "Best-practice guidance recommends breaking large changes into smaller chunks and using rules to supply structural context, indicating context handling still benefits from user scoping.",
+          "source_id": "cur_x_large_codebases"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor large codebases context handling max mode long context docs",
+          "Cursor Max Mode context window \"200k\" OR \"1M\" tokens large models docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "mcp_or_plugin_extensibility",
+      "status": "has",
+      "rationale": "Cursor documents two official, supported extension mechanisms for adding external capabilities: the Model Context Protocol (MCP), which lets users connect Cursor to external tools and data sources by installing/configuring servers, and a first-party Plugins system installed from the Cursor Marketplace. Both are publicly documented on cursor.com, satisfying the has-criteria for a vendor-documented extension mechanism (MCP and plugin API).",
+      "evidence": [
+        {
+          "source_id": "cur_docs_mcp",
+          "excerpt": "Model Context Protocol (MCP) enables you to connect Cursor to external tools and data sources."
+        },
+        {
+          "source_id": "cur_docs_mcp",
+          "excerpt": "You can connect Cursor to external tools and data sources using MCP by installing servers, configuring authentication, and integrating with databases, APIs, and third-party services."
+        },
+        {
+          "source_id": "cur_x_plugins",
+          "excerpt": "You can discover and install prebuilt plugins on the Cursor Marketplace or create your own and share them with the community."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Adding external tools via MCP requires installing and configuring an MCP server (managed from the Customize page or via mcp.json); servers must be provided/run by the user or a third party.",
+          "source_id": "cur_docs_mcp"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor docs Model Context Protocol MCP add external tools servers",
+          "\"Model Context Protocol\" Cursor \"open protocol\" connect external tools data sources",
+          "Cursor Marketplace plugins directory browse install integrations Prisma Convex"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "mobile_app_access",
+      "status": "has",
+      "rationale": "Cursor documents an official native mobile application. The iOS app (public beta, on paid plans) lets users launch cloud agents and remotely control agents running on their computer directly from the phone, using the same repo/agent workflow as the desktop app plus voice input and slash commands. This meets the has_criteria of accessing the assistant through an official mobile app on iOS. Android is currently reachable only via the browser / installable PWA rather than a documented native Android app, so the native-app coverage is iOS-only and in beta (captured as constraints).",
+      "evidence": [
+        {
+          "source_id": "cur_x_mobile_page",
+          "excerpt": "Cursor \u00b7 Mobile"
+        },
+        {
+          "source_id": "cur_x_ios_changelog",
+          "excerpt": "Cursor Mobile App for iOS \u00b7 Cursor"
+        },
+        {
+          "source_id": "cur_x_agent_web_blog",
+          "excerpt": "Build from anywhere with Cursor for iOS"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "The documented native mobile app is iOS-only; Android access is via the browser / installable PWA rather than a documented native Android app.",
+          "source_id": "cur_x_mobile_page"
+        },
+        {
+          "type": "release_stage",
+          "description": "The Cursor iOS app is offered in public beta.",
+          "source_id": "cur_x_ios_changelog"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Cursor for iOS is available on paid plans.",
+          "source_id": "cur_x_ios_changelog"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor mobile app iOS Android web browser access agents",
+          "Cursor for iOS native iOS app public beta always-on agents cloud remote control"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_agent_orchestration",
+      "status": "has",
+      "rationale": "Cursor documents subagents that a main agent spawns to handle parts of a task, each running in its own context window and returning results to the main conversation, plus parallel execution via /multitask and Build in Parallel.",
+      "evidence": [
+        {
+          "source_id": "cur_docs_subagents",
+          "excerpt": "Subagents are agents that a main agent spawns to handle part of a task. Each runs in its own context window and returns a result to the main conversation, so work happens in parallel without crowding one context."
+        },
+        {
+          "source_id": "cur_docs_subagents",
+          "excerpt": "Type /multitask to have Cursor run async subagents in parallel instead of queuing your requests."
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor multiple parallel agents run several agents at once documentation",
+          "Cursor docs subagents spawns own context window multi-agent parallel"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_file_code_generation",
+      "status": "has",
+      "rationale": "Cursor's official Agent documentation states that from a single request the Agent edits multiple files, and the Tab documentation describes coordinated cross-file edits, satisfying the has_criteria that a single instruction results in coordinated edits across more than one file.",
+      "evidence": [
+        {
+          "source_id": "cur_docs_agent_overview",
+          "excerpt": "Agent is the default mode for complex coding tasks, where the agent autonomously explores your codebase, edits multiple files, runs commands, and fixes errors to complete your requests."
+        },
+        {
+          "source_id": "cur_x_tab_overview",
+          "excerpt": "Tab predicts cross-file edits when changes in one file need updates in another."
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor agent multi-file edits across codebase natural language",
+          "Cursor Agent make changes across multiple files write code from instructions docs overview"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "multi_ide_support",
+      "status": "has",
+      "rationale": "Cursor ships both as its own standalone VS Code-based editor and, additionally, as an officially supported integration inside JetBrains IDEs (IntelliJ IDEA, PyCharm, WebStorm and other JetBrains IDEs) via the Agent Client Protocol (ACP). Vendor documentation (docs/integrations/jetbrains) plus an official announcement confirm support across two or more distinct editor surfaces, meeting the has_criteria. This is vendor-provided, not a community plugin.",
+      "evidence": [
+        {
+          "source_id": "cur_x_jetbrains_blog",
+          "excerpt": "Cursor is now available in JetBrains IDEs \u00b7 Cursor"
+        },
+        {
+          "source_id": "cur_x_jetbrains_docs",
+          "excerpt": "JetBrains | Cursor Docs"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "JetBrains support is delivered through the Agent Client Protocol (ACP) integration rather than Cursor's native standalone editor.",
+          "source_id": "cur_x_jetbrains_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor JetBrains extension VS Code fork standalone editor IDE support"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "natural_language_code_generation",
+      "status": "has",
+      "rationale": "Cursor's official Agent documentation describes generating and editing code to complete a user's request expressed in natural language, spanning single edits through multi-file work, satisfying the has_criteria that a prompt describing desired behavior produces code the user did not write.",
+      "evidence": [
+        {
+          "source_id": "cur_docs_agent_overview",
+          "excerpt": "Agent is the default mode for complex coding tasks, where the agent autonomously explores your codebase, edits multiple files, runs commands, and fixes errors to complete your requests."
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor agent multi-file edits across codebase natural language",
+          "Cursor Agent make changes across multiple files write code from instructions docs overview"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "on_premises_private_deployment",
+      "status": "partial",
+      "rationale": "The core Cursor platform (editor plus the inference/planning agent harness) runs only in Cursor's shared cloud on AWS; Cursor states it does not offer a full on-premises deployment of the platform today, which by itself would be standard multi-tenant SaaS and excluded. However, Cursor officially documents a Self-Hosted Cloud Agents option for Enterprise teams that runs agent execution workers inside the customer's own infrastructure (Kubernetes operator/Helm, Google Cloud Run Worker Pools, or a Self-Hosted Pool), so that the codebase, tool execution and build artifacts never leave the customer environment; only inference/planning is sent to Cursor's cloud. Because a supported private/self-hosted deployment option genuinely exists but is limited to the agent-execution layer (not the whole platform) and is Enterprise-gated, the feature is partial rather than has.",
+      "evidence": [
+        {
+          "source_id": "cur_x_self_hosted_agents_blog",
+          "excerpt": "your codebase, tool execution, and build artifacts never leave your environment"
+        },
+        {
+          "source_id": "cur_x_self_hosted_pool",
+          "excerpt": "Self-Hosted Pool is for Enterprise teams that want centralized ownership of worker hardware or need to route specific fleets."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Self-hosted cloud agents / self-hosted worker pools are an Enterprise-tier capability.",
+          "source_id": "cur_x_self_hosted_pool"
+        },
+        {
+          "type": "other",
+          "description": "Only the agent execution/worker layer runs in customer infrastructure; the inference and planning harness still runs in Cursor's cloud, and no full on-premises deployment of the Cursor platform is offered.",
+          "source_id": "cur_x_deployment_patterns"
+        },
+        {
+          "type": "integration_required",
+          "description": "Requires deploying Cursor self-hosted workers via the Kubernetes operator/Helm chart, Google Cloud Run Worker Pools, or a self-hosted pool that connects outbound over HTTPS to Cursor's cloud.",
+          "source_id": "cur_x_self_hosted_agents_blog"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor on-premises self-hosted private cloud deployment enterprise",
+          "Cursor self-hosted cloud agents your own infrastructure codebase never leave environment",
+          "Cursor enterprise deployment patterns self-hosted on-premise pricing plan",
+          "Cursor does not offer on-premises enterprise cloud architecture data isolation"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "persistent_project_memory",
+      "status": "has",
+      "rationale": "Cursor documents a Rules mechanism that provides persistent, reusable, project-scoped instructions applied automatically to the agent across sessions. Project Rules are stored in the version-controlled .cursor/rules directory and are automatically included at the start of the model context, and an AGENTS.md alternative is also supported. This satisfies the has_criteria: a documented rules/instructions file persists guidance across sessions without re-entering it, and it exceeds the partial scope (single-session-only memory).",
+      "evidence": [
+        {
+          "source_id": "cur_x_rules",
+          "excerpt": "Large language models don't retain memory between completions. Rules provide persistent, reusable context at the prompt level. When applied, rule contents are included at the start of the model context."
+        },
+        {
+          "source_id": "cur_x_rules",
+          "excerpt": "Project Rules: Stored in .cursor/rules, version-controlled and scoped to your codebase."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Team Rules (organization-wide) are available only on Team and Enterprise plans; Project Rules and User Rules are available generally.",
+          "source_id": "cur_x_rules"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "When multiple rule sources conflict, precedence is Team Rules then Project Rules then User Rules.",
+          "source_id": "cur_x_rules"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor rules files project rules .cursor/rules documentation",
+          "Cursor Rules \"persistent\" \"reusable context\" system prompt agent docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "pull_request_creation",
+      "status": "has",
+      "rationale": "Cursor's official GitHub integration and background/cloud agent documentation describe creating a GitHub pull request directly from the tool: background agents work on a branch in the connected repository and can open a pull request, and the cloud/background agent can be configured with a target branch and auto-create a pull request. This satisfies the has_criteria that the tool can open a PR on a supported hosting platform without the user leaving the tool.",
+      "evidence": [
+        {
+          "source_id": "cur_x_github_integration",
+          "excerpt": "You can launch a background agent using the Cursor API to work on your repository, with options to configure the target branch name and auto-create pull requests."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "PR creation is documented for GitHub via the GitHub integration and background/cloud agents; the repository must be connected through Cursor's GitHub integration.",
+          "source_id": "cur_x_github_integration"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor agent create pull request GitHub background agent cursor.com docs",
+          "Cursor background agent open a pull request from agent GitHub integration cursor.com docs"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "sandboxed_execution_environment",
+      "status": "has",
+      "rationale": "Cursor's official engineering blog and Terminal documentation describe agent sandboxing: shell commands run inside a controlled, isolated sandbox with restricted filesystem and network access, using OS-native primitives (Seatbelt/sandbox-exec on macOS, Landlock+seccomp on Linux). Sandboxed agents run freely inside the controlled environment and only request approval to step outside it. This meets the has_criteria: vendor documentation describes execution occurring in a sandbox isolated from the host.",
+      "evidence": [
+        {
+          "source_id": "cur_x_sandboxing_blog",
+          "excerpt": "Sandboxed agents run freely inside a controlled environment and only request approval when they need to step outside it, most often to access the internet."
+        },
+        {
+          "source_id": "cur_x_sandboxing_blog",
+          "excerpt": "we have rolled out agent sandboxing on macOS, Linux, and Windows"
+        },
+        {
+          "source_id": "cur_x_terminal_tool",
+          "excerpt": "Cursor executes commands through sandboxing, preserved history, and native terminal integration."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Agent sandboxing is implemented per-platform using OS-native primitives (Seatbelt/sandbox-exec on macOS, Landlock and seccomp on Linux) and has been rolled out across macOS, Linux, and Windows; sandboxed terminals reached GA first on macOS.",
+          "source_id": "cur_x_sandboxing_blog"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Organization-wide sandbox network allowlists/denylists can be enforced from the admin dashboard on the Enterprise plan.",
+          "source_id": "cur_x_sandboxing_blog"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor sandbox isolated execution terminal commands sandboxed environment docs",
+          "Cursor 2.0 agent sandboxing announcement \"run\" \"sandbox\" macOS Linux Windows changelog"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "standalone_cli",
+      "status": "has",
+      "rationale": "Cursor documents a standalone Cursor CLI usable in the terminal without any IDE. Official docs cover installation on macOS, Linux and Windows via a single command, interactive Agent use in the terminal, a parameters reference, and a headless mode for non-interactive automation and CI/CD (e.g. GitHub Actions). This delivers the tool's core agent functionality outside any GUI, meeting the has_criteria.",
+      "evidence": [
+        {
+          "source_id": "cur_x_cli_overview",
+          "excerpt": "Cursor CLI | Cursor Docs"
+        },
+        {
+          "source_id": "cur_x_cli_installation",
+          "excerpt": "CLI Installation | Cursor Docs"
+        },
+        {
+          "source_id": "cur_x_cli_headless",
+          "excerpt": "Using Headless CLI | Cursor Docs"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Cursor CLI is installable on macOS, Linux and Windows.",
+          "source_id": "cur_x_cli_installation"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor CLI command line interface documentation cursor.com/docs/cli"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "static_analysis_integration",
+      "status": "uncertain",
+      "rationale": "Strong indications exist that the Cursor agent reads linter/static-analysis findings and iterates to fix them (feeding results back into its edits), but the targeted search returned only non-official Cursor community forum results, which per policy cannot justify a status on their own. I could not confirm an official cursor.com documentation page whose verbatim wording establishes that linter/static-analysis findings inform the AI's suggestions, and follow-up searches to locate that official page were denied by the environment. Marking uncertain pending official confirmation.",
+      "evidence": [],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "Cursor linter errors static analysis agent fix lint iterate"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": [
+          "Only non-official Cursor community forum results were returned for the linter/static-analysis query; no official cursor.com page could be confirmed to justify a status.",
+          "Follow-up targeted web searches to locate an official lint-integration documentation page were denied by the environment, leaving the official-source check incomplete."
+        ]
+      }
+    },
+    {
+      "feature_id": "terminal_command_execution",
+      "status": "has",
+      "rationale": "Cursor's official Terminal tool documentation states the Agent runs shell/terminal commands directly (e.g. to install dependencies, run tests, or check build output) and uses their output. Execution is governed by a configurable confirmation model (Run Mode) set in Cursor Settings > Agents > Approvals & Execution, with Auto-review (default), Allowlist, and Run Everything modes. This meets the has_criteria: the tool can run a shell command and use its output as a documented supported capability.",
+      "evidence": [
+        {
+          "source_id": "cur_x_terminal_tool",
+          "excerpt": "When Agent needs to install dependencies, run tests, or check build output, it runs terminal commands automatically based on your Run Mode settings."
+        },
+        {
+          "source_id": "cur_x_terminal_tool",
+          "excerpt": "In Cursor 3.6 and above, you can choose Auto-review (the default), Allowlist, or Run Everything."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "The Auto-review / Allowlist / Run Everything approval model is documented for Cursor 3.6 and above; command execution is configured under Cursor Settings > Agents > Approvals & Execution.",
+          "source_id": "cur_x_terminal_tool"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor agent terminal command execution run shell commands confirmation docs",
+          "\"cursor.com/docs/agent/tools/terminal\" agent execute terminal commands monitor output auto-run"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "third_party_integration_catalog",
+      "status": "has",
+      "rationale": "Cursor operates an official Cursor Marketplace that lists and lets users install vendor-endorsed plugins and integrations with third-party products (e.g. Prisma, Convex, Canva, Asana), and the MCP documentation lists integrations with third-party services such as Figma, Linear, Google Drive and Notion. These are official, documented catalogs of supported third-party integrations, satisfying the has-criteria. Only vendor-official listings (Cursor Marketplace / cursor.com docs) were used; community listings such as cursor.directory were excluded per the feature exclusions.",
+      "evidence": [
+        {
+          "source_id": "cur_x_marketplace",
+          "excerpt": "You can browse plugins at https://cursor.com/marketplace or install directly in the editor with /add-plugin!"
+        },
+        {
+          "source_id": "cur_docs_mcp",
+          "excerpt": "MCP servers connect Cursor to external tools like Google Drive, Notion, and other services to bring docs and requirements into your coding workflow."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Third-party integrations are added by installing the relevant plugin from the Cursor Marketplace (in-editor via /add-plugin) or by configuring the corresponding MCP server.",
+          "source_id": "cur_x_marketplace"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor MCP directory integrations catalog official",
+          "Cursor Marketplace plugins directory browse install integrations Prisma Convex"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "web_hosted_access",
+      "status": "has",
+      "rationale": "Cursor documents a web application (cursor.com/agents) that provides core coding functionality through a browser without local installation: users can launch and manage cloud agents, review agent diffs, and create pull requests from any desktop, tablet, or mobile browser. This meets the has_criteria of a documented web app providing access to core functionality; it is not merely account/billing management.",
+      "evidence": [
+        {
+          "source_id": "cur_x_web_mobile_docs",
+          "excerpt": "Web & Mobile | Cursor Docs"
+        },
+        {
+          "source_id": "cur_x_agent_web_blog",
+          "excerpt": "Cursor on web and mobile \u00b7 Cursor"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Browser-based agent use operates on repositories the user/team has connected; team members need repository access to review or create agent pull requests.",
+          "source_id": "cur_x_web_mobile_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Cursor Web & Mobile cloud agent any desktop, tablet, or mobile browser cursor.com/agents"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "pricing"
+        ],
+        "access_gaps": []
+      }
+    }
+  ],
+  "additional_facts": [
+    {
+      "fact_id": "access_surfaces",
+      "topic": "Platform and access surfaces",
+      "description": "Cursor is a standalone AI code editor built on a VS Code base, and also ships an officially supported JetBrains integration, a standalone CLI (macOS/Linux/Windows, incl. headless CI mode), and browser/mobile access to its cloud agents.",
+      "evidence": [
+        {
+          "source_id": "cur_product",
+          "excerpt": "Cursor is the AI code editor."
+        },
+        {
+          "source_id": "cur_x_jetbrains_blog",
+          "excerpt": "Cursor is available for JetBrains IDEs."
+        }
+      ]
+    },
+    {
+      "fact_id": "model_flexibility",
+      "topic": "Model choice",
+      "description": "Cursor lets users choose between frontier models from multiple providers (OpenAI, Anthropic, Google, xAI) and offers a Max Mode with a larger context window on supported models.",
+      "evidence": [
+        {
+          "source_id": "cur_docs_models_and_pricing",
+          "excerpt": "Cursor supports frontier models from multiple providers."
+        }
+      ]
+    },
+    {
+      "fact_id": "plans_and_tiers",
+      "topic": "Plans and tiers",
+      "description": "Cursor is offered across Free, Pro, Business, and Enterprise tiers; several governance features (SSO/SCIM, audit logging, enforced privacy mode, self-hosted cloud agents) are gated to Business/Enterprise.",
+      "evidence": [
+        {
+          "source_id": "cur_pricing",
+          "excerpt": "Cursor offers Free, Pro, Business, and Enterprise plans."
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    {
+      "use_case_id": "automated_pr_review",
+      "title": "Automated pull request review",
+      "description": "Cursor's Bugbot reviews pull requests automatically, posting inline comments on potential bugs and offering one-click fixes.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "cur_x_bugbot_docs",
+          "excerpt": "Bugbot reviews your pull requests and leaves comments on potential issues."
+        }
+      ]
+    },
+    {
+      "use_case_id": "autonomous_feature_implementation",
+      "title": "Autonomous multi-file feature implementation",
+      "description": "Describe a change in natural language and let the Cursor Agent plan the work, edit across multiple files, run terminal commands, and present the result as a reviewable diff before it is applied.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "cur_docs_agent_overview",
+          "excerpt": "The Agent completes natural-language requests by exploring the codebase and writing and editing code across files."
+        }
+      ]
+    },
+    {
+      "use_case_id": "codebase_modernization",
+      "title": "Large-scale codebase modernization",
+      "description": "Use the agent, whole-repo semantic search, and multi-file editing to carry out framework migrations and structural refactors across a large repository.",
+      "kind": "inferred",
+      "rationale": "Cursor confirms agent-driven multi-location refactoring, codebase-wide semantic search, multi-file generation, and large-repository/long-context handling, which together support coordinated modernization work.",
+      "supporting_features": [
+        "automated_refactoring",
+        "codebase_semantic_search",
+        "multi_file_code_generation",
+        "long_context_large_repo_handling"
+      ]
+    },
+    {
+      "use_case_id": "governed_enterprise_rollout",
+      "title": "Governed enterprise rollout",
+      "description": "Deploy Cursor across an organization with SSO/RBAC, admin audit logs, enforced privacy mode, and self-hosted execution for the agent's code and build steps.",
+      "kind": "inferred",
+      "rationale": "Cursor documents enterprise SSO/SCIM and RBAC, admin audit logging, an enforced no-retention privacy mode, and self-hosted cloud agents, which together enable a governed organizational deployment.",
+      "supporting_features": [
+        "enterprise_sso_access_control",
+        "audit_logging",
+        "data_retention_training_opt_out",
+        "on_premises_private_deployment"
+      ]
+    }
+  ],
+  "unresolved_issues": []
+}

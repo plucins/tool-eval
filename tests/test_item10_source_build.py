@@ -289,6 +289,15 @@ def _content_file(temp_project: Path, run_id: str, a_feature: str) -> Path:
                         "evidence": [{"source_id": "src_docs", "excerpt": "Free tier."}],
                     }
                 ],
+                "release_history": [
+                    {
+                        "release_id": "r1",
+                        "version": "1.2.0",
+                        "release_date": "2026-07-01",
+                        "summary": "Adds foo.",
+                        "evidence": [{"source_id": "src_docs", "excerpt": "1.2.0 adds foo."}],
+                    }
+                ],
                 "use_cases": [
                     {
                         "use_case_id": "onboarding",
@@ -353,6 +362,15 @@ def test_build_profile_stages_valid_profile_and_publishes(temp_project: Path, ma
     profile = json.loads((publish_dir / "profile.json").read_text())
     assert profile["tool"]["tool_id"] == "claude_code"
     assert len(profile["feature_results"]) == len(taxonomy_feature_ids(temp_project))
+    assert profile["release_history"] == [
+        {
+            "release_id": "r1",
+            "version": "1.2.0",
+            "release_date": "2026-07-01",
+            "summary": "Adds foo.",
+            "evidence": [{"source_id": "src_docs", "excerpt": "1.2.0 adds foo."}],
+        }
+    ]
     assert "## " in (publish_dir / "description.md").read_text()
 
     # the staged profile publishes cleanly

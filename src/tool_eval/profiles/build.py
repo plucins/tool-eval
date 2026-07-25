@@ -62,23 +62,33 @@ def _resolve_tool(
     return tid, name
 
 
-def _collect_content(run_dir: Path, content_path: Path | None) -> dict[str, list]:
+def _collect_content(run_dir: Path, content_path: Path | None) -> dict[str, Any]:
     """Gather additional_facts + use_cases from profile-writing results and/or a file.
 
     Deterministic dedup: profile-writing worker results first (sorted by task
     dir), then any explicit content file, keyed by their id fields.
+    ``description_sections`` is a section id -> Markdown mapping rather than
+    an id-keyed list, so it dedups per section id the same way (first result
+    wins), used as the default source of description prose in
+    ``_load_section_texts`` below.
     """
     facts: dict[str, dict[str, Any]] = {}
     use_cases: dict[str, dict[str, Any]] = {}
+    releases: dict[str, dict[str, Any]] = {}
     issues: dict[str, dict[str, Any]] = {}
+    sections: dict[str, str] = {}
 
     def _absorb(payload: dict[str, Any]) -> None:
         for f in payload.get("additional_facts", []) or []:
             facts.setdefault(f["fact_id"], f)
         for uc in payload.get("use_cases", []) or []:
             use_cases.setdefault(uc["use_case_id"], uc)
+        for rel in payload.get("release_history", []) or []:
+            releases.setdefault(rel["release_id"], rel)
         for issue in payload.get("unresolved_issues", []) or []:
             issues.setdefault(issue["issue_id"], issue)
+        for section_id, text in (payload.get("description_sections") or {}).items():
+            sections.setdefault(section_id, text)
 
     tasks_dir = run_dir / "tasks"
     if tasks_dir.is_dir():
@@ -97,21 +107,28 @@ def _collect_content(run_dir: Path, content_path: Path | None) -> dict[str, list
     return {
         "additional_facts": [facts[k] for k in sorted(facts)],
         "use_cases": [use_cases[k] for k in sorted(use_cases)],
+        "release_history": [releases[k] for k in sorted(releases)],
         "unresolved_issues": [issues[k] for k in sorted(issues)],
+        "description_sections": sections,
     }
 
 
-def _load_section_texts(run_dir: Path, sections_path: Path | None) -> dict[str, str]:
+def _load_section_texts(
+    run_dir: Path, sections_path: Path | None, worker_sections: dict[str, str]
+) -> dict[str, str]:
     if sections_path is not None:
         return _require_json(sections_path, "description-sections file")
     default = run_dir / "description-sections.json"
     if default.is_file():
         return json.loads(default.read_text(encoding="utf-8"))
+    if worker_sections:
+        return worker_sections
     raise ToolEvalError(
         code=f"{ErrorFamily.INPUT}_DESCRIPTION_SECTIONS_MISSING",
         message=(
-            "no description section text supplied; pass --sections or place "
-            "description-sections.json in the run directory (profile-writing output)"
+            "no description section text supplied; pass --sections, place "
+            "description-sections.json in the run directory, or run a "
+            "profile-writing task and validate its result first"
         ),
         path=str(default),
     )
@@ -137,7 +154,9 @@ def build_profile(
         run_dir / "merged" / "feature-results.json", "merged feature results"
     )
     content = _collect_content(run_dir, content_path)
-    section_texts = _load_section_texts(run_dir, sections_path)
+    section_texts = _load_section_texts(
+        run_dir, sections_path, content["description_sections"]
+    )
 
     sections_config = bundle.files["profile-sections.yaml"].data.get("sections", [])
     description_md, desc_errors = assemble_description(sections_config, section_texts)
@@ -160,6 +179,7 @@ def build_profile(
         "feature_results": feature_results,
         "additional_facts": content["additional_facts"],
         "use_cases": content["use_cases"],
+        "release_history": content["release_history"],
         "unresolved_issues": content["unresolved_issues"],
     }
 

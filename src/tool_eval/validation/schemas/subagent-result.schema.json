@@ -33,6 +33,37 @@
       "type": "array",
       "items": { "$ref": "https://tool-eval.internal/schemas/use-case.schema.json" }
     },
+    "release_history": {
+      "type": "array",
+      "items": { "$ref": "https://tool-eval.internal/schemas/release-history-entry.schema.json" }
+    },
+    "unresolved_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["issue_id", "kind", "description"],
+        "properties": {
+          "issue_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "kind": {
+            "type": "string",
+            "enum": ["conflict", "access_gap", "coverage_gap", "prompt_injection_warning", "other"]
+          },
+          "feature_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "description": { "type": "string", "minLength": 1 },
+          "related_source_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
+          }
+        }
+      }
+    },
+    "description_sections": {
+      "type": "object",
+      "description": "Markdown prose per profile-sections.yaml section id (profile-writing tasks only).",
+      "propertyNames": { "pattern": "^[a-z][a-z0-9_]*$" },
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
     "warnings": {
       "type": "array",
       "description": "Non-fatal notes, e.g. ignored prompt-injection attempts (D-017).",

@@ -50,6 +50,11 @@ def _taxonomy(root: Path) -> dict[str, Any]:
     return bundle.files["feature-taxonomy.yaml"].data
 
 
+def _additional_fact_sections(root: Path) -> dict[str, Any]:
+    bundle = load_config_bundle(root)
+    return bundle.files["additional-fact-sections.yaml"].data
+
+
 def build_comparison(
     root: Path,
     tool_ids: list[str],
@@ -70,7 +75,12 @@ def build_comparison(
     thresholds = _freshness_thresholds(root)
     model = build_comparison_model(loaded.profiles, _taxonomy(root), thresholds, generated_at)
 
-    html = render_comparison_html(model, loaded.profiles, loaded.descriptions)
+    html = render_comparison_html(
+        model,
+        loaded.profiles,
+        loaded.descriptions,
+        additional_fact_sections=_additional_fact_sections(root),
+    )
 
     comparisons_dir = root / "outputs" / "comparisons"
     name = output_name or _default_output_name(tool_ids)

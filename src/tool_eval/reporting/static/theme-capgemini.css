@@ -2,9 +2,11 @@
  * Capgemini-inspired theme for the tool-eval comparison report.
  *
  * Replicates the Capgemini brand look & feel (palette, blue->teal gradient,
- * Montserrat typography) using only locally embedded assets. It contains NO
- * Capgemini logo, imagery, or trademarked assets. Montserrat is bundled under
- * the SIL Open Font License (see fonts/OFL.txt).
+ * Montserrat typography, brand mark) using only locally embedded assets so
+ * the final report stays offline/self-contained. The brand mark in the header
+ * is a hand-authored approximation, not a reproduction of official logo
+ * artwork. Montserrat is bundled under the SIL Open Font License (see
+ * fonts/OFL.txt).
  *
  * Font files are referenced by relative URL here; the offline HTML builder
  * (reporting/assets.py) inlines each `url("fonts/*.woff2")` as a base64
@@ -37,11 +39,16 @@
   --cg-blue: #0070ad;          /* Capgemini Blue (primary) */
   --cg-vibrant: #12abdb;       /* Vibrant / Gamma Blue (secondary) */
   --cg-deep: #12405f;          /* deep navy for text on light surfaces */
+  --cg-navy: #041e3d;          /* darkest header navy */
   --cg-gradient: linear-gradient(90deg, #0070ad 0%, #12abdb 100%);
   --cg-gradient-diag: linear-gradient(135deg, #0070ad 0%, #12abdb 100%);
+  --cg-header-gradient: linear-gradient(115deg, var(--cg-navy) 0%, var(--cg-blue) 60%, var(--cg-vibrant) 130%);
   --cg-surface: #f5f8fb;
   --cg-border: #d5e2ec;
   --cg-radius: 10px;
+  --cg-shadow-sm: 0 1px 3px rgba(18, 64, 95, 0.08);
+  --cg-shadow-md: 0 4px 16px rgba(18, 64, 95, 0.10);
+  --cg-shadow-lg: 0 12px 32px rgba(4, 30, 61, 0.16);
 
   --bs-primary: var(--cg-blue);
   --bs-primary-rgb: 0, 112, 173;
@@ -62,88 +69,317 @@ h1, h2, h3, h4, h5, h6,
   font-family: "Montserrat", Arial, sans-serif;
 }
 
-/* Header / brand bar with the signature blue->teal gradient. */
+/* Header / brand bar: deep navy->blue->teal gradient with a brand row and a
+   decorative line-graphic; tall enough that the white panel below can
+   overlap its lower edge. */
 .cg-header {
-  background: var(--cg-gradient-diag);
+  position: relative;
+  overflow: hidden;
+  background: var(--cg-header-gradient);
   color: #fff;
-  padding: 1.75rem 0;
-  box-shadow: 0 2px 10px rgba(18, 64, 95, 0.18);
+  padding: 1.5rem 0 4.5rem;
+}
+.cg-header-wave {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  max-width: 640px;
+  height: 100%;
+  pointer-events: none;
+}
+.cg-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.5rem;
+}
+.cg-brand-mark { width: 28px; height: 28px; flex: none; }
+.cg-brand-name {
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.2px;
 }
 .cg-header h1 {
   font-weight: 700;
+  font-size: 2.1rem;
   letter-spacing: 0.2px;
   margin: 0;
+  line-height: 1.25;
+  position: relative;
 }
 .cg-header .cg-subtitle {
-  opacity: 0.9;
+  opacity: 0.85;
   font-weight: 400;
-}
-.cg-accent-bar {
-  height: 4px;
-  background: var(--cg-gradient);
-  border: 0;
-  opacity: 1;
-  margin: 0;
+  margin-top: 0.35rem;
+  position: relative;
 }
 
-/* Nav tabs in Capgemini blue. */
-.nav-tabs .nav-link {
+/* White panel that overlaps the header's lower edge, holding the page-level
+   tabs (Comparison / Profiles) and all comparison/profile content. */
+.cg-panel {
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+  box-shadow: var(--cg-shadow-lg);
+  margin-top: -3rem;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Page-level tabs (Comparison / Profiles): plain underline style. */
+.cg-page-tabs {
+  display: flex;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0.75rem 1.25rem 0;
+  border-bottom: 1px solid var(--cg-border);
+  list-style: none;
+}
+.cg-page-tabs .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #6c7a85;
+  font-weight: 600;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: 0.6rem 0.1rem;
+  background: transparent;
+}
+.cg-page-tabs .nav-link:hover { color: var(--cg-deep); }
+.cg-page-tabs .nav-link.active {
+  color: var(--cg-blue);
+  border-bottom-color: var(--cg-blue);
+  background: transparent;
+}
+.cg-page-tab-icon { width: 1rem; height: 1rem; flex: none; }
+
+/* KPI summary tiles: icon-in-circle beside the number/label, with a
+   breakdown row underneath. */
+.cg-kpi-card {
+  background: #fff;
+  border: 1px solid var(--cg-border);
+  border-radius: var(--cg-radius);
+  box-shadow: var(--cg-shadow-sm);
+  padding: 1rem 1.1rem;
+  height: 100%;
+}
+.cg-kpi-icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  flex: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cg-kpi-icon svg { width: 1.15rem; height: 1.15rem; }
+.cg-kpi-icon-tools    { background: rgba(0, 112, 173, 0.12); color: var(--cg-blue); }
+.cg-kpi-icon-groups   { background: rgba(75, 50, 181, 0.12); color: #4b32b5; }
+.cg-kpi-icon-features { background: rgba(18, 171, 219, 0.12); color: var(--cg-vibrant); }
+.cg-kpi-icon-flags    { background: rgba(138, 90, 0, 0.12); color: #8a5a00; }
+.cg-kpi-icon-warnings { background: rgba(15, 102, 116, 0.12); color: #0f6674; }
+.cg-kpi-number {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--cg-deep);
+  line-height: 1.1;
+}
+.cg-kpi-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6c7a85;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Generic card shell (group tables, profile panes). */
+.cg-card {
+  background: #fff;
+  border: 1px solid var(--cg-border);
+  border-radius: var(--cg-radius);
+  box-shadow: var(--cg-shadow-sm);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.cg-card-header {
+  background: #fff;
+  border-bottom: 1px solid var(--cg-border);
+  padding: 0.85rem 1rem;
+}
+.cg-card-header h2 {
+  color: var(--cg-deep);
+  font-weight: 700;
+}
+.cg-card-subtitle { margin-top: 0.1rem; }
+.cg-card-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  border-radius: 50%;
+  background: rgba(0, 112, 173, 0.1);
+  color: var(--cg-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cg-card-icon svg { width: 1.05rem; height: 1.05rem; }
+.cg-card-body {
+  padding: 1rem;
+}
+
+.cg-profile-card {
+  background: #fff;
+  border: 1px solid var(--cg-border);
+  border-radius: var(--cg-radius);
+  box-shadow: var(--cg-shadow-sm);
+  padding: 1.25rem;
+}
+
+/* Circular initials avatar on profile cards. */
+.cg-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--cg-gradient-diag);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tool-selector pills inside the Profiles pane (kept as a segmented pill
+   control; unrelated to the plain-underline tab styles above). */
+.nav-pills {
+  background: var(--cg-surface);
+  border: 1px solid var(--cg-border);
+  border-radius: calc(var(--cg-radius) + 2px);
+  padding: 0.25rem;
+  gap: 0.25rem;
+}
+.nav-pills .nav-link {
   color: var(--cg-deep);
   border: 0;
-  border-bottom: 3px solid transparent;
+  border-radius: var(--cg-radius);
   font-weight: 600;
+  padding: 0.45rem 0.9rem;
 }
-.nav-tabs .nav-link:hover {
-  border-bottom-color: var(--cg-vibrant);
+.nav-pills .nav-link:hover {
+  background: rgba(18, 171, 219, 0.12);
 }
-.nav-tabs .nav-link.active {
-  color: var(--cg-blue);
+.nav-pills .nav-link.active {
+  color: #fff;
+  background: var(--cg-gradient);
+  box-shadow: var(--cg-shadow-sm);
+}
+
+/* Feature-group subtabs: plain underline style with leading icons, in a
+   horizontally scrollable track plus a scroll-affordance button. */
+.cg-subtabs-bar { min-width: 0; }
+.cg-subtabs {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 1.5rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-bottom: 0.25rem;
+  scrollbar-width: none;
+  list-style: none;
+  margin: 0;
+}
+.cg-subtabs::-webkit-scrollbar { display: none; }
+.cg-subtabs .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  color: #6c7a85;
+  font-weight: 600;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: 0.6rem 0.1rem;
   background: transparent;
-  border-bottom-color: var(--cg-blue);
 }
+.cg-subtabs .nav-link:hover { color: var(--cg-deep); }
+.cg-subtabs .nav-link.active {
+  color: var(--cg-blue);
+  border-bottom-color: var(--cg-blue);
+  background: transparent;
+}
+.cg-subtab-icon { width: 1rem; height: 1rem; flex: none; }
+.cg-subtabs-scroll {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--cg-border);
+  background: #fff;
+  color: var(--cg-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cg-subtabs-scroll:hover { background: var(--cg-surface); }
+.cg-subtabs-scroll-icon { width: 0.85rem; height: 0.85rem; }
 
 /* Comparison table. */
 .cg-table {
   background: #fff;
-  border: 1px solid var(--cg-border);
-  border-radius: var(--cg-radius);
-  overflow: hidden;
+  margin: 0;
 }
 .cg-table thead th {
-  background: var(--cg-gradient);
-  color: #fff;
+  background: var(--cg-surface);
+  color: var(--cg-deep);
   font-weight: 600;
   vertical-align: middle;
+  border-bottom: 1px solid var(--cg-border);
 }
 .cg-table tbody th {
-  background: var(--cg-surface);
+  background: #fff;
   font-weight: 600;
   color: var(--cg-deep);
+}
+.cg-table tbody tr:nth-child(even) td,
+.cg-table tbody tr:nth-child(even) th {
+  background: var(--cg-surface);
+}
+.cg-table tbody tr:hover td,
+.cg-table tbody tr:hover th {
+  background: rgba(18, 171, 219, 0.08);
 }
 .cg-table td, .cg-table th {
   border-color: var(--cg-border);
 }
 
-/* Feature-status badges. */
-.cg-status {
-  display: inline-block;
-  min-width: 92px;
-  text-align: center;
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-.cg-status-has { background: #d6f0e2; color: #0d6b45; }
-.cg-status-partial { background: #fdeecd; color: #8a5a00; }
-.cg-status-not_found { background: #f3d9d9; color: #8a1f1f; }
-.cg-status-uncertain { background: #e2e8ee; color: #47535d; }
-.cg-status-requires_research {
-  background: repeating-linear-gradient(45deg, #eef3f7, #eef3f7 6px, #e0e9f0 6px, #e0e9f0 12px);
-  color: #47535d;
+/* Leading icon inside status badges. */
+.cg-status-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.1rem;
 }
 
-/* Distribution flags. */
+/* Feature-status: plain coloured text + icon, no pill background. */
+.cg-status {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.cg-status-has { color: #0d6b45; }
+.cg-status-partial { color: #8a5a00; }
+.cg-status-not_found { color: #8a1f1f; }
+.cg-status-uncertain { color: #47535d; }
+.cg-status-requires_research { color: #8ea0ac; }
+
+/* Distribution flags (text badge; still used for the requires_research chip). */
 .cg-flag {
   display: inline-block;
   padding: 0.15rem 0.55rem;
@@ -156,6 +392,46 @@ h1, h2, h3, h4, h5, h6,
   border: 1px solid rgba(0, 112, 173, 0.25);
 }
 
+/* Distribution flags rendered as colour-coded icons; the label shows on hover
+   (Bootstrap tooltip via data-bs-toggle) and is exposed to AT via aria-label.
+   The colour class both tints the chip and sets currentColor for its glyph. */
+.cg-flag-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin: 0.1rem 0.2rem 0.1rem 0;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: help;
+  vertical-align: middle;
+}
+.cg-flag-icon-glyph { width: 0.9rem; height: 0.9rem; }
+.cg-flag-common     { background: #d6f0e2; color: #0d6b45; border-color: rgba(13, 107, 69, 0.25); }
+.cg-flag-only_lacks { background: #d3ecef; color: #0f6674; border-color: rgba(15, 102, 116, 0.25); }
+.cg-flag-only_has   { background: #e4defb; color: #4b32b5; border-color: rgba(75, 50, 181, 0.25); }
+.cg-flag-rare       { background: #fdeecd; color: #8a5a00; border-color: rgba(138, 90, 0, 0.25); }
+.cg-flag-split      { background: #e2e8ee; color: #47535d; border-color: rgba(71, 83, 93, 0.25); }
+.cg-flag-varied     { background: #f6ddd0; color: #9a3f12; border-color: rgba(154, 63, 18, 0.25); }
+.cg-flag-other      { background: rgba(18, 171, 219, 0.12); color: var(--cg-blue); border-color: rgba(0, 112, 173, 0.25); }
+
+/* Footer legend decoding the flag icons. */
+.cg-flag-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  align-items: center;
+}
+.cg-flag-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--cg-deep);
+  font-weight: 600;
+}
+.cg-flag-legend-item .cg-flag-icon { cursor: default; }
+
 /* Warning banners (freshness / requires_research). */
 .cg-warning {
   border-left: 4px solid var(--cg-vibrant);
@@ -166,8 +442,24 @@ h1, h2, h3, h4, h5, h6,
   margin-bottom: 0.5rem;
 }
 
-/* Freshness pills. */
-.cg-fresh { font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.5rem; border-radius: 6px; }
+/* Freshness pills, with a leading dot in the status colour. */
+.cg-fresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+}
+.cg-fresh::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
 .cg-fresh-current { background: #d6f0e2; color: #0d6b45; }
 .cg-fresh-aging { background: #fdeecd; color: #8a5a00; }
 .cg-fresh-stale { background: #f3d9d9; color: #8a1f1f; }
@@ -184,4 +476,21 @@ h1, h2, h3, h4, h5, h6,
   color: #6c7a85;
   font-size: 0.8rem;
   padding: 1.5rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid var(--cg-border);
 }
+.cg-footer > div:first-child { flex: 1 1 20rem; min-width: 0; }
+
+/* Bottom-right callout pointing at the Profiles tab. */
+.cg-cta-card {
+  flex: 0 0 auto;
+  max-width: 22rem;
+  background: #fff;
+  border: 1px solid var(--cg-border);
+  border-radius: var(--cg-radius);
+  box-shadow: var(--cg-shadow-sm);
+  padding: 0.9rem 1.1rem;
+  color: var(--bs-body-color);
+}
+.cg-cta-card p.fw-semibold { color: var(--cg-deep); }
+.cg-cta-arrow { width: 0.75rem; height: 0.75rem; color: var(--cg-blue); vertical-align: -0.05rem; }

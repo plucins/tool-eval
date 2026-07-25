@@ -1,30 +1,22 @@
 # Feature taxonomy - Python-managed after curation edits (D-016).
-revision: 4
+revision: 6
 groups:
-- id: code_generation
-  name: Code Generation & Completion
-- id: agentic_autonomy
-  name: Agentic Autonomy
-- id: context_understanding
-  name: Context & Codebase Understanding
-- id: editing_refactoring
-  name: Editing & Refactoring
-- id: testing_quality
-  name: Testing & Quality
-- id: terminal_execution
-  name: Terminal & Execution
-- id: version_control
-  name: Version Control Integration
-- id: ide_support
-  name: IDE & Editor Support
-- id: extensibility
-  name: Extensibility & Integrations
-- id: security_compliance
-  name: Security & Compliance
+- id: code_authoring
+  name: Code Authoring & Editing
+- id: agentic_execution
+  name: Agentic Execution & Runtime
+- id: agent_customization_orchestration
+  name: Agent Customization & Orchestration
+- id: context_quality
+  name: Context & Code Quality
+- id: workflow_ecosystem
+  name: Workflow & Ecosystem
+- id: security_governance
+  name: Security & Governance
 features:
 - feature_id: inline_code_completion
   name: Inline code completion
-  group: code_generation
+  group: code_authoring
   definition: 'Suggests single-line or multi-line code completions inline in the editor
     as the developer types.
 
@@ -43,7 +35,7 @@ features:
     in which editors/languages?
 - feature_id: natural_language_code_generation
   name: Natural-language-to-code generation
-  group: code_generation
+  group: code_authoring
   definition: 'Generates new code (functions, files, or components) from a natural-language
     description provided by the user.
 
@@ -61,7 +53,7 @@ features:
     and at what granularity (snippet, function, file, multi-file)?
 - feature_id: multi_file_code_generation
   name: Multi-file code generation
-  group: code_generation
+  group: code_authoring
   definition: 'Generates or modifies multiple related files in a single operation
     to implement a requested change.
 
@@ -78,7 +70,7 @@ features:
     one coordinated operation?
 - feature_id: autonomous_task_execution
   name: Autonomous multi-step task execution
-  group: agentic_autonomy
+  group: agentic_execution
   definition: 'Independently plans and executes a sequence of actions (edits, commands,
     tool calls) to complete a higher-level task with minimal step-by-step user confirmation.
 
@@ -96,7 +88,7 @@ features:
     without step-by-step confirmation?
 - feature_id: background_long_running_tasks
   name: Background / long-running task execution
-  group: agentic_autonomy
+  group: agentic_execution
   definition: 'Executes tasks asynchronously in the background while the user continues
     other work, notifying on completion.
 
@@ -114,7 +106,7 @@ features:
     asynchronously on completion?
 - feature_id: multi_agent_orchestration
   name: Multi-agent / sub-agent orchestration
-  group: agentic_autonomy
+  group: agent_customization_orchestration
   definition: 'Coordinates multiple specialized agent instances or sub-agents working
     on parts of a larger task.
 
@@ -132,7 +124,7 @@ features:
     sub-agents?
 - feature_id: codebase_semantic_search
   name: Codebase-wide semantic search
-  group: context_understanding
+  group: context_quality
   definition: 'Retrieves relevant code or documentation from the whole project using
     meaning-based (not just text) search.
 
@@ -150,7 +142,7 @@ features:
     across the whole codebase?
 - feature_id: long_context_large_repo_handling
   name: Large-repository / long-context handling
-  group: context_understanding
+  group: context_quality
   definition: 'Maintains useful context and produces coherent results when working
     within large repositories or long conversation/task histories.
 
@@ -168,7 +160,7 @@ features:
     in large repositories or long sessions?
 - feature_id: persistent_project_memory
   name: Persistent project memory / custom instructions
-  group: context_understanding
+  group: context_quality
   definition: 'Stores project-specific instructions, conventions, or memory that persists
     across sessions and is automatically applied.
 
@@ -186,7 +178,7 @@ features:
     or memory applied automatically across sessions?
 - feature_id: automated_refactoring
   name: Automated refactoring
-  group: editing_refactoring
+  group: code_authoring
   definition: 'Performs structural code changes (renames, extractions, restructuring)
     across one or more files while preserving behavior.
 
@@ -203,7 +195,7 @@ features:
     by natural-language instruction?
 - feature_id: diff_review_apply_workflow
   name: Diff review and selective apply
-  group: editing_refactoring
+  group: code_authoring
   definition: 'Presents proposed changes as a reviewable diff that the user can accept,
     reject, or partially apply before changes take effect.
 
@@ -219,7 +211,7 @@ features:
     changes?
 - feature_id: automated_test_generation
   name: Automated test generation
-  group: testing_quality
+  group: context_quality
   definition: 'Generates unit or integration tests for existing or newly written code.
 
     '
@@ -235,7 +227,7 @@ features:
     for existing or new code?
 - feature_id: automated_code_review
   name: Automated code review / PR review
-  group: testing_quality
+  group: context_quality
   definition: 'Analyzes a diff or pull request and produces review comments, risk
     flags, or suggested fixes.
 
@@ -253,7 +245,7 @@ features:
     review workflow?
 - feature_id: static_analysis_integration
   name: Static analysis / linting integration
-  group: testing_quality
+  group: context_quality
   definition: 'Integrates with or runs static analysis/lint tooling and surfaces results
     to the AI assistant for use in its suggestions.
 
@@ -271,7 +263,7 @@ features:
     AI-driven suggestions?
 - feature_id: terminal_command_execution
   name: Terminal command execution
-  group: terminal_execution
+  group: agentic_execution
   definition: 'Executes shell/terminal commands on behalf of the user as part of completing
     a task.
 
@@ -289,7 +281,7 @@ features:
     what confirmation model?
 - feature_id: sandboxed_execution_environment
   name: Sandboxed / isolated execution environment
-  group: terminal_execution
+  group: agentic_execution
   definition: 'Runs generated code or commands in an isolated sandbox or container
     rather than directly on the user''s machine.
 
@@ -307,7 +299,7 @@ features:
     for running code/commands?
 - feature_id: git_native_workflow
   name: Native git workflow support
-  group: version_control
+  group: workflow_ecosystem
   definition: 'Generates commits, branches, or commit messages, or otherwise operates
     git as part of its workflow.
 
@@ -325,7 +317,7 @@ features:
     commit messages) as part of its workflow?
 - feature_id: pull_request_creation
   name: Pull request creation
-  group: version_control
+  group: workflow_ecosystem
   definition: 'Creates a pull/merge request on a hosting platform (e.g. GitHub, GitLab)
     directly from the tool.
 
@@ -343,7 +335,7 @@ features:
     hosting platform?
 - feature_id: multi_ide_support
   name: Multi-IDE / multi-editor support
-  group: ide_support
+  group: workflow_ecosystem
   definition: 'Is available as a plugin or native mode in more than one IDE or editor.
 
     '
@@ -357,7 +349,7 @@ features:
   research_question: In which IDEs/editors is the tool officially supported?
 - feature_id: standalone_cli
   name: Standalone CLI access
-  group: ide_support
+  group: workflow_ecosystem
   definition: 'Provides a command-line interface usable without any IDE or GUI.
 
     '
@@ -373,7 +365,7 @@ features:
   research_question: Does the tool provide a standalone CLI usable outside any IDE?
 - feature_id: web_hosted_access
   name: Web-hosted / browser access
-  group: ide_support
+  group: workflow_ecosystem
   definition: 'Can be used through a web browser without local installation.
 
     '
@@ -388,7 +380,7 @@ features:
     without local installation?
 - feature_id: mcp_or_plugin_extensibility
   name: MCP / plugin extensibility
-  group: extensibility
+  group: workflow_ecosystem
   definition: 'Supports adding external tools or data sources through a documented
     plugin or protocol mechanism (e.g. Model Context Protocol).
 
@@ -406,7 +398,7 @@ features:
     MCP or a plugin API?
 - feature_id: third_party_integration_catalog
   name: Third-party integration catalog
-  group: extensibility
+  group: workflow_ecosystem
   definition: 'Officially documents and supports integrations with third-party products
     (e.g. issue trackers, CI systems, design tools).
 
@@ -423,7 +415,7 @@ features:
     and how many?
 - feature_id: enterprise_sso_access_control
   name: Enterprise SSO / access control
-  group: security_compliance
+  group: security_governance
   definition: 'Supports single sign-on and role-based access control for organizational
     deployments.
 
@@ -439,7 +431,7 @@ features:
   research_question: Does the tool support enterprise SSO and role-based access control?
 - feature_id: data_retention_training_opt_out
   name: Data retention / training opt-out controls
-  group: security_compliance
+  group: security_governance
   definition: 'Allows the customer to control whether their code/data is retained
     or used to train models.
 
@@ -458,7 +450,7 @@ features:
     data retention or training use?
 - feature_id: on_premises_private_deployment
   name: On-premises / private cloud deployment
-  group: security_compliance
+  group: security_governance
   definition: 'Can be deployed within the customer''s own infrastructure or a dedicated
     private cloud instance rather than only the vendor''s shared cloud.
 
@@ -477,7 +469,7 @@ features:
     deployment?
 - feature_id: ip_indemnity_duplication_filter
   name: IP indemnity / public-code duplication filter
-  group: security_compliance
+  group: security_governance
   definition: Provides a configurable filter that blocks code suggestions matching
     public code, and/or a vendor IP indemnification commitment covering generated
     code for eligible plans.
@@ -497,7 +489,7 @@ features:
     IP indemnification commitment, and on which plans?
 - feature_id: audit_logging
   name: Audit logging & usage metrics
-  group: security_compliance
+  group: security_governance
   definition: Exposes audit log events and/or usage metrics for organization or enterprise
     administrators covering tool access, configuration changes, and activity.
   has_criteria: Documentation describes admin-accessible audit log events or a usage-metrics
@@ -514,7 +506,7 @@ features:
     organizational oversight, and on which plans?
 - feature_id: mobile_app_access
   name: Mobile app access
-  group: ide_support
+  group: workflow_ecosystem
   definition: Provides access to the tool's core assistant functionality through a
     dedicated mobile (iOS/Android) application.
   has_criteria: Vendor documents access to the assistant (e.g. chat) through an official
@@ -530,3 +522,351 @@ features:
   - mobile chat
   research_question: Can the tool's core assistant be used through an official mobile
     application?
+- feature_id: custom_subagent_definition
+  name: User-defined sub-agent roles
+  group: agent_customization_orchestration
+  definition: 'Lets the user author a new sub-agent or persona (role, system
+    prompt, tool access restrictions, and optionally its own attached MCP
+    servers) as a documented, supported extension mechanism, rather than only
+    using a fixed set of built-in agent roles.
+
+    '
+  has_criteria: A documented mechanism (e.g. a config file or CLI command) lets
+    the user register a custom sub-agent/persona with its own prompt, tool
+    scope, and optionally its own MCP server attachments.
+  partial_criteria: Custom sub-agents can be defined but only via undocumented
+    or experimental configuration, or without independent tool-access scoping.
+  exclusions: The mere existence of built-in, vendor-defined sub-agent roles
+    (covered by multi_agent_orchestration) does not qualify; the user must be
+    able to author a new role.
+  aliases:
+  - custom agents
+  - agent definitions
+  - user-authored sub-agents
+  - agent personas
+  research_question: Can the user define their own sub-agent role or persona
+    (prompt, tool scope, optional attached MCP servers) as a documented
+    extension mechanism?
+- feature_id: custom_tool_function_registration
+  name: Custom tool / function-calling API
+  group: agent_customization_orchestration
+  definition: 'Provides a native mechanism, independent of MCP, for registering
+    a custom function or tool that the agent can call during execution.
+
+    '
+  has_criteria: Vendor documentation describes an API or config surface for
+    registering a callable function/tool outside of MCP server integration.
+  partial_criteria: Registration is possible only through undocumented internal
+    hooks, or is limited to a fixed, non-extensible built-in tool set.
+  exclusions: Adding tools solely via MCP server integration is covered by
+    mcp_or_plugin_extensibility, not this feature.
+  aliases:
+  - custom tools
+  - native function calling
+  - tool registration API
+  research_question: Does the tool provide a native (non-MCP) mechanism for
+    registering custom callable functions/tools for the agent?
+- feature_id: agent_lifecycle_hooks
+  name: Agent lifecycle hooks
+  group: agent_customization_orchestration
+  definition: 'Lets the user attach custom logic that runs at defined points in
+    the agent''s action lifecycle (e.g. before/after a tool call or edit),
+    able to observe or block the action.
+
+    '
+  has_criteria: A documented hook mechanism lets user-supplied code run at a
+    defined lifecycle point and influence (e.g. block, modify, log) the
+    agent's action.
+  partial_criteria: Hooks exist only for a narrow event type (e.g. session
+    start only) rather than around tool/edit actions generally.
+  exclusions: Passive notification webhooks that cannot influence or block the
+    action do not qualify.
+  aliases:
+  - pre/post-tool hooks
+  - lifecycle events
+  - agent middleware
+  research_question: Does the tool support user-defined hooks around the
+    agent's action lifecycle, and can they block/modify actions?
+- feature_id: permission_autonomy_granularity
+  name: Permission / autonomy-level granularity
+  group: agent_customization_orchestration
+  definition: 'Offers configurable, distinct approval/autonomy levels for
+    different categories of agent action (e.g. auto-accept edits but confirm
+    shell commands), rather than a single global confirm/auto-run switch.
+
+    '
+  has_criteria: Documentation describes at least two independently configurable
+    permission levels covering different action categories.
+  partial_criteria: A single global autonomy toggle exists, with no per-category
+    configuration.
+  exclusions: A fixed, non-configurable confirmation behavior (always-ask or
+    always-run) does not qualify.
+  aliases:
+  - permission modes
+  - autonomy levels
+  - approval granularity
+  research_question: Does the tool support configurable, per-action-category
+    permission/autonomy levels?
+- feature_id: plan_visibility_before_execution
+  name: Plan visibility before execution
+  group: agent_customization_orchestration
+  definition: 'Shows the user a plan or ordered step list before the agent
+    begins autonomous execution, so the sequence of intended actions can be
+    reviewed or approved up front.
+
+    '
+  has_criteria: The tool documents presenting a plan/step list for
+    approval before autonomous execution starts.
+  partial_criteria: A plan is shown but only after execution has already begun,
+    or only for a subset of task types.
+  exclusions: Showing only the final diff of completed changes, without any
+    upfront step list, does not qualify (see diff_review_apply_workflow).
+  aliases:
+  - task plan preview
+  - todo-list mode
+  - plan-then-execute
+  research_question: Does the tool show an upfront plan/step list for approval
+    before autonomous execution begins?
+- feature_id: parallel_independent_task_execution
+  name: Parallel independent task execution
+  group: agentic_execution
+  definition: 'Runs multiple independent, unrelated tasks concurrently as a
+    documented, supported mechanism, rather than one task at a time.
+
+    '
+  has_criteria: Vendor documentation describes running multiple independent
+    task instances concurrently within the product's own supported workflow.
+  partial_criteria: Concurrency is possible only by manually running multiple
+    separate application instances, with no documented coordination support.
+  exclusions: Delegating parts of a single task to coordinated sub-agents is
+    covered by multi_agent_orchestration, not this feature.
+  aliases:
+  - parallel agents
+  - concurrent sessions
+  - multi-task execution
+  research_question: Can the tool run multiple independent tasks concurrently
+    as a documented, supported capability?
+- feature_id: self_healing_error_recovery
+  name: Self-healing error recovery
+  group: agentic_execution
+  definition: 'Autonomously detects a failing test or build after making a
+    change and iterates on the fix without requiring a new user prompt.
+
+    '
+  has_criteria: The tool documents automatically re-running tests/build after a
+    change and iterating on failures without new user input.
+  partial_criteria: Failures are surfaced to the user but require a new prompt
+    to continue fixing.
+  exclusions: A single generate-then-stop pass with no failure-detection loop
+    does not qualify.
+  aliases:
+  - self-correction
+  - auto-fix loop
+  - iterate-until-green
+  research_question: Does the tool autonomously detect and iterate on
+    test/build failures without a new user prompt?
+- feature_id: agent_session_checkpoint_rollback
+  name: Agent session checkpoint & rollback
+  group: agentic_execution
+  definition: 'Lets the user restore an entire multi-step agent session to an
+    earlier checkpoint, undoing all changes made since that point in one
+    operation.
+
+    '
+  has_criteria: A documented checkpoint/rollback mechanism restores
+    session-wide state, not just a single file/hunk.
+  partial_criteria: Rollback exists only per individual file or per single
+    change, not for the whole session.
+  exclusions: Per-hunk diff accept/reject (diff_review_apply_workflow) alone
+    does not qualify as session-level rollback.
+  aliases:
+  - session checkpoints
+  - undo session
+  - restore point
+  research_question: Can the user roll back an entire agent session to an
+    earlier checkpoint in one operation?
+- feature_id: multimodal_image_to_code
+  name: Multimodal input (image/screenshot to code)
+  group: code_authoring
+  definition: 'Accepts an image or screenshot (e.g. a UI mockup) as input and
+    generates corresponding code from it.
+
+    '
+  has_criteria: The tool documents accepting an image/screenshot as prompt
+    input and producing code derived from it.
+  partial_criteria: Image input is accepted only for description/explanation,
+    not for generating new code.
+  exclusions: Text-only prompts describing a UI verbally, with no actual image
+    upload capability, do not qualify.
+  aliases:
+  - screenshot-to-code
+  - image-to-UI
+  - visual input
+  research_question: Can the tool accept an image/screenshot as input and
+    generate code from it?
+- feature_id: dependency_vulnerability_scanning
+  name: Dependency vulnerability scanning (SCA)
+  group: context_quality
+  definition: 'Analyzes project dependencies against known vulnerability
+    databases (CVEs) and surfaces findings to the user or the assistant.
+
+    '
+  has_criteria: Documented integration with a vulnerability/CVE database whose
+    findings are surfaced for the project's dependencies.
+  partial_criteria: Scanning covers only a subset of ecosystems/package
+    managers.
+  exclusions: General lint/style static analysis (static_analysis_integration)
+    without vulnerability-database matching does not qualify.
+  aliases:
+  - SCA
+  - dependency scanning
+  - CVE scanning
+  research_question: Does the tool scan project dependencies against known
+    vulnerability databases?
+- feature_id: layered_instruction_precedence
+  name: Layered instruction precedence (personal/repository/organization)
+  group: context_quality
+  definition: 'Supports custom instructions at multiple scopes (e.g. personal,
+    repository, organization) with a documented precedence order that is
+    applied automatically, without the user manually merging instructions.
+
+    '
+  has_criteria: Documentation describes at least two distinct instruction
+    scopes with a defined precedence order applied automatically.
+  partial_criteria: Multiple instruction files can exist but with no documented
+    precedence order, or only two of the three scopes are supported.
+  exclusions: A single persistent-instructions mechanism at one scope only
+    (persistent_project_memory) does not qualify; this requires multiple scopes
+    with documented precedence.
+  aliases:
+  - instruction hierarchy
+  - layered custom instructions
+  - personal/repo/org instructions
+  research_question: Does the tool support custom instructions at multiple
+    scopes with a documented, automatically-applied precedence order?
+- feature_id: headless_ci_mode
+  name: Headless / non-interactive CI mode
+  group: workflow_ecosystem
+  definition: 'Can be invoked fully non-interactively (no prompts/confirmations)
+    with machine-readable output and meaningful exit codes, suitable for use in
+    a CI/CD pipeline.
+
+    '
+  has_criteria: Documentation describes flags/modes for fully unattended
+    execution with structured output and exit codes.
+  partial_criteria: A CLI exists but still requires interactive confirmation
+    for some actions, or lacks documented exit-code semantics.
+  exclusions: A standalone CLI (standalone_cli) that still requires interactive
+    prompts for normal operation does not by itself qualify.
+  aliases:
+  - CI mode
+  - non-interactive mode
+  - scriptable CLI
+  research_question: Can the tool run fully non-interactively in a CI/CD
+    pipeline with structured output and exit codes?
+- feature_id: full_offline_operation
+  name: Full offline operation
+  group: workflow_ecosystem
+  definition: 'Operates with all core functionality available with no network
+    connectivity at all, not only a swappable local model.
+
+    '
+  has_criteria: Vendor documentation states the whole product functions without
+    any network access.
+  partial_criteria: Core AI functionality works offline but auxiliary features
+    (licensing, telemetry, updates) still require network access.
+  exclusions: Supporting a local/offline model while the surrounding product
+    still requires network connectivity (see local_offline_model_support) does
+    not by itself qualify.
+  aliases:
+  - airgapped mode
+  - fully offline
+  - no-network operation
+  research_question: Does the tool document operating with zero network
+    connectivity for its core functionality?
+- feature_id: local_offline_model_support
+  name: Local / offline (BYO) model support
+  group: security_governance
+  definition: 'Lets the customer connect their own local or self-hosted model
+    (e.g. via Ollama or an equivalent local inference backend) instead of the
+    vendor''s cloud-hosted model.
+
+    '
+  has_criteria: Documentation describes a supported way to point the tool at a
+    customer-controlled local/self-hosted model.
+  partial_criteria: Local model support exists only for a narrow feature subset
+    (e.g. completions only, not chat/agent mode).
+  exclusions: On-premises deployment of the vendor's own service
+    (on_premises_private_deployment) without customer control over the model
+    itself does not qualify.
+  aliases:
+  - BYO model
+  - local inference
+  - self-hosted model
+  research_question: Can the customer connect their own local/self-hosted model
+    instead of the vendor's cloud model?
+- feature_id: secret_detection_redaction
+  name: Secret detection & redaction
+  group: security_governance
+  definition: 'Automatically detects likely credentials/secrets in code or
+    context and redacts or blocks them before they are sent to the model or
+    written to disk.
+
+    '
+  has_criteria: Documentation describes automatic detection and redaction/
+    blocking of likely secrets in prompts or generated output.
+  partial_criteria: Detection exists only for a narrow, fixed set of secret
+    patterns, or only warns without redacting/blocking.
+  exclusions: General-purpose static analysis or lint rules not specifically
+    targeting credentials/secrets do not qualify.
+  aliases:
+  - secret scanning
+  - credential redaction
+  - PII/secret filtering
+  research_question: Does the tool automatically detect and redact/block
+    secrets before they reach the model or are written to disk?
+- feature_id: agent_network_egress_control
+  name: Agent network egress control / firewall
+  group: security_governance
+  definition: 'Runs the agent''s execution environment with a configurable
+    firewall restricting or allow-listing outbound network access, distinct
+    from general compute/process isolation.
+
+    '
+  has_criteria: Documentation describes a configurable mechanism restricting or
+    allow-listing outbound network calls made during agent execution.
+  partial_criteria: Network restriction exists only as a fixed, non-configurable
+    default with no documented allow-list/customization.
+  exclusions: General compute/process isolation with no documented
+    network-specific control (sandboxed_execution_environment) does not by
+    itself qualify.
+  aliases:
+  - network firewall
+  - egress control
+  - restricted internet access
+  research_question: Does the tool document a configurable firewall/
+    network-egress control for its agent execution environment?
+- feature_id: scheduled_recurring_task_execution
+  name: Scheduled / recurring task execution
+  group: agentic_execution
+  definition: 'Lets the user schedule a task to run automatically at a
+    specified future time or on a recurring cron-like interval, without an
+    active user session initiating it at that moment.
+
+    '
+  has_criteria: A documented mechanism (e.g. a scheduling command/config) lets
+    the user define a one-time future or recurring trigger that runs a task
+    autonomously.
+  partial_criteria: Scheduling exists only through an external, third-party
+    trigger (e.g. a generic CI cron job invoking the tool's CLI) rather than a
+    native scheduling feature of the tool itself.
+  exclusions: Background execution of a task the user starts interactively
+    right now (background_long_running_tasks) does not qualify; the trigger
+    must be time-based/recurring, not just asynchronous.
+  aliases:
+  - scheduler
+  - cron jobs
+  - scheduled agents
+  - recurring tasks
+  research_question: Does the tool provide a native mechanism to schedule a
+    task to run at a future time or on a recurring interval?

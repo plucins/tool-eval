@@ -75,7 +75,7 @@ orchestrator selects the deterministic commands for you.
 
 Research one tool and publish its profile.
 
-- **Argument:** exactly one tool name, e.g. `cursor`, `windsurf`. The CLI
+- **Argument:** exactly one tool name, e.g. `cursor`, `devin`. The CLI
   normalizes it to a lowercase-ASCII-and-underscores `tool_id`.
 - **Flow:** config validate → run init → source discovery → feature research via
   isolated workers → merge → **single curation gate** → research any accepted
@@ -192,7 +192,7 @@ failure:
 ### 5.4 Comparison
 
 ```
-> /tool-eval-compare cursor windsurf copilot claude_code
+> /tool-eval-compare cursor devin copilot claude_code
 ```
 
 Produces one self-contained HTML file under `outputs/comparisons/`. Open it
@@ -254,7 +254,7 @@ taxonomy changes are persistent.
 | `PUBLISH_REPLACE_FAILED` | Publication failed mid-replacement and rolled back. | Run `work recover` (below) to confirm the previous profile is intact. |
 | An interrupted session left a half-written profile | Publication was interrupted. | The next run auto-recovers; you can also run recovery manually (below). |
 
-### 7.1 Recovery and cleanup
+### 8.1 Recovery and cleanup
 
 These maintenance operations are deterministic and safe to run any time:
 
@@ -269,7 +269,7 @@ python -m tool_eval work cleanup   # apply failed-run retention
   (default 30) or beyond `failed_run_retention.max_count` (default 20), keeping
   the newest. Both limits are configurable in `config/runtime.yaml`.
 
-### 7.2 Tuning budgets
+### 8.2 Tuning budgets
 
 `config/runtime.yaml` holds the run budgets:
 

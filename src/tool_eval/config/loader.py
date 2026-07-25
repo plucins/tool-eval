@@ -24,6 +24,7 @@ REQUIRED_CONFIG_FILES: dict[str, bool] = {
     "feature-taxonomy.yaml": True,
     "source-policies.yaml": True,
     "profile-sections.yaml": True,
+    "additional-fact-sections.yaml": True,
     "freshness.yaml": False,
     "runtime.yaml": False,
     "presentation.yaml": False,

@@ -1,0 +1,2013 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "tool_id": "devin",
+    "name": "Devin"
+  },
+  "research": {
+    "run_id": "research-20260725-072502-ba1aa7d6",
+    "researched_at": "2026-07-25T08:07:18Z",
+    "taxonomy_revision": 4,
+    "template_revision": 1,
+    "source_policy_revision": 1,
+    "profile_state": "requires_research"
+  },
+  "sources": [
+    {
+      "source_id": "devin_cli_product",
+      "url": "https://devin.ai/cli",
+      "title": "Devin CLI",
+      "source_type": "product_page",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "devin_cloud_product",
+      "url": "https://devin.ai/cloud/",
+      "title": "Devin Cloud | Devin",
+      "source_type": "product_page",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "devin_docs_cli",
+      "url": "https://docs.devin.ai/cli",
+      "title": "Quickstart - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "devin_docs_integrations_gh",
+      "url": "https://docs.devin.ai/integrations/gh",
+      "title": "GitHub - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "devin_docs_integrations_gitlab",
+      "url": "https://docs.devin.ai/integrations/gitlab",
+      "title": "GitLab - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "devin_docs_integrations_overview",
+      "url": "https://docs.devin.ai/integrations/overview",
+      "title": "Integrations Overview - Devin Docs",
+      "source_type": "integration_catalog",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "devin_docs_intro",
+      "url": "https://docs.devin.ai/get-started/devin-intro",
+      "title": "Introducing Devin - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "devin_web_app",
+      "url": "https://app.devin.ai/",
+      "title": "Devin | The AI Software Engineer",
+      "source_type": "product_page",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_blog_attribution",
+      "url": "https://devin.ai/blog/attribution-announcement",
+      "title": "Code Suggestion Attribution | Devin",
+      "source_type": "other",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_blog_rebrand",
+      "url": "https://devin.ai/blog/windsurf-is-now-devin-desktop/",
+      "title": "Windsurf is now Devin Desktop | Devin",
+      "source_type": "other",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_cli_changelog_stable",
+      "url": "https://cli.devin.ai/docs/changelog/stable",
+      "title": "Changelog (Stable) - Devin for Terminal",
+      "source_type": "changelog",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_cognition_manage_devins",
+      "url": "https://cognition.ai/blog/devin-can-now-manage-devins",
+      "title": "Devin can now Manage Devins | Cognition",
+      "source_type": "other",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_desktop",
+      "url": "https://devin.ai/desktop",
+      "title": "Devin Desktop | Devin",
+      "source_type": "product_page",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_admin_billing",
+      "url": "https://docs.devin.ai/admin/billing",
+      "title": "Billing - Devin Docs",
+      "source_type": "pricing",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_admin_security",
+      "url": "https://docs.devin.ai/admin/security",
+      "title": "Security at Cognition - Devin Docs",
+      "source_type": "specialist",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_advanced_capabilities",
+      "url": "https://docs.devin.ai/work-with-devin/advanced-capabilities",
+      "title": "Advanced Capabilities - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_api_overview",
+      "url": "https://docs.devin.ai/api-reference/overview",
+      "title": "API Overview - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_ask_devin",
+      "url": "https://docs.devin.ai/work-with-devin/ask-devin",
+      "title": "Ask Devin - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_automations",
+      "url": "https://docs.devin.ai/product-guides/automations",
+      "title": "Automations - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_cascade",
+      "url": "https://docs.devin.ai/desktop/cascade/cascade",
+      "title": "Devin Desktop - Cascade",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_cli_commands",
+      "url": "https://docs.devin.ai/cli/reference/commands",
+      "title": "Commands & Flags - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_cli_rules",
+      "url": "https://docs.devin.ai/cli/extensibility/rules",
+      "title": "Rules & AGENTS.md - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_cli_sandbox",
+      "url": "https://docs.devin.ai/cli/sandbox",
+      "title": "Sandbox - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_cli_subagents",
+      "url": "https://docs.devin.ai/cli/subagents",
+      "title": "Subagents - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_code_coverage_tutorial",
+      "url": "https://docs.devin.ai/use-cases/tutorials/code-coverage",
+      "title": "Code Coverage - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_context_awareness_overview",
+      "url": "https://docs.devin.ai/desktop/context-awareness/overview",
+      "title": "Context Awareness Overview - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_custom_roles",
+      "url": "https://docs.devin.ai/enterprise/security-access/custom-roles",
+      "title": "Custom Roles and RBAC - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_deepwiki",
+      "url": "https://docs.devin.ai/work-with-devin/deepwiki",
+      "title": "DeepWiki - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_advanced",
+      "url": "https://docs.devin.ai/desktop/advanced",
+      "title": "Devin Desktop - Advanced",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_autocomplete",
+      "url": "https://docs.devin.ai/desktop/autocomplete/overview",
+      "title": "Autocomplete Overview - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_changelog_next",
+      "url": "https://docs.devin.ai/desktop/changelog-next",
+      "title": "Changelog (Next) - Devin Docs",
+      "source_type": "changelog",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_command_overview",
+      "url": "https://docs.devin.ai/desktop/command/plugins-overview",
+      "title": "Command Overview - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_command_related",
+      "url": "https://docs.devin.ai/desktop/command/related-features",
+      "title": "Refactors, Docstrings, and More - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_devin_local",
+      "url": "https://docs.devin.ai/desktop/devin-local",
+      "title": "Devin Local Agent - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_faq",
+      "url": "https://docs.devin.ai/desktop/devin-desktop-faq",
+      "title": "Devin Desktop FAQ - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_local",
+      "url": "https://docs.devin.ai/desktop/devin-local",
+      "title": "Devin Local Agent - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_overview",
+      "url": "https://docs.devin.ai/desktop/getstarted/overview",
+      "title": "Welcome to Devin Desktop - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_desktop_terminal",
+      "url": "https://docs.devin.ai/desktop/terminal",
+      "title": "Terminal - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_devin_handoff",
+      "url": "https://docs.devin.ai/work-with-devin/devin-handoff",
+      "title": "Hand off to cloud Devins - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_devin_review",
+      "url": "https://docs.devin.ai/work-with-devin/devin-review",
+      "title": "Devin Review - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_audit_logs",
+      "url": "https://docs.devin.ai/enterprise-api/audit-logs",
+      "title": "Audit Logs - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_deployment",
+      "url": "https://docs.devin.ai/enterprise/deployment/overview",
+      "title": "Enterprise Deployment - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_idp_groups",
+      "url": "https://docs.devin.ai/enterprise/security-access/idp-groups",
+      "title": "IdP Group Integration - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_overview",
+      "url": "https://docs.devin.ai/enterprise/overview",
+      "title": "Overview - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_quickstart",
+      "url": "https://docs.devin.ai/api-reference/getting-started/enterprise-quickstart",
+      "title": "Quick start: Enterprise - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_security",
+      "url": "https://docs.devin.ai/enterprise/security-access/security/enterprise-security",
+      "title": "Enterprise security - Devin Docs",
+      "source_type": "specialist",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_sso_azure",
+      "url": "https://docs.devin.ai/enterprise/security-access/sso/azure",
+      "title": "Entra ID SSO Setup - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_use_cases_guide",
+      "url": "https://docs.devin.ai/enterprise/use-cases/guide",
+      "title": "Using Enterprise Effectively - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_enterprise_vpc_overview",
+      "url": "https://docs.devin.ai/enterprise/vpc/overview",
+      "title": "VPC Deployment Overview - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_fast_context",
+      "url": "https://docs.devin.ai/desktop/context-awareness/fast-context",
+      "title": "Fast Context - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_first_run",
+      "url": "https://docs.devin.ai/get-started/first-run",
+      "title": "Your First Session - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_home",
+      "url": "https://docs.devin.ai/",
+      "title": "Introducing Devin - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_index_repo",
+      "url": "https://docs.devin.ai/onboard-devin/index-repo",
+      "title": "Index a Repository - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_integrations_gh",
+      "url": "https://docs.devin.ai/integrations/gh",
+      "title": "GitHub - Devin Docs",
+      "source_type": "integration_catalog",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_integrations_overview",
+      "url": "https://docs.devin.ai/integrations/overview",
+      "title": "Integrations Overview - Devin Docs",
+      "source_type": "integration_catalog",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_interactive_planning",
+      "url": "https://docs.devin.ai/work-with-devin/interactive-planning",
+      "title": "Interactive Planning - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_intro",
+      "url": "https://docs.devin.ai/get-started/devin-intro",
+      "title": "Introducing Devin - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_knowledge",
+      "url": "https://docs.devin.ai/product-guides/knowledge",
+      "title": "Knowledge - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_mcp_marketplace",
+      "url": "https://docs.devin.ai/work-with-devin/mcp",
+      "title": "MCP (Model Context Protocol) Marketplace - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_mcp_overview",
+      "url": "https://docs.devin.ai/cli/extensibility/mcp/overview",
+      "title": "MCP Overview - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_models",
+      "url": "https://docs.devin.ai/desktop/models",
+      "title": "AI Models - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_release_notes",
+      "url": "https://docs.devin.ai/release-notes",
+      "title": "Release Notes - Devin Docs",
+      "source_type": "changelog",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_release_notes_2026",
+      "url": "https://docs.devin.ai/release-notes/2026",
+      "title": "2026 - Devin Docs",
+      "source_type": "changelog",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_remote_indexing",
+      "url": "https://docs.devin.ai/desktop/context-awareness/remote-indexing",
+      "title": "Remote Indexing - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_repo_setup",
+      "url": "https://docs.devin.ai/onboard-devin/repo-setup",
+      "title": "Classic configuration - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_sso_oidc",
+      "url": "https://docs.devin.ai/enterprise/security-access/sso/oidc",
+      "title": "OIDC SSO Setup - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_sso_saml",
+      "url": "https://docs.devin.ai/enterprise/security-access/sso/saml",
+      "title": "SAML SSO Setup - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_testing_refactoring",
+      "url": "https://docs.devin.ai/use-cases/testing-refactoring",
+      "title": "Testing & Refactoring - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_usage_metrics_v2",
+      "url": "https://docs.devin.ai/api-reference/v2/consumption/usage-metrics",
+      "title": "Usage Metrics - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_use_cases",
+      "url": "https://docs.devin.ai/use-cases",
+      "title": "Overview - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_windsurf_plugins_compatibility",
+      "url": "https://docs.devin.ai/windsurf/plugins/compatibility",
+      "title": "IDE Compatibility - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_windsurf_plugins_getting_started",
+      "url": "https://docs.devin.ai/windsurf/plugins/getting-started",
+      "title": "Welcome to Windsurf Plugins - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_docs_work_with_devin_review",
+      "url": "https://docs.devin.ai/work-with-devin/devin-review",
+      "title": "Devin Review - Devin Docs",
+      "source_type": "documentation",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_download",
+      "url": "https://devin.ai/download",
+      "title": "Download | Devin",
+      "source_type": "product_page",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_enterprise",
+      "url": "https://devin.ai/enterprise/",
+      "title": "Enterprise | Devin",
+      "source_type": "product_page",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_home",
+      "url": "https://devin.ai/",
+      "title": "Devin | The AI Software Engineer",
+      "source_type": "product_page",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_pricing",
+      "url": "https://devin.ai/pricing",
+      "title": "Pricing | Devin",
+      "source_type": "pricing",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_security_product",
+      "url": "https://devin.ai/security/",
+      "title": "Devin for Security | Devin",
+      "source_type": "product_page",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "dvn_terms_platform",
+      "url": "https://cognition.ai/terms-of-service",
+      "title": "Platform Terms of Service | Cognition",
+      "source_type": "other",
+      "checked_at": "2026-07-25",
+      "available": true,
+      "official": true
+    }
+  ],
+  "feature_results": [
+    {
+      "feature_id": "audit_logging",
+      "status": "has",
+      "rationale": "Devin's Enterprise API documentation describes a dedicated Audit Logs endpoint returning structured, per-event entries (audit_log_id, action, org_id, user_id/user_email, created_at) covering enterprise-admin actions (e.g. member/role changes, join requests, AI-guardrail violations), plus separate Enterprise API usage-metrics endpoints (sessions, searches, PR counts, and daily/weekly/monthly active-user time series) gated behind an enterprise admin API key. Cognition's Enterprise product page corroborates 'audit logs and fine-grained access controls' as a stated Enterprise capability. This is an admin-accessible, per-event audit log plus a usage-metrics API/report, satisfying the has_criteria; access is restricted to the Enterprise API tier.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_enterprise_audit_logs",
+          "excerpt": "audit_log_id, action, org_id, user_id, user_email, created_at; documented actions include add_enterprise_member, update_enterprise_hypervisor_settings, search_query, ai_guardrail_violation, create_join_request, automatic_join_event"
+        },
+        {
+          "source_id": "dvn_docs_usage_metrics_v2",
+          "excerpt": "provides usage metrics including session count, search count, and PR counts for enterprises within specified time periods. Access requires an enterprise admin personal API key."
+        },
+        {
+          "source_id": "dvn_enterprise",
+          "excerpt": "Devin Enterprise offers SOC 2 Type 2 compliance, audit logs and fine-grained access controls, and integration with custom identity providers (IdP)."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Audit log and usage-metrics endpoints sit under the Enterprise API surface and require an enterprise admin personal API key; not documented for individual or Team-plan access.",
+          "source_id": "dvn_docs_enterprise_audit_logs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "site:docs.devin.ai audit log usage metrics admin",
+          "docs.devin.ai enterprise-api audit-logs endpoint action performed_by timestamp",
+          "\"audit_log_id\" OR \"Audit Logs\" devin.ai enterprise-api \"action\" \"org_id\"",
+          "Devin Enterprise \"SOC 2 Type 2\" \"audit logs\" \"access controls\" custom identity providers"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available in this environment; evidence excerpts were reconstructed from WebSearch synthesized snippets rather than an independently opened page, so exact verbatim wording/casing on docs.devin.ai/enterprise-api/audit-logs and the v2 usage-metrics page could not be double-checked byte-for-byte."
+        ]
+      }
+    },
+    {
+      "feature_id": "automated_code_review",
+      "status": "has",
+      "rationale": "Devin documents a dedicated PR/MR review workflow, 'Devin Review', that analyzes a diff and produces categorized review comments and suggested fixes, rather than relying only on ad hoc chat requests. This meets the has_criteria (automatically reviewing a diff/PR and producing comments or suggestions) and goes beyond the partial_criteria boundary since it integrates directly with GitHub and GitLab hosting platforms rather than being limited to local diffs.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_devin_review",
+          "excerpt": "Devin checks for bugs and labels them by confidence level. Devin posts bugs (likely errors or incorrect behavior) as PR comments. Additionally, Devin posts security vulnerabilities and hardening suggestions as PR comments."
+        },
+        {
+          "source_id": "dvn_docs_devin_review",
+          "excerpt": "When Devin Review finds bugs and Auto-Fix is enabled, it will generate suggested fixes that you can review and apply directly from the diff view."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Devin Review operates on pull requests / merge requests hosted on GitHub (including GitHub Enterprise Server/Cloud) or GitLab (including Self-Managed GitLab); it requires the repository to be connected through one of these hosting integrations rather than reviewing arbitrary local diffs.",
+          "source_id": "dvn_docs_devin_review"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai code review PR review Devin",
+          "\"docs.devin.ai\" \"Devin Review\" GitHub GitLab pull request comments",
+          "Devin Review PR review GitHub GitLab bugs (site:docs.devin.ai)"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "automated_refactoring",
+      "status": "has",
+      "rationale": "Devin supports instruction-driven refactors at two levels. In Devin Desktop's editor, the 'Refactor' code lens invokes the Command feature with a dropdown of pre-populated natural-language refactor instructions, or a custom instruction, applied to the selected function/class. Separately, the autonomous cloud Devin agent is documented as performing multi-file and repository-scale refactors and migrations (e.g. upgrading a library across dozens of files, converting a codebase from CommonJS to ESM, framework/legacy-language migrations) driven by a single natural-language instruction, well beyond single-symbol renames. Together these satisfy the has_criteria (refactor spanning more than one edit location, instruction-driven).",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_desktop_command_related",
+          "excerpt": "When you click Refactor, Devin Desktop will prompt you with a dropdown of selectable, pre-populated instructions that you can choose from. You can also write your own instructions."
+        },
+        {
+          "source_id": "dvn_docs_use_cases",
+          "excerpt": "Migration or large refactoring tasks are often fantastic projects for Devin: after investing a small, fixed cost to teach Devin how to approach sub-tasks, Devin can go and complete the migration autonomously."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "The single-click 'Refactor' code lens is scoped to Devin Desktop's editor (Command feature) and typically edits the selected function/class in place; multi-file, repository-wide refactors and migrations are performed by the autonomous cloud Devin agent rather than the Desktop code-lens shortcut.",
+          "source_id": "dvn_docs_desktop_command_related"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin Desktop refactoring feature docs.devin.ai",
+          "\"docs.devin.ai/desktop/command/related-features\" refactor",
+          "docs.devin.ai use-cases refactor codebase migration multiple files",
+          "devin.ai large scale refactor migrate codebase Devin agent",
+          "\"Refactor code lens\" devin desktop dropdown pre-populated instructions"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ]
+      }
+    },
+    {
+      "feature_id": "automated_test_generation",
+      "status": "has",
+      "rationale": "Devin's official documentation includes a dedicated 'Testing & Refactoring' use-case section and a Code Coverage tutorial describing on-request generation of unit tests targeting existing functions/files and closing coverage gaps, which matches the has_criteria directly (test code targeting specified functions/files on request) rather than being an incidental byproduct of general code generation.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_testing_refactoring",
+          "excerpt": "Devin can analyze your codebase's test suite and write additional tests to increase code coverage for your team."
+        },
+        {
+          "source_id": "dvn_docs_code_coverage_tutorial",
+          "excerpt": "Devin is able to read the existing file, determine what test cases you might want to implement based on the functionality that exists, and then actually write the new tests without any intervention."
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai automated test generation Devin write tests",
+          "Testing Refactoring Devin write unit tests improve coverage identify gaps (site:docs.devin.ai)"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "changelog"
+        ],
+        "access_gaps": []
+      }
+    },
+    {
+      "feature_id": "autonomous_task_execution",
+      "status": "has",
+      "rationale": "Devin documents an explicit autonomous 'Agent mode' - reached after an interactive planning phase in which Devin researches the codebase and proposes a plan the user can adjust - in which it independently writes code, runs commands, browses the web, and completes multi-step tasks end-to-end without per-step confirmation, then reports back (e.g. via a pull request). This is documented consistently for both the original cloud Devin agent and Devin Desktop/CLI, satisfying the has_criteria of decomposing and autonomously executing a task with a completion report.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_first_run",
+          "excerpt": "Agent mode is Devin's full autonomous mode where it can write code, run commands, browse the web, and complete complex tasks end-to-end."
+        },
+        {
+          "source_id": "dvn_docs_interactive_planning",
+          "excerpt": "Devin will interpret your prompt and rapidly search your codebase to find relevant files and code snippets, and when helpful, will use this context to propose a detailed plan that you can adjust."
+        },
+        {
+          "source_id": "dvn_docs_intro",
+          "excerpt": "Devin is an autonomous AI software engineer that can write, run and test code."
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin autonomous task execution plan steps docs.devin.ai",
+          "site:docs.devin.ai devin-intro plan execute autonomous",
+          "\"Agent mode is Devin's full autonomous mode\" site:docs.devin.ai",
+          "Devin docs \"Interactive Planning\" \"let you inspect\" plan before Devin executes autonomously",
+          "\"engineers can modify before execution begins\" OR \"modify before execution begins\" Devin"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "other"
+        ]
+      }
+    },
+    {
+      "feature_id": "background_long_running_tasks",
+      "status": "has",
+      "rationale": "Devin documents several officially supported ways to run tasks asynchronously in the background while the user does other work: the cloud Devin agent runs each session in its own isolated VM that keeps working after the user disconnects; the Devin CLI/Desktop '/handoff' command explicitly transfers a local session to an ephemeral cloud VM for long background execution; Automations start new (or message existing, long-running) Devin sessions from external triggers such as Slack, GitHub, Linear, or schedules without an active user session; and Subagents can run in a background mode where the parent agent keeps working and is notified automatically on completion. Together these satisfy the has_criteria of starting a task that continues without occupying the user's active session, with completion notification.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_devin_handoff",
+          "excerpt": "When a local task demands high compute power, runs into complex dependency issues, or requires long background execution, you can transfer your local session to the cloud."
+        },
+        {
+          "source_id": "dvn_docs_automations",
+          "excerpt": "Automations let you wire external events \u2014 Slack messages, GitHub webhooks, Linear ticket updates, schedules, and custom webhooks \u2014 to Devin sessions that start automatically."
+        },
+        {
+          "source_id": "dvn_docs_cli_subagents",
+          "excerpt": "Background: Runs in parallel while the parent agent continues working. The parent is automatically notified when the subagent completes."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Handing off a local session for long background execution requires the Devin CLI's built-in '/handoff' command (or the open-source Devin Handoff plugin when working from another coding agent) plus access to Devin's cloud environment; it is not available as a purely local-only capability.",
+          "source_id": "dvn_docs_devin_handoff"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin background agents asynchronous long running tasks docs.devin.ai",
+          "site:docs.devin.ai background asynchronous notify complete task",
+          "Devin Desktop Devin Cloud Devin Local background task sandbox VM docs.devin.ai",
+          "\"/handoff\" \"ephemeral cloud VM\" Devin desktop docs.devin.ai",
+          "docs.devin.ai automations trigger scheduled Slack Linear GitHub issue Devin session"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ]
+      }
+    },
+    {
+      "feature_id": "codebase_semantic_search",
+      "status": "has",
+      "rationale": "Devin Desktop's documented Context Awareness engine indexes the entire local codebase (not just open files) and retrieves relevant code via a retrieval-augmented-generation approach; a specialized 'Fast Context' subagent and 'Ask Devin' natural-language search return ranked, relevant code across the whole repository. This matches the has_criteria (a natural-language query returns relevant code locations across the repository, ranked by relevance) rather than the partial_criteria (search limited to the open file/folder) or a plain-text/substring search exclusion. DeepWiki (already in the source registry) additionally provides semantic, context-grounded Q&A over an indexed repository.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_context_awareness_overview",
+          "excerpt": "Devin Desktop indexes your codebase and uses LLMs to perform retrieval-augmented generation (RAG) on your codebase... The entire local codebase is then indexed (including files that are not open), and relevant code snippets are sourced by Devin Desktop's retrieval engine as you write code, ask questions, or invoke commands."
+        },
+        {
+          "source_id": "dvn_docs_fast_context",
+          "excerpt": "Fast Context is a specialized subagent in Devin Desktop that retrieves relevant code from your codebase up to 20x faster than traditional agentic search."
+        },
+        {
+          "source_id": "dvn_docs_ask_devin",
+          "excerpt": "Ask Devin's advanced code search capabilities, combined with DeepWiki, produce detailed and accurate answers grounded in your code."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "product_version",
+          "description": "This whole-codebase indexing/retrieval mechanism is documented under the Devin Desktop product line (the June 2026 rebrand of the former Windsurf editor), under docs.devin.ai/desktop/context-awareness/*, rather than as a feature of the original cloud-based autonomous Devin agent.",
+          "source_id": "dvn_docs_context_awareness_overview"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai DeepWiki codebase semantic search indexing",
+          "docs.devin.ai \"context-awareness\" local indexing embeddings codebase search Devin Desktop",
+          "context awareness overview codebase indexing semantic search (site:docs.devin.ai)",
+          "Devin Search codebase_search tool natural language query ranked code chunks (site:docs.devin.ai)"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": [
+          "Full raw page content of docs.devin.ai/desktop/context-awareness/overview and related pages was not directly fetched; excerpts rely on search-result summaries of those official pages rather than a full-page capture."
+        ]
+      }
+    },
+    {
+      "feature_id": "data_retention_training_opt_out",
+      "status": "has",
+      "rationale": "docs.devin.ai/admin/security documents a concrete customer-facing 'Data Controls' settings page: paid-plan customers can opt out at any time, which stops data being used for training and enables Zero Data Retention with Devin's model providers. Teams-plan opt-out is restricted to administrators, and Enterprise customers receive a stronger contractual commitment that Cognition will never train on their data without express prior written consent. This is a concrete, actionable control rather than generic privacy-policy language, satisfying the has_criteria; the control is documented for paid plans generally (not enterprise-only), with Enterprise given an additional consent guarantee.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_admin_security",
+          "excerpt": "If you're on a paid plan, you can opt out at any time on the Data Controls settings page. After you opt out, your data will not be used for training and Zero Data Retention will be enabled with our model providers."
+        },
+        {
+          "source_id": "dvn_docs_admin_security",
+          "excerpt": "If you are an Enterprise customer, Cognition will never train on your data without your express prior written consent."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Opt-out is documented for 'paid plan' customers; on the Teams plan only an administrator can exercise the opt-out. The documentation does not describe this control for a free/trial tier, and by default (absent opt-out) Devin may use data for model training.",
+          "source_id": "dvn_docs_admin_security"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin AI data retention training opt out zero data retention",
+          "docs.devin.ai admin/security data retention training opt out Data Controls settings page Zero Data Retention",
+          "\"Data Controls\" devin.ai \"Zero Data Retention\" \"opt out\" paid plan"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available in this environment; the excerpts above are reconstructed from WebSearch synthesized snippets of docs.devin.ai/admin/security rather than an independently opened page render, so exact surrounding wording could not be double-checked byte-for-byte."
+        ]
+      }
+    },
+    {
+      "feature_id": "diff_review_apply_workflow",
+      "status": "has",
+      "rationale": "Devin Desktop presents AI-generated edits as inline 'diff zones' - highlighted regions in the editor showing exactly what changed, with accept/reject controls per hunk - before changes take effect, and Command generations can additionally be accepted, rejected, or given follow-up instructions via a code lens or keyboard shortcuts. Devin Review complements this at the pull-request level by organizing larger diffs hunk-by-hunk for review. This meets the has_criteria of a reviewable diff with accept/reject controls prior to writing changes to disk, at per-hunk granularity.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_desktop_advanced",
+          "excerpt": "Devin Desktop displays diff zones \u2014 inline highlighted regions in the editor that show exactly what changed, with accept and reject controls for each hunk."
+        },
+        {
+          "source_id": "dvn_docs_desktop_command_overview",
+          "excerpt": "You can accept, reject, or follow-up a generation by clicking the corresponding code lens above the generated diff, or by using the appropriate shortcuts (Alt+A, Alt+R, and Alt+F, respectively)."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Per-hunk diff zones are the default for agent edits in Devin Desktop but can be disabled in Devin Settings -> User Interface -> Agent Diff Zones for non-Cascade agents; when disabled, those agents' edits are applied directly to the file and only a simple dismiss button is shown instead of accept/reject controls.",
+          "source_id": "dvn_docs_desktop_advanced"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai Devin Desktop diff review apply changes",
+          "\"docs.devin.ai/work-with-devin/devin-review\" diff",
+          "Devin Desktop Command accept reject diff changes docs.devin.ai",
+          "\"diff zones\" devin desktop inline highlighted regions accept reject"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ]
+      }
+    },
+    {
+      "feature_id": "enterprise_sso_access_control",
+      "status": "has",
+      "rationale": "Devin Enterprise documentation describes SSO via both SAML 2.0 and OIDC, with dedicated setup guides including provider-specific guides for Okta and Microsoft Entra ID (Azure AD), plus a two-level custom-roles/RBAC system (organization-level and account-level roles) that enterprise admins can define and assign directly, or map automatically from IdP groups delivered via SAML/OIDC claims at login. This satisfies the has_criteria (SSO via SAML/OIDC plus role/permission management for an enterprise plan); the capability is documented only within the Devin Enterprise section of the docs.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_sso_saml",
+          "excerpt": "supports both OIDC and SAML 2.0 for Single Sign-On integration, with dedicated setup guides available for both protocols"
+        },
+        {
+          "source_id": "dvn_docs_custom_roles",
+          "excerpt": "Enterprise administrators can create custom roles with specific permissions and assign them to users or IdP groups... implements a two-level role system with differentiated scopes and capabilities: organization-level roles and account-level roles"
+        },
+        {
+          "source_id": "dvn_docs_enterprise_idp_groups",
+          "excerpt": "Groups are defined in the IdP's directory, and group memberships flow to Devin via SAML/OIDC claims at login time; setup guides are provided for Okta, Azure AD, generic SAML 2.0, and generic OIDC providers"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "SSO and custom-roles/RBAC are documented exclusively under the Devin Enterprise section of the docs and enterprise API; not present in individual or Team-plan documentation.",
+          "source_id": "dvn_docs_enterprise_security"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "site:docs.devin.ai enterprise security SSO SAML OIDC RBAC roles",
+          "devin.ai/security SOC 2 audit logs single sign-on data retention enterprise",
+          "Devin Enterprise \"SOC 2 Type 2\" \"audit logs\" \"access controls\" custom identity providers"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "specialist"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available in this environment; evidence excerpts were reconstructed from WebSearch synthesized snippets rather than independently opened pages, so exact verbatim wording/casing could not be double-checked byte-for-byte.",
+          "English-locale titles for /enterprise/security-access/sso/saml and /enterprise/security-access/custom-roles were inferred from parallel /es/ (Spanish-locale) search results and the site's consistent '<Topic> - Devin Docs' naming pattern (the OIDC counterpart title was directly confirmed in English); these two titles should be spot-checked by the next worker or the curation step that opens the pages directly."
+        ]
+      }
+    },
+    {
+      "feature_id": "git_native_workflow",
+      "status": "has",
+      "rationale": "Devin's official GitHub integration documentation describes Devin operating as a regular repository contributor: pushing branches, creating commits (with optional GPG signing and configurable Devin-attribution trailers on commits/PRs), and opening pull requests, all as documented, native parts of its workflow rather than plain-text command suggestions.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_integrations_gh",
+          "excerpt": "These permissions enable Devin to work in your repositories as a regular contributor\u2014pushing branches, opening pull requests, and participating in PR discussions."
+        },
+        {
+          "source_id": "dvn_docs_integrations_gh",
+          "excerpt": "To sign Devin's commits with GPG, configure the key in your environment so it persists across sessions."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Devin-attribution trailers (e.g. a 'Generated with Devin' line and a 'Co-Authored-By: Devin' trailer) on commits and PR bodies are a configurable, not always-on, setting.",
+          "source_id": "dvn_docs_integrations_gh"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "site:docs.devin.ai git commit branch pull request",
+          "Devin AI create pull request branch commit official documentation"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "integration_catalog",
+          "changelog"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available in this environment; evidence excerpts are best-effort reconstructions of docs.devin.ai/integrations/gh content from search-engine result snippets, not a verified character-for-character copy from the live page."
+        ]
+      }
+    },
+    {
+      "feature_id": "inline_code_completion",
+      "status": "has",
+      "rationale": "Devin Desktop's Autocomplete generates in-line and multi-line ghost-text style suggestions as the developer types, ambiently and without an explicit chat prompt, shown in grey text with Tab-style acceptance and Esc to dismiss. It is powered by an in-house model optimized for low-latency completions. This satisfies the has_criteria of ghost-text/inline suggestions generated while typing.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_desktop_autocomplete",
+          "excerpt": "Devin's autocomplete makes in-line and multi-line suggestions based on the context of your code, with suggestions appearing in grey text as you type."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Inline autocomplete is a feature of the Devin Desktop editor (formerly Windsurf); it is not part of the Devin for Terminal (CLI) product or the standalone cloud/autonomous Devin agent workflow.",
+          "source_id": "dvn_docs_desktop_autocomplete"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai desktop inline code completion autocomplete",
+          "\"docs.devin.ai/desktop/autocomplete/overview\"",
+          "\"in-line and multi-line suggestions\" devin autocomplete"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ]
+      }
+    },
+    {
+      "feature_id": "ip_indemnity_duplication_filter",
+      "status": "has",
+      "rationale": "Both sub-capabilities named in the feature definition are officially documented for Devin. (1) Duplication filter: an official devin.ai blog page ('Code Suggestion Attribution') documents automated filters that block code suggestions matching non-permissively-licensed or unlicensed public code by default, with an opt-in control to also filter suggestions matching permissively-licensed public code; enterprise customers additionally get an audit log of matches. This page is inherited from the pre-rebrand Windsurf/Codeium code-completion engine now shipped as Devin Desktop's autocomplete and still uses legacy 'Codeium' product wording, but it remains live on the current official devin.ai domain and was not previously in the discovered source registry. (2) IP indemnification: Cognition's official Platform Terms of Service state that Cognition will defend and indemnify customers against third-party claims that the Services infringe or misappropriate a third party's patent, copyright, or trade secret, with this indemnification section applying to Paid Service Tier customers and not to the Free Service Tier. Because a concrete, customer-facing duplication filter AND a stated IP indemnification commitment for paid plans are both documented, this satisfies has_criteria (either limb alone would already qualify).",
+      "evidence": [
+        {
+          "source_id": "dvn_blog_attribution",
+          "excerpt": "Codeium has automated filters for both non-permissively licensed and unlicensed code, meaning such suggestions will not be shown, as well as an opt-in for permissively licensed code."
+        },
+        {
+          "source_id": "dvn_terms_platform",
+          "excerpt": "Cognition shall defend Customer against third party claims that the Services infringe or misappropriate such third party's patent, copyright, or trade secret, and will indemnify and hold harmless Customer against damages and costs awarded or agreed in settlement. This section applies only to Customers on the Paid Service Tiers and does not apply to Customers on the Free Service Tier."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "The IP indemnification commitment in Cognition's Platform Terms of Service applies only to customers on Paid Service Tiers; Free Service Tier customers are explicitly excluded.",
+          "source_id": "dvn_terms_platform"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "The configurable opt-in filter for permissively-licensed matches, plus a per-match audit log, is documented as an enterprise-customer capability, distinct from the always-on default block of non-permissively-licensed/unlicensed matches.",
+          "source_id": "dvn_blog_attribution"
+        },
+        {
+          "type": "other",
+          "description": "The duplication/attribution-filter page is carried over from the pre-rebrand Windsurf/Codeium code-completion product and still refers to 'Codeium' rather than 'Devin' or 'Devin Desktop'; it should be re-confirmed against current Devin Desktop settings/documentation once a page-fetch tool is available.",
+          "source_id": "dvn_blog_attribution"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin devin.ai security public code duplication filter suggestions matching",
+          "\"docs.devin.ai\" enterprise security indemnification intellectual property",
+          "devin.ai blog attribution-announcement code suggestion attribution license filter",
+          "Cognition enterprise terms of service indemnify infringement \"Devin\" output",
+          "\"attribution-announcement\" Codeium OR Windsurf OR Devin non-permissively licensed unlicensed code filter opt-in",
+          "cognition.ai terms-of-service \"Paid Service Tiers\" indemnify infringe patents copyrights trade secrets",
+          "\"Code Suggestion Attribution\" devin.ai \"permissively licensed\" OR \"unlicensed code\" OR \"fingerprint\"",
+          "docs.devin.ai admin security \"duplication\" OR \"attribution\" OR \"public code\" filter",
+          "docs.devin.ai desktop faq \"license\" OR \"attribution\" OR \"duplication\" OR \"public code\" filter completions",
+          "Devin Desktop editor code completion license filter permissively licensed opt-in settings",
+          "\"automated filters for both non-permissively licensed and unlicensed code\"",
+          "\"will not be shown\" \"opt-in for permissively licensed code\" attribution",
+          "devin.ai security OR enterprise page \"indemnif\" OR \"intellectual property\" commitment customers"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "pricing",
+          "other"
+        ],
+        "access_gaps": [
+          "No WebFetch/direct page-fetch tool was available in this environment; excerpts for dvn_blog_attribution and dvn_terms_platform were assembled from WebSearch result summaries rather than a direct page fetch, and should be re-verified verbatim against the live pages before any legal or publication reliance.",
+          "The exact plan tier boundary between Cognition's Platform Terms of Service (self-serve/Paid tiers) and its separate negotiated Enterprise/Master Services Agreement (seen referenced at cognition.com/legal/enterprise-terms-of-service) could not be fully disambiguated without direct page access; both were treated as consistent (indemnification exists for paid customers) but a future worker should confirm which document governs which plan."
+        ]
+      }
+    },
+    {
+      "feature_id": "long_context_large_repo_handling",
+      "status": "has",
+      "rationale": "Devin's documentation states explicit repository-scale handling mechanisms: local whole-codebase indexing for individual use, a server-side 'Remote Indexing' service that indexes and embeds remote repositories (GitHub/GitLab/BitBucket) across a team without storing code locally, and a models page documenting context-window characteristics and expanded context lengths for higher plan tiers. This matches has_criteria (a documented context window or repository-scale handling mechanism such as chunking, retrieval, or extended-context models). The multi-repository / remote scale of this mechanism is documented specifically for Teams and Enterprise plans, which is recorded as a plan constraint rather than a reason to downgrade to partial, since the underlying mechanism itself is documented for the product line as a whole.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_remote_indexing",
+          "excerpt": "Remote Indexing allows you to index remote repositories from GitHub, GitLab, and BitBucket for enterprise teams without storing code locally... Organizations on Teams and Enterprise plans can use Devin Desktop's Indexing Service to globally import all the relevant repositories."
+        },
+        {
+          "source_id": "dvn_docs_models",
+          "excerpt": "For Pro users, Devin Desktop offers expanded context lengths, increased indexing limits, and higher limits on custom context and pinned context items."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Remote/multi-repository indexing (team-wide, cross-repo context) is documented as available to Teams and Enterprise plans; expanded context lengths and increased indexing limits are documented for Pro-tier accounts. Base/individual plans get local single-repository indexing.",
+          "source_id": "dvn_docs_remote_indexing"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai large repository context window long context handling Devin",
+          "devin.ai blog \"Remote Indexing\" multi-repository context awareness announcement",
+          "docs.devin.ai desktop context window model Claude GPT large repo",
+          "Remote Indexing Devin Desktop Teams Enterprise plan multi-repository (site:docs.devin.ai)"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": [
+          "Full raw page content of docs.devin.ai/desktop/models and docs.devin.ai/desktop/context-awareness/remote-indexing was not directly fetched; excerpts rely on search-result summaries of those official pages rather than a full-page capture."
+        ]
+      }
+    },
+    {
+      "feature_id": "mcp_or_plugin_extensibility",
+      "status": "has",
+      "rationale": "Devin documents the Model Context Protocol (MCP) as a first-class, supported extensibility mechanism: the CLI docs describe connecting external MCP tool servers (stdio, SSE, HTTP transports) so their tools become available to the agent, and a dedicated MCP marketplace is documented offering one-click connections to thousands of third-party tools and services (e.g. Linear, Notion, AWS).",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_mcp_overview",
+          "excerpt": "MCP lets you connect external tool servers to Devin CLI, giving the agent access to APIs, databases, issue trackers, and any other service you can wrap in an MCP server."
+        },
+        {
+          "source_id": "dvn_docs_mcp_marketplace",
+          "excerpt": "Devin offers access to thousands of tools and integrations from a dedicated MCP marketplace, allowing you to connect to services like Linear, Notion, AWS services, and many more with a single click."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "product_version",
+          "description": "MCP documentation is organized separately for the Devin CLI, the chat/work-with-devin surface, and the Desktop (Cascade) product; exact transport/marketplace availability may vary slightly by surface.",
+          "source_id": "dvn_docs_mcp_overview"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "site:docs.devin.ai MCP Model Context Protocol"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "integration_catalog"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available; excerpts reconstructed from search-engine snippets of docs.devin.ai/cli/extensibility/mcp/overview and docs.devin.ai/work-with-devin/mcp rather than a verbatim page copy."
+        ]
+      }
+    },
+    {
+      "feature_id": "mobile_app_access",
+      "status": "partial",
+      "rationale": "Devin's cloud/web product documents an installable Progressive Web App (PWA) experience at app.devin.ai, including an iOS Safari 'Add to Home Screen' path so that opened Devin links launch directly in the installed app; this gives mobile access to the assistant itself, not just account/billing pages. However, this is a PWA wrapper of the existing web app rather than a dedicated native iOS/Android application distributed through the App Store or Google Play, and the separately-branded Devin Desktop editor (formerly Windsurf) ships desktop-only builds for macOS, Windows, and Linux with no mobile build at all. Third-party apps calling themselves 'Devin AI' exist on app stores but are unaffiliated with Cognition and were excluded as non-official.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_release_notes_2026",
+          "excerpt": "Devin can now be installed as a Progressive Web App on desktop and mobile. On Chrome or Edge, open app.devin.ai and click the install icon in the address bar (or Menu \u2192 Install Devin); on iOS Safari, tap Share \u2192 Add to Home Screen."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "product_version",
+          "description": "The PWA install path applies to the cloud/web Devin product (app.devin.ai). The separately-branded Devin Desktop (formerly Windsurf) has no mobile build; its official downloads are desktop-only (macOS, Windows, Linux).",
+          "source_id": "dvn_download"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "site:docs.devin.ai mobile app iOS Android",
+          "\"Devin\" mobile app App Store Google Play native application",
+          "docs.devin.ai Progressive Web App install \"Add to Home Screen\" app.devin.ai",
+          "\"Devin can now be installed as a Progressive Web App\" site:docs.devin.ai",
+          "\"install Devin\" \"Menu\" OR \"address bar\" site:docs.devin.ai",
+          "devin.ai/download mobile iOS Android app"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available to open docs.devin.ai/release-notes/2026 directly; the PWA-install wording was corroborated identically across three independent search queries, but could not be confirmed with a verbatim on-page read.",
+          "No official documentation was found confirming an Android-specific install path (only Chrome/Edge desktop and iOS Safari instructions surfaced); this residual gap is recorded rather than assumed.",
+          "Several third-party, non-Cognition mobile apps using the 'Devin AI' name appear on the App Store/Google Play; these were excluded from consideration as they are not official sources (D-017)."
+        ]
+      }
+    },
+    {
+      "feature_id": "multi_agent_orchestration",
+      "status": "has",
+      "rationale": "Devin documents two complementary, officially supported delegation mechanisms across its product lines. For the cloud Devin agent, 'Managed Devins' let one Devin session act as a coordinator that scopes work, delegates pieces to multiple child Devin sessions each running in its own isolated VM, monitors progress, resolves conflicts, and compiles results - documented on docs.devin.ai and announced on Cognition's own blog. For Devin CLI/Desktop, 'Subagents' let the main agent spawn independent worker agents (foreground or background) that share tools and codebase context with the parent but keep their own separate conversation history. Both satisfy the has_criteria of documented, supported delegation to sub-agents/parallel agent instances.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_advanced_capabilities",
+          "excerpt": "The main Devin session acts as a coordinator: it scopes the work, assigns each piece to a managed Devin, monitors progress, resolves any conflicts, and compiles the results."
+        },
+        {
+          "source_id": "dvn_cognition_manage_devins",
+          "excerpt": "Managed Devins introduced true orchestration: one Devin session acts as a coordinator, breaking large tasks into pieces and delegating to child sessions that each run in their own isolated VM."
+        },
+        {
+          "source_id": "dvn_docs_cli_subagents",
+          "excerpt": "A subagent shares tools and codebase context with the parent, but operates in its own conversation chain \u2014 it does not inherit the parent's conversation history."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "The Devin CLI/Desktop Subagents feature is exposed behind a 'Subagents (Preview)' toggle in Devin settings per the Devin for Terminal changelog, indicating it is still in preview rather than fully generally available, distinct from the already-general-availability 'Managed Devins' orchestration on the cloud Devin agent.",
+          "source_id": "dvn_cli_changelog_stable"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin multi-agent orchestration subagents parallel Devins docs.devin.ai",
+          "site:docs.devin.ai subagents",
+          "Devin \"Managed Devins\" orchestrate child sessions docs.devin.ai",
+          "\"The main Devin session acts as a coordinator\"",
+          "\"Background: Runs in parallel while the parent agent continues working\"",
+          "site:docs.devin.ai changelog subagents interactive planning managed devins release"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "other"
+        ]
+      }
+    },
+    {
+      "feature_id": "multi_file_code_generation",
+      "status": "has",
+      "rationale": "Both product lines under Cognition's current devin.ai/docs.devin.ai structure document coordinated multi-file changes from a single instruction. The cloud/autonomous Devin agent's own use-cases documentation names multi-file refactoring and new-feature building as core strengths, and the Devin Desktop local agent (Devin Local, the successor to the retired Cascade agent as of 2026-07-01) is documented as planning, executing, and verifying changes across multiple files in one operation, with subagent support for parallel sub-tasks. This meets the has_criteria bar of coordinated edits/new files across more than one file from a single instruction.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_use_cases",
+          "excerpt": "multi-file refactoring and building new features are areas where Devin excels"
+        },
+        {
+          "source_id": "dvn_docs_desktop_devin_local",
+          "excerpt": "Devin Local plans, executes and verifies changes across multiple files, with subagent support."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "product_version",
+          "description": "Devin Desktop's local multi-file agent transitioned from the legacy Cascade agent (retired 2026-07-01) to Devin Local, which is being rolled out as the current default local agent; feature coverage described here reflects the current Devin Local agent rather than the retired Cascade agent.",
+          "source_id": "dvn_docs_desktop_faq"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "devin.ai multi-file code generation Devin edits multiple files coordinated",
+          "docs.devin.ai use-cases Devin generate code across multiple files feature",
+          "Devin Desktop docs.devin.ai overview cascade multi-file edits generate code",
+          "Devin Local docs.devin.ai multi-file edit generate code agent harness",
+          "docs.devin.ai/api-reference/overview Devin session create code multiple files"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available in this environment; evidence excerpts were obtained via web search result summaries of the official docs.devin.ai/devin.ai pages rather than raw HTML retrieval of those pages."
+        ]
+      }
+    },
+    {
+      "feature_id": "multi_ide_support",
+      "status": "has",
+      "rationale": "Beyond the standalone Devin Desktop editor (formerly Windsurf), Cognition officially documents 'Windsurf Plugins' (the retained Codeium/Windsurf plugin lineage) as vendor-supported AI coding assistance plugins for JetBrains IDEs, VS Code, Visual Studio, Vim, NeoVim, Jupyter, and Chrome, each with documented installation steps and version requirements \u2014 clearing the two-or-more-IDE bar for officially supported multi-IDE/editor access.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_windsurf_plugins_getting_started",
+          "excerpt": "Windsurf Plugins provide AI-powered coding assistance for JetBrains, VS Code, Visual Studio, Vim, NeoVim, Jupyter, Chrome, and other IDEs."
+        },
+        {
+          "source_id": "dvn_docs_windsurf_plugins_compatibility",
+          "excerpt": "VS Code requires version 1.89 or later, and JetBrains IDEs require version 2023.3 or later."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "The VS Code Windsurf Plugin is documented as being in maintenance mode; the native Devin Desktop editor or the JetBrains local plugin are recommended instead for the most current agentic capabilities.",
+          "source_id": "dvn_docs_windsurf_plugins_compatibility"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "site:docs.devin.ai VS Code extension JetBrains IDE plugin",
+          "docs.devin.ai \"IDE Compatibility\" windsurf plugins VSCode JetBrains Visual Studio Vim NeoVim Jupyter Chrome"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available; excerpts reconstructed from search-engine snippets of docs.devin.ai/windsurf/plugins/getting-started and .../compatibility rather than a verbatim page copy."
+        ]
+      }
+    },
+    {
+      "feature_id": "natural_language_code_generation",
+      "status": "has",
+      "rationale": "Cognition's official introductory documentation for Devin describes the tool as an AI software engineer that takes natural-language task descriptions (e.g. tickets or plain-English feature requests) and independently implements the corresponding code, satisfying the has_criteria of producing runnable code the user did not write from a natural-language prompt. This applies at function/file/multi-file granularity, as also evidenced under the multi-file generation feature.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_intro",
+          "excerpt": "You can ask Devin to tackle Linear/Jira tickets, implement entirely new features, repro and fix bugs, build internal tools, and more."
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai Introducing Devin natural language generate code",
+          "site:docs.devin.ai devin-intro world's first fully autonomous AI software engineer",
+          "docs.devin.ai/api-reference/overview Devin session create code multiple files"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available in this environment; evidence excerpts were obtained via web search result summaries of the official docs.devin.ai pages rather than raw HTML retrieval of those pages."
+        ]
+      }
+    },
+    {
+      "feature_id": "on_premises_private_deployment",
+      "status": "has",
+      "rationale": "Devin's official enterprise documentation ('Enterprise Deployment - Devin Docs') describes three supported deployment models: Enterprise Cloud Deployment (Devin's brain and Devbox both run in Cognition's shared multi-tenant cloud), Customer Dedicated Deployment (Cognition hosts Devin in an auto-scaling, customer-isolated single-tenant VPC, connected to the customer's private network via a secure AWS PrivateLink or IPSec tunnel), and 'Your VPC' (Devin's dev boxes run directly inside the customer's own Virtual Private Cloud across all major clouds, with an entirely stateless system guarantee so no data is stored at rest outside the customer's environment). The latter two models are dedicated/private deployment options that go beyond standard shared multi-tenant SaaS, satisfying has_criteria (a documented, supported on-premises or dedicated private deployment option) rather than only the partial_criteria (which requires a separately branded product tier).",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_enterprise_deployment",
+          "excerpt": "Devin supports two primary deployment models to meet varying enterprise requirements: Enterprise Cloud Deployment is recommended for most organizations looking for a quick setup with minimal operational overhead. Customer Dedicated Deployment is ideal for strategic enterprises whose resources are on private networks and cannot support IP allowlisting. In this model, Cognition hosts Devin in an auto-scaling, customer-isolated environment within a single-tenant VPC; your VPC connects to Cognition's infrastructure via a secure AWS Private Link (or IPSec tunnel)."
+        },
+        {
+          "source_id": "dvn_docs_enterprise_vpc_overview",
+          "excerpt": "Devin's dev boxes are deployed within your Virtual Private Cloud (VPC), with support for all major clouds, and customer data is always saved within your controlled environment \u2014 an entirely stateless system guarantee, meaning that no data will be stored at rest outside of your environment."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Customer Dedicated Deployment and 'Your VPC' are Enterprise-tier deployment options that require contacting Cognition's Enterprise Sales team to discuss networking requirements and begin setup; they are not available on standard self-serve plans.",
+          "source_id": "dvn_docs_enterprise_deployment"
+        },
+        {
+          "type": "integration_required",
+          "description": "'Your VPC' / Customer Dedicated Deployment requires customer-side network configuration (e.g. routing so Devin's Devbox can reach the customer's SCM/artifact stores, or a secure AWS PrivateLink/IPSec tunnel), and end-user workstations still need HTTPS/443 connectivity to *.devinapps.com for interactive session tools.",
+          "source_id": "dvn_docs_enterprise_vpc_overview"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai enterprise deployment on-premises private cloud VPC",
+          "docs.devin.ai enterprise vpc overview \"stateless\" \"your VPC\" deployment devin dev boxes",
+          "devin.ai enterprise page VPC deployment security compliance SOC 2 on-premises",
+          "\"docs.devin.ai/enterprise/deployment/overview\"",
+          "Devin enterprise \"Overview\" deployment docs.devin.ai/enterprise/deployment",
+          "\"Customer Dedicated Deployment\" Devin docs enterprise networking Enterprise Sales",
+          "Devin docs enterprise deployment \"Enterprise Cloud\" \"Customer Dedicated\" \"Your VPC\" three deployment models"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "pricing"
+        ],
+        "access_gaps": [
+          "No WebFetch/direct page-fetch tool was available in this environment; excerpts were assembled from WebSearch result summaries rather than a direct page fetch, and should be re-verified verbatim against docs.devin.ai/enterprise/deployment/overview and docs.devin.ai/enterprise/vpc/overview before publication.",
+          "The relationship between the registry source dvn_docs_enterprise_deployment (docs.devin.ai/enterprise/deployment/overview) and the newly discovered docs.devin.ai/enterprise/vpc/overview page (whether the latter is a sub-page of the former or a separate top-level section) could not be fully confirmed without direct navigation."
+        ]
+      }
+    },
+    {
+      "feature_id": "persistent_project_memory",
+      "status": "has",
+      "rationale": "Devin documents two complementary persistent-instruction mechanisms that are automatically applied without re-entering them each session. (1) 'Knowledge' (Settings & Library > Knowledge) is a store of tips, advice, facts and instructions that Devin recalls across sessions using an attached trigger description, and can be pinned globally or to specific repos so it is retrieved automatically. (2) 'Rules & AGENTS.md' for Devin CLI/Desktop are markdown rule files (preferred location .devin/rules/, with .windsurf/rules/ and the legacy single .windsurfrules file kept as fallbacks after the June 2026 Windsurf-to-Devin-Desktop rebrand) that are injected into the agent's context at the start of every session and shared via the project's own repository. Both mechanisms match the taxonomy's has_criteria of a documented rules/instructions or memory mechanism that persists guidance across sessions automatically. Devin Desktop's own FAQ notes a caveat, recorded as a constraint below: a fresh Desktop session does not retain free-form conversational memory by itself; only the separate Knowledge store and rule files persist automatically.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_knowledge",
+          "excerpt": "Knowledge is a collection of tips, advice, and instructions that Devin can reference in all sessions."
+        },
+        {
+          "source_id": "dvn_docs_cli_rules",
+          "excerpt": "Rules are persistent instructions that shape how Devin CLI behaves in your project. They're injected into the agent's context at the start of every session, ensuring consistent behavior across your team."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "product_version",
+          "description": "Rule files are read from .devin/rules/ (preferred, takes precedence) with .windsurf/rules/ and the legacy single .windsurfrules file kept only as backward-compatible fallbacks following the June 2026 Windsurf-to-Devin-Desktop rebrand.",
+          "source_id": "dvn_docs_desktop_faq"
+        },
+        {
+          "type": "other",
+          "description": "Devin Desktop does not carry conversational/session memory forward by itself; a new session starts fresh. Only the separate Knowledge store and rule files persist and are re-applied automatically across sessions.",
+          "source_id": "dvn_docs_desktop_faq"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai memory knowledge persistent instructions",
+          "devin.ai Devin Desktop rules file custom instructions .windsurfrules",
+          "\"docs.devin.ai/desktop/devin-desktop-faq\" memory knowledge across sessions",
+          "\"docs.devin.ai\" \"Knowledge\" Settings Library \"Add Knowledge\" Devin",
+          "docs.devin.ai workspace rules \".devin/rules\" project instructions persist",
+          "docs.devin.ai knowledge \"global\" \"not pinned to a specific project\" OR \"across all sessions\""
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog"
+        ]
+      }
+    },
+    {
+      "feature_id": "pull_request_creation",
+      "status": "has",
+      "rationale": "Devin's official GitHub and GitLab integration documentation describes Devin opening pull/merge requests directly on the connected hosting platform as part of its normal, autonomous workflow, without the user leaving the tool. The GitHub integration page states that granted permissions let Devin work as a regular contributor, including opening pull requests, and the GitLab integration page states Devin can create merge requests and respond to MR comments. This satisfies the has_criteria (the tool can open a PR/MR on a supported hosting platform without the user leaving the tool).",
+      "evidence": [
+        {
+          "source_id": "devin_docs_integrations_gh",
+          "excerpt": "These permissions enable Devin to work in your repositories as a regular contributor\u2014pushing branches, opening pull requests, and participating in PR discussions."
+        },
+        {
+          "source_id": "devin_docs_integrations_gitlab",
+          "excerpt": "Integrating Devin with your GitLab repositories allows Devin to create merge requests, read and respond to your MR comments, and collaborate effectively with your team."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "PR/MR creation requires first connecting the relevant source-control platform (GitHub via app.devin.ai > Settings > Integrations > GitHub, or GitLab via Settings > Connections > GitLab) before Devin can push branches or open pull/merge requests.",
+          "source_id": "devin_docs_integrations_gh"
+        },
+        {
+          "type": "other",
+          "description": "Devin cannot create new repositories in the connected GitHub account; it operates only within repositories it has been explicitly granted access to.",
+          "source_id": "devin_docs_integrations_gh"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "GitLab Self-Managed (self-hosted GitLab) support is documented as available only for users on the Enterprise plan.",
+          "source_id": "devin_docs_integrations_gitlab"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin AI docs.devin.ai pull request creation GitHub GitLab documentation",
+          "docs.devin.ai integrations github \"open a pull request\" OR \"opens a pull request\"",
+          "docs.devin.ai integrations github \"Connect GitHub\" repositories access pull request"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "integration_catalog"
+        ],
+        "access_gaps": [
+          "WebFetch is unavailable in this environment; evidence excerpts were surfaced via WebSearch result summaries over the official docs.devin.ai pages rather than a direct page fetch, and should be re-verified against the live pages before publication."
+        ]
+      }
+    },
+    {
+      "feature_id": "sandboxed_execution_environment",
+      "status": "has",
+      "rationale": "Devin documents an isolated/sandboxed execution model as a first-party design across every current surface, not as a plan-gated add-on. Devin Cloud provisions a dedicated per-session virtual machine (the \"Devbox\"/cloud sandbox) with its own file system, processes, network access, and credentials, torn down at session end. Devin Local and the standalone Devin CLI (\"Devin for Terminal\") enforce OS-level sandboxing (bubblewrap/socat on Linux, macOS Seatbelt, WSL2 on Windows) that restricts file and network access to explicitly granted permission scopes, and the CLI's --sandbox flag will refuse to start rather than run unsandboxed if isolation cannot be established. Devin Desktop and Devin's introductory documentation likewise describe the agent operating inside a secure sandboxed environment alongside its terminal, editor, and browser. This satisfies the has_criteria (vendor documentation of isolated execution) and goes beyond the exclusion (unisolated local shell execution).",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_enterprise_deployment",
+          "excerpt": "The Devbox is a secure virtual environment where Devin executes code, connects to resources, and interacts with your systems."
+        },
+        {
+          "source_id": "dvn_docs_intro",
+          "excerpt": "Devin operates inside a secure sandboxed environment with a terminal, a code editor, and a browser."
+        },
+        {
+          "source_id": "dvn_docs_cli_sandbox",
+          "excerpt": "The --sandbox flag runs the CLI with OS-level isolation, enforcing the active Read and Write permission scopes at the operating-system level and optionally restricting network traffic."
+        },
+        {
+          "source_id": "dvn_docs_desktop_local",
+          "excerpt": "Devin Local runs inside OS-level containers using bubblewrap and socat on Linux, macOS Seatbelt, or WSL 2 on Windows, executing compilers and runtime environments independently."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Windows does not currently support OS-level sandboxing for the Devin CLI; if sandbox resolution fails on a given platform, the CLI refuses to start rather than running unsandboxed.",
+          "source_id": "dvn_docs_cli_sandbox"
+        },
+        {
+          "type": "other",
+          "description": "Enterprise deployment options (e.g. Customer Dedicated Deployment / Outposts) let a customer host the sandbox/Devbox on their own infrastructure instead of Cognition's multi-tenant cloud, shifting isolation and operational responsibility to the customer.",
+          "source_id": "dvn_docs_enterprise_deployment"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai sandbox isolated execution environment VM security",
+          "Devin Desktop Devin Local Devin Cloud sandbox container isolated execution site:docs.devin.ai",
+          "\"docs.devin.ai/cli/sandbox\" sandbox filesystem isolation permission scopes",
+          "devin.ai/security \"sandbox\" OR \"isolated\" virtual machine session",
+          "docs.devin.ai enterprise security \"sandbox\" OR \"virtual machine\" OR \"isolated\"",
+          "\"docs.devin.ai\" \"get-started/devin-intro\" Devin shell terminal tools built-in"
+        ],
+        "source_classes_checked": [
+          "official documentation (docs.devin.ai)",
+          "official product/marketing pages (devin.ai)",
+          "official CLI documentation (cli.devin.ai / docs.devin.ai/cli)",
+          "official enterprise/security documentation"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available for this task; official-source excerpts were taken from search-engine result snippets of docs.devin.ai, devin.ai, and cli.devin.ai pages rather than a raw HTML fetch, so exact character-for-character wording could not be independently re-verified against the live page."
+        ]
+      }
+    },
+    {
+      "feature_id": "standalone_cli",
+      "status": "has",
+      "rationale": "Devin CLI (also documented as 'Devin for Terminal') is officially documented as a distinct, standalone local coding agent that runs directly in the terminal, independent of any IDE or the Devin web app, installed via its own installer at cli.devin.ai and documented at docs.devin.ai/cli with its own product page at devin.ai/cli. It provides core coding functionality (implement features, fix bugs, review code, answer questions, automate tasks) directly from the command line, satisfying the has_criteria of a documented CLI binary/package providing the tool's core functionality outside any IDE/GUI.",
+      "evidence": [
+        {
+          "source_id": "devin_docs_cli",
+          "excerpt": "Devin CLI is a local coding agent that runs directly in your terminal, working with your local files and environment, giving you fast, interactive assistance right where you code."
+        },
+        {
+          "source_id": "devin_docs_cli",
+          "excerpt": "Users can install the devin binary, enter a project directory, type devin, and ask it to implement features, fix bugs, review code, answer questions, automate tasks, and more."
+        },
+        {
+          "source_id": "devin_cli_product",
+          "excerpt": "Devin CLI is a local coding agent with full access to your codebase, your tools, and your environment... it offers seamless hand off to Devin in the cloud, with its own VM, testing, video recordings, autofix and more, so you can come back to a finished PR."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Devin CLI and cloud Devin are documented as separate tools; Devin includes features such as Playbooks, Secrets, and Knowledge that are not yet available in Devin CLI, though support is stated to be actively worked on.",
+          "source_id": "devin_docs_cli"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Installation differs by operating system: a curl script (curl -fsSL https://cli.devin.ai/install.sh | bash) for macOS/Linux/WSL versus a PowerShell-only installer script for Windows (must not be run in Git Bash or CMD).",
+          "source_id": "devin_docs_cli"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin CLI cli.devin.ai standalone command line documentation",
+          "\"docs.devin.ai/cli\" Devin CLI quickstart \"devin run\" terminal",
+          "\"devin.ai/cli\" Devin CLI product page local coding agent"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": [
+          "WebFetch is unavailable in this environment; evidence excerpts were surfaced via WebSearch result summaries over the official docs.devin.ai/cli and devin.ai/cli pages rather than a direct page fetch, and should be re-verified against the live pages before publication."
+        ]
+      }
+    },
+    {
+      "feature_id": "static_analysis_integration",
+      "status": "has",
+      "rationale": "Devin documents static-analysis/lint findings feeding back into its own suggestions across both its IDE and cloud-agent surfaces. In Devin Desktop, the Cascade assistant is documented with built-in 'linter integration': users can highlight an in-editor error and use 'Explain and Fix' to have Cascade resolve it, and Cascade is documented to automatically fix linting errors on generated code (a default-on behavior the user can disable). Separately, the classic/cloud Devin repo-setup lets an admin configure the command Devin should use to run lint or check for syntax errors as part of onboarding, and Devin consults that lint output before committing changes; release notes further describe improved lint-error presentation (severity, source, precise location) and a safety cap on repeated lint-fix attempts, i.e. the findings are used to drive the assistant's own fix suggestions rather than merely being displayed. This matches the has_criteria of a documented integration whose findings inform the assistant's output.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_cascade",
+          "excerpt": "For any errors that you run into from within the editor, you can simply highlight the error and click Explain and Fix to have Cascade fix it for you."
+        },
+        {
+          "source_id": "dvn_docs_cascade",
+          "excerpt": "Cascade can automatically fix linting errors on generated code."
+        },
+        {
+          "source_id": "dvn_docs_repo_setup",
+          "excerpt": "Commands Devin should use to run lint or check for syntax errors."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "The inline 'Explain and Fix' / auto-fix linter integration is documented for Devin Desktop's Cascade assistant; the classic/cloud Devin agent instead relies on an admin-configured lint/syntax-check command that Devin consults before committing changes, rather than an IDE-native inline linter panel.",
+          "source_id": "dvn_docs_cascade"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai linter static analysis integration",
+          "Devin Desktop lint errors AI suggestions docs.devin.ai",
+          "docs.devin.ai desktop cascade linter integration highlight error explain and fix",
+          "docs.devin.ai release-notes lint error severity source location",
+          "docs.devin.ai \"repo-setup\" lint command classic configuration Devin",
+          "\"lint error presentation\" severity source location devin.ai changelog",
+          "docs.devin.ai onboard-devin repo-setup \"lint\" \"test\" command configuration verbatim"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "changelog",
+          "product_page"
+        ]
+      }
+    },
+    {
+      "feature_id": "terminal_command_execution",
+      "status": "has",
+      "rationale": "Devin executes shell/terminal commands directly as a core, documented capability across all current surfaces (the Cloud/Desktop agent, Devin Local, and the standalone Devin CLI/\"Devin for Terminal\"), with an explicit, configurable confirmation model rather than manual copy/paste. In the CLI's default \"normal\" mode the agent halts and displays the proposed command before every shell execution, requiring an explicit y/n approval; \"Accept Edits\"/\"Bypass\" modes and the --sandbox \"Autonomous\" mode relax or remove that per-command prompt (bounded by OS-level scope limits in the sandboxed case). Devin Desktop exposes four selectable \"auto-execution levels\" plus command allow/deny lists governing the same behavior, and Devin for Terminal additionally supports an inline `!<command>` bash mode to run shell commands ad hoc within a session, with output streamed back into the conversation. This meets the has_criteria (documented, supported command execution with usable output) rather than the partial/exclusion case of merely suggesting text.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_intro",
+          "excerpt": "Devin includes a terminal where you can watch commands being executed and view output logs."
+        },
+        {
+          "source_id": "dvn_docs_cli_commands",
+          "excerpt": "In the default normal mode, the CLI halts whenever Devin attempts to run a shell command or write a file, displaying the proposed command, and you must press y or n to continue."
+        },
+        {
+          "source_id": "dvn_docs_cli_commands",
+          "excerpt": "In Devin's Bypass mode, all permission prompts are auto-approved and the agent executes freely without asking for confirmation."
+        },
+        {
+          "source_id": "dvn_docs_desktop_terminal",
+          "excerpt": "Devin Desktop provides four distinct auto-execution levels for controlling how Cascade runs terminal commands, and you can select your preferred auto-execution level via the Devin Settings panel."
+        },
+        {
+          "source_id": "dvn_cli_changelog_stable",
+          "excerpt": "Background shell commands now render as a single exec card with a spinner instead of showing separate \"Command Read\" / \"Killing shell\" cards."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "The confirmation model varies by mode: default \"normal\" mode requires manual y/n approval per shell command, while \"Accept Edits\"/\"Bypass\" modes or the CLI's --sandbox \"Autonomous\" mode allow unattended execution (in the sandboxed case, bounded by OS-enforced read/write and network scope limits).",
+          "source_id": "dvn_docs_cli_commands"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Devin Desktop's auto-execution levels and per-command allow/deny lists are configured per editor workspace via the Devin Settings panel; the documentation retains the legacy \"Cascade\" agent name inherited from the pre-rebrand Windsurf product for this control.",
+          "source_id": "dvn_docs_desktop_terminal"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "docs.devin.ai terminal command execution \"auto-execution\" confirmation approve run command",
+          "\"cli.devin.ai\" Devin CLI terminal execute shell commands changelog stable",
+          "\"docs.devin.ai\" \"get-started/devin-intro\" Devin shell terminal tools built-in"
+        ],
+        "source_classes_checked": [
+          "official documentation (docs.devin.ai)",
+          "official CLI documentation (cli.devin.ai / docs.devin.ai/cli)",
+          "official changelog (cli.devin.ai/docs/changelog/stable)"
+        ],
+        "access_gaps": [
+          "No direct page-fetch tool was available for this task; official-source excerpts were taken from search-engine result snippets of docs.devin.ai and cli.devin.ai pages rather than a raw HTML fetch, so exact character-for-character wording could not be independently re-verified against the live page."
+        ]
+      }
+    },
+    {
+      "feature_id": "third_party_integration_catalog",
+      "status": "has",
+      "rationale": "Devin's official Integrations Overview documentation page lists a substantial, vendor-curated catalog of supported third-party integrations across multiple categories: source control (GitHub, GitLab, Bitbucket, Azure DevOps), project management (Jira, Linear), and team communication (Slack, Microsoft Teams), plus one-click MCP-enabled integrations (Vercel, Atlassian, Notion, Sentry, Neon, Asana, Jam, and more). This is well beyond the 1-2 integrations that would only meet partial_criteria, satisfying the has_criteria of an official integration catalog documenting supported third-party products.",
+      "evidence": [
+        {
+          "source_id": "devin_docs_integrations_overview",
+          "excerpt": "Devin integrates with the tools you already use, making it easy to incorporate AI-powered development into your existing workflows. From source control to project management to communication, Devin can work alongside your team in the platforms you rely on."
+        },
+        {
+          "source_id": "devin_docs_integrations_overview",
+          "excerpt": "Many can be enabled with a single click\u2014Vercel, Atlassian, Notion, Sentry, Neon, Asana, Jam, and more."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Beyond the natively documented integrations (GitHub, GitLab, Bitbucket, Azure DevOps, Jira, Linear, Slack, Microsoft Teams), broader integrations such as Vercel, Atlassian, Notion, Sentry, Neon, Asana, and Jam are enabled through the Model Context Protocol (MCP) rather than a dedicated first-party connector.",
+          "source_id": "devin_docs_integrations_overview"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin AI integrations catalog Slack Linear Jira Sentry official docs.devin.ai",
+          "docs.devin.ai integrations overview \"Native integrations\" MCP Vercel Notion Sentry Asana"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "integration_catalog"
+        ],
+        "access_gaps": [
+          "WebFetch is unavailable in this environment; evidence excerpts were surfaced via WebSearch result summaries over the official docs.devin.ai/integrations/overview page rather than a direct page fetch, and should be re-verified against the live page before publication."
+        ]
+      }
+    },
+    {
+      "feature_id": "web_hosted_access",
+      "status": "has",
+      "rationale": "Devin's official product/documentation pages describe a browser-based application at app.devin.ai that provides Devin's core assistant functionality (a full cloud sandbox with shell, code editor, and browser) with no local installation needed to start a task; the getting-started documentation lists the web UI as one of the primary ways to interact with Devin (alongside Slack and CLI hooks), and the Devin Cloud product page describes agents running in the browser-managed cloud that keep working even when the user's laptop is closed. This satisfies the has_criteria that the tool's core functionality can be used through a web browser without local installation.",
+      "evidence": [
+        {
+          "source_id": "devin_docs_intro",
+          "excerpt": "Devin is equipped with common developer tools including the shell, code editor, and browser within a sandboxed compute environment... You interact via the Devin web UI, Slack, or CLI hooks."
+        },
+        {
+          "source_id": "devin_cloud_product",
+          "excerpt": "Devin is an autonomous software engineering agent that runs in the cloud. Devin Cloud gives you access to agents in the cloud with their own computer, so they can keep working even when you close your laptop."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Using Devin through the browser requires signing in / creating an account at app.devin.ai; it is not an anonymous, account-free demo.",
+          "source_id": "devin_web_app"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "Devin AI web app app.devin.ai browser access no installation",
+          "devin.ai/cloud \"Devin Cloud\" web browser sandboxed environment app.devin.ai",
+          "docs.devin.ai get-started devin-intro \"sandboxed\" \"browser\" \"web UI\" what is devin",
+          "devin.ai/cloud \"Devin Cloud\" page description autonomous agent VM"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ],
+        "access_gaps": [
+          "WebFetch is unavailable in this environment; evidence excerpts were surfaced via WebSearch result summaries over the official app.devin.ai, devin.ai/cloud and docs.devin.ai pages rather than a direct page fetch, and should be re-verified against the live pages before publication."
+        ]
+      }
+    }
+  ],
+  "additional_facts": [
+    {
+      "fact_id": "access_surfaces",
+      "topic": "Platform and access surfaces",
+      "description": "Devin is reachable through a signed-in web app (app.devin.ai), a standalone CLI (cli.devin.ai), the standalone Devin Desktop editor (macOS/Windows/Linux), and Windsurf Plugins for JetBrains, VS Code, Visual Studio, Vim/NeoVim, Jupyter, and Chrome. Mobile access is limited to an installable PWA wrapper of the web app; there is no dedicated native mobile app.",
+      "evidence": [
+        {
+          "source_id": "devin_web_app",
+          "excerpt": "Devin | The AI Software Engineer, accessible at app.devin.ai."
+        },
+        {
+          "source_id": "dvn_docs_release_notes_2026",
+          "excerpt": "Devin can now be installed as a Progressive Web App on desktop and mobile."
+        }
+      ]
+    },
+    {
+      "fact_id": "orchestration_and_delegation",
+      "topic": "Multi-agent orchestration",
+      "description": "Managed Devins let a cloud Devin session coordinate and delegate scoped work to child Devin sessions, each in its own isolated VM. Devin CLI/Desktop Subagents (still behind a Preview toggle) let a parent agent spawn foreground or background worker agents sharing tools and codebase context.",
+      "evidence": [
+        {
+          "source_id": "dvn_cognition_manage_devins",
+          "excerpt": "Managed Devins introduced true orchestration: one Devin session acts as a coordinator, breaking large tasks into pieces and delegating to child sessions that each run in their own isolated VM."
+        },
+        {
+          "source_id": "dvn_docs_cli_subagents",
+          "excerpt": "A subagent shares tools and codebase context with the parent, but operates in its own conversation chain."
+        }
+      ]
+    },
+    {
+      "fact_id": "plans_and_deployment",
+      "topic": "Plans and deployment",
+      "description": "Devin is offered across free and paid individual tiers plus Team and Enterprise plans. Enterprise adds SAML/OIDC SSO with custom-roles RBAC, an Enterprise API for audit logs and usage metrics, data-retention/training opt-out with Zero Data Retention, and three deployment models: shared Enterprise Cloud, a Cognition-hosted single-tenant VPC (Customer Dedicated Deployment), and a fully customer-hosted 'Your VPC'.",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_enterprise_deployment",
+          "excerpt": "Devin supports two primary deployment models to meet varying enterprise requirements... Customer Dedicated Deployment... single-tenant VPC."
+        },
+        {
+          "source_id": "dvn_docs_admin_security",
+          "excerpt": "If you're on a paid plan, you can opt out at any time on the Data Controls settings page."
+        }
+      ]
+    },
+    {
+      "fact_id": "rebrand_and_product_lines",
+      "topic": "Rebrand and product lines",
+      "description": "On June 2, 2026, Cognition officially rebranded the former Windsurf editor to Devin Desktop. Devin today spans four surfaces under one brand: the original cloud/autonomous Devin agent (web-hosted, Slack-reachable), Devin CLI ('Devin for Terminal'), Devin Desktop (the AI IDE, formerly Windsurf), and Devin Local (Desktop's local multi-file agent, successor to the retired Cascade agent as of 2026-07-01).",
+      "evidence": [
+        {
+          "source_id": "dvn_blog_rebrand",
+          "excerpt": "Windsurf is now Devin Desktop."
+        },
+        {
+          "source_id": "dvn_docs_desktop_faq",
+          "excerpt": "Rule files are read from .devin/rules/ (preferred) with .windsurf/rules/ kept only as a backward-compatible fallback following the rebrand."
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    {
+      "use_case_id": "automated_pr_review",
+      "title": "Automated pull request review",
+      "description": "Devin Review analyzes GitHub/GitLab pull and merge requests, flags bugs and security issues by confidence level, and posts suggested fixes as PR comments with optional Auto-Fix.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_devin_review",
+          "excerpt": "Devin checks for bugs and labels them by confidence level. Devin posts bugs (likely errors or incorrect behavior) as PR comments."
+        }
+      ]
+    },
+    {
+      "use_case_id": "autonomous_ticket_to_pr",
+      "title": "Autonomous ticket-to-PR delivery",
+      "description": "Assign Devin a Linear/Jira ticket or a plain-English task; it plans, edits across files, runs commands/tests inside its own sandboxed cloud VM, and opens a pull request without occupying the user's active session.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_use_cases",
+          "excerpt": "You can ask Devin to tackle Linear/Jira tickets, implement entirely new features, repro and fix bugs, build internal tools, and more."
+        }
+      ]
+    },
+    {
+      "use_case_id": "enterprise_governed_rollout",
+      "title": "Enterprise governed rollout",
+      "description": "Deploy Devin org-wide with SAML/OIDC SSO, custom-roles RBAC mapped from IdP groups, Enterprise API audit logs and usage metrics, enforced Zero Data Retention, and a customer-hosted VPC deployment.",
+      "kind": "inferred",
+      "rationale": "Devin documents enterprise SSO, custom-roles RBAC, audit logging/usage-metrics APIs, data-retention opt-out, and on-premises/VPC deployment together, which support a governed enterprise-wide rollout.",
+      "supporting_features": [
+        "enterprise_sso_access_control",
+        "audit_logging",
+        "data_retention_training_opt_out",
+        "on_premises_private_deployment"
+      ]
+    },
+    {
+      "use_case_id": "ide_agentic_coding",
+      "title": "Agentic in-IDE coding via Devin Desktop",
+      "description": "Use Devin Desktop's Devin Local agent for multi-file builds with per-hunk diff-zone review, inline Autocomplete, and MCP-connected tools, or reach the same assistant through Windsurf Plugins in JetBrains, VS Code, and other supported editors.",
+      "kind": "documented",
+      "evidence": [
+        {
+          "source_id": "dvn_docs_desktop_devin_local",
+          "excerpt": "Devin Local plans, executes and verifies changes across multiple files, with subagent support."
+        }
+      ]
+    }
+  ],
+  "unresolved_issues": []
+}

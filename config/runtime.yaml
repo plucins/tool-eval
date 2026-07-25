@@ -3,11 +3,11 @@
 # pilot and may change without affecting the data contracts.
 
 concurrency:
-  max_concurrent_workers: 4
+  max_concurrent_workers: 8
 
 bundling:
   min_features_per_bundle: 2
-  max_features_per_bundle: 4
+  max_features_per_bundle: 8
 
 # Bounded-work budgets enforced by Python gates (D-010/D-011). Python tracks
 # these in run state and checks them at the gates the orchestrator calls; the

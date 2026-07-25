@@ -96,6 +96,67 @@ def test_additional_fact_valid():
     assert schema.validate("additional-fact", fact) == []
 
 
+# --- release history (ADR-005: evidence is unconditionally required) ------
+
+
+def test_release_history_entry_requires_evidence():
+    entry = {
+        "release_id": "r1",
+        "version": "1.2.0",
+        "release_date": "2026-07-01",
+        "summary": "Adds foo.",
+    }
+    assert schema.validate("release-history-entry", entry)  # missing evidence
+
+
+def test_release_history_entry_valid_with_evidence():
+    entry = {
+        "release_id": "r1",
+        "version": "1.2.0",
+        "release_date": "2026-07-01",
+        "summary": "Adds foo.",
+        "evidence": [{"source_id": "src_docs", "excerpt": "1.2.0 adds foo."}],
+    }
+    assert schema.validate("release-history-entry", entry) == []
+
+
+def test_release_history_entry_accepts_optional_product_version():
+    entry = {
+        "release_id": "r1",
+        "version": "Claude Opus 5 model availability",
+        "product_version": "v1.73",
+        "release_date": "2026-07-24",
+        "summary": "Adds Claude Opus 5.",
+        "evidence": [{"source_id": "src_docs", "excerpt": "Claude Opus 5 is now available."}],
+    }
+    assert schema.validate("release-history-entry", entry) == []
+
+
+def test_release_history_entry_valid_without_product_version():
+    """product_version is optional - a versionless changelog entry must still validate."""
+    entry = {
+        "release_id": "r1",
+        "version": "Gemini 3.6 Flash is now available in GitHub Copilot",
+        "release_date": "2026-07-21",
+        "summary": "Adds Gemini 3.6 Flash.",
+        "evidence": [{"source_id": "src_docs", "excerpt": "Gemini 3.6 Flash is now available."}],
+    }
+    assert schema.validate("release-history-entry", entry) == []
+
+
+def test_profile_with_release_history_is_valid(valid_profile):
+    valid_profile["release_history"] = [
+        {
+            "release_id": "r1",
+            "version": "1.2.0",
+            "release_date": "2026-07-01",
+            "summary": "Adds foo.",
+            "evidence": [{"source_id": "src_docs", "excerpt": "1.2.0 adds foo."}],
+        }
+    ]
+    assert schema.validate("profile", valid_profile) == []
+
+
 # --- candidates / unresolved-issues / subagent-result ----------------------
 
 
@@ -123,6 +184,24 @@ def test_candidates_set_with_decisions():
 def test_unresolved_issues_valid():
     doc = {"issues": [{"issue_id": "i1", "kind": "conflict", "description": "d"}]}
     assert schema.validate("unresolved-issues", doc) == []
+
+
+def test_subagent_result_accepts_profile_writing_release_history():
+    doc = {
+        "task_id": "t-2",
+        "run_id": "research-20260720-000000-abcd1234",
+        "task_type": "profile-writing",
+        "release_history": [
+            {
+                "release_id": "r1",
+                "version": "1.2.0",
+                "release_date": "2026-07-01",
+                "summary": "Adds foo.",
+                "evidence": [{"source_id": "src_docs", "excerpt": "1.2.0 adds foo."}],
+            }
+        ],
+    }
+    assert schema.validate("subagent-result", doc) == []
 
 
 def test_subagent_result_uses_same_feature_record_format(make_feature_result):
@@ -174,3 +253,19 @@ def test_use_case_supporting_features_must_exist(valid_profile):
     errors = business.check_use_case_supporting_features(valid_profile)
     assert len(errors) == 1
     assert errors[0].code == "VALIDATION_UNKNOWN_FEATURE_REF"
+
+
+def test_referential_integrity_checks_release_history(valid_profile):
+    valid_profile["release_history"] = [
+        {
+            "release_id": "r1",
+            "version": "1.2.0",
+            "release_date": "2026-07-01",
+            "summary": "Adds foo.",
+            "evidence": [{"source_id": "nope", "excerpt": "x"}],
+        }
+    ]
+    errors = business.check_referential_integrity(valid_profile)
+    assert len(errors) == 1
+    assert errors[0].code == "VALIDATION_UNKNOWN_SOURCE_REF"
+    assert errors[0].path == "release_history[0].evidence[0].source_id"

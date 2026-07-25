@@ -1,8 +1,8 @@
 {
   "bootstrap.min.css": "3c8f27e6009ccfd710a905e6dcf12d0ee3c6f2ac7da05b0572d3e0d12e736fc8",
   "bootstrap.bundle.min.js": "0833b2e9c3a26c258476c46266e6877fc75218625162e0460be9a3a098a61c6c",
-  "theme-capgemini.css": "eb0c5c48088c50a34370ec46bd5de4c7657fabcdd4e162cca3ba6832a05666a3",
-  "app.js": "087b349f6fb54a53661f1feb1bcfbe4b564acea950c59ceee629b7ea7c4ee838",
+  "theme-capgemini.css": "0efda4108e2eb24bb01109377e298b56f8669e088b8196d7b3d10cd3cc6ada33",
+  "app.js": "eb98baac49a9f35f80a403738f1a3f63fb6163a38409d6fc9d906f070cf05d46",
   "fonts/montserrat-400.woff2": "4b5816bbfc52587979139951355fe4048da02ce60e40cef8e4a1efb6cd396281",
   "fonts/montserrat-600.woff2": "9f5f68f23573a4df9d5ce9fdd7c28154b326232e7dc31731a2a2deaa2ab6ca43",
   "fonts/montserrat-700.woff2": "a60b1ba9daa11468bf1b846e8515e51b97023f341f2962a9623b9d8aaa7904ad"

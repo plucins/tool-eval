@@ -65,8 +65,23 @@ data/           generated JSON/Markdown artifacts
 
 ## Commands
 
+This repository ships its own virtual environment at `.venv/` — there is no
+`activate` script in it, so `source .venv/bin/activate` will fail. Always
+invoke the interpreter directly from the repository root:
+
 ```bash
-pip install -e ".[dev]"   # editable install with dev extras
-python -m tool_eval ...    # canonical CLI entry (or the `tool-eval` script)
-pytest                     # run the offline test suite
+.venv/bin/python -m tool_eval ...   # canonical CLI entry (or `.venv/bin/tool-eval ...`)
+.venv/bin/pytest                    # run the offline test suite
 ```
+
+Do not use a bare `python`/`python3` (may be missing or the wrong version) and
+do not try to activate the venv. Before guessing flags, check
+`.venv/bin/python -m tool_eval <subcommand> -h` — the CLI contract is a single
+JSON envelope per call; it does not accept ad-hoc flags.
+
+If `.venv/` is ever missing or broken, recreate it:
+
+```bash
+pip install -e ".[dev]"
+```
+

@@ -37,6 +37,7 @@ SCHEMA_FILES: dict[str, str] = {
     "subagent-result": "subagent-result.schema.json",
     "additional-fact": "additional-fact.schema.json",
     "use-case": "use-case.schema.json",
+    "release-history-entry": "release-history-entry.schema.json",
     "profile": "profile.schema.json",
 }
 

@@ -57,7 +57,7 @@ Deterministic Python core (no model/LLM/web calls), harness-portability boundari
 Untrusted source content and prompt-injection handling, no secrets in profiles/HTML with safe URL rules, official-sources-only feature status, self-contained sanitized HTML output, run path safety, and worker isolation with one-layer delegation.
 
 #### Research Protocol (`standards/global/research-protocol.md`)
-Single curation gate, complete not-found protocol, no source voting (policy-ordered conflict resolution), evidence/retained-source scope, and research concurrency limits.
+Single curation gate, complete not-found protocol, no source voting (policy-ordered conflict resolution), evidence/retained-source scope, research concurrency limits, and source reuse/search-budget (known-source reuse before new `WebSearch` calls, minimal broad queries plus on-site `WebFetch` crawling).
 
 ---
 
@@ -121,5 +121,5 @@ Test naming conventions, test file organization, arrange-act-assert structure, m
 
 ---
 
-**Last Generated**: 2026-07-24 (tool-eval discovered standards merged; architecture, security, research-protocol, and runs standards added)
+**Last Generated**: 2026-07-25 (research-protocol standard extended with source reuse & search budget subsection)
 **Maintained by**: Documentation Manager skill

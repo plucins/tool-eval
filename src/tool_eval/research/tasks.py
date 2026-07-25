@@ -18,6 +18,7 @@ from tool_eval.config import load_config_bundle
 from tool_eval.errors import ErrorFamily, ToolEvalError
 from tool_eval.paths import resolve_within
 from tool_eval.research.planner import Bundle, plan_bundles, plan_waves
+from tool_eval.research.sources import project_known_sources, read_tool_identity
 from tool_eval.runs.manager import DEFAULT_BUDGETS, read_run, save_run, transition
 from tool_eval.validation import schema
 
@@ -69,6 +70,12 @@ def create_feature_tasks(
     )
     waves = plan_waves(bundles, max_concurrent=max_concurrent)
 
+    # Reuse what source-discovery already found (D-010): every bundle in this
+    # run gets the same known-source projection + tool identity, so workers
+    # can WebFetch known official URLs instead of re-discovering them.
+    known_sources = project_known_sources(run_dir)
+    tool_identity = read_tool_identity(run_dir) or {}
+
     tasks_root = run_dir / "tasks"
     # Worker-task budget gate (D-010/D-011): count tasks already delegated for
     # this run plus the ones about to be planned. Budget excess terminates the
@@ -106,7 +113,10 @@ def create_feature_tasks(
             json.dumps(manifest, indent=2), encoding="utf-8"
         )
         (task_dir / "input.json").write_text(
-            json.dumps(_task_input(features, bundle), indent=2), encoding="utf-8"
+            json.dumps(
+                _task_input(features, bundle, known_sources, tool_identity), indent=2
+            ),
+            encoding="utf-8",
         )
         manifest_paths.append(str(task_dir / "task.json"))
 
@@ -128,15 +138,25 @@ def create_feature_tasks(
     }
 
 
-def _task_input(features: list[dict[str, Any]], bundle: Bundle) -> dict[str, Any]:
+def _task_input(
+    features: list[dict[str, Any]],
+    bundle: Bundle,
+    known_sources: list[dict[str, Any]],
+    tool_identity: dict[str, str],
+) -> dict[str, Any]:
     """The read-only research brief handed to a worker for its bundle.
 
-    Contains only the taxonomy entries for the bundle's features (definitions,
-    criteria, aliases, research questions) - no secrets, no host paths (D-017).
+    Contains the taxonomy entries for the bundle's features (definitions,
+    criteria, aliases, research questions), the accepted source registry, and
+    the tool identity, so a worker can WebFetch known official sources instead
+    of re-searching for them - no secrets, no host paths (D-017).
     """
     index = {f["feature_id"]: f for f in features}
     return {
         "bundle_id": bundle.bundle_id,
         "group": bundle.group,
         "features": [index[fid] for fid in bundle.feature_ids if fid in index],
+        "known_sources": known_sources,
+        "tool_id": tool_identity.get("tool_id"),
+        "tool_name": tool_identity.get("name"),
     }
