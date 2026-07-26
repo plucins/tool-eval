@@ -49,8 +49,8 @@ Follows Sec 3.6. Gates are hard stops.
    max_concurrent_workers` at a time (currently 8). Each worker gets one
    manifest path and the research skill name. Each bundle's input also
    carries the accepted source registry and tool identity, so a worker can
-   reuse known official sources via `WebFetch` instead of re-searching for
-   them (see `tool-eval-worker.md`).
+   reuse known official sources via targeted `WebSearch` queries instead of
+   re-searching from scratch for them (see `tool-eval-worker.md`).
 3. Validate each worker result with the CLI. On a technical failure, do a bounded
    technical retry or split the bundle; a missing result blocks the merge.
    Workers run in the background: each completion arrives as a `task-notification`.
