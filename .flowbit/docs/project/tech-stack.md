@@ -1,7 +1,7 @@
 # Technology Stack
 
 ## Overview
-This document describes the technology choices and rationale for **tool-eval**, the AI Coding Tool Comparison System. The core design principle is a strict split of responsibilities: the Python codebase is **deterministic and offline** (it validates, merges, and publishes data but never calls a model or the network), while all LLM reasoning is delegated to an external agent harness under `.claude/`.
+This document describes the technology choices and rationale for **tool-eval**, the AI Coding Tool Comparison System. The core design principle is a strict split of responsibilities: the Python codebase is **deterministic and offline** (it validates, merges, and publishes data but never calls a model or the network), while all LLM reasoning is delegated to an external agent harness under `.claude/` (Claude Code) or `.github/` (GitHub Copilot CLI). Both adapters use the same Python dependencies and data contracts; see `docs/copilot-cli-guide.md` for the Copilot setup.
 
 ## Visual Stack Flow
 

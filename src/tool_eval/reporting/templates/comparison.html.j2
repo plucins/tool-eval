@@ -4,10 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title }}</title>
+  <link rel="icon" href="data:,">
+  <!--
+  Bootstrap (MIT). Ubuntu font software: Copyright 2011 Canonical Ltd.
+  Distributed via @fontsource/ubuntu 5.0.8 under the Ubuntu Font Licence 1.0.
+  Capgemini name and logo are trademarks of Capgemini.
+  This comparison is not a Capgemini Research Institute publication.
+  {{ assets.font_license }}
+  -->
   <style>{{ assets.bootstrap_css|safe }}</style>
   <style>{{ assets.theme_css|safe }}</style>
 </head>
 <body>
+  <a class="cg-skip-link" href="#report-content">Skip to report</a>
   <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" focusable="false">
     <symbol id="cg-icon-has" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 8.5 6.5 12 13 4"/></symbol>
     <symbol id="cg-icon-partial" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M8 2a6 6 0 0 1 0 12z"/></symbol>
@@ -32,71 +41,49 @@
     <symbol id="cg-icon-group-workflow_ecosystem" viewBox="0 0 16 16"><circle cx="3" cy="3.2" r="1.7" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="13" cy="3.2" r="1.7" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="13" r="1.7" fill="none" stroke="currentColor" stroke-width="1.3"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M4.5 4.2 6.9 11M11.5 4.2 9.1 11M4.7 3.2h6.6"/></symbol>
     <symbol id="cg-icon-group-security_governance" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" d="M8 1.6 13.5 3.5v4.1c0 3.6-2.4 6.1-5.5 6.8-3.1-.7-5.5-3.2-5.5-6.8V3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M5.7 8.1 7.3 9.7l3-3.4"/></symbol>
     <symbol id="cg-icon-group-other" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M8 5v3.4M8 11h.01"/></symbol>
-    <!-- KPI tile glyphs. -->
-    <symbol id="cg-icon-kpi-tools" viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="1.5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="1.5" y="9" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="9" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
-    <symbol id="cg-icon-kpi-groups" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.6 14 5 8 8.4 2 5z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" d="m2 8 6 3.4 6-3.4M2 11l6 3.4 6-3.4"/></symbol>
-    <symbol id="cg-icon-kpi-features" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.6l1.85 3.9 4.15.62-3 3 .71 4.28L8 11.5l-3.71 1.9L5 9.12l-3-3 4.15-.62z"/></symbol>
-    <symbol id="cg-icon-kpi-flags" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M3.5 1.5v13"/><path fill="currentColor" d="M3.5 2.2h8.3l-2 2.9 2 2.9H3.5z"/></symbol>
-    <symbol id="cg-icon-kpi-warnings" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" d="M8 1.6 13.5 3.5v4.1c0 3.6-2.4 6.1-5.5 6.8-3.1-.7-5.5-3.2-5.5-6.8V3.5z"/></symbol>
-    <symbol id="cg-icon-chevron-right" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M6 3.5 10.5 8 6 12.5"/></symbol>
-    <!-- Approximate brand cloud mark; hand-authored, not a reproduction of any official logo artwork. -->
-    <symbol id="cg-icon-brand-mark" viewBox="0 0 32 32">
-      <path fill="#fff" d="M9.5 21.5a5.5 5.5 0 0 1-.6-10.97 7 7 0 0 1 13.4-2.1 5.8 5.8 0 0 1 1.2 11.4z" opacity="0.95"/>
-      <path fill="none" stroke="#0070ad" stroke-width="1.6" stroke-linecap="round" d="M7 20.5c3-5 6-7.5 11-7.5"/>
-    </symbol>
-  </svg>
-
-  <svg class="cg-header-wave" viewBox="0 0 640 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-    <path fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="1.5" d="M40 190C160 190 200 60 340 60S520 170 620 40"/>
-    <path fill="none" stroke="#fff" stroke-opacity="0.2" stroke-width="1" d="M0 150C120 170 220 40 360 90S560 140 640 20"/>
-    <circle cx="596" cy="52" r="2.5" fill="#fff"/>
-    <circle cx="470" cy="150" r="1.8" fill="#fff" opacity="0.7"/>
-    <circle cx="230" cy="72" r="1.6" fill="#fff" opacity="0.6"/>
-    <circle cx="80" cy="176" r="1.6" fill="#fff" opacity="0.5"/>
   </svg>
 
   <header class="cg-header">
-    <div class="container position-relative">
-      <div class="cg-brand">
-        <svg class="cg-brand-mark" aria-hidden="true"><use href="#cg-icon-brand-mark"/></svg>
-        <span class="cg-brand-name">Capgemini</span>
+    <div class="container">
+      <div class="cg-masthead">
+        <span class="cg-eyebrow">Technology assessment</span>
+        <img class="cg-brand-logo" src="{{ assets.logo_uri }}" alt="Capgemini" width="285" height="65">
       </div>
       <h1>{{ title }}</h1>
-      <div class="cg-subtitle">Generated {{ model.generated_at }} &middot; {{ model.tools|length }} tools compared</div>
+      <div class="cg-subtitle">
+        <span>Generated <time datetime="{{ model.generated_at }}">{{ model.generated_at|replace('T', ' ')|replace('Z', ' UTC') }}</time></span>
+        <span>{{ model.tools|length }} tools compared</span>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="report-content" tabindex="-1">
     <div class="cg-panel">
-      <ul class="nav cg-page-tabs" role="tablist">
+      <ul class="nav cg-page-tabs" role="tablist" aria-label="Report views">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="page-tab-comparison" data-bs-toggle="tab"
-                  data-bs-target="#page-comparison" type="button" role="tab">
+                  data-bs-target="#page-comparison" type="button" role="tab"
+                  aria-controls="page-comparison" aria-selected="true">
             <svg class="cg-page-tab-icon" aria-hidden="true"><use href="#cg-icon-tab-comparison"/></svg>Comparison
           </button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="page-tab-profiles" data-bs-toggle="tab"
-                  data-bs-target="#page-profiles" type="button" role="tab">
+                  data-bs-target="#page-profiles" type="button" role="tab"
+                  aria-controls="page-profiles" aria-selected="false" tabindex="-1">
             <svg class="cg-page-tab-icon" aria-hidden="true"><use href="#cg-icon-tab-profiles"/></svg>Profiles
           </button>
         </li>
       </ul>
 
       <div class="tab-content">
-        <div class="tab-pane fade show active p-3 p-md-4" id="page-comparison" role="tabpanel">
+        <div class="tab-pane fade show active cg-page-content" id="page-comparison" role="tabpanel" aria-labelledby="page-tab-comparison">
 
-    <section aria-label="Summary" class="cg-kpi-row row row-cols-2 row-cols-md-5 g-3 mb-4">
-      <div class="col">
+    <section aria-label="Summary" class="cg-kpi-row">
         <div class="cg-kpi-card">
-          <div class="d-flex align-items-center gap-3">
-            <span class="cg-kpi-icon cg-kpi-icon-tools" aria-hidden="true"><svg><use href="#cg-icon-kpi-tools"/></svg></span>
-            <div>
               <div class="cg-kpi-number">{{ summary.tool_count }}</div>
               <div class="cg-kpi-label">Tools compared</div>
-            </div>
-          </div>
-          <div class="mt-2">
+          <div class="cg-kpi-detail">
             {% for key in ["current", "aging", "stale"] %}
             {% if summary.freshness_counts[key] %}
             <span class="cg-fresh cg-fresh-{{ key }}">{{ summary.freshness_counts[key] }} {{ freshness_labels[key] }}</span>
@@ -104,89 +91,65 @@
             {% endfor %}
           </div>
         </div>
-      </div>
-      <div class="col">
         <div class="cg-kpi-card">
-          <div class="d-flex align-items-center gap-3">
-            <span class="cg-kpi-icon cg-kpi-icon-groups" aria-hidden="true"><svg><use href="#cg-icon-kpi-groups"/></svg></span>
-            <div>
               <div class="cg-kpi-number">{{ summary.group_count }}</div>
               <div class="cg-kpi-label">Feature groups</div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="col">
         <div class="cg-kpi-card">
-          <div class="d-flex align-items-center gap-3">
-            <span class="cg-kpi-icon cg-kpi-icon-features" aria-hidden="true"><svg><use href="#cg-icon-kpi-features"/></svg></span>
-            <div>
               <div class="cg-kpi-number">{{ summary.feature_count }}</div>
               <div class="cg-kpi-label">Features evaluated</div>
-            </div>
-          </div>
-          <div class="mt-2">
+          <div class="cg-kpi-detail">
+            <span class="cg-kpi-caption">Results across tools</span>
             {% for key in ["has", "partial", "not_found", "uncertain"] %}
             {% if summary.status_counts[key] %}
-            <span class="cg-status cg-status-{{ key }}"><svg class="cg-status-icon" aria-hidden="true"><use href="#cg-icon-{{ key }}"/></svg>{{ summary.status_counts[key] }}</span>
+            <span class="cg-status cg-status-{{ key }}" tabindex="0" data-bs-toggle="tooltip"
+                  title="{{ status_labels[key] }}" aria-label="{{ summary.status_counts[key] }} {{ status_labels[key] }}">
+              <svg class="cg-status-icon" aria-hidden="true"><use href="#cg-icon-{{ key }}"/></svg>{{ summary.status_counts[key] }}</span>
             {% endif %}
             {% endfor %}
+            {% if summary.status_counts.unresearched %}
+            <span class="cg-status cg-status-requires_research">{{ summary.status_counts.unresearched }} unresearched</span>
+            {% endif %}
           </div>
         </div>
-      </div>
-      <div class="col">
         <div class="cg-kpi-card">
-          <div class="d-flex align-items-center gap-3">
-            <span class="cg-kpi-icon cg-kpi-icon-flags" aria-hidden="true"><svg><use href="#cg-icon-kpi-flags"/></svg></span>
-            <div>
               <div class="cg-kpi-number">{{ summary.flagged_feature_count }}</div>
               <div class="cg-kpi-label">Flagged features</div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="col">
         <div class="cg-kpi-card">
-          <div class="d-flex align-items-center gap-3">
-            <span class="cg-kpi-icon cg-kpi-icon-warnings" aria-hidden="true"><svg><use href="#cg-icon-kpi-warnings"/></svg></span>
-            <div>
               <div class="cg-kpi-number">{{ summary.warning_count }}</div>
               <div class="cg-kpi-label">Warnings</div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     {% if model.warnings %}
-    <section aria-label="Warnings" class="mb-3">
+    <details class="cg-warning">
+      <summary>{{ summary.warning_count }} research notice{{ 's' if summary.warning_count != 1 else '' }} &mdash; review freshness and coverage before drawing conclusions</summary>
+      <ul>
       {% for warning in model.warnings %}
-      <div class="cg-warning">&#9888; {{ warning }}</div>
+        <li>{{ warning }}</li>
       {% endfor %}
-    </section>
+      </ul>
+    </details>
     {% endif %}
 
-    <div class="cg-subtabs-bar d-flex align-items-center gap-2 mb-3">
-      <ul class="nav cg-subtabs flex-nowrap" id="cg-group-tabs-track" role="tablist">
+      <ul class="nav cg-subtabs" role="tablist" aria-label="Feature groups">
         {% for group in model.groups %}
         <li class="nav-item" role="presentation">
           <button class="nav-link{% if loop.first %} active{% endif %}"
                   id="tab-{{ group.group_id }}" data-bs-toggle="tab"
-                  data-bs-target="#panel-{{ group.group_id }}" type="button" role="tab">
+                  data-bs-target="#panel-{{ group.group_id }}" type="button" role="tab"
+                  aria-controls="panel-{{ group.group_id }}" aria-selected="{{ 'true' if loop.first else 'false' }}"{% if not loop.first %} tabindex="-1"{% endif %}>
             <svg class="cg-subtab-icon" aria-hidden="true"><use href="#cg-icon-group-{{ group_icons.get(group.group_id, 'other') }}"/></svg>{{ group.name }}
           </button>
         </li>
         {% endfor %}
       </ul>
-      <button type="button" class="cg-subtabs-scroll" data-cg-scroll-target="cg-group-tabs-track" aria-label="Scroll feature-group tabs">
-        <svg class="cg-subtabs-scroll-icon" aria-hidden="true"><use href="#cg-icon-chevron-right"/></svg>
-      </button>
-    </div>
 
     <div class="tab-content">
       {% for group in model.groups %}
       <div class="tab-pane fade{% if loop.first %} show active{% endif %}"
-           id="panel-{{ group.group_id }}" role="tabpanel">
+           id="panel-{{ group.group_id }}" role="tabpanel" aria-labelledby="tab-{{ group.group_id }}">
         <div class="cg-card">
           <div class="cg-card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
             <div class="d-flex align-items-center gap-2">
@@ -198,15 +161,17 @@
                 {% endif %}
               </div>
             </div>
-            <div class="d-flex align-items-center gap-2">
+            <div class="cg-table-tools">
               <span class="text-muted small">{{ group.features|length }} feature{{ 's' if group.features|length != 1 else '' }}</span>
-              <input type="search" class="form-control form-control-sm" style="max-width:16rem"
+              <label class="visually-hidden" for="filter-{{ group.group_id }}">Filter {{ group.name }} features</label>
+              <input type="search" class="cg-filter" id="filter-{{ group.group_id }}" aria-controls="table-{{ group.group_id }}"
                      placeholder="Filter features&hellip;" data-cg-filter="table-{{ group.group_id }}">
             </div>
           </div>
           <div class="cg-card-body p-0">
-            <div class="table-responsive">
+            <div class="table-responsive" role="region" aria-label="{{ group.name }} comparison table" tabindex="0">
               <table class="table cg-table align-middle mb-0" id="table-{{ group.group_id }}">
+                <caption class="visually-hidden">{{ group.name }}: feature status by tool</caption>
                 <thead>
                   <tr>
                     <th scope="col">Feature</th>
@@ -220,20 +185,20 @@
                   {% for feature in group.features %}
                   <tr data-cg-feature="{{ feature.name }} {{ feature.feature_id }}">
                     <th scope="row">
-                      <span class="cg-constraint" data-bs-toggle="tooltip" title="{{ feature.definition }}">{{ feature.name }}</span>
+                      <span class="cg-feature-name" tabindex="0" data-bs-toggle="tooltip" title="{{ feature.definition }}">{{ feature.name }}</span>
                     </th>
                     {% for cell in feature.cells %}
                     <td>
                       {% if not cell.researched %}
-                      <span class="cg-status cg-status-requires_research" title="Unresearched">&mdash;</span>
+                      <span class="cg-status cg-status-requires_research" aria-label="Unresearched" tabindex="0" data-bs-toggle="tooltip" title="Unresearched">&mdash;</span>
                       {% else %}
                       <span class="cg-status cg-status-{{ cell.status }}"
-                            {% if cell.rationale %}data-bs-toggle="tooltip" title="{{ cell.rationale }}"{% endif %}>
+                            {% if cell.rationale %}tabindex="0" data-bs-toggle="tooltip" title="{{ cell.rationale }}"{% endif %}>
                         <svg class="cg-status-icon" aria-hidden="true"><use href="#cg-icon-{{ cell.status }}"/></svg>{{ status_labels[cell.status] }}</span>
                       {% if cell.has_constraints %}
                       <div class="mt-1">
                         {% for constraint in cell.constraints %}
-                        <span class="cg-constraint" data-bs-toggle="tooltip"
+                        <span class="cg-constraint" tabindex="0" data-bs-toggle="tooltip"
                               title="{{ constraint.get('description') or constraint.get('type') }}">{{ constraint.type }}</span>
                         {% endfor %}
                       </div>
@@ -244,7 +209,7 @@
                     <td>
                       {% for flag in feature.flags %}
                       {% set fkey = flag_meta.get(flag, 'other') %}
-                      <span class="cg-flag-icon cg-flag-{{ fkey }}" role="img"
+                      <span class="cg-flag-icon cg-flag-{{ fkey }}" role="img" tabindex="0"
                             data-bs-toggle="tooltip" title="{{ flag }}" aria-label="{{ flag }}">
                         <svg class="cg-flag-icon-glyph" aria-hidden="true"><use href="#cg-icon-flag-{{ fkey }}"/></svg>
                       </span>
@@ -255,6 +220,7 @@
                 </tbody>
               </table>
             </div>
+            <p class="cg-empty" id="empty-{{ group.group_id }}" role="status" hidden>No matching features. Clear the filter to show all features.</p>
           </div>
         </div>
       </div>
@@ -262,12 +228,13 @@
     </div>
 
         </div>
-        <div class="tab-pane fade p-3 p-md-4" id="page-profiles" role="tabpanel">
-        <ul class="nav nav-pills mb-3" role="tablist">
+        <div class="tab-pane fade cg-page-content" id="page-profiles" role="tabpanel" aria-labelledby="page-tab-profiles">
+        <ul class="nav nav-pills mb-3" role="tablist" aria-label="Tool profiles">
           {% for tool in model.tools %}
           <li class="nav-item" role="presentation">
-            <button class="nav-link{% if loop.first %} active{% endif %}" data-bs-toggle="pill"
-                    data-bs-target="#profile-{{ tool.tool_id }}" type="button" role="tab">{{ tool.name }}</button>
+            <button class="nav-link{% if loop.first %} active{% endif %}" data-bs-toggle="pill" id="profile-tab-{{ tool.tool_id }}"
+                    data-bs-target="#profile-{{ tool.tool_id }}" type="button" role="tab"
+                    aria-controls="profile-{{ tool.tool_id }}" aria-selected="{{ 'true' if loop.first else 'false' }}"{% if not loop.first %} tabindex="-1"{% endif %}>{{ tool.name }}</button>
           </li>
           {% endfor %}
         </ul>
@@ -275,7 +242,7 @@
           {% for tool in model.tools %}
           {% set profile = profiles_by_id[tool.tool_id] %}
           <div class="tab-pane fade{% if loop.first %} show active{% endif %}"
-               id="profile-{{ tool.tool_id }}" role="tabpanel">
+               id="profile-{{ tool.tool_id }}" role="tabpanel" aria-labelledby="profile-tab-{{ tool.tool_id }}">
             <div class="cg-profile-card">
               <div class="d-flex flex-wrap gap-2 align-items-center mb-2">
                 <div class="cg-avatar" aria-hidden="true">{{ tool.name[:2]|upper }}</div>
@@ -339,7 +306,7 @@
                   {% if cell.has_constraints %}
                   <div class="mt-1">
                     {% for constraint in cell.constraints %}
-                    <span class="cg-constraint" data-bs-toggle="tooltip"
+                    <span class="cg-constraint" tabindex="0" data-bs-toggle="tooltip"
                           title="{{ constraint.get('description') or constraint.get('type') }}">{{ constraint.type }}</span>
                     {% endfor %}
                   </div>
@@ -395,8 +362,7 @@
       </div>
       </div>
 
-    <footer class="cg-footer d-flex flex-wrap justify-content-between align-items-start gap-3">
-      <div>
+    <footer class="cg-footer">
         <div class="cg-flag-legend mb-2" aria-label="Flag legend">
           {% for label, key in flag_meta.items() %}
           <span class="cg-flag-legend-item">
@@ -406,16 +372,13 @@
           </span>
           {% endfor %}
         </div>
-        <p class="mb-1">Flags describe only the compared set, not the wider market. Hover a flag icon for its meaning. Unresearched or uncertain cells are excluded from flags.</p>
-        <p class="mb-0">Self-contained offline report. Bundled Bootstrap (MIT) and Montserrat (SIL OFL). Capgemini-inspired theme.</p>
-      </div>
-      <div class="cg-cta-card">
-        <p class="mb-1 fw-semibold">Want to explore a tool in detail?</p>
-        <p class="mb-0 text-muted small">
-          Visit
-          <a href="#page-profiles" data-bs-toggle="tab" data-bs-target="#page-profiles">Profiles</a>
-          to see in-depth information on each AI coding tool.
-          <svg class="cg-cta-arrow" aria-hidden="true"><use href="#cg-icon-chevron-right"/></svg>
+      <div class="cg-footer-notes">
+        <div>
+          <p>Flags describe only the compared set, not the wider market. Focus or hover a flag icon for its meaning. Unresearched or uncertain cells are excluded from flags.</p>
+          <p>Not found means no qualifying evidence was found; it does not prove a capability is absent.</p>
+        </div>
+        <p>
+          <a href="#page-profiles" data-cg-open-profiles>Explore tool profiles &rarr;</a>
         </p>
       </div>
     </footer>

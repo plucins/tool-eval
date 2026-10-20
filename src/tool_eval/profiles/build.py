@@ -20,6 +20,7 @@ from tool_eval.config import load_config_bundle
 from tool_eval.errors import ErrorFamily, ToolEvalError
 from tool_eval.profiles.description import assemble_description
 from tool_eval.profiles.validate import validate_profile
+from tool_eval.research.merge import merge_results
 from tool_eval.research.pipeline import taxonomy_feature_ids
 from tool_eval.research.sources import read_tool_identity, normalise_tool_id
 from tool_eval.runs.manager import read_run, save_run, transition
@@ -77,8 +78,10 @@ def _collect_content(run_dir: Path, content_path: Path | None) -> dict[str, Any]
     releases: dict[str, dict[str, Any]] = {}
     issues: dict[str, dict[str, Any]] = {}
     sections: dict[str, str] = {}
+    sources: list[dict[str, Any]] = []
 
     def _absorb(payload: dict[str, Any]) -> None:
+        sources.extend(payload.get("sources", []) or [])
         for f in payload.get("additional_facts", []) or []:
             facts.setdefault(f["fact_id"], f)
         for uc in payload.get("use_cases", []) or []:
@@ -105,6 +108,7 @@ def _collect_content(run_dir: Path, content_path: Path | None) -> dict[str, Any]
         _absorb(_require_json(content_path, "content file"))
 
     return {
+        "sources": sources,
         "additional_facts": [facts[k] for k in sorted(facts)],
         "use_cases": [use_cases[k] for k in sorted(use_cases)],
         "release_history": [releases[k] for k in sorted(releases)],
@@ -154,6 +158,9 @@ def build_profile(
         run_dir / "merged" / "feature-results.json", "merged feature results"
     )
     content = _collect_content(run_dir, content_path)
+    merged, source_errors = merge_results(
+        [{"sources": sources}, {"sources": content["sources"]}]
+    )
     section_texts = _load_section_texts(
         run_dir, sections_path, content["description_sections"]
     )
@@ -175,7 +182,7 @@ def build_profile(
             "source_policy_revision": bundle.files["source-policies.yaml"].revision,
             "profile_state": "current",
         },
-        "sources": sources,
+        "sources": merged["sources"],
         "feature_results": feature_results,
         "additional_facts": content["additional_facts"],
         "use_cases": content["use_cases"],
@@ -184,7 +191,11 @@ def build_profile(
     }
 
     profile_errors = validate_profile(profile, taxonomy_feature_ids=taxonomy_feature_ids(root))
-    all_errors = [e.to_dict() for e in desc_errors] + profile_errors
+    all_errors = (
+        [e.to_dict() for e in source_errors]
+        + [e.to_dict() for e in desc_errors]
+        + profile_errors
+    )
 
     if all_errors:
         (run_dir / "validation-errors.json").write_text(

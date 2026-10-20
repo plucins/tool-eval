@@ -58,7 +58,8 @@ def test_output_has_no_cdn_or_network_references(temp_project, valid_profile):
     assert "cdn.jsdelivr" not in html
     assert "https://cdn" not in html
     assert 'src="http' not in html
-    assert "fonts/montserrat" not in html  # fonts inlined as data: URIs
+    assert "fonts/ubuntu" not in html  # fonts inlined as data: URIs
+    assert "data:image/svg+xml;base64," in html
 
 
 def test_flags_are_identical_across_two_builds(temp_project, valid_profile):

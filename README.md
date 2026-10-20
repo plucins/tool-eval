@@ -1,7 +1,7 @@
 # tool-eval — AI Coding Tool Comparison System
 
 Research, document, and compare AI coding tools on demand, using Claude Code
-as the agent harness. See `docs/ai_coding_tool_comparison_system_requirements_v2.md`
+or GitHub Copilot CLI as the agent harness. See `docs/ai_coding_tool_comparison_system_requirements_v2.md`
 for the product requirements and `docs/implementation_plan_v1.md` for the
 architecture and work plan.
 
@@ -16,8 +16,24 @@ Operations and documentation (Increment 4) add configurable run budgets
 (`config/runtime.yaml: budgets`), cleanup/retention, publication recovery, and a
 full operator guide.
 
+The comparison report uses an executive layout with the official Capgemini logo,
+locally embedded Ubuntu fonts, readable tables, wrapping feature-group tabs, and
+keyboard-accessible details. Research notices remain available in an expandable
+banner; status labels, evidence, and freshness calculations are unchanged.
+Existing HTML files are snapshots: run `compare build` again to obtain the new
+design. See [asset provenance and licenses](src/tool_eval/reporting/static/LICENSES.md)
+for font licensing and Capgemini trademark usage conditions. The visual treatment
+references public 2026 materials, not certified private brand guidelines.
+
 **New here? Read the [User Guide](docs/user-guide.md)** — install, starting the
 orchestrator, the three entry skills, sample sessions, and troubleshooting.
+
+**GitHub Copilot CLI:** see the [Copilot CLI guide](docs/copilot-cli-guide.md).
+Start `copilot --agent copilot-tool-eval-orchestrator`, then use
+`/copilot-tool-eval-research <tool_name>`,
+`/copilot-tool-eval-compare <tool_id> <tool_id> [...]`, or
+`/copilot-tool-eval-resume <run_id>`. The alternative instructions live under
+`.github/`; the existing Claude Code configuration remains unchanged.
 
 ## Installation
 
@@ -32,7 +48,7 @@ pip install -e ".[dev]"
 ```
 
 Requires Python 3.11+. No API key or model-provider SDK is required — all
-LLM reasoning is performed by the Claude Code harness. Python is deterministic
+LLM reasoning is performed by the selected agent harness. Python is deterministic
 only: it validates, merges, and publishes, but never calls a model or the web.
 
 ## CLI

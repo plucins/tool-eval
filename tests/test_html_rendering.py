@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import re
+from html import escape
+from html.parser import HTMLParser
 from typing import Any
 
 from tool_eval.comparison.freshness import FreshnessThresholds
@@ -64,19 +67,94 @@ def test_template_renders_group_tabs_and_feature_table():
 def test_capgemini_theme_tokens_are_applied():
     model, profiles = _model_and_profiles({"tool_a": "has"})
     html = render_comparison_html(model, profiles)
-    assert "#0070ad" in html.lower()          # Capgemini blue
-    assert "cg-header" in html                 # gradient header applied
-    assert "Montserrat" in html                # typography
+    assert "#0058ab" in html.lower()
+    assert "cg-header" in html
+    assert '"Ubuntu"' in html
+    assert "Montserrat" not in html
+    assert 'alt="Capgemini"' in html
+    assert "cg-icon-brand-mark" not in html
 
 
 def test_output_has_no_external_resource_references():
     model, profiles = _model_and_profiles({"tool_a": "has", "tool_b": "has"})
     html = render_comparison_html(model, profiles)
-    # No CDN/network references for styles, scripts, or fonts.
-    assert "https://cdn" not in html.lower()
-    assert 'src="http' not in html.lower()
-    assert 'href="http' not in html.lower() or "docs.example.com" in html  # only profile links may be http(s)
-    assert "fonts/montserrat" not in html      # fonts are inlined as data: URIs
+    class ResourceParser(HTMLParser):
+        def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+            attributes = dict(attrs)
+            for key in ("src", "srcset", "poster"):
+                if attributes.get(key):
+                    assert attributes[key].startswith("data:")
+            if tag in {"link", "use"}:
+                assert attributes.get("href", "").startswith(("data:", "#"))
+
+    ResourceParser().feed(html)
+    for url in re.findall(r"url\(\s*['\"]?([^)'\"\s]+)", html):
+        assert url.startswith(("data:", "#"))
+    assert "fonts/ubuntu" not in html
+
+
+def test_navigation_and_details_are_keyboard_addressable():
+    model, profiles = _model_and_profiles({"tool_a": "has", "tool_b": "partial"})
+    html = render_comparison_html(model, profiles)
+    assert 'aria-controls="page-profiles" aria-selected="false"' in html
+    assert 'aria-labelledby="profile-tab-tool_a"' in html
+    assert 'class="cg-feature-name" tabindex="0" data-bs-toggle="tooltip"' in html
+    assert 'for="filter-code_generation"' in html
+    assert 'role="region" aria-label="Code Generation comparison table" tabindex="0"' in html
+    assert 'data-cg-open-profiles' in html
+    assert 'data-cg-scroll-target' not in html
+
+
+def test_research_notices_and_asset_attribution_remain_available():
+    profiles = [_profile("tool_a", "uncertain", researched_at="2025-01-01T00:00:00Z")]
+    model = build_comparison_model(profiles, TAXONOMY, THRESHOLDS, GENERATED)
+    html = render_comparison_html(model, profiles)
+    assert 'class="cg-warning"' in html
+    assert "review freshness and coverage" in html
+    assert "Stale" in html
+    for warning in model.warnings:
+        assert escape(warning) in html
+    assert "UBUNTU FONT LICENCE Version 1.0" in html
+    assert "not a Capgemini Research Institute publication" in html
+
+
+def test_asset_licenses_remain_in_source_without_a_visible_report_section():
+    model, profiles = _model_and_profiles({"tool_a": "has"})
+    html = render_comparison_html(model, profiles)
+    assert "About this report" not in html
+    assert "cg-attribution" not in html
+    comments: list[str] = []
+
+    class LicenseParser(HTMLParser):
+        def handle_comment(self, data: str) -> None:
+            comments.append(data)
+
+        def handle_data(self, data: str) -> None:
+            assert "UBUNTU FONT LICENCE" not in data
+            assert "Copyright 2011 Canonical" not in data
+
+    LicenseParser().feed(html)
+    assert any("UBUNTU FONT LICENCE Version 1.0" in comment for comment in comments)
+
+
+def test_summary_distinguishes_features_from_results_and_counts_unresearched():
+    model, profiles = _model_and_profiles({"tool_a": "has", "tool_b": "partial"})
+    profiles[1]["feature_results"] = []
+    model = build_comparison_model(profiles, TAXONOMY, THRESHOLDS, GENERATED)
+    html = render_comparison_html(model, profiles)
+    assert "Results across tools" in html
+    assert "1 unresearched" in html
+    assert 'aria-label="1 Has"' in html
+
+
+def test_tool_names_and_custom_titles_are_preserved_and_escaped():
+    profiles = [_profile("tool_a", "has")]
+    profiles[0]["tool"]["name"] = 'lowerCASE <script>alert("x")</script>'
+    model = build_comparison_model(profiles, TAXONOMY, THRESHOLDS, GENERATED)
+    html = render_comparison_html(model, profiles, title="<Executive comparison>")
+    assert "lowerCASE &lt;script&gt;" in html
+    assert "<script>alert" not in html
+    assert "&lt;Executive comparison&gt;" in html
 
 
 def test_profile_tab_shows_description_and_facts():

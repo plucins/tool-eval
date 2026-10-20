@@ -1,9 +1,16 @@
 {
   "bootstrap.min.css": "3c8f27e6009ccfd710a905e6dcf12d0ee3c6f2ac7da05b0572d3e0d12e736fc8",
   "bootstrap.bundle.min.js": "0833b2e9c3a26c258476c46266e6877fc75218625162e0460be9a3a098a61c6c",
-  "theme-capgemini.css": "0efda4108e2eb24bb01109377e298b56f8669e088b8196d7b3d10cd3cc6ada33",
-  "app.js": "eb98baac49a9f35f80a403738f1a3f63fb6163a38409d6fc9d906f070cf05d46",
-  "fonts/montserrat-400.woff2": "4b5816bbfc52587979139951355fe4048da02ce60e40cef8e4a1efb6cd396281",
-  "fonts/montserrat-600.woff2": "9f5f68f23573a4df9d5ce9fdd7c28154b326232e7dc31731a2a2deaa2ab6ca43",
-  "fonts/montserrat-700.woff2": "a60b1ba9daa11468bf1b846e8515e51b97023f341f2962a9623b9d8aaa7904ad"
+  "theme-capgemini.css": "b64711d4feeb2492e55ce507d96ed6c6b85ae21bbe17ee701e9e3d1936eadaf9",
+  "app.js": "61e038d389455da8ec5556dae0a9594a528b5b4cc4f7010061ed04b734d7e080",
+  "capgemini-white.svg": "306dda528f78702c4d16ee6c524e0f549e481d3de984d11986619cceb9ec52cb",
+  "fonts/UFL.txt": "52fdffecb23a020de527f68c516cac16dbbaf2dbb73fd9e29e2149703b881c82",
+  "fonts/ubuntu-latin-300.woff2": "a5515c53111bb4a4f45aff63d06df893ae9033dc85e82cc2ef27fc099a4d7609",
+  "fonts/ubuntu-latin-400.woff2": "7f653b3ce9d3277457fc6da4edb246ae2f6c913f088c42dcb8cd2e96267aa21a",
+  "fonts/ubuntu-latin-500.woff2": "e8e147e15907f25cad69b2bcf060213efad4ed04e0d36374715cbca17b2afc1c",
+  "fonts/ubuntu-latin-700.woff2": "7c00752ce82d6abaed0b9766d35b906b16675facdbe24115b410d1fab975effa",
+  "fonts/ubuntu-latin-ext-300.woff2": "c1aff18584a14f86ee2a87e1a039e7a4ae84e363f9f664e2a9e81a72b14fe521",
+  "fonts/ubuntu-latin-ext-400.woff2": "d9086c8c2ed7c9f988d63847cd89e81318c1e4ade2112969af26e5744a3bc7d7",
+  "fonts/ubuntu-latin-ext-500.woff2": "ec80b562d5a12eb00edd4a7ccdab4cdb58f639a1f254802bc065ceb6350fe4b5",
+  "fonts/ubuntu-latin-ext-700.woff2": "e4f50b8bf27fec2b2be5907a06a6579a355aa86542322a2434fac71a22c2ea6e"
 }

@@ -1,0 +1,85 @@
+{
+  "status": "passed",
+  "date": "2026-10-11",
+  "report": "outputs/comparisons/capgemini-executive-comparison-20261011.html",
+  "tests": {
+    "targeted_reporting_passed": 47,
+    "full_suite_passed": 222,
+    "full_suite_failed": 0,
+    "diff_check": "passed"
+  },
+  "browser": {
+    "engine": "Chromium via Playwright",
+    "viewports": [[1920, 1080], [1440, 900], [1280, 720], [390, 844]],
+    "page_horizontal_overflow": false,
+    "all_group_tabs_fit_without_clipping": true,
+    "desktop_third_table_row_bottom_px": 992.453125,
+    "desktop_viewport_height_px": 1080,
+    "desktop_feature_and_status_font_size_px": 16,
+    "secondary_text_font_size_px": 14,
+    "desktop_title_font_size_px": 48,
+    "official_logo_intrinsic_dimensions": [285, 65],
+    "official_logo_display_width_px": 185,
+    "loaded_ubuntu_weights": [300, 400, 500, 700],
+    "interactions": [
+      "All six feature-group tabs",
+      "All four tool-profile tabs",
+      "Case-insensitive feature filter and clearing",
+      "No-match filter state",
+      "Keyboard focus tooltip and Escape dismissal",
+      "Footer profile link activates the actual profile tab",
+      "Arrow-key tab navigation",
+      "Expandable research notices show all four stale-profile warnings"
+    ],
+    "edge_cases": [
+      "Two-tool comparison at desktop and mobile widths",
+      "Eight-tool comparison with horizontal scrolling inside table only",
+      "Long tool and feature names",
+      "Constraints",
+      "Stale and requires_research profiles",
+      "Unresearched feature cells",
+      "Absent descriptions",
+      "CSS 200% zoom without page overflow",
+      "960x540 layout equivalent to a 1920x1080 screen at 200% zoom",
+      "Reduced-motion preference disables tab transitions"
+    ],
+    "contrast_samples": {
+      "white_header_on_brand_blue": 7.04,
+      "muted_text_on_white": 6.35,
+      "feature_text_on_white": 16.43,
+      "has_status_on_white": 7.23,
+      "not_found_status_on_white": 7.21,
+      "warning_text_on_warning_surface": 8.76,
+      "footer_text_on_page_surface": 5.91
+    },
+    "focus_outline_px": 3,
+    "offline": {
+      "method": "Fresh browser page with every network route blocked; HTML loaded with embedded assets",
+      "external_requests": 0,
+      "script_errors": 0,
+      "logo_loaded": true,
+      "ubuntu_loaded": true,
+      "profile_navigation_works": true
+    },
+    "console_errors": 0,
+    "screenshots": [
+      "capgemini-executive-desktop.png",
+      "capgemini-executive-dense-group.png",
+      "capgemini-executive-profiles.png",
+      "capgemini-executive-mobile.png"
+    ]
+  },
+  "packaging": {
+    "wheel_build": "passed",
+    "asset_archive_entries_unique": true,
+    "schemas_templates_fonts_logo_licenses_match_source_bytes": true,
+    "asset_loading_from_unpacked_wheel": "passed",
+    "runtime_dependencies_added": false
+  },
+  "limitations": [
+    "Visual identity portal requires login; no certification against a private brandbook is claimed.",
+    "Logo remains a Capgemini trademark; public availability is not a blanket redistribution license.",
+    "Report preserves July research dates and correctly warns that all four profiles are stale.",
+    "Automated visual verification used Chromium; other browser engines were not exercised."
+  ]
+}
