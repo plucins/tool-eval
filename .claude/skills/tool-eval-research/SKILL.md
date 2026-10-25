@@ -42,8 +42,6 @@ workflow.
   existing profile and its date untouched.
 - No API key is required; all LLM work runs inside Claude Code (D-015).
 
-## Increment 1 status
-
-Skeleton: the argument surface and hand-off contract are defined here. The full
-research pipeline is delivered in Increment 2; until then the underlying
-`research` CLI subcommands return `INPUT_NOT_IMPLEMENTED`.
+Accept a quoted multiword name as one argument (e.g. `"OpenAI Codex"`). Report
+the actual final CLI code, run id, artifact paths, and warnings; never report a
+staged profile as published.

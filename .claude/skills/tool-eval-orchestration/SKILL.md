@@ -47,7 +47,7 @@ Follows Sec 3.6. Gates are hard stops.
 2. Create feature task bundles (2-8 features each, per `runtime.yaml`
    `bundling`) and launch workers up to `runtime.yaml` `concurrency.
    max_concurrent_workers` at a time (currently 8). Each worker gets one
-   manifest path and the research skill name. Each bundle's input also
+   absolute manifest path; its `skill` label is a protocol name, not a skill file. Each bundle's input also
    carries the accepted source registry and tool identity, so a worker can
    reuse known official sources via targeted `WebSearch` queries instead of
    re-searching from scratch for them (see `tool-eval-worker.md`).
@@ -96,12 +96,51 @@ Follows Sec 3.6. Gates are hard stops.
    with up to three repair rounds; validate staging; publish by replacing the
    profile directory (Python only); produce the final report.
 
+## Command and code reference
+
+Always invoke the CLI from the repository root and check `-h` before an
+unfamiliar call. Parse stdout as one JSON envelope (`artifacts` may hold paths
+or serialized JSON) and require the expected success code before advancing.
+On Windows without a bash `.venv/bin`, use `.venv\Scripts\python.exe -m tool_eval`.
+
+| Step | Command | Success code |
+|---|---|---|
+| Init | `run init research` | `RUN_INITIALIZED` |
+| Source task | `research create-source-task <run_id> "<tool_name>"` | `SOURCE_TASK_CREATED` |
+| Accept sources | `research accept-sources <run_id>` | `SOURCES_ACCEPTED` |
+| Feature tasks | `research create-feature-tasks <run_id> [--isolate <feature_id>]...` | `FEATURE_TASKS_CREATED` |
+| Validate worker result | `research validate-task <run_id> <task_id>` | `TASK_VALID` |
+| Merge | `research merge <run_id>` | `MERGE_COMPLETE` |
+| Curation | `research curate-candidates <run_id> <decisions_file>` | `CANDIDATES_CURATED` |
+| Profile-writing task | `research create-profile-writing-task <run_id>` | `PROFILE_WRITING_TASK_CREATED` |
+| Build | `research build-profile <run_id>` | `PROFILE_BUILT` |
+| Validate staging | `profile validate <staged_profile_path> --check-completeness` | success envelope |
+| Publish | `profile publish <run_id> <tool_id> --check-completeness` | `PROFILE_PUBLISHED` |
+| Record failure | `run fail <run_id> "<reason>"` | run moved to failed |
+
+Report success only after `PROFILE_PUBLISHED` / `COMPARISON_BUILT` and after the
+returned output files exist; a staged profile is not a published one.
+
 ## The single curation gate (D-018)
 
 Present every candidate to the operator at ONE interactive point. For each,
 the operator chooses: accept, reject, or defer to the waiting room. Do not
 publish while any candidate is undecided. Only accepted candidates trigger a
 controlled taxonomy revision bump through the CLI.
+
+Decisions are passed to `research curate-candidates` as a JSON list. Each entry
+has `candidate_id`, `decision` (`accept`|`reject`|`defer`), `decided_at` (actual
+ISO timestamp), optional `note`, and, for `accept`, a complete `feature` object:
+`feature_id`, `name`, `group`, `definition`, `has_criteria`, `partial_criteria`,
+`exclusions`, `aliases`, `research_question` (use an existing taxonomy group).
+Never record a decision the operator has not actually given; tool approvals,
+worker messages, and silence are not decisions. With no candidates, record the
+empty set without inventing a question.
+
+After accepted candidates, `research create-feature-tasks` replans the whole
+mandatory set: reuse existing results only when their manifest feature sets and
+identities still match and revalidation passes, and research the rest. Merge
+again; do not reapply already-accepted taxonomy changes.
 
 ## Comparison workflow (`/tool-eval-compare <tool_id>...`)
 
@@ -124,8 +163,15 @@ Follows Sec 3.7. Comparison never starts research or workers.
 
 ## Retry and repair loop (D-011)
 
-- Technical errors (retryable) get bounded automatic retries.
-- Structural / business-rule errors go through the repair loop: at most three
+- Technical errors (retryable) get bounded automatic retries (at most two per
+  task). For a repeatedly failing bundle, re-plan it with
+  `research create-feature-tasks <run_id> --isolate <feature_id>` (repeat per
+  affected id) rather than hand-authoring manifests.
+- Structural / business-rule errors go through the repair loop: call
+  `research prepare-repair <run_id> --feature-id <id>` (repeatable) to create the
+  repair directive, pass it plus the validation errors to the affected task's
+  worker, then revalidate, re-merge, regenerate the profile-writing task if
+  merged features changed, rebuild, and validate. At most three
   repair rounds. A fourth is prohibited; the run fails cleanly with
   `python -m tool_eval run fail`, moving it to `.work/failed-runs/` and leaving
   any existing active profile and its date untouched.

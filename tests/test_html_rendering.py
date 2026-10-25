@@ -258,7 +258,7 @@ def test_release_history_renders_with_freshness_caveat_newest_first():
          "summary": "Adds foo.", "evidence": [{"source_id": "src_docs", "excerpt": "1.1.0"}]},
     ]
     html = render_comparison_html(model, profiles)
-    assert "Release history reflects data available as of 2026-07-20T00:00:00Z" in html
+    assert "Release history reflects data available as of 20 Jul 2026" in html
     assert html.index("1.1.0") < html.index("1.0.0")  # newest first
 
 

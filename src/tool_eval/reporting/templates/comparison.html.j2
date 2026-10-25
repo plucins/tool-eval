@@ -51,7 +51,7 @@
       </div>
       <h1>{{ title }}</h1>
       <div class="cg-subtitle">
-        <span>Generated <time datetime="{{ model.generated_at }}">{{ model.generated_at|replace('T', ' ')|replace('Z', ' UTC') }}</time></span>
+        <span>Generated <time datetime="{{ model.generated_at }}">{{ model.generated_at|human_date }}</time></span>
         <span>{{ model.tools|length }} tools compared</span>
       </div>
     </div>
@@ -248,7 +248,7 @@
                 <div class="cg-avatar" aria-hidden="true">{{ tool.name[:2]|upper }}</div>
                 <h2 class="h4 mb-0">{{ tool.name }}</h2>
                 {% if tool.vendor %}<span class="text-muted">by {{ tool.vendor }}</span>{% endif %}
-                <span class="cg-fresh cg-fresh-{{ tool.freshness }}">{{ freshness_labels[tool.freshness] }} &middot; researched {{ tool.researched_at }}</span>
+                <span class="cg-fresh cg-fresh-{{ tool.freshness }}">{{ freshness_labels[tool.freshness] }} &middot; researched <time datetime="{{ tool.researched_at }}">{{ tool.researched_at|human_date }}</time></span>
                 {% if tool.profile_state == 'requires_research' %}
                 <span class="cg-flag">requires_research</span>
                 {% endif %}
@@ -339,7 +339,7 @@
 
               {% if profile.get('release_history') %}
               <h3 class="h6 mt-3">Release history</h3>
-              <p class="text-muted small">Release history reflects data available as of {{ tool.researched_at }}; check the vendor's official channel for newer releases.</p>
+              <p class="text-muted small">Release history reflects data available as of {{ tool.researched_at|human_date }}; check the vendor's official channel for newer releases.</p>
               <ul class="cg-release-list">
                 {% for rel in profile.get('release_history')|sort(attribute='release_date', reverse=true) %}
                 <li class="mb-2">

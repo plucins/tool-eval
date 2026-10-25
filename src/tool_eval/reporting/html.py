@@ -10,6 +10,7 @@ file (Increment 3 gate: works offline; R-09/R-10).
 
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -68,6 +69,15 @@ GROUP_DESCRIPTIONS: dict[str, str] = {
     "workflow_ecosystem": "Compare workflow integration and ecosystem reach",
     "security_governance": "Compare security capabilities and governance features",
 }
+
+
+def _human_date(value: str) -> str:
+    """Render an ISO-8601 instant as e.g. ``11 Oct 2026``; fall back to the raw text."""
+    try:
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return str(value)
+    return f"{parsed.day} {parsed:%b %Y}"
 
 
 def _environment() -> Environment:
@@ -210,6 +220,7 @@ def render_comparison_html(
     }
 
     env = _environment()
+    env.filters["human_date"] = _human_date
     env.filters["md"] = lambda text: _safe_markdown(text or "", sources_by_id)
     template = env.get_template(_TEMPLATE_NAME)
 

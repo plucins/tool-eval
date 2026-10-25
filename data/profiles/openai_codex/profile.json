@@ -1,0 +1,2728 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "tool_id": "openai_codex",
+    "name": "OpenAI Codex"
+  },
+  "research": {
+    "run_id": "research-20261025-111545-4de862fb",
+    "researched_at": "2026-10-25T11:21:18Z",
+    "taxonomy_revision": 7,
+    "template_revision": 1,
+    "source_policy_revision": 1,
+    "profile_state": "current"
+  },
+  "sources": [
+    {
+      "source_id": "codex_admin_setup",
+      "url": "https://learn.chatgpt.com/docs/enterprise/admin-setup",
+      "title": "Codex enterprise admin rollout guide",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/enterprise/admin-setup"
+    },
+    {
+      "source_id": "codex_agent_approvals",
+      "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+      "title": "Codex agent approvals and security",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_agent_approvals_security",
+      "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+      "title": "Codex agent approvals and security",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_agents_md_docs",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+      "title": "Codex AGENTS.md guidance (redirected from developers.openai.com/codex/guides/agents-md)",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/guides/agents-md"
+    },
+    {
+      "source_id": "codex_app_overview",
+      "url": "https://learn.chatgpt.com/docs/app",
+      "title": "ChatGPT desktop app (Codex)",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_app_server_docs",
+      "url": "https://learn.chatgpt.com/docs/app-server",
+      "title": "Codex app-server documentation",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/app-server"
+    },
+    {
+      "source_id": "codex_approvals_security_docs",
+      "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+      "title": "Codex agent approvals and security",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/agent-approvals-security"
+    },
+    {
+      "source_id": "codex_auth",
+      "url": "https://learn.chatgpt.com/docs/auth",
+      "title": "Codex authentication",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_automations",
+      "url": "https://learn.chatgpt.com/docs/automations",
+      "title": "Codex scheduled tasks (automations)",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_best_practices",
+      "url": "https://learn.chatgpt.com/guides/best-practices",
+      "title": "Codex best practices",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/learn/best-practices"
+    },
+    {
+      "source_id": "codex_changelog",
+      "url": "https://learn.chatgpt.com/docs/changelog",
+      "title": "Codex changelog",
+      "source_type": "changelog",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/changelog"
+    },
+    {
+      "source_id": "codex_cli_docs",
+      "url": "https://learn.chatgpt.com/docs/codex/cli",
+      "title": "Codex CLI",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/cli/features"
+    },
+    {
+      "source_id": "codex_cli_features_docs",
+      "url": "https://learn.chatgpt.com/docs/codex/cli",
+      "title": "Codex CLI overview",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/cli/features"
+    },
+    {
+      "source_id": "codex_cli_overview",
+      "url": "https://learn.chatgpt.com/docs/cli",
+      "title": "Codex CLI overview",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_cli_reference_docs",
+      "url": "https://learn.chatgpt.com/docs/developer-commands?surface=cli",
+      "title": "Codex CLI commands and flags reference",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/cli/slash-commands"
+    },
+    {
+      "source_id": "codex_cloud_docs",
+      "url": "https://learn.chatgpt.com/docs/cloud",
+      "title": "Codex Cloud",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_cloud_environments",
+      "url": "https://learn.chatgpt.com/docs/environments/cloud-environments",
+      "title": "Codex cloud environments",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_cloud_internet_access",
+      "url": "https://learn.chatgpt.com/docs/cloud/internet-access",
+      "title": "Codex agent internet access",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/cloud/internet-access"
+    },
+    {
+      "source_id": "codex_cloud_overview",
+      "url": "https://learn.chatgpt.com/docs/cloud",
+      "title": "Codex Cloud overview",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_code_review_docs",
+      "url": "https://learn.chatgpt.com/docs/code-review?surface=cli",
+      "title": "Codex Code Review",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_compliance_api",
+      "url": "https://learn.chatgpt.com/docs/enterprise/compliance-api",
+      "title": "Codex Compliance API",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_config_advanced",
+      "url": "https://learn.chatgpt.com/docs/config-file/config-advanced",
+      "title": "Codex advanced configuration (custom model providers)",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/config-advanced"
+    },
+    {
+      "source_id": "codex_config_advanced_docs",
+      "url": "https://learn.chatgpt.com/docs/config-file/config-advanced",
+      "title": "Codex advanced configuration",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/config-file/config-advanced"
+    },
+    {
+      "source_id": "codex_config_reference_docs",
+      "url": "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "title": "Codex configuration reference",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_developer_commands",
+      "url": "https://learn.chatgpt.com/docs/developer-commands?surface=cli",
+      "title": "Codex CLI commands and flags reference",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_developer_commands_docs",
+      "url": "https://learn.chatgpt.com/docs/developer-commands?surface=cli",
+      "title": "Codex CLI commands and flags reference",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_docs",
+      "url": "https://learn.chatgpt.com/docs",
+      "title": "Codex documentation overview",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex"
+    },
+    {
+      "source_id": "codex_enterprise_governance",
+      "url": "https://learn.chatgpt.com/docs/enterprise/governance",
+      "title": "Codex enterprise governance",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_github_action_docs",
+      "url": "https://learn.chatgpt.com/docs/github-action",
+      "title": "Codex GitHub Action",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_github_integration_docs",
+      "url": "https://learn.chatgpt.com/docs/third-party/github",
+      "title": "Use Codex in GitHub (code review and Security Review)",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/integrations/github"
+    },
+    {
+      "source_id": "codex_github_releases",
+      "url": "https://github.com/openai/codex/releases",
+      "title": "openai/codex GitHub releases",
+      "source_type": "changelog",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_github_repo",
+      "url": "https://github.com/openai/codex",
+      "title": "openai/codex GitHub repository (Codex CLI)",
+      "source_type": "specialist",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_groups_provisioning",
+      "url": "https://learn.chatgpt.com/docs/enterprise/groups-and-provisioning",
+      "title": "Codex groups and provisioning",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_hooks_docs",
+      "url": "https://learn.chatgpt.com/docs/hooks",
+      "title": "Codex hooks documentation",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/hooks"
+    },
+    {
+      "source_id": "codex_ide_docs",
+      "url": "https://learn.chatgpt.com/docs/codex/ide",
+      "title": "Codex IDE extension",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/ide/features"
+    },
+    {
+      "source_id": "codex_ide_settings_docs",
+      "url": "https://learn.chatgpt.com/docs/ide/settings",
+      "title": "Codex IDE extension settings",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_image_inputs_docs",
+      "url": "https://learn.chatgpt.com/docs/image-inputs",
+      "title": "Codex image inputs",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_long_running_work",
+      "url": "https://learn.chatgpt.com/docs/long-running-work",
+      "title": "Codex long-running work and Goal mode",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_mcp_docs",
+      "url": "https://learn.chatgpt.com/docs/extend/mcp?surface=cli",
+      "title": "Codex MCP documentation",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/mcp"
+    },
+    {
+      "source_id": "codex_memories_docs",
+      "url": "https://learn.chatgpt.com/docs/customization/memories?surface=app",
+      "title": "Codex memories",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/memories"
+    },
+    {
+      "source_id": "codex_mobile_docs",
+      "url": "https://learn.chatgpt.com/docs/mobile",
+      "title": "Codex on mobile",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_non_interactive_docs",
+      "url": "https://learn.chatgpt.com/docs/non-interactive-mode",
+      "title": "Codex non-interactive mode (codex exec)",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/noninteractive"
+    },
+    {
+      "source_id": "codex_plugins",
+      "url": "https://learn.chatgpt.com/docs/plugins",
+      "title": "Codex plugins (plugin directory overview)",
+      "source_type": "integration_catalog",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/plugins"
+    },
+    {
+      "source_id": "codex_pricing",
+      "url": "https://learn.chatgpt.com/docs/pricing",
+      "title": "Codex pricing",
+      "source_type": "pricing",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/pricing"
+    },
+    {
+      "source_id": "codex_product_page",
+      "url": "https://openai.com/codex/",
+      "title": "Build anything with Codex (OpenAI)",
+      "source_type": "product_page",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_prompting",
+      "url": "https://learn.chatgpt.com/docs/prompting",
+      "title": "Codex prompting overview",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_prompting_docs",
+      "url": "https://learn.chatgpt.com/docs/prompting",
+      "title": "Prompting overview",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_roles_permissions",
+      "url": "https://learn.chatgpt.com/docs/enterprise/roles-and-workspace-permissions",
+      "title": "Codex roles and workspace permissions",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_sandboxing",
+      "url": "https://learn.chatgpt.com/docs/sandboxing",
+      "title": "Codex sandboxing",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_security_docs",
+      "url": "https://learn.chatgpt.com/docs/security",
+      "title": "Codex Security overview",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/security"
+    },
+    {
+      "source_id": "codex_security_scans_docs",
+      "url": "https://learn.chatgpt.com/docs/security/plugin/scans",
+      "title": "Codex Security: run a security scan",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_security_triage_docs",
+      "url": "https://learn.chatgpt.com/docs/security/plugin/triage-backlog",
+      "title": "Codex Security: triage a backlog",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_slash_commands",
+      "url": "https://learn.chatgpt.com/docs/reference/slash-commands",
+      "title": "Codex slash commands",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_slash_commands_docs",
+      "url": "https://learn.chatgpt.com/docs/reference/slash-commands",
+      "title": "Codex slash commands reference",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_subagents",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+      "title": "Codex subagents",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "codex_subagents_docs",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+      "title": "Codex subagents documentation",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true,
+      "redirect_from": "https://developers.openai.com/codex/subagents"
+    },
+    {
+      "source_id": "codex_worktrees",
+      "url": "https://learn.chatgpt.com/docs/environments/git-worktrees",
+      "title": "Codex worktrees",
+      "source_type": "documentation",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "openai_business_data",
+      "url": "https://openai.com/business-data/",
+      "title": "Business data privacy, security, and compliance (OpenAI)",
+      "source_type": "other",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "openai_dpa",
+      "url": "https://openai.com/policies/data-processing-addendum/",
+      "title": "OpenAI Data Processing Addendum",
+      "source_type": "other",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "openai_services_agreement",
+      "url": "https://openai.com/policies/services-agreement/",
+      "title": "OpenAI Services Agreement",
+      "source_type": "other",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    },
+    {
+      "source_id": "openai_sub_processor_list",
+      "url": "https://openai.com/policies/sub-processor-list/",
+      "title": "OpenAI sub-processor list",
+      "source_type": "other",
+      "checked_at": "2026-10-25",
+      "available": true,
+      "official": true
+    }
+  ],
+  "feature_results": [
+    {
+      "feature_id": "agent_lifecycle_hooks",
+      "status": "has",
+      "rationale": "Official hooks documentation describes a user-configurable framework (hooks.json or [hooks] in config.toml) running command or MCP-tool handlers at PreToolUse, PermissionRequest, PostToolUse, UserPromptSubmit, Stop, SubagentStart/Stop, SessionStart/End and other events. MCP tool hooks are documented as able to block an operation via a blocking decision, and the PreToolUse/PermissionRequest events gate tool actions.",
+      "evidence": [
+        {
+          "source_id": "codex_hooks_docs",
+          "excerpt": "Hooks are an extensibility framework for Codex. They let you run scripts or MCP tools during the agentic loop"
+        },
+        {
+          "source_id": "codex_hooks_docs",
+          "excerpt": "During a turn | `PreToolUse`, `PermissionRequest`, `PostToolUse`, `PreCompact`, `PostCompact`, `UserPromptSubmit`, `SubagentStop`, `Stop`"
+        },
+        {
+          "source_id": "codex_hooks_docs",
+          "excerpt": "A hook can block an operation when the tool returns a blocking decision."
+        },
+        {
+          "source_id": "codex_hooks_docs",
+          "excerpt": "Scan your team\u2019s prompts to block accidentally pasting API keys"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Non-managed hooks must be reviewed and trusted (via /hooks) before they run; project-local hooks load only in trusted projects. Only `command` and `mcp_tool` handlers run; `prompt` and `agent` handlers are parsed but skipped.",
+          "source_id": "codex_hooks_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://developers.openai.com/codex/hooks (redirected to learn.chatgpt.com/docs/hooks)"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "agent_network_egress_control",
+      "status": "has",
+      "rationale": "Codex cloud environments let admins turn agent internet access on/off and, when on, restrict via a domain allowlist (None / common dependencies / all) plus allowed HTTP methods. Local clients default to no network and enterprise managed configuration can constrain network access via a managed command allowlist/proxy.",
+      "evidence": [
+        {
+          "source_id": "codex_cloud_internet_access",
+          "excerpt": "On: Allows internet access, which you can restrict with a domain allowlist and allowed HTTP methods."
+        },
+        {
+          "source_id": "codex_cloud_internet_access",
+          "excerpt": "By default, Codex blocks internet access during the agent phase."
+        },
+        {
+          "source_id": "codex_agent_approvals_security",
+          "excerpt": "A managed command allowlist applies to commands using the managed proxy."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Cloud environment settings require Codex cloud access; managed Agent Security network requirements apply to enterprise-managed workspaces. Docs note full sandbox escalation can bypass the command proxy.",
+          "source_id": "codex_agent_approvals_security"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Per-environment domain allowlist documented for Codex Cloud (Legacy) page; current Codex Cloud settings are referenced under cloud-environments docs.",
+          "source_id": "codex_cloud_internet_access"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://developers.openai.com/codex/cloud/internet-access (redirected to learn.chatgpt.com)",
+          "fetch https://learn.chatgpt.com/docs/agent-approvals-security"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "agent_session_checkpoint_rollback",
+      "status": "uncertain",
+      "rationale": "No documented whole-session checkpoint/rollback mechanism was found in the pages fetched (slash commands, CLI command reference, worktrees, cloud environments, app overview, code review). Documented neighbours are /fork and codex fork (copy a chat into a new chat/worktree, preserving the original transcript), codex resume, and worktree isolation; none is documented as restoring state to an earlier checkpoint. The cloud docs even state saved state does not replace source control. Because no search tool was available and the changelog was only partly read, absence cannot be asserted, so not_found is not justified.",
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch learn.chatgpt.com/docs/reference/slash-commands",
+          "fetch learn.chatgpt.com/docs/developer-commands?surface=cli (first ~22k chars)",
+          "fetch learn.chatgpt.com/docs/environments/git-worktrees",
+          "fetch learn.chatgpt.com/docs/environments/cloud-environments",
+          "fetch learn.chatgpt.com/docs/checkpoints (404)",
+          "duckduckgo site search for undo/rewind/checkpoint/revert (blocked by bot challenge)"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "changelog",
+          "product_page",
+          "specialist"
+        ],
+        "access_gaps": [
+          "No web_search tool available; site search blocked by captcha.",
+          "Changelog page only first 8000 characters read; CLI command reference truncated after ~22000 characters; the GitHub releases page and repo docs were not searched for undo/rewind/checkpoint."
+        ]
+      }
+    },
+    {
+      "feature_id": "audit_logging",
+      "status": "has",
+      "rationale": "Enterprise admins get a Compliance API (append-only log stream, SIEM export, codex_log records), plus workspace/Codex analytics dashboards and an Analytics API for usage metrics. Docs note analytics are not raw audit logs and that local actions are not fully covered by the Compliance API. Enterprise-oriented.",
+      "evidence": [
+        {
+          "source_id": "codex_enterprise_governance",
+          "excerpt": "Use the Compliance API for security, legal, and governance workflows that need auditable records."
+        },
+        {
+          "source_id": "codex_enterprise_governance",
+          "excerpt": "Use the Analytics API for programmatic, aggregated Codex reporting."
+        },
+        {
+          "source_id": "codex_compliance_api",
+          "excerpt": "Use the append-only compliance log stream for ongoing collection."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Compliance API is for Enterprise/Edu workspaces (Enterprise Compliance API key); exact access requirements are in the Admin API reference, not verified here.",
+          "source_id": "codex_compliance_api"
+        },
+        {
+          "type": "other",
+          "description": "Local computer actions are not guaranteed to be completely recorded; OTel events and MCP hooks must be collected separately.",
+          "source_id": "codex_compliance_api"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/enterprise/governance",
+          "fetch https://learn.chatgpt.com/docs/enterprise/compliance-api"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": [
+          "Admin API reference (chatgpt.com/public/admin/api-reference) not fetched"
+        ]
+      }
+    },
+    {
+      "feature_id": "automated_code_review",
+      "status": "has",
+      "rationale": "Codex has a dedicated code review workflow: GitHub PR review (automatic or via @codex review) that posts a standard GitHub review, GitLab MR review in preview, and a local /review command for base-branch, uncommitted, or commit diffs.",
+      "evidence": [
+        {
+          "source_id": "codex_github_integration_docs",
+          "excerpt": "Codex reviews the pull request diff, follows your repository guidance, and posts a standard GitHub code review focused on serious issues."
+        },
+        {
+          "source_id": "codex_cli_features_docs",
+          "excerpt": "Run a dedicated review against uncommitted changes, a commit, or a base branch."
+        },
+        {
+          "source_id": "codex_code_review_docs",
+          "excerpt": "GitHub code review is generally available. GitLab merge request support in Code Review is in preview."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Automatic/@codex PR review requires a GitHub repository connected to Codex and code review enabled in Codex settings; GitLab MR support is in preview.",
+          "source_id": "codex_github_integration_docs"
+        },
+        {
+          "type": "release_stage",
+          "description": "Security Review (deeper PR security analysis) is in research preview; GitLab MR review is in preview.",
+          "source_id": "codex_code_review_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/third-party/github",
+          "fetch https://learn.chatgpt.com/docs/code-review?surface=cli",
+          "fetch https://learn.chatgpt.com/docs/codex/cli"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "automated_refactoring",
+      "status": "has",
+      "rationale": "The official product page states Codex handles complex refactors driven by instructions to the agent, which edits files in the repository; this goes beyond single-symbol renames.",
+      "evidence": [
+        {
+          "source_id": "codex_product_page",
+          "excerpt": "Give Codex your toughest engineering problems, from hard-to-find bugs to complex refactors and new features."
+        },
+        {
+          "source_id": "codex_cli_docs",
+          "excerpt": "Start Codex in a repository to explore unfamiliar code, plan a change, edit files, and run your local development tools."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Codex is included in ChatGPT plans (Plus, Pro, Business, Edu, Enterprise) or usable with an API key.",
+          "source_id": "codex_github_repo"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://openai.com/codex/",
+          "fetch https://learn.chatgpt.com/docs/codex/cli"
+        ],
+        "source_classes_checked": [
+          "product_page",
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "automated_test_generation",
+      "status": "has",
+      "rationale": "Official guidance documents asking Codex to write or update tests for changes and to run them as part of its loop; AGENTS.md can encode test commands. It is a prompt-driven capability rather than a dedicated test-generation command, and documentation is brief.",
+      "evidence": [
+        {
+          "source_id": "codex_best_practices",
+          "excerpt": "Don\u2019t stop at asking Codex to make a change. Ask it to create tests when needed, run the relevant checks, confirm the result, and review the work before you accept it."
+        },
+        {
+          "source_id": "codex_best_practices",
+          "excerpt": "Writing or updating tests for the change"
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/guides/best-practices"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "autonomous_task_execution",
+      "status": "has",
+      "rationale": "Codex plans (/plan) and executes multi-step work autonomously within the sandbox without per-step confirmation; Goal mode (/goal) keeps working toward a persistent objective until done, paused, or input is needed, and subagent workflows delegate parts of tasks. Approval prompts occur only when crossing sandbox boundaries.",
+      "evidence": [
+        {
+          "source_id": "codex_sandboxing",
+          "excerpt": "When a task stays inside those boundaries, the agent can keep moving without stopping for confirmation."
+        },
+        {
+          "source_id": "codex_slash_commands",
+          "excerpt": "A goal is a persistent objective that ChatGPT works toward until it finishes the task, pauses, or needs more input."
+        },
+        {
+          "source_id": "codex_long_running_work",
+          "excerpt": "For work that may take many steps, give ChatGPT a clear outcome, constraints, and definition of done."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Autonomy stays within the configured sandbox and approval policy; Goal mode does not grant broader access and pauses when it needs a decision.",
+          "source_id": "codex_long_running_work"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch learn.chatgpt.com/docs/sandboxing",
+          "fetch learn.chatgpt.com/docs/long-running-work",
+          "fetch learn.chatgpt.com/docs/reference/slash-commands"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ]
+      }
+    },
+    {
+      "feature_id": "background_long_running_tasks",
+      "status": "has",
+      "rationale": "Codex Cloud tasks keep running while the computer is asleep; local chats can run in background worktrees via handoff; scheduled tasks run in the background; the app notifies via Pets/system notifications when a chat needs input or is ready for review.",
+      "evidence": [
+        {
+          "source_id": "codex_cloud_environments",
+          "excerpt": "Codex Cloud runs coding tasks in the cloud, so work can continue while your computer is asleep."
+        },
+        {
+          "source_id": "codex_worktrees",
+          "excerpt": "This is useful when you want Codex to keep working in the background while you switch your attention back to something else locally."
+        },
+        {
+          "source_id": "codex_long_running_work",
+          "excerpt": "Use Pets or system notifications to see when a chat needs input or is ready for review."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Cloud tasks require ChatGPT sign-in on a plan with cloud features; API-key usage has no cloud-based features.",
+          "source_id": "codex_cloud_environments"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Local background work requires the computer to stay on (Prevent sleep while running) and uses Git worktrees for background isolation.",
+          "source_id": "codex_long_running_work"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch learn.chatgpt.com/docs/environments/cloud-environments",
+          "fetch learn.chatgpt.com/docs/environments/git-worktrees",
+          "fetch learn.chatgpt.com/docs/long-running-work"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "pricing"
+        ]
+      }
+    },
+    {
+      "feature_id": "codebase_semantic_search",
+      "status": "uncertain",
+      "rationale": "No official page fetched documents a meaning-based codebase index or embedding search. Docs show @-mentioned files, subagents, and MCP for context, but absence in the pages reached is not proof, and the full docs set (e.g. IDE docs, changelog) was not exhaustively searched; no web_search tool was available.",
+      "evidence": [],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/guides/best-practices",
+          "fetch https://learn.chatgpt.com/docs/codex/cli",
+          "fetch https://learn.chatgpt.com/docs/extend/mcp?surface=cli"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": [
+          "No search tool available to run keyword queries over official docs; changelog and GitHub releases not searched for indexing/semantic search; IDE extension docs not fetched."
+        ]
+      }
+    },
+    {
+      "feature_id": "custom_subagent_definition",
+      "status": "has",
+      "rationale": "Documentation describes standalone TOML custom agent files in ~/.codex/agents/ or .codex/agents/ with required name, description and developer_instructions, plus model/reasoning settings and capability reduction via feature keys (shell_tool, apps, plugins, memories) and skills config. However, per-agent MCP server attachment is not supported: mcp_servers, sandbox_mode and approval_policy in an agent file do not override the parent. Tool scoping is therefore coarse.",
+      "evidence": [
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "To define your own custom agents, add standalone TOML files under `~/.codex/agents/` for personal agents or `.codex/agents/` for project-scoped agents."
+        },
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "Every standalone custom agent file must define: `name` `description` `developer_instructions`"
+        },
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "To reduce a custom agent\u2019s capabilities, set supported feature keys to `false`: `features.shell_tool`, `features.apps`, `features.plugins`, `features.memories`, or `features.request_permissions_tool`."
+        },
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "Other session settings, including `sandbox_mode`, `approval_policy`, `model_provider`, and `mcp_servers`, don\u2019t override the parent configuration when placed in a custom agent file."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Custom agents inherit the parent's permissions, provider and MCP servers; they cannot attach their own MCP servers or separate sandbox.",
+          "source_id": "codex_subagents_docs"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "Custom agents are available in local Codex clients (desktop app, CLI, IDE extension).",
+          "source_id": "codex_subagents_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://developers.openai.com/codex/subagents (redirected to learn.chatgpt.com/docs/agent-configuration/subagents)"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "custom_tool_function_registration",
+      "status": "partial",
+      "rationale": "No stable, documented non-MCP function-registration surface was found for end users. The app-server documents a `dynamicTools` field on thread/start that persists client-supplied dynamic tools, but it is explicitly experimental and requires capabilities.experimentalApi; the app-server itself is labelled experimental. Hooks and skills/plugins do not register callable functions. Search of the full app-server page was truncated (pages beyond ~43000 chars not read), so dynamicTools details are limited.",
+      "evidence": [
+        {
+          "source_id": "codex_app_server_docs",
+          "excerpt": "`dynamicTools` on `thread/start` is an experimental field (requires `capabilities.experimentalApi = true`). Codex persists these dynamic tools in the thread rollout metadata and restores them on `thread/resume` when you don\u2019t supply new dynamic tools."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "Experimental API; requires experimentalApi opt-in; the app-server command is labelled Experimental.",
+          "source_id": "codex_app_server_docs"
+        },
+        {
+          "type": "integration_required",
+          "description": "Requires building a custom app-server client; not available as a config option in the standard CLI/app.",
+          "source_id": "codex_app_server_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://developers.openai.com/codex/app-server (redirected)",
+          "fetch https://learn.chatgpt.com/docs/app-server (offsets 3000, 23000)"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": [
+          "app-server page read only to ~43000 characters; SDK documentation not checked"
+        ]
+      }
+    },
+    {
+      "feature_id": "data_processing_agreement_availability",
+      "status": "has",
+      "rationale": "OpenAI publishes a named Data Processing Addendum incorporated into the OpenAI Services Agreement, which covers ChatGPT Enterprise, ChatGPT Business and API customers (the plans through which Codex is licensed for business use).",
+      "evidence": [
+        {
+          "source_id": "openai_dpa",
+          "excerpt": "This OpenAI Data Processing Addendum (\u201cDPA\u201d) supplements, and is incorporated into, the OpenAI Services Agreement (\u201cAgreement\u201d) governing use of the Services"
+        },
+        {
+          "source_id": "openai_services_agreement",
+          "excerpt": "This OpenAI Services Agreement only applies to use of OpenAI\u2019s APIs, ChatGPT Enterprise, ChatGPT Business, ChatGPT for Clinicians, and other services for customers who are businesses and developers"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Applies to business/developer services (Enterprise, Business, API), not consumer plans.",
+          "source_id": "openai_services_agreement"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://openai.com/policies/data-processing-addendum/",
+          "fetch https://openai.com/policies/services-agreement/"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "other"
+        ]
+      }
+    },
+    {
+      "feature_id": "data_processing_region_control",
+      "status": "has",
+      "rationale": "OpenAI offers data residency at rest in multiple regions and opt-in in-region inference (US/Europe) for eligible Enterprise/Edu/Healthcare/API customers; Codex docs state ChatGPT sign-in follows workspace residency settings and reference residency enforcement and inference residency.",
+      "evidence": [
+        {
+          "source_id": "openai_business_data",
+          "excerpt": "Eligible ChatGPT Enterprise, ChatGPT Edu, ChatGPT for Healthcare, and API platform customers can store sensitive customer content at rest in the U.S., Europe, UK, Japan, Canada, South Korea, Singapore, Australia, India, and the UAE"
+        },
+        {
+          "source_id": "openai_business_data",
+          "excerpt": "eligible customers can opt into in-region GPU inference in the U.S. or Europe"
+        },
+        {
+          "source_id": "codex_auth",
+          "excerpt": "When you sign in with ChatGPT, Codex usage follows your ChatGPT workspace permissions, role-based access control (RBAC), and ChatGPT Enterprise retention and residency settings."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Eligible Enterprise/Edu/Healthcare workspaces and API customers only; coverage limited to eligible content, supported workloads and regions.",
+          "source_id": "openai_business_data"
+        },
+        {
+          "type": "region",
+          "description": "Inference residency limited to US or Europe; Work is not supported with UAE inference residency.",
+          "source_id": "codex_admin_setup"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://openai.com/business-data/",
+          "fetch https://learn.chatgpt.com/docs/auth",
+          "fetch https://learn.chatgpt.com/docs/enterprise/admin-setup"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "other"
+        ]
+      }
+    },
+    {
+      "feature_id": "data_retention_training_opt_out",
+      "status": "partial",
+      "rationale": "Business data (Enterprise/Business/Edu/API) is not used for training by default, and qualifying organizations can configure retention including zero data retention in the API platform. Retention controls are limited to qualifying/enterprise organizations rather than all tiers, and Codex docs note some Codex Work paths do not provide strict ZDR. No documented per-user opt-out toggle for all tiers was verified here (the consumer ChatGPT data-controls setting was not checked).",
+      "evidence": [
+        {
+          "source_id": "openai_business_data",
+          "excerpt": "We don\u2019t train our models on your organization\u2019s data by default."
+        },
+        {
+          "source_id": "openai_business_data",
+          "excerpt": "Qualifying organizations are able to configure how long OpenAI retains business data, including opting for our zero data retention policy in the API platform."
+        },
+        {
+          "source_id": "codex_admin_setup",
+          "excerpt": "Local computer access with Work Cloud does not provide strict zero data retention."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Retention controls/ZDR for qualifying organizations; API-key usage follows API organization retention settings, ChatGPT sign-in follows workspace settings.",
+          "source_id": "codex_auth"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://openai.com/business-data/",
+          "fetch https://openai.com/enterprise-privacy/",
+          "fetch https://learn.chatgpt.com/docs/auth"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "other"
+        ],
+        "access_gaps": [
+          "openai.com/enterprise-privacy returned only an introductory sentence; consumer data controls help article not checked"
+        ]
+      }
+    },
+    {
+      "feature_id": "dependency_vulnerability_scanning",
+      "status": "partial",
+      "rationale": "Codex does not document its own SCA scanner against CVE databases. However, the Codex Security triage workflow can import GitHub Dependabot vulnerability alerts and advisories/CVEs and assess them against the repository, surfacing findings for dependencies. Codex Security's own scans are source-code vulnerability analysis.",
+      "evidence": [
+        {
+          "source_id": "codex_security_triage_docs",
+          "excerpt": "code scanning, `Dependabot` vulnerabilities and malware, security advisories and private vulnerability reports, or all"
+        },
+        {
+          "source_id": "codex_security_triage_docs",
+          "excerpt": "SARIF results, a CVE or GHSA, an advisory, a scanner ticket"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Depends on external findings sources (GitHub Dependabot via authenticated GitHub REST access, Jira/Linear); Codex does not itself match dependencies to a CVE database.",
+          "source_id": "codex_security_triage_docs"
+        },
+        {
+          "type": "release_stage",
+          "description": "Codex Security Cloud is in research preview; requires Codex Security access.",
+          "source_id": "codex_security_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/security",
+          "fetch https://learn.chatgpt.com/docs/security/plugin/triage-backlog",
+          "fetch https://learn.chatgpt.com/docs/security/plugin/scans",
+          "fetch https://learn.chatgpt.com/docs/security/faq"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "diff_review_apply_workflow",
+      "status": "partial",
+      "rationale": "The IDE extension shows a focused diff of changed lines and lets the user keep only the edits wanted; the CLI shows diffs as they appear and has approval/permission controls. The fetched pages do not explicitly document per-hunk accept/reject before write to disk (the IDE demo shows 'Changes applied'), so full criteria are not confirmed.",
+      "evidence": [
+        {
+          "source_id": "codex_ide_docs",
+          "excerpt": "Read the summary, inspect a focused diff, and follow up in the same chat. Keep only the changes you want while the source and rationale stay visible together."
+        },
+        {
+          "source_id": "codex_cli_docs",
+          "excerpt": "Steer the active turn, inspect commands and diffs as they appear, and keep follow-up work in the same session."
+        },
+        {
+          "source_id": "codex_cli_docs",
+          "excerpt": "Choose when Codex can edit files or run commands without asking, and inspect the active sandbox and writable roots before you continue."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Diff review documented for the IDE extension (VS Code, Cursor, Windsurf) and CLI.",
+          "source_id": "codex_ide_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/codex/ide",
+          "fetch https://learn.chatgpt.com/docs/codex/cli"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": [
+          "Approvals/security page (agent-approvals-security) not fetched; per-hunk granularity and pre-write approval not confirmed."
+        ]
+      }
+    },
+    {
+      "feature_id": "encryption_in_transit_at_rest",
+      "status": "has",
+      "rationale": "OpenAI explicitly documents AES-256 at rest and TLS 1.2+ in transit for business data, with optional Enterprise Key Management.",
+      "evidence": [
+        {
+          "source_id": "openai_business_data",
+          "excerpt": "Your data is encrypted at rest and in transit between you and OpenAI, and between OpenAI and its service providers."
+        },
+        {
+          "source_id": "openai_business_data",
+          "excerpt": "This includes using AES-256 encryption at rest and TLS 1.2 or higher in transit."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Statement covers business data for Enterprise, Business, Edu, Healthcare, Teachers and API; EKM only for eligible workspaces.",
+          "source_id": "openai_business_data"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://openai.com/business-data/"
+        ],
+        "source_classes_checked": [
+          "other"
+        ]
+      }
+    },
+    {
+      "feature_id": "enterprise_sso_access_control",
+      "status": "has",
+      "rationale": "Codex follows ChatGPT workspace RBAC (built-in Owner/Admin/Member roles, custom roles via groups), SCIM-synced groups, and SSO (with MFA enforced by the SSO admin). SAML/OIDC protocol names not explicitly stated on fetched Codex pages, but SSO and RBAC are documented for enterprise workspaces.",
+      "evidence": [
+        {
+          "source_id": "codex_auth",
+          "excerpt": "If you access ChatGPT through single sign-on (SSO), your organization\u2019s SSO administrator should enforce MFA for all users."
+        },
+        {
+          "source_id": "codex_roles_permissions",
+          "excerpt": "Workspace owners can create custom roles for role-based access control (RBAC) and assign them through groups or directly to members where supported."
+        },
+        {
+          "source_id": "codex_groups_provisioning",
+          "excerpt": "Identity-provider managed"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Enterprise/Edu-oriented workspace administration.",
+          "source_id": "codex_admin_setup"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/auth",
+          "fetch https://learn.chatgpt.com/docs/enterprise/roles-and-workspace-permissions",
+          "fetch https://learn.chatgpt.com/docs/enterprise/groups-and-provisioning"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "full_offline_operation",
+      "status": "uncertain",
+      "rationale": "Documentation shows a local open-source provider option (--oss with LM Studio or Ollama), which is only local model support. No page checked states the whole product works with zero network access. Sign-in with ChatGPT or an API key is the documented default, and I did not find a dedicated offline/air-gapped page. The negative protocol was not completed (no changelog sweep, no dedicated local-model page; the guessed local-models URL returned 404), so not_found is not justified.",
+      "evidence": [],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/developer-commands?surface=cli",
+          "fetch https://learn.chatgpt.com/docs/config-file/config-advanced",
+          "fetch https://learn.chatgpt.com/docs/local-models (404)",
+          "fetch https://github.com/openai/codex"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "specialist",
+          "product_page"
+        ],
+        "access_gaps": [
+          "No dedicated offline / air-gapped documentation page located; config-reference and auth pages not fully read",
+          "Changelog and pricing classes not checked for offline claims"
+        ]
+      }
+    },
+    {
+      "feature_id": "git_native_workflow",
+      "status": "has",
+      "rationale": "Codex Cloud documentation says users can commit or open a pull request after reviewing a task's changes, and the CLI offers review against uncommitted changes, a commit, or a base branch. The non-interactive docs also show a git-based workflow (branch, commit, push) but there the git steps are performed by workflow scripts, not Codex itself, so I did not rely on that. Commit creation is documented for Codex Cloud.",
+      "evidence": [
+        {
+          "source_id": "codex_cloud_docs",
+          "excerpt": "Inspect changed files and check results, request follow-up changes, and commit or open a pull request when you're ready."
+        },
+        {
+          "source_id": "codex_cli_docs",
+          "excerpt": "Run a dedicated review against uncommitted changes, a commit, or a base branch."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Commit/PR action documented for Codex Cloud tasks (web, mobile, desktop); local CLI commit generation not confirmed on the pages read.",
+          "source_id": "codex_cloud_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/cloud",
+          "fetch https://learn.chatgpt.com/docs/cli",
+          "fetch https://learn.chatgpt.com/docs/non-interactive-mode"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "specialist"
+        ]
+      }
+    },
+    {
+      "feature_id": "headless_ci_mode",
+      "status": "has",
+      "rationale": "`codex exec` is documented for CI use, with --json JSONL event output, --output-schema for structured final output, -o for the final message, and explicit sandbox/approval flags for unattended runs. The official openai/codex-action wraps it for GitHub Actions. Exit-code semantics are only partly documented (for example, exit with an error when a required MCP server fails to initialize); no full exit-code table was seen.",
+      "evidence": [
+        {
+          "source_id": "codex_non_interactive_docs",
+          "excerpt": "Non-interactive mode lets you run Codex from scripts (for example, continuous integration (CI) jobs) without opening the interactive TUI. You invoke it with `codex exec`."
+        },
+        {
+          "source_id": "codex_non_interactive_docs",
+          "excerpt": "When you enable `--json`, `stdout` becomes a JSON Lines (JSONL) stream so you can capture every event Codex emits while it\u2019s running."
+        },
+        {
+          "source_id": "codex_non_interactive_docs",
+          "excerpt": "If you configure an enabled MCP server with `required = true` and it fails to initialize, `codex exec` exits with an error instead of continuing without that server."
+        },
+        {
+          "source_id": "codex_github_action_docs",
+          "excerpt": "Use the Codex GitHub Action (`openai/codex-action@v1`) to run Codex in CI/CD jobs, apply patches, or post reviews from a GitHub Actions workflow."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "codex exec runs in a read-only sandbox by default and must run inside a Git repository unless --skip-git-repo-check is set.",
+          "source_id": "codex_non_interactive_docs"
+        },
+        {
+          "type": "platform_or_ide",
+          "description": "GitHub Action requires a Linux or macOS runner; Windows requires safety-strategy: unsafe.",
+          "source_id": "codex_github_action_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/non-interactive-mode",
+          "fetch https://learn.chatgpt.com/docs/github-action",
+          "fetch https://learn.chatgpt.com/docs/developer-commands?surface=cli"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "inline_code_completion",
+      "status": "uncertain",
+      "rationale": "No official page examined documents ghost-text or as-you-type completions; Codex is described as a chat/agent in IDE, CLI, app and cloud. Absence was not established under the full not-found protocol (no search tool available; IDE feature, settings, and FAQ pages not exhaustively checked).",
+      "evidence": [],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/codex/ide",
+          "fetch https://learn.chatgpt.com/docs/codex/cli",
+          "fetch https://openai.com/codex/",
+          "fetch https://github.com/openai/codex",
+          "fetch https://learn.chatgpt.com/docs/changelog (first page only)"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page",
+          "changelog",
+          "specialist"
+        ],
+        "access_gaps": [
+          "web_search unavailable; changelog read only partially (truncated); IDE settings page not located."
+        ]
+      }
+    },
+    {
+      "feature_id": "ip_indemnity_duplication_filter",
+      "status": "has",
+      "rationale": "The OpenAI Services Agreement for business customers includes an IP infringement indemnity by OpenAI covering the Services, plus an uncapped Service-Specific Terms Indemnity. No public-code duplication filter was found for Codex, so only the indemnity half is documented; exclusions (Customer Content, combinations, modifications) apply.",
+      "evidence": [
+        {
+          "source_id": "openai_services_agreement",
+          "excerpt": "OpenAI agrees to indemnify, defend, and hold Customer harmless against any liabilities, damages and costs (including reasonable attorneys\u2019 fees) payable to a third party arising out of a Claim alleging that the Services infringe any third-party IP Right."
+        },
+        {
+          "source_id": "openai_services_agreement",
+          "excerpt": "the Service-Specific Terms Indemnity, as of the Effective Date, is included in this Agreement, is not subject to any liability cap"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Applies to business/developer customers under the Services Agreement (API, Enterprise, Business); not consumer plans. No duplication filter documented.",
+          "source_id": "openai_services_agreement"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://openai.com/policies/services-agreement/",
+          "fetch https://learn.chatgpt.com/docs/agent-approvals-security"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "other"
+        ],
+        "access_gaps": [
+          "Service-Specific Terms Indemnity text (output/copyright coverage) not fetched"
+        ]
+      }
+    },
+    {
+      "feature_id": "layered_instruction_precedence",
+      "status": "has",
+      "rationale": "AGENTS.md supports a global (~/.codex) personal scope, a repository scope, and nested directory scopes with a documented precedence order (AGENTS.override.md first; files concatenated root-down so closer files override) applied automatically. A distinct organization-level instruction scope is not documented (enterprise managed config covers settings/requirements rather than instruction files), so only personal and repository(+directory) scopes are confirmed.",
+      "evidence": [
+        {
+          "source_id": "codex_agents_md_docs",
+          "excerpt": "Codex concatenates files from the root down, joining them with blank lines. Files closer to your current directory override earlier guidance because they appear later in the combined prompt."
+        },
+        {
+          "source_id": "codex_agents_md_docs",
+          "excerpt": "Global scope: In your Codex home directory (defaults to `~/.codex`, unless you set `CODEX_HOME`), Codex reads `AGENTS.override.md` if it exists. Otherwise, Codex reads `AGENTS.md`."
+        },
+        {
+          "source_id": "codex_config_advanced_docs",
+          "excerpt": "If multiple files define the same key, the closest file to your working directory wins."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Combined instruction size capped by project_doc_max_bytes (32 KiB default); org-level instruction scope not documented.",
+          "source_id": "codex_agents_md_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+          "fetch https://learn.chatgpt.com/docs/config-file/config-advanced",
+          "fetch https://learn.chatgpt.com/docs/enterprise/managed-configuration"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "local_offline_model_support",
+      "status": "has",
+      "rationale": "Codex CLI documentation describes custom model providers configured via model_providers.<id> with a base_url, including a local Ollama example at localhost:11434/v1, and reserves built-in provider IDs for ollama and lmstudio. Customers can therefore point Codex at a customer-controlled local/self-hosted model backend.",
+      "evidence": [
+        {
+          "source_id": "codex_config_advanced",
+          "excerpt": "Custom providers can\u2019t reuse the reserved built-in provider IDs: `openai`, `ollama`, and `lmstudio`."
+        },
+        {
+          "source_id": "codex_config_advanced",
+          "excerpt": "[model_providers.local_ollama]\nname = \"Ollama\"\nbase_url = \"http://localhost:11434/v1\""
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Provider settings are user-level config.toml keys (ignored in project-local .codex/config.toml); custom model providers do not carry over to Work with local access via managed configuration.",
+          "source_id": "codex_config_advanced"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://developers.openai.com/codex/config-advanced (redirected to learn.chatgpt.com)"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "long_context_large_repo_handling",
+      "status": "has",
+      "rationale": "Docs describe mechanisms for long sessions and large repositories: configurable history compaction, subagents to split investigation, resumable sessions, @-mentioning files, and nested AGENTS.md to scope guidance in big repos/monorepos. No retrieval/index mechanism is documented in pages reached.",
+      "evidence": [
+        {
+          "source_id": "codex_config_reference_docs",
+          "excerpt": "Inline override for the history compaction prompt."
+        },
+        {
+          "source_id": "codex_cli_features_docs",
+          "excerpt": "Ask Codex to delegate focused work to specialized agents, then bring their findings back into the main terminal session."
+        },
+        {
+          "source_id": "codex_best_practices",
+          "excerpt": "If you work in a large or complex repository, the biggest unlock is giving Codex the right context for the task and a clear structure for what you want done."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "model",
+          "description": "Reasoning-effort and subagent (Ultra) options vary by model, plan, and client.",
+          "source_id": "codex_best_practices"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/config-file/config-reference",
+          "fetch https://learn.chatgpt.com/docs/codex/cli",
+          "fetch https://learn.chatgpt.com/guides/best-practices",
+          "fetch https://learn.chatgpt.com/docs/models"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "mcp_or_plugin_extensibility",
+      "status": "has",
+      "rationale": "Official docs describe MCP support (codex mcp to add local or remote MCP servers) and a plugin system (skills, MCP servers, hooks) with a plugin directory, marketplace sharing, and a Plugin Creator for building third-party plugins.",
+      "evidence": [
+        {
+          "source_id": "codex_mcp_docs",
+          "excerpt": "Model Context Protocol (MCP) lets ChatGPT and Codex use tools and information from other systems."
+        },
+        {
+          "source_id": "codex_cli_docs",
+          "excerpt": "Add local or remote MCP servers, authenticate when needed, and inspect the tools available to the current session before Codex uses them."
+        },
+        {
+          "source_id": "codex_plugins",
+          "excerpt": "Plugins bundle capabilities into reusable workflows in ChatGPT and Codex. They can include skills and MCP servers."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "The IDE extension does not support plugins (MCP servers are configured via shared config.toml).",
+          "source_id": "codex_plugins"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/extend/mcp?surface=cli",
+          "fetch https://learn.chatgpt.com/docs/plugins",
+          "fetch https://learn.chatgpt.com/docs/cli"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "integration_catalog"
+        ]
+      }
+    },
+    {
+      "feature_id": "mobile_app_access",
+      "status": "has",
+      "rationale": "Official docs describe Codex on mobile through the ChatGPT mobile app: start, guide, approve, and review tasks that run in Cloud or on a connected Mac/Windows PC.",
+      "evidence": [
+        {
+          "source_id": "codex_mobile_docs",
+          "excerpt": "Use the ChatGPT mobile app with Cloud or a connected Mac or Windows PC. Availability depends on rollout and your workspace settings."
+        },
+        {
+          "source_id": "codex_mobile_docs",
+          "excerpt": "Follow progress, approve actions, and send instructions from your phone."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "release_stage",
+          "description": "Availability depends on rollout and workspace settings.",
+          "source_id": "codex_mobile_docs"
+        },
+        {
+          "type": "integration_required",
+          "description": "Tasks run in Codex Cloud or on a connected Mac/Windows computer; the phone does not run the agent locally.",
+          "source_id": "codex_mobile_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/mobile",
+          "fetch https://learn.chatgpt.com/docs/quickstart"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "multi_agent_orchestration",
+      "status": "has",
+      "rationale": "Official docs describe subagent workflows enabled by default: Codex spawns specialized agents in parallel, routes follow-ups, waits, and consolidates results, with built-in default/worker/explorer agents and [agents] global settings such as max_concurrent_threads_per_session.",
+      "evidence": [
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "ChatGPT Work and Codex can run subagent workflows by spawning specialized agents in parallel and then collecting their results in one response."
+        },
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "Current Codex releases enable subagent workflows by default. Subagent activity appears in the ChatGPT desktop app, Codex CLI, and the IDE extension."
+        },
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "ChatGPT or Codex handles orchestration across agents, including spawning new subagents, routing follow-up instructions, waiting for results, and closing agent threads."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Current local releases spawn subagents only on explicit request or when AGENTS.md/skill instructions request it; subagents consume more tokens and inherit the parent's sandbox/approval mode.",
+          "source_id": "codex_subagents_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://developers.openai.com/codex/subagents (redirected)"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "multi_file_code_generation",
+      "status": "has",
+      "rationale": "Codex edits files across a repository from a single instruction; IDE docs describe reviewing edits across two affected files from one task.",
+      "evidence": [
+        {
+          "source_id": "codex_ide_docs",
+          "excerpt": "Inspect the two affected files, keep the edits you want, and ask for a follow-up from the same view."
+        },
+        {
+          "source_id": "codex_cli_docs",
+          "excerpt": "Let Codex inspect files, make edits, and run the tools already installed on your machine."
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/codex/ide",
+          "fetch https://learn.chatgpt.com/docs/codex/cli"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "multi_ide_support",
+      "status": "has",
+      "rationale": "The official repository directs users to install Codex in VS Code, Cursor, or Windsurf, and the IDE settings docs say the extension works in VS Code and compatible editors. All are VS Code-family editors, and no JetBrains or other non-VS Code IDE was confirmed on the pages read. Counted as has because the vendor names several editors, but the distinctness is arguable.",
+      "evidence": [
+        {
+          "source_id": "codex_github_repo",
+          "excerpt": "If you want Codex in your code editor (VS Code, Cursor, Windsurf), [install in your IDE.]"
+        },
+        {
+          "source_id": "codex_ide_settings_docs",
+          "excerpt": "Editor settings control how the extension behaves inside VS Code and compatible editors."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Supported editors named are VS Code and VS Code-compatible editors (Cursor, Windsurf); non-VS Code IDEs not confirmed.",
+          "source_id": "codex_github_repo"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://github.com/openai/codex",
+          "fetch https://learn.chatgpt.com/docs/ide",
+          "fetch https://learn.chatgpt.com/docs/ide/settings"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "specialist"
+        ]
+      }
+    },
+    {
+      "feature_id": "multimodal_image_to_code",
+      "status": "has",
+      "rationale": "Codex accepts screenshots/design images as prompt input (CLI --image, pasted/dragged images) and the docs example uses a design image to drive code changes (fixing spacing and typography). Documentation emphasises image as visual context for edits rather than whole-UI generation.",
+      "evidence": [
+        {
+          "source_id": "codex_image_inputs_docs",
+          "excerpt": "Add images to a prompt when the task depends on visual context, such as an error screenshot, interface design, architecture diagram, or existing asset."
+        },
+        {
+          "source_id": "codex_image_inputs_docs",
+          "excerpt": "Compare this checkout screen with the design. Fix spacing and typography only; do not change behavior."
+        },
+        {
+          "source_id": "codex_cli_docs",
+          "excerpt": "Pass an error screenshot, architecture diagram, or design reference with the first prompt, or paste an image into the interactive composer."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "model",
+          "description": "Requires a model with image input support; not explicitly documented in fetched pages.",
+          "source_id": "codex_image_inputs_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/image-inputs",
+          "fetch https://learn.chatgpt.com/docs/codex/cli"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "natural_language_code_generation",
+      "status": "has",
+      "rationale": "Codex generates new features and code from natural-language instructions at file and multi-file granularity.",
+      "evidence": [
+        {
+          "source_id": "codex_product_page",
+          "excerpt": "Give Codex your toughest engineering problems, from hard-to-find bugs to complex refactors and new features."
+        },
+        {
+          "source_id": "codex_prompting_docs",
+          "excerpt": "Prompting is how you tell ChatGPT what you want to know, make, or change."
+        }
+      ],
+      "constraints": [],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://openai.com/codex/",
+          "fetch https://learn.chatgpt.com/docs/prompting"
+        ],
+        "source_classes_checked": [
+          "product_page",
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "on_premises_private_deployment",
+      "status": "uncertain",
+      "rationale": "Codex CLI is open source (Apache-2.0) and runs locally, but that is a client, not a deployment of the vendor service on customer infrastructure. Docs reviewed describe customer-managed model gateways and OpenAI-managed cloud/ChatGPT Enterprise, but no on-premises or dedicated private-cloud deployment of Codex was confirmed or ruled out. Full not_found protocol was not completed (no search tool available; pricing, product page, changelog not checked for this feature).",
+      "evidence": [],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://github.com/openai/codex",
+          "fetch https://learn.chatgpt.com/docs/enterprise/admin-setup (partial)",
+          "fetch https://learn.chatgpt.com/docs/agent-approvals-security (partial)"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "specialist"
+        ],
+        "access_gaps": [
+          "No web search tool available; search-engine fetch was blocked by a bot challenge.",
+          "Pricing, product page and enterprise docs not fully reviewed for on-prem/private deployment."
+        ]
+      }
+    },
+    {
+      "feature_id": "parallel_independent_task_execution",
+      "status": "has",
+      "rationale": "Vendor docs describe running multiple independent chats concurrently as a supported workflow (desktop app parallel projects; worktrees for independent chats in the same project; cloud tasks each in own isolated workspace).",
+      "evidence": [
+        {
+          "source_id": "codex_worktrees",
+          "excerpt": "Worktrees let Codex run multiple independent chats in the same project without interfering with each other."
+        },
+        {
+          "source_id": "codex_long_running_work",
+          "excerpt": "Each chat keeps its own context, messages, results, and goal. Run chats concurrently, but avoid letting two chats change the same files."
+        },
+        {
+          "source_id": "codex_app_overview",
+          "excerpt": "Run projects in parallel, work with files, use your computer, and keep long-running work moving from one desktop workspace."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Worktree-based isolation requires a Git repository; concurrent chats editing the same files should be avoided.",
+          "source_id": "codex_worktrees"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch learn.chatgpt.com/docs/environments/git-worktrees",
+          "fetch learn.chatgpt.com/docs/long-running-work",
+          "fetch learn.chatgpt.com/docs/app"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "product_page"
+        ]
+      }
+    },
+    {
+      "feature_id": "permission_autonomy_granularity",
+      "status": "has",
+      "rationale": "Codex separates sandbox mode (read-only, workspace-write, danger-full-access) from approval policy (on-request, never), configurable independently via config or CLI flags, with presets (Auto), a /permissions command, network access toggles, execution-policy rules, automatic approval review, and per-tool approval handling for app/MCP tools. This provides multiple independently configurable levels over distinct action categories (file writes, commands, network).",
+      "evidence": [
+        {
+          "source_id": "codex_approvals_security_docs",
+          "excerpt": "Sandbox mode: What Codex can do technically (for example, where it can write and whether it can reach the network) when it executes model-generated commands."
+        },
+        {
+          "source_id": "codex_approvals_security_docs",
+          "excerpt": "Approval policy: When Codex must ask you before it executes an action"
+        },
+        {
+          "source_id": "codex_approvals_security_docs",
+          "excerpt": "Codex asks for approval to edit files outside the workspace or to run commands that require network access."
+        },
+        {
+          "source_id": "codex_cli_reference_docs",
+          "excerpt": "`--sandbox, -s` | `read-only | workspace-write | danger-full-access` | Select the sandbox policy for model-generated shell commands."
+        },
+        {
+          "source_id": "codex_cli_reference_docs",
+          "excerpt": "`--ask-for-approval, -a` | `on-request | never` | Control when Codex pauses for human approval before running a command."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "The `untrusted` approval policy has been retired; subagents inherit the parent's permission mode.",
+          "source_id": "codex_approvals_security_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://developers.openai.com/codex/agent-approvals-security (redirected)",
+          "fetch https://developers.openai.com/codex/cli/slash-commands (redirected to CLI reference)"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "persistent_project_memory",
+      "status": "has",
+      "rationale": "AGENTS.md files persist project guidance across sessions and load automatically; separately, optional local Codex memories (off by default) carry context from prior chats into future sessions.",
+      "evidence": [
+        {
+          "source_id": "codex_agents_md_docs",
+          "excerpt": "Codex reads `AGENTS.md` files before doing any work."
+        },
+        {
+          "source_id": "codex_memories_docs",
+          "excerpt": "Memories let ChatGPT and Codex carry useful context from earlier work into future work."
+        },
+        {
+          "source_id": "codex_memories_docs",
+          "excerpt": "Local Codex memories are off by default."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Local memories are opt-in (off by default), stored on the local machine, and generated asynchronously; required rules should live in AGENTS.md.",
+          "source_id": "codex_memories_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+          "fetch https://learn.chatgpt.com/docs/customization/memories?surface=app"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "plan_visibility_before_execution",
+      "status": "partial",
+      "rationale": "A documented /plan command toggles plan mode for multi-step planning, and the guidance recommends starting with /plan and requiring approval before consequential actions. The fetched pages did not explicitly document that plan mode presents a step list for approval before autonomous execution begins, so only partial confidence is warranted; a dedicated plan-mode page was not located.",
+      "evidence": [
+        {
+          "source_id": "codex_slash_commands_docs",
+          "excerpt": "`/plan` | Toggle plan mode for multi-step planning."
+        },
+        {
+          "source_id": "codex_slash_commands_docs",
+          "excerpt": "To define the goal with ChatGPT first, start with `/plan`, then set the refined goal with `/goal`."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "/plan is documented for the ChatGPT desktop app composer; CLI availability not confirmed in fetched pages.",
+          "source_id": "codex_slash_commands_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/reference/slash-commands",
+          "fetch https://learn.chatgpt.com/docs/prompting"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": [
+          "No dedicated plan-mode documentation page located; approval-before-execution behavior not explicitly confirmed"
+        ]
+      }
+    },
+    {
+      "feature_id": "pull_request_creation",
+      "status": "has",
+      "rationale": "Codex Cloud documentation says the user can open a pull request from the reviewed task result. The CI auto-fix example opens a PR via gh in a workflow script, which is not counted as native; the cloud statement is the evidence. The hosting platform is not named on the page read (GitHub is the likely target).",
+      "evidence": [
+        {
+          "source_id": "codex_cloud_docs",
+          "excerpt": "Inspect changed files and check results, request follow-up changes, and commit or open a pull request when you're ready."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Applies to Codex Cloud tasks with connected repositories; hosting platforms not enumerated on the page read.",
+          "source_id": "codex_cloud_docs"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/cloud",
+          "fetch https://learn.chatgpt.com/docs/non-interactive-mode"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "sandboxed_execution_environment",
+      "status": "has",
+      "rationale": "Local commands run in an OS-enforced sandbox (Seatbelt on macOS, bubblewrap on Linux/WSL2, native Windows sandbox) by default; Codex Cloud runs tasks in isolated OpenAI-managed containers; a codex sandbox command exists.",
+      "evidence": [
+        {
+          "source_id": "codex_sandboxing",
+          "excerpt": "those commands run inside a constrained environment instead of running with full access by default."
+        },
+        {
+          "source_id": "codex_sandboxing",
+          "excerpt": "On macOS, sandboxing works out of the box using the built-in Seatbelt framework."
+        },
+        {
+          "source_id": "codex_agent_approvals",
+          "excerpt": "Runs in isolated OpenAI-managed containers, preventing access to your host system or unrelated data."
+        },
+        {
+          "source_id": "codex_developer_commands",
+          "excerpt": "Run arbitrary commands inside Codex-provided macOS, Linux, or Windows sandboxes."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Linux/WSL2 needs bubblewrap (or a bundled helper requiring unprivileged user namespaces); behaviour differs by OS.",
+          "source_id": "codex_sandboxing"
+        },
+        {
+          "type": "other",
+          "description": "Sandbox can be disabled with --yolo / danger-full-access, and the default workspace-write sandbox has network off unless enabled.",
+          "source_id": "codex_developer_commands"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch learn.chatgpt.com/docs/sandboxing",
+          "fetch learn.chatgpt.com/docs/agent-approvals-security",
+          "fetch learn.chatgpt.com/docs/developer-commands?surface=cli"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "specialist"
+        ]
+      }
+    },
+    {
+      "feature_id": "scheduled_recurring_task_execution",
+      "status": "has",
+      "rationale": "Native scheduled tasks: one-off or recurring (including minute-based, daily, weekly, custom RRULE) standalone or inside a chat, managed in a Scheduled view; can run in a local project or dedicated worktree.",
+      "evidence": [
+        {
+          "source_id": "codex_automations",
+          "excerpt": "Schedule recurring tasks to run in the background."
+        },
+        {
+          "source_id": "codex_automations",
+          "excerpt": "For an advanced schedule, edit its RFC 5545 recurrence rule (RRULE), such as `RRULE:FREQ=MONTHLY;BYMONTHDAY=1;BYHOUR=9;BYMINUTE=0`."
+        },
+        {
+          "source_id": "codex_automations",
+          "excerpt": "Scheduled tasks run unattended with your default sandbox settings."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Project-scoped scheduled tasks need the computer on and the ChatGPT desktop app running; the project must be on disk.",
+          "source_id": "codex_automations"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Event-triggered tasks on ChatGPT web/mobile are for eligible plans; Team Tasks are a workspace feature.",
+          "source_id": "codex_automations"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch learn.chatgpt.com/docs/automations",
+          "fetch learn.chatgpt.com/docs/whats-new"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "changelog"
+        ]
+      }
+    },
+    {
+      "feature_id": "secret_detection_redaction",
+      "status": "uncertain",
+      "rationale": "No documentation of automatic secret detection/redaction in prompts or output was found in the pages reviewed (sandbox/approval docs, advanced config, partial config reference). Only cloud-environment secrets handling (removed before agent phase) was seen, which is not detection/redaction. Search was incomplete, so not_found cannot be asserted.",
+      "evidence": [],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://learn.chatgpt.com/docs/agent-approvals-security (first 12000 chars)",
+          "fetch https://learn.chatgpt.com/docs/config-file/config-reference (first 9000 chars)"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ],
+        "access_gaps": [
+          "Config reference and hooks docs only partially read; no search tool available.",
+          "Changelog, product page and shell_environment_policy docs not checked."
+        ]
+      }
+    },
+    {
+      "feature_id": "self_healing_error_recovery",
+      "status": "has",
+      "rationale": "Goal mode lets the user supply verification criteria (tests/builds) and ChatGPT works until the goal is verified without further prompts; the bug-fix guidance describes reproducing, patching, and re-running checks. Evidence is documentation-level guidance rather than a named auto-fix-loop feature, so confidence is moderate.",
+      "evidence": [
+        {
+          "source_id": "codex_long_running_work",
+          "excerpt": "Write a goal that lets ChatGPT verify its own progress."
+        },
+        {
+          "source_id": "codex_long_running_work",
+          "excerpt": "Migrate this codebase from JavaScript to TypeScript. Preserve existing behavior, compile in strict mode without explicit `any` types, and make the full test suite pass."
+        },
+        {
+          "source_id": "codex_prompting",
+          "excerpt": "Codex should re-run the repro steps after the fix."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Iteration depends on the user defining verification (tests/build) in the goal or prompt; no documented always-on automatic test loop.",
+          "source_id": "codex_long_running_work"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch learn.chatgpt.com/docs/long-running-work",
+          "fetch learn.chatgpt.com/docs/prompting"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "standalone_cli",
+      "status": "has",
+      "rationale": "Codex CLI is an official, documented standalone terminal tool, installable via npm, Homebrew, or install scripts, and provides core coding-agent functionality.",
+      "evidence": [
+        {
+          "source_id": "codex_github_repo",
+          "excerpt": "**Codex CLI** is a coding agent from OpenAI that runs locally on your computer."
+        },
+        {
+          "source_id": "codex_github_repo",
+          "excerpt": "npm install -g @openai/codex"
+        },
+        {
+          "source_id": "codex_cli_docs",
+          "excerpt": "Inspect code, make changes, run commands, and automate repeatable work without leaving your terminal."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Sign in with a ChatGPT plan (Plus, Pro, Business, Edu, Enterprise) or use an API key; repository is Apache-2.0.",
+          "source_id": "codex_github_repo"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": false,
+        "queries": [
+          "fetch https://github.com/openai/codex",
+          "fetch https://learn.chatgpt.com/docs/cli",
+          "fetch https://learn.chatgpt.com/docs/changelog"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "specialist",
+          "changelog"
+        ]
+      }
+    },
+    {
+      "feature_id": "static_analysis_integration",
+      "status": "partial",
+      "rationale": "No native bundled linter integration is documented, but Codex runs lint/type-check commands defined in AGENTS.md as part of its loop, and Codex Security triage ingests SARIF/code-scanning findings from other scanners and assesses them against the repo. Integration is via commands and imported results rather than a dedicated linter integration.",
+      "evidence": [
+        {
+          "source_id": "codex_best_practices",
+          "excerpt": "Checking lint, formatting, or type checks"
+        },
+        {
+          "source_id": "codex_security_triage_docs",
+          "excerpt": "SARIF results, a CVE or GHSA, an advisory, a scanner ticket"
+        },
+        {
+          "source_id": "codex_security_triage_docs",
+          "excerpt": "This workflow performs a read-only static analysis"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "integration_required",
+          "description": "Requires configured lint commands in AGENTS.md or external scanners producing findings (e.g. SARIF, GitHub code scanning).",
+          "source_id": "codex_best_practices"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://learn.chatgpt.com/guides/best-practices",
+          "fetch https://learn.chatgpt.com/docs/security/plugin/triage-backlog"
+        ],
+        "source_classes_checked": [
+          "documentation"
+        ]
+      }
+    },
+    {
+      "feature_id": "sub_processor_disclosure",
+      "status": "has",
+      "rationale": "OpenAI publishes a public, itemized sub-processor list (entity, product/service, location, purpose) tied to its Data Processing Agreement; it covers products including API and ChatGPT Enterprise/Edu/Business, under which Codex is offered.",
+      "evidence": [
+        {
+          "source_id": "openai_sub_processor_list",
+          "excerpt": "OpenAI engages the following entities to provide processing activities for Customer Data (as defined in the OpenAI Data Processing Agreement)."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "List is OpenAI-wide, not Codex-specific; entries are keyed to products such as API and ChatGPT Enterprise/Edu/Business.",
+          "source_id": "openai_sub_processor_list"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch https://openai.com/policies/sub-processor-list/"
+        ],
+        "source_classes_checked": [
+          "other"
+        ]
+      }
+    },
+    {
+      "feature_id": "terminal_command_execution",
+      "status": "has",
+      "rationale": "Codex runs shell commands itself and uses output; in the CLI/app default mode, routine commands inside the sandbox run without approval while out-of-boundary commands (network, outside workspace) require approval. Approval policies: on-request, never; auto-review option; --yolo bypass.",
+      "evidence": [
+        {
+          "source_id": "codex_cli_overview",
+          "excerpt": "Inspect code, make changes, run commands, and automate repeatable work without leaving your terminal."
+        },
+        {
+          "source_id": "codex_agent_approvals",
+          "excerpt": "In the `Auto` preset (for example, `--sandbox workspace-write --ask-for-approval on-request`), Codex can read files, make edits, and run commands in the working directory automatically."
+        },
+        {
+          "source_id": "codex_agent_approvals",
+          "excerpt": "Codex asks for approval to edit files outside the workspace or to run commands that require network access."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "other",
+          "description": "Confirmation model is governed by sandbox mode plus approval policy (on-request/never, Approve for me auto-review, or full access).",
+          "source_id": "codex_agent_approvals"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [
+          "fetch learn.chatgpt.com/docs/cli",
+          "fetch learn.chatgpt.com/docs/agent-approvals-security",
+          "fetch learn.chatgpt.com/docs/developer-commands?surface=cli"
+        ],
+        "source_classes_checked": [
+          "documentation",
+          "specialist",
+          "product_page"
+        ]
+      }
+    },
+    {
+      "feature_id": "third_party_integration_catalog",
+      "status": "has",
+      "rationale": "OpenAI documents an official universal plugin directory shared by ChatGPT and Codex, listing plugins/MCP integrations for third-party products such as Gmail, Google Drive, Slack, GitHub, Airtable, GitLab, HubSpot, Notion, Supabase and Vercel. The pricing page also documents cloud integrations (Slack, automatic GitHub code review). The directory is vendor-run, not a community marketplace.",
+      "evidence": [
+        {
+          "source_id": "codex_plugins",
+          "excerpt": "Both products use one universal plugin directory, so the same public plugins are discoverable from their supported surfaces."
+        },
+        {
+          "source_id": "codex_plugins",
+          "excerpt": "Install the Slack plugin to summarize channels or draft replies."
+        },
+        {
+          "source_id": "codex_plugins",
+          "excerpt": "supported plugins and partner sites, including Airtable, GitLab, HubSpot, Notion, Supabase, and Vercel"
+        },
+        {
+          "source_id": "codex_pricing",
+          "excerpt": "Cloud-based integrations like automatic code review and Slack integration"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "platform_or_ide",
+          "description": "Plugins work in ChatGPT web/desktop/mobile and the Codex desktop app; Codex CLI has a plugin browser; the IDE extension does not support plugins. Some plugins are desktop-only.",
+          "source_id": "codex_plugins"
+        },
+        {
+          "type": "plan_or_license",
+          "description": "Cloud-based integrations (GitHub code review, Slack) are not available with API-key authentication; some plugins are unavailable with API key auth.",
+          "source_id": "codex_pricing"
+        },
+        {
+          "type": "release_stage",
+          "description": "Sign in with ChatGPT for partner plugins is in beta rollout.",
+          "source_id": "codex_plugins"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [],
+        "source_classes_checked": [
+          "integration_catalog",
+          "documentation",
+          "pricing",
+          "product_page"
+        ],
+        "access_gaps": [
+          "The full per-plugin directory listing is rendered in-app and was not retrievable; exact count of integrations unknown."
+        ]
+      }
+    },
+    {
+      "feature_id": "web_hosted_access",
+      "status": "has",
+      "rationale": "Official pricing docs state Codex is available on the web (cloud tasks) for paid plans, and the product page describes cloud tasks that can be started and followed from another device; Codex is also in ChatGPT on the web.",
+      "evidence": [
+        {
+          "source_id": "codex_pricing",
+          "excerpt": "Codex on the web, in the CLI, in the IDE extension, and on iOS"
+        },
+        {
+          "source_id": "codex_product_page",
+          "excerpt": "Codex keeps going when you close your laptop, with reusable cloud environments for every repo. Start tasks, follow progress, and pick up where you left off from another device."
+        },
+        {
+          "source_id": "codex_plugins",
+          "excerpt": "Plugins work in Chat and Work across ChatGPT on the web, desktop, and mobile"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "plan_or_license",
+          "description": "Web/cloud access is listed under Plus and above; the API Key option lists no cloud-based features. Free/Go list only desktop-app model access.",
+          "source_id": "codex_pricing"
+        }
+      ],
+      "search_trace": {
+        "protocol_complete": true,
+        "queries": [],
+        "source_classes_checked": [
+          "pricing",
+          "product_page",
+          "documentation",
+          "integration_catalog"
+        ],
+        "access_gaps": [
+          "Dedicated Codex cloud/web docs page was not fetched; evidence taken from pricing and product pages."
+        ]
+      }
+    }
+  ],
+  "additional_facts": [
+    {
+      "fact_id": "business_data_not_used_for_training",
+      "topic": "Data usage",
+      "description": "OpenAI states that organization data for business offerings is not used to train models by default, and that qualifying organizations can configure retention, including zero data retention in the API platform.",
+      "evidence": [
+        {
+          "source_id": "openai_business_data",
+          "excerpt": "We don\u2019t train our models on your organization\u2019s data by default."
+        },
+        {
+          "source_id": "openai_business_data",
+          "excerpt": "Qualifying organizations are able to configure how long OpenAI retains business data, including opting for our zero data retention policy in the API platform."
+        }
+      ]
+    },
+    {
+      "fact_id": "mcp_extensibility",
+      "topic": "Extensibility via MCP",
+      "description": "Codex can use external tools and data through MCP servers (local or remote, added from the CLI) and through plugins that bundle skills and MCP servers, discoverable in a shared plugin directory.",
+      "evidence": [
+        {
+          "source_id": "codex_mcp_docs",
+          "excerpt": "Model Context Protocol (MCP) lets ChatGPT and Codex use tools and information from other systems."
+        },
+        {
+          "source_id": "codex_plugins",
+          "excerpt": "Plugins bundle capabilities into reusable workflows in ChatGPT and Codex. They can include skills and MCP servers."
+        }
+      ]
+    },
+    {
+      "fact_id": "model_retirement_gpt_5_5",
+      "topic": "Plans and availability",
+      "description": "The pricing page announces that GPT-5.5 is retired from Codex with ChatGPT sign-in on 14 October 2026, while the OpenAI API and API-key Codex sessions are not affected. Model availability therefore differs between ChatGPT sign-in and API-key use.",
+      "evidence": [
+        {
+          "source_id": "codex_pricing",
+          "excerpt": "The OpenAI API and Codex sessions authenticated with an API key aren\u2019t affected."
+        }
+      ]
+    },
+    {
+      "fact_id": "multi_agent_orchestration",
+      "topic": "Multi-agent orchestration",
+      "description": "Subagent workflows are enabled by default in current releases, and the main agent handles spawning, routing follow-ups, waiting and closing of subagent threads. Subagent activity is visible in the desktop app, CLI and IDE extension.",
+      "evidence": [
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "ChatGPT or Codex handles orchestration across agents, including spawning new subagents, routing follow-up instructions, waiting for results, and closing agent threads."
+        },
+        {
+          "source_id": "codex_subagents_docs",
+          "excerpt": "Current Codex releases enable subagent workflows by default."
+        }
+      ]
+    },
+    {
+      "fact_id": "plans_and_tiers",
+      "topic": "Plans and tiers",
+      "description": "Codex is offered through ChatGPT plans and through API-key authentication. Free and Go plans list only the desktop app with a lightweight model, Plus and above add web, CLI, IDE extension and iOS access plus cloud-based integrations, and the API Key option is aimed at automation such as CI but has no cloud-based features.",
+      "evidence": [
+        {
+          "source_id": "codex_pricing",
+          "excerpt": "Codex on the web, in the CLI, in the IDE extension, and on iOS"
+        },
+        {
+          "source_id": "codex_pricing",
+          "excerpt": "No cloud-based features (GitHub code review, Slack, etc.)"
+        },
+        {
+          "source_id": "codex_pricing",
+          "excerpt": "Great for automation in shared environments like CI."
+        }
+      ]
+    },
+    {
+      "fact_id": "shared_usage_with_chatgpt_work",
+      "topic": "Pricing note",
+      "description": "Usage in ChatGPT Work and in Codex draws from the same pricing, credits and usage limits. Local messages and cloud chats share the plan's allowance, and the number of messages depends on the model and task size.",
+      "evidence": [
+        {
+          "source_id": "codex_pricing",
+          "excerpt": "**ChatGPT Work and Codex share usage.** ChatGPT Work usage inside ChatGPT uses the same pricing, credits, and usage limits as Codex."
+        },
+        {
+          "source_id": "codex_pricing",
+          "excerpt": "Local messages and cloud chats share your plan\u2019s usage allowance."
+        }
+      ]
+    }
+  ],
+  "use_cases": [
+    {
+      "use_case_id": "ci_automation_codex_exec",
+      "title": "Unattended runs in CI/CD",
+      "description": "Run Codex from scripts and CI jobs with codex exec, capture JSONL events or structured output, or use the official GitHub Action to apply patches or post reviews.",
+      "kind": "documented",
+      "supporting_features": [
+        "headless_ci_mode"
+      ],
+      "evidence": [
+        {
+          "source_id": "codex_non_interactive_docs",
+          "excerpt": "Non-interactive mode lets you run Codex from scripts (for example, continuous integration (CI) jobs) without opening the interactive TUI. You invoke it with `codex exec`."
+        },
+        {
+          "source_id": "codex_github_action_docs",
+          "excerpt": "Use the Codex GitHub Action (`openai/codex-action@v1`) to run Codex in CI/CD jobs, apply patches, or post reviews from a GitHub Actions workflow."
+        }
+      ]
+    },
+    {
+      "use_case_id": "github_pull_request_review",
+      "title": "Automated pull request review",
+      "description": "Have Codex review pull request diffs on GitHub, following repository guidance, or review local changes with the dedicated review command.",
+      "kind": "documented",
+      "supporting_features": [
+        "automated_code_review"
+      ],
+      "evidence": [
+        {
+          "source_id": "codex_github_integration_docs",
+          "excerpt": "Codex reviews the pull request diff, follows your repository guidance, and posts a standard GitHub code review focused on serious issues."
+        }
+      ]
+    },
+    {
+      "use_case_id": "long_running_migration",
+      "title": "Long-running, verifiable migrations with Goal mode",
+      "description": "Give Codex a persistent goal with a definition of done (for example, a language migration that must compile and pass the test suite) and let it work across many steps.",
+      "kind": "documented",
+      "supporting_features": [
+        "autonomous_task_execution",
+        "background_long_running_tasks",
+        "self_healing_error_recovery"
+      ],
+      "evidence": [
+        {
+          "source_id": "codex_long_running_work",
+          "excerpt": "Migrate this codebase from JavaScript to TypeScript. Preserve existing behavior, compile in strict mode without explicit `any` types, and make the full test suite pass."
+        },
+        {
+          "source_id": "codex_long_running_work",
+          "excerpt": "For work that may take many steps, give ChatGPT a clear outcome, constraints, and definition of done."
+        }
+      ]
+    },
+    {
+      "use_case_id": "parallel_feature_work_in_worktrees",
+      "title": "Parallel feature work on one repository",
+      "description": "Run several independent agent chats on different tasks in the same repository, each isolated in its own Git worktree or cloud environment.",
+      "kind": "inferred",
+      "rationale": "Documentation describes worktrees for independent concurrent chats and cloud tasks in isolated workspaces; splitting separate features or fixes across them is a straightforward use of that mechanism.",
+      "supporting_features": [
+        "parallel_independent_task_execution",
+        "multi_agent_orchestration",
+        "git_native_workflow"
+      ]
+    },
+    {
+      "use_case_id": "recurring_repo_maintenance",
+      "title": "Recurring repository housekeeping",
+      "description": "Scheduled tasks could run periodic maintenance prompts (for example summaries or checks) against a project without a user present.",
+      "kind": "inferred",
+      "rationale": "Scheduled tasks run unattended under default sandbox settings on recurring schedules, so recurring housekeeping prompts are a natural application; the reviewed pages do not present this specific scenario as a vendor example.",
+      "supporting_features": [
+        "scheduled_recurring_task_execution",
+        "sandboxed_execution_environment"
+      ]
+    },
+    {
+      "use_case_id": "security_backlog_triage",
+      "title": "Security findings triage",
+      "description": "Use the Codex Security triage workflow to assess imported findings (code scanning, Dependabot, advisories, SARIF) against a repository.",
+      "kind": "documented",
+      "supporting_features": [
+        "dependency_vulnerability_scanning",
+        "static_analysis_integration"
+      ],
+      "evidence": [
+        {
+          "source_id": "codex_security_triage_docs",
+          "excerpt": "SARIF results, a CVE or GHSA, an advisory, a scanner ticket"
+        }
+      ]
+    },
+    {
+      "use_case_id": "ui_fix_from_design_image",
+      "title": "Fixing UI from a design or screenshot",
+      "description": "Attach a design reference or error screenshot to a prompt and ask for targeted visual fixes.",
+      "kind": "documented",
+      "supporting_features": [
+        "multimodal_image_to_code"
+      ],
+      "evidence": [
+        {
+          "source_id": "codex_image_inputs_docs",
+          "excerpt": "Compare this checkout screen with the design. Fix spacing and typography only; do not change behavior."
+        }
+      ]
+    }
+  ],
+  "release_history": [
+    {
+      "release_id": "codex_cli_0_157_0",
+      "version": "0.157.0",
+      "release_date": "2026-09-25",
+      "summary": "Adds GPT-6 Sol and Luna including Amazon Bedrock support, fullscreen transcripts by default, automatic background-server startup for eligible interactive sessions, and /import in remote and background-server sessions.",
+      "evidence": [
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Added GPT-6 Sol and Luna, including Amazon Bedrock support and migration prompts for older models."
+        },
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Enabled fullscreen transcripts by default and added Shift-click to extend text selections."
+        }
+      ]
+    },
+    {
+      "release_id": "codex_cli_0_158_0",
+      "version": "0.158.0",
+      "release_date": "2026-09-28",
+      "summary": "Adds configurable copy-on-select and right-click paste, MCP OAuth client secrets via codex mcp add --oauth-client-secret, bearer-token security for exec-server WebSockets, transparent-background image generation, and terminal input approval by default for elevated commands.",
+      "evidence": [
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Connect to MCP servers that require pre-registered OAuth client secrets, including through `codex mcp add --oauth-client-secret`."
+        },
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Terminal input approval is enabled by default for commands running with elevated permissions; runtime-only grants no longer cause unnecessary reviews."
+        }
+      ]
+    },
+    {
+      "release_id": "codex_cli_0_159_0",
+      "version": "0.159.0",
+      "release_date": "2026-09-29",
+      "summary": "Adds opt-in instant_interrupt steering, a compact welcome screen with tips, a warnings viewer, richer Mermaid rendering and thread-history pagination for app-server clients, plus Windows console-window fixes.",
+      "evidence": [
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Opt-in `instant_interrupt` lets new input steer Codex during model responses or long-running code-mode calls."
+        },
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "App-server clients can paginate thread history from a specific item."
+        }
+      ]
+    },
+    {
+      "release_id": "codex_cli_0_160_0",
+      "version": "0.160.0",
+      "release_date": "2026-10-01",
+      "summary": "Adds browsing of older tasks in the agent command center, middle-click paste in fullscreen on Linux X11 terminals, sessions started outside a project when policy permits, and opt-in Guardian review capabilities. Fixes queued-message resumption and Windows sandbox fallbacks.",
+      "evidence": [
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Browse older tasks in the agent command center with a keyboard-accessible \u201cShow more\u201d action."
+        },
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Added opt-in Guardian review capabilities to retrieve earlier user instructions and include context from agent handoffs."
+        }
+      ]
+    },
+    {
+      "release_id": "codex_cli_0_161_0",
+      "version": "0.161.0",
+      "release_date": "2026-10-07",
+      "summary": "GPT-6.1 Sol becomes the default model in bundled and Amazon Bedrock catalogs, Bedrock gains multi-agent V2 and Ultra reasoning, /mcp login is added for MCP sign-in, voice device selection is added, and Daybreak becomes opt-in.",
+      "evidence": [
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "GPT-6.1 Sol is now the default model in the bundled and Amazon Bedrock catalogs."
+        },
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Sign in to MCP servers from an active terminal session with `/mcp login <name>`."
+        }
+      ]
+    },
+    {
+      "release_id": "codex_cli_0_162_0",
+      "version": "0.162.0",
+      "release_date": "2026-10-08",
+      "summary": "Adds tools for managed Git worktrees, pinned tasks in the agent Command Center, transcript copy navigation, clickable URLs in prompts, and live web access and remote compaction settings for custom Responses-compatible providers.",
+      "evidence": [
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Add tools for creating and listing managed Git worktrees from trusted local projects when the worktrees feature is enabled."
+        },
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Configure live web access and remote compaction capabilities for custom Responses-compatible model providers."
+        }
+      ]
+    },
+    {
+      "release_id": "codex_cli_0_163_0",
+      "version": "0.163.0",
+      "release_date": "2026-10-15",
+      "summary": "Adds a searchable /config view, steering by sending a follow-up while Codex responds, a configurable leader key in /keymap, /daemon restart for managed background servers, parallel read-only tools, and Daybreak enabled by default for eligible accounts. Network proxy and resume-permission fixes.",
+      "evidence": [
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Open `/config` to search preferences across categories, change supported settings immediately, and see which changes require a restart."
+        },
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Codex can run independent read-only tools in parallel, including skill, memory, and conversation-history lookups."
+        }
+      ]
+    },
+    {
+      "release_id": "codex_cli_0_164_0",
+      "version": "Codex CLI 0.164.0",
+      "product_version": "0.164.0",
+      "release_date": "2026-10-23",
+      "summary": "Adds /presets slots for reusable prompts and slash commands, inline /model and /permissions arguments, image previews in the fullscreen transcript, enterprise MCP authentication via Codex account grants, and credential masking for supported remote Bash and Zsh sessions. Fixes compaction failures, session resume and Windows proxy authentication.",
+      "evidence": [
+        {
+          "source_id": "codex_changelog",
+          "excerpt": "Save reusable prompts and slash commands in ten numbered `/presets` slots, with a keyboard menu for quick access."
+        },
+        {
+          "source_id": "codex_github_releases",
+          "excerpt": "Mask credentials during supported remote Bash commands and Zsh snapshot sessions, including credentials from custom providers."
+        }
+      ]
+    }
+  ],
+  "unresolved_issues": [
+    {
+      "issue_id": "release_history_stable_only",
+      "kind": "other",
+      "description": "Release history captures 8 stable CLI releases (0.157.0-0.164.0) rather than 10: alpha pre-releases were excluded and older entries were not enumerated. Dates for 0.157.0-0.163.0 are the GitHub release published_at dates (UTC); 0.164.0 uses the date shown on the official changelog. Release evidence excerpts are taken from the fetched changelog and GitHub release notes, which use identical text.",
+      "related_source_ids": [
+        "codex_github_releases",
+        "codex_changelog"
+      ]
+    },
+    {
+      "issue_id": "uncertain_features_not_found_protocol_incomplete",
+      "kind": "coverage_gap",
+      "description": "Features agent_session_checkpoint_rollback, codebase_semantic_search, full_offline_operation, inline_code_completion, on_premises_private_deployment and secret_detection_redaction remain uncertain because the upstream research could not complete the not-found protocol; the prose therefore says they were 'not confirmed' rather than absent. Note also that release 0.164.0 notes credential masking for supported remote commands, which may be relevant to secret_detection_redaction.",
+      "related_source_ids": [
+        "codex_changelog",
+        "codex_github_releases"
+      ]
+    }
+  ]
+}

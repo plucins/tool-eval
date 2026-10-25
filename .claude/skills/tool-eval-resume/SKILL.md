@@ -39,8 +39,6 @@ workflow.
   the current configuration; a controlled revision change forces a fresh run.
 - A failed or unresumable run never alters an existing active profile.
 
-## Increment 1 status
-
-Skeleton: the argument surface and hand-off contract are defined here, and
-`run resume-check` is implemented and verified. Resuming the full research flow
-depends on the pipeline delivered in Increment 2.
+Never `run init resume` or replace the original run id. Continue from validated
+on-disk results and recorded decisions; never infer curation approval from a
+previous session's summary.

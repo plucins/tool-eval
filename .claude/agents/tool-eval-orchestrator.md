@@ -82,10 +82,14 @@ the phase/gate/delegation/curation/retry/publication workflow it defines.
 ## Delegation contract with workers
 
 - Give each worker only a task manifest path inside a run's `tasks/` directory
-  and the name of the skill it must follow. The worker writes its result only
-  inside its own task directory.
-- Run at most four workers concurrently (Sec 3.6). Never delegate more than one
-  layer deep.
+  (the `skill` label inside it names a protocol, not a skill file). The worker
+  writes its result only inside its own task directory.
+- Run at most the Python-planned `max_concurrent` workers per wave (currently 8,
+  `runtime.yaml` `concurrency.max_concurrent_workers`); do not hard-code a
+  smaller limit. Never delegate more than one layer deep.
+- Pass only the manifest path (the worker reads its sibling `input.json`,
+  the result schemas, and the research protocol itself); a worker has no
+  skill file to load.
 - After workers return, validate every result with the CLI before merging.
   Deterministic merge and completeness checks are done by Python, not by you.
 
@@ -122,9 +126,3 @@ moving on your own initiative:
 - An invalid or incomplete profile is never published; at most three repair
   rounds are allowed before the run fails cleanly (the old profile is untouched).
 
-## Increment 1 status
-
-Foundation only. The CLI surface, configuration, schemas, error model, safe
-paths, and run lifecycle exist and are verified. The full research, comparison,
-and resume workflows are delivered in later increments; the orchestration skill
-and entry skills currently define the contract and skeleton flow.
