@@ -318,3 +318,62 @@ def test_build_profile_missing_sections_without_profile_writing_task(
     with pytest.raises(ToolEvalError) as exc:
         build_profile(temp_project, run.run_id)
     assert exc.value.code == "INPUT_DESCRIPTION_SECTIONS_MISSING"
+
+
+@pytest.mark.parametrize("explicit_content", [False, True])
+def test_build_profile_registers_content_sources(
+    temp_project: Path, make_source, explicit_content: bool
+):
+    run = init_run(temp_project, operation="research")
+    _drive_to_merged(temp_project, run.run_id, make_source)
+    create_profile_writing_task(temp_project, run.run_id)
+    payload = _profile_writing_worker_result(
+        run.run_id, _required_sections(temp_project), taxonomy_feature_ids(temp_project)[0]
+    )
+    payload["sources"] = [make_source("src_new"), make_source("src_docs"), make_source("src_new")]
+    for key in ("additional_facts", "use_cases", "release_history"):
+        for item in payload[key]:
+            for evidence in item.get("evidence", []):
+                evidence["source_id"] = "src_new"
+    payload["unresolved_issues"][0]["related_source_ids"] = ["src_new"]
+    run_dir = temp_project / ".work" / "runs" / run.run_id
+    merged_sources_before = (run_dir / "merged" / "sources.json").read_bytes()
+    content_path = None
+    if explicit_content:
+        content_path = run_dir / "content.json"
+        content_path.write_text(json.dumps(payload), encoding="utf-8")
+    else:
+        _write_task_result(temp_project, run.run_id, PROFILE_WRITING_TASK_ID, payload)
+
+    summary = build_profile(temp_project, run.run_id, content_path=content_path)
+
+    assert summary["built"] is True, summary["errors"]
+    profile = json.loads((run_dir / "publish" / "profile.json").read_text())
+    assert profile["sources"] == [make_source("src_docs"), make_source("src_new")]
+    assert (run_dir / "merged" / "sources.json").read_bytes() == merged_sources_before
+    assert profile["additional_facts"][0]["evidence"][0]["source_id"] == "src_new"
+    assert profile["release_history"][0]["evidence"][0]["source_id"] == "src_new"
+    assert profile["unresolved_issues"][0]["related_source_ids"] == ["src_new"]
+
+
+@pytest.mark.parametrize("conflicts_with_merged", [False, True])
+def test_build_profile_rejects_conflicting_content_sources(
+    temp_project: Path, make_source, conflicts_with_merged: bool
+):
+    run = init_run(temp_project, operation="research")
+    _drive_to_merged(temp_project, run.run_id, make_source)
+    create_profile_writing_task(temp_project, run.run_id)
+    payload = _profile_writing_worker_result(
+        run.run_id, _required_sections(temp_project), taxonomy_feature_ids(temp_project)[0]
+    )
+    source_id = "src_docs" if conflicts_with_merged else "src_new"
+    original = make_source(source_id)
+    conflicting = {**original, "title": "Conflicting title"}
+    payload["sources"] = [conflicting] if conflicts_with_merged else [original, conflicting]
+    _write_task_result(temp_project, run.run_id, PROFILE_WRITING_TASK_ID, payload)
+
+    summary = build_profile(temp_project, run.run_id)
+
+    assert summary["built"] is False
+    assert any(error["code"] == "VALIDATION_SOURCE_CONFLICT" for error in summary["errors"])
+    assert not (temp_project / ".work" / "runs" / run.run_id / "publish").exists()

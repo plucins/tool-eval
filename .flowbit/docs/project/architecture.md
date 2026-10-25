@@ -1,7 +1,7 @@
 # System Architecture
 
 ## Overview
-**tool-eval** is a deterministic, offline Python CLI that researches, profiles, and compares AI coding tools. It deliberately separates two concerns: the Python core performs only deterministic work — validation, merging, publication, and run lifecycle management — while all reasoning (research, curation judgement, web access) is delegated to an external agent harness defined under `.claude/`. Every CLI command emits exactly one JSON envelope to stdout and logs to stderr, making the tool ideal for agent consumption.
+**tool-eval** is a deterministic, offline Python CLI that researches, profiles, and compares AI coding tools. It deliberately separates two concerns: the Python core performs only deterministic work — validation, merging, publication, and run lifecycle management — while all reasoning (research, curation judgement, web access) is delegated to an external agent harness defined under `.claude/` (Claude Code) or `.github/` (GitHub Copilot CLI). Every CLI command emits exactly one JSON envelope to stdout and logs to stderr, making the tool ideal for agent consumption.
 
 ## Visual Architecture Context
 
@@ -80,9 +80,16 @@ The implementation leans toward a hexagonal style: pure logic modules (e.g., `pl
 - **Purpose**: Build multi-tool comparisons and render self-contained, sanitized HTML. Currently stubs; `compare build` returns `INPUT_NOT_IMPLEMENTED`.
 
 ### Harness Integration
-- **Location**: `.claude/agents/`, `.claude/skills/`
+- **Location**: `.claude/agents/`, `.claude/skills/` (Claude Code);
+  `.github/agents/`, `.github/skills/` (GitHub Copilot CLI).
 - **Purpose**: Define the external LLM orchestration that drives the deterministic Python core.
 - **Key Files**: `tool-eval-orchestrator.md`, `tool-eval-worker.md`; skills `tool-eval-research`, `tool-eval-compare`, `tool-eval-resume`, `tool-eval-orchestration`.
+- **Copilot adapter**: `copilot-tool-eval-orchestrator.agent.md`,
+  `copilot-tool-eval-worker.agent.md`, and `copilot-tool-eval-*` skills. Distinct
+  IDs avoid collisions with Copilot's discovery of `.claude/` skills.
+  The adapter reuses shared research/content rules and Python contracts;
+  tool permissions, completion handling, and adapter checkpoints are
+  harness-specific. See `docs/copilot-cli-guide.md`.
 
 ## Data Flow
 1. **Harness** (orchestrator agent) invokes CLI commands to start a run; `runs/manager.py` freezes config revisions + hashes.
@@ -119,7 +126,7 @@ sequenceDiagram
 ```
 
 ## External Integrations
-None at the Python layer by design — no databases, model SDKs, or network calls. The only "integration" is the external agent harness (`.claude/`), which supplies research inputs as data. Web/model access lives entirely in the harness, never in the Python core.
+None at the Python layer by design — no databases, model SDKs, or network calls. The only "integration" is the external agent harness (`.claude/` or `.github/`), which supplies research inputs as data. Web/model access lives entirely in the harness, never in the Python core.
 
 ## Database Schema
 No database. Data contracts are defined as JSON Schemas under `src/tool_eval/validation/schemas/` (the authoritative structural source of truth), complemented by business rules in `validation/business.py`.

@@ -6,7 +6,12 @@ tool-eval. No prior knowledge of the internals is assumed.
 tool-eval is a repository of Claude Code skills, agents, and a deterministic
 Python core. Claude does all research and writing; Python validates, merges,
 and publishes the results. **No API key or model-provider SDK is required** —
-all LLM work runs inside the Claude Code harness.
+all LLM work runs inside the selected agent harness.
+
+This guide shows the Claude Code commands. For the alternative GitHub Copilot
+CLI agents, skills, permissions, and launch commands, see the
+[Copilot CLI guide](copilot-cli-guide.md). Both adapters use the same Python
+core and data contracts.
 
 ---
 

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import copy
 import json
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
@@ -48,8 +49,17 @@ def test_malicious_markdown_in_description_is_sanitized(temp_project, valid_prof
         desc_b="Nice <script>steal()</script> tool with <img src=x onerror=alert(1)>.",
     )
     assert "<script>steal" not in html
-    # Raw HTML is escaped to inert text; no active <img>/<script> element exists.
-    assert "<img" not in html.lower()
+    class ImageParser(HTMLParser):
+        def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+            if tag == "img":
+                attributes = dict(attrs)
+                assert attributes.get("class") == "cg-brand-logo"
+                assert attributes.get("src", "").startswith("data:image/svg+xml;base64,")
+                assert not any(name.startswith("on") for name in attributes)
+
+    # The only active image is the trusted bundled logo, not injected Markdown.
+    ImageParser().feed(html)
+    assert html.lower().count("<img") == 1
     assert "<script>steal()" not in html
 
 

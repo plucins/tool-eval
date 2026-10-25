@@ -17,10 +17,10 @@ Coding standards, conventions, and best practices organized by domain.
 Located in `.flowbit/docs/project/`
 
 #### Technology Stack (`project/tech-stack.md`)
-Technology choices and rationale for the tool-eval AI Coding Tool Comparison System. Covers the deterministic, offline Python stack (hatchling build, argparse CLI, PyYAML, jsonschema, markdown-it-py/Jinja2 rendering, nh3 sanitization, pytest), and the split of responsibilities between the Python core and the external `.claude/` agent harness.
+Technology choices and rationale for the tool-eval AI Coding Tool Comparison System. Covers the deterministic, offline Python stack (hatchling build, argparse CLI, PyYAML, jsonschema, markdown-it-py/Jinja2 rendering, nh3 sanitization, pytest), and the split of responsibilities between the Python core and the external Claude Code (`.claude/`) or Copilot CLI (`.github/`) agent harness.
 
 #### System Architecture (`project/architecture.md`)
-Architecture of the deterministic, offline Python CLI that researches, profiles, and compares AI coding tools. Describes the separation between the Python core (validation, merging, publication, run lifecycle) and the LLM agent harness, the single-JSON-envelope command contract, and the container-level component view.
+Architecture of the deterministic, offline Python CLI that researches, profiles, and compares AI coding tools. Describes the separation between the Python core (validation, merging, publication, run lifecycle) and the LLM agent harness, the alternative Copilot CLI adapter, the single-JSON-envelope command contract, and the container-level component view.
 
 ---
 

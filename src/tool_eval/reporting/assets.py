@@ -1,6 +1,6 @@
 """Load and verify the vendored, offline UI assets (D-013/D-014, R-10).
 
-Bootstrap, the Capgemini theme, the vanilla JS, and the Montserrat fonts are
+Bootstrap, the Capgemini theme and logo, the vanilla JS, and the Ubuntu fonts are
 bundled under ``static/`` and pinned by SHA-256 in ``static/checksums.json``.
 :func:`load_assets` reads them, verifies every checksum (tamper detection), and
 returns CSS/JS ready to inline plus the fonts embedded as base64 ``data:`` URIs -
@@ -32,6 +32,8 @@ class BundledAssets:
     theme_css: str
     app_js: str
     bootstrap_js: str
+    logo_uri: str
+    font_license: str
 
 
 def _sha256(data: bytes) -> str:
@@ -94,7 +96,16 @@ def load_assets() -> BundledAssets:
     checksums = _load_checksums()
 
     def text(rel: str) -> str:
-        return _read_verified(rel, checksums[rel]).decode("utf-8")
+        return verified(rel).decode("utf-8")
+
+    def verified(rel: str) -> bytes:
+        if rel not in checksums:
+            raise ToolEvalError(
+                code=f"{ErrorFamily.PUBLISH}_ASSET_MISSING",
+                message=f"Required asset {rel!r} has no checksum entry.",
+                path=rel,
+            )
+        return _read_verified(rel, checksums[rel])
 
     theme_css = _embed_fonts(text("theme-capgemini.css"), checksums)
     return BundledAssets(
@@ -102,4 +113,7 @@ def load_assets() -> BundledAssets:
         theme_css=theme_css,
         app_js=text("app.js"),
         bootstrap_js=text("bootstrap.bundle.min.js"),
+        logo_uri="data:image/svg+xml;base64,"
+        + base64.b64encode(verified("capgemini-white.svg")).decode("ascii"),
+        font_license=text("fonts/UFL.txt"),
     )
